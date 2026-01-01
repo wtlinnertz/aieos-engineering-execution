@@ -1,0 +1,57 @@
+# =========================
+# OS / Editor Artifacts
+# =========================
+
+.DS_Store
+Thumbs.db
+
+# =========================
+# IDE / Editor Settings
+# =========================
+
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# =========================
+# Temporary / Backup Files
+# =========================
+
+*~
+*.bak
+*.tmp
+
+# =========================
+# Logs
+# =========================
+
+*.log
+
+# =========================
+# Generated Site Artifacts
+# (if docs are later built with a static site generator)
+# =========================
+
+site/
+build/
+dist/
+
+# =========================
+# Node / Python (future-proofing only)
+# =========================
+
+node_modules/
+__pycache__/
+*.pyc
+
+# =========================
+# Secrets / Credentials
+# (should never be committed)
+# =========================
+
+.env
+.env.*
+*.pem
+*.key
+*.crt
