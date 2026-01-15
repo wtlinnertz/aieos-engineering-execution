@@ -1,0 +1,26 @@
+{
+  "status": "NOT_READY",
+  "summary": "Story contains ambiguous scope and violates granularity rules.",
+  "hard_gates": {
+    "traceability": "PASS",
+    "atomic_scope": "FAIL",
+    "acceptance_criteria": "PASS",
+    "inputs_outputs": "FAIL",
+    "definition_of_done": "PASS",
+    "dependencies": "PASS",
+    "execution_ownership": "PASS",
+    "ai_safety": "FAIL",
+    "granularity": "FAIL"
+  },
+  "blocking_issues": [
+    "Story includes multiple outcomes described using compound objectives.",
+    "Required inputs for execution are not explicitly listed.",
+    "Story uses open-ended language that leaves execution decisions unresolved."
+  ],
+  "granularity_fail_reasons": [
+    "multiple outcomes",
+    "multi-subsystem changes",
+    "execution ambiguity"
+  ],
+  "confidence": "High"
+}
