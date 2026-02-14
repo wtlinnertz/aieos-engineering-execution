@@ -51,9 +51,17 @@ The SDLC flow is linear and gated:
   → PRD Validator
   → Freeze
 
+- ACF
+  → ACF Validator
+  → Freeze
+
 - PRD + ACF
   → SAD
   → SAD Validator
+  → Freeze
+
+- DCF
+  → DCF Validator
   → Freeze
 
 - SAD + DCF
@@ -63,11 +71,11 @@ The SDLC flow is linear and gated:
 
 - TDD
   → WDD
-  → Sanity & Scope Check
+  → WDD Validator
   → Freeze
 
 - WDD
-  → Jira Stories
+  → Stories
   → Definition of Ready (DoR)
   → Execute
 
@@ -85,7 +93,7 @@ Each artifact answers exactly one question:
 - **DCF** — What design standards constrain technical design?
 - **TDD** — How will this be built and operated?
 - **WDD** — What is the smallest executable work?
-- **Jira Story** — Is this ready to execute now?
+- **Story** — Is this ready to execute now?
 
 Artifacts that answer more than one question are invalid.
 
@@ -114,7 +122,7 @@ Freezing an artifact locks its intent and scope.
 - **SAD Freeze** — Architecture locked
 - **TDD Freeze** — Technical design locked
 - **WDD Freeze** — Work scope locked
-- **Jira Story Ready** — Execution locked
+- **Story Ready** — Execution locked
 
 Breaking a freeze requires explicit re-entry to the prior stage.
 
@@ -184,7 +192,7 @@ Generation proceeds only after human confirmation.
 
 ---
 
-### Jira Story Refinement Ladder
+### Story Refinement Ladder
 
 1. Generate stories from WDD
 2. Run Definition of Ready (DoR)
@@ -219,6 +227,17 @@ Confirms:
 
 ---
 
+### ACF Validator
+
+Confirms:
+- Platform assumptions are stated
+- Security guardrails are defined
+- Reliability and observability expectations are stated
+- Forbidden patterns are listed
+- Constraints are enforceable
+
+---
+
 ### SAD Validator
 
 Confirms:
@@ -226,6 +245,17 @@ Confirms:
 - Major components are identified
 - Architectural decisions are documented
 - ACF guardrails are respected
+
+---
+
+### DCF Validator
+
+Confirms:
+- Design principles are defined
+- Quality bars are measurable
+- Non-goals enforcement rules are present
+- Testing and operational expectations are stated
+- Standards are enforceable
 
 ---
 
@@ -241,7 +271,7 @@ Confirms:
 
 ---
 
-### WDD Sanity and Scope Check
+### WDD Validator
 
 Confirms:
 - One outcome per item
@@ -254,7 +284,7 @@ Confirms:
 
 ### Definition of Ready (DoR) Validator
 
-Confirms Jira stories are:
+Confirms stories are:
 - Traceable to WDD and TDD
 - Atomic and executable
 - Unambiguous
@@ -263,7 +293,7 @@ Confirms Jira stories are:
 
 ---
 
-## Granularity Rules (WDD and Jira)
+## Granularity Rules (WDD and Stories)
 
 Executable work must satisfy all of the following:
 
