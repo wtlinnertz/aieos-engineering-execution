@@ -63,19 +63,21 @@ For each artifact:
 
 ## Validator Index
 
-### Requirements & Architecture
+### Context & Requirements
 - `prd-validator.md`
+- `acf-validator.md`
+
+---
+
+### Architecture & Design
 - `sad-validator.md`
-
----
-
-### Design & Delivery
+- `dcf-validator.md`
 - `tdd-validator.md`
-- `wdd-validator.md`
 
 ---
 
-### Execution Readiness
+### Delivery & Execution
+- `wdd-validator.md`
 - `dor-validator.md`
 
 ---
@@ -86,7 +88,7 @@ Validators are intended to be:
 - Run manually
 - Run by AI agents
 - Integrated into CI / workflow gates
-- Used to block Jira transitions
+- Used to block workflow transitions
 
 Manual overrides are allowed but must be explicit and intentional.
 
