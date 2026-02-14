@@ -1,6 +1,6 @@
 # End-to-End Example: Generic Service Deployment
 
-This example demonstrates the **complete AI-assisted SDLC flow** from PRD through execution-ready Jira stories.
+This example demonstrates the **complete AI-assisted SDLC flow** from PRD through execution-ready stories.
 
 The example is:
 - Fully anonymized
@@ -28,7 +28,7 @@ The goal is to show:
 4. Design Context File (DCF)
 5. Technical Design Document (TDD)
 6. Work Design Document (WDD)
-7. Jira Stories (READY)
+7. Stories (READY)
 
 Each artifact is frozen before promotion.
 
@@ -43,5 +43,4 @@ Each artifact is frozen before promotion.
 - `05-dcf.md`
 - `06-tdd.md`
 - `07-wdd.md`
-- `08-jira-stories.md`
-
+- `08-stories.md`

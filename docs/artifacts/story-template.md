@@ -1,4 +1,4 @@
-# Jira Story Template (Execution Unit)
+# Story Template (Execution Unit)
 
 ## Summary
 One sentence: what will be delivered?

@@ -60,7 +60,7 @@ You do **not** need a specific toolchain to use this kit.
 - DCF (Design Context File)
 - TDD (Technical Design Document)
 - WDD (Work Design Document)
-- Jira story templates
+- Story templates
 
 Each template is designed to be:
 - Passed directly to an AI
@@ -120,7 +120,7 @@ These principles are applied consistently across the repository.
 4. Run the corresponding validator
 5. Fix blocking issues only
 6. Freeze and promote the artifact
-7. Repeat until you reach execution-ready Jira stories
+7. Repeat until you reach execution-ready stories
 
 See **`docs/index.md`** to get started.
 

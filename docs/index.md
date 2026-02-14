@@ -60,7 +60,7 @@ Lean, AI-first templates for each SDLC stage:
 - DCF
 - TDD
 - WDD
-- Jira story templates
+- Story templates
 
 Templates are designed to:
 - Be passed directly to AI

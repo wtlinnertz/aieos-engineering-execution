@@ -112,13 +112,13 @@ Breaks a frozen TDD into **atomic, executable work items**, each with:
 - Explicit scope and non-goals
 - Acceptance criteria
 
-WDD items are intended to map cleanly to Jira stories.
+WDD items are intended to map cleanly to stories.
 
 ---
 
-### Jira Story
+### Story
 A unit of execution derived from a WDD item.
-A Jira story must meet the **Definition of Ready (DoR)** before execution.
+A story must meet the **Definition of Ready (DoR)** before execution.
 
 ---
 
@@ -131,7 +131,7 @@ Validators **do not redesign or suggest solutions**.
 ---
 
 ### Definition of Ready (DoR)
-A set of criteria that must be met before a Jira story is eligible for execution.
+A set of criteria that must be met before a story is eligible for execution.
 The DoR ensures stories are:
 - Atomic
 - Executable

@@ -70,7 +70,7 @@ Items violating these rules must be split.
 ---
 
 ## 4. Freeze Declaration (when ready)
-This WDD is approved and frozen. Jira story generation may proceed.
+This WDD is approved and frozen. Story generation may proceed.
 
 - Approved By:
 - Date:

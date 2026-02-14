@@ -128,7 +128,7 @@ Do not weaken existing gates without understanding the trade-offs.
 
 ---
 
-### 4. Jira (or Work System) Field Mapping
+### 4. Work System Field Mapping
 
 You will need to adapt:
 - Field names
