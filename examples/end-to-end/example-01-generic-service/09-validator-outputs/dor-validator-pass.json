@@ -1,5 +1,5 @@
 {
-  "status": "READY",
+  "status": "PASS",
   "summary": "Story is atomic, traceable, executable, and ready for immediate execution.",
   "hard_gates": {
     "traceability": "PASS",
@@ -13,6 +13,6 @@
     "granularity": "PASS"
   },
   "blocking_issues": [],
-  "granularity_fail_reasons": [],
-  "confidence": "High"
+  "warnings": [],
+  "completeness_score": 100
 }

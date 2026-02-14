@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "summary": "ACF defines clear, enforceable architectural guardrails covering security, reliability, observability, and forbidden patterns.",
+  "hard_gates": {
+    "document_control": "PASS",
+    "purpose": "PASS",
+    "platform_assumptions": "PASS",
+    "security_guardrails": "PASS",
+    "compliance": "PASS",
+    "reliability": "PASS",
+    "observability": "PASS",
+    "forbidden_patterns": "PASS",
+    "constraint_enforceability": "PASS"
+  },
+  "blocking_issues": [],
+  "warnings": [],
+  "completeness_score": 100
+}

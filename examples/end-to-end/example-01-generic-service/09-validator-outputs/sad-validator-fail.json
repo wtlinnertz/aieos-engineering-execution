@@ -1,19 +1,37 @@
 {
-  "status": "NOT_READY",
+  "status": "FAIL",
   "summary": "SAD introduces ambiguity and deferred decisions that prevent promotion to technical design.",
   "hard_gates": {
-    "intent_alignment": "PASS",
-    "scope": "FAIL",
-    "boundaries": "PASS",
-    "architecture": "PASS",
-    "decisions": "FAIL",
-    "guardrails": "PASS",
-    "readiness": "FAIL"
+    "intent_integrity": "PASS",
+    "scope_discipline": "FAIL",
+    "upstream_traceability": "PASS",
+    "structural_diagrams": "PASS",
+    "cross_cutting_concerns": "PASS",
+    "data_integration": "PASS",
+    "failure_modes": "PASS",
+    "quality_attributes": "PASS",
+    "deferred_decisions": "FAIL",
+    "risk_awareness": "PASS",
+    "guardrail_alignment": "PASS",
+    "implementation_leakage": "PASS"
   },
   "blocking_issues": [
-    "Scope does not explicitly exclude write or mutation capabilities.",
-    "Key architectural decisions are described but not resolved or deferred explicitly.",
-    "Deferred decisions section is missing."
+    {
+      "gate": "scope_discipline",
+      "description": "Scope does not explicitly exclude write or mutation capabilities.",
+      "location": "Section 2 — Scope and Non-Goals"
+    },
+    {
+      "gate": "deferred_decisions",
+      "description": "Key architectural decisions are described but not resolved or deferred explicitly.",
+      "location": "Section 8 — Deferred Decisions"
+    },
+    {
+      "gate": "deferred_decisions",
+      "description": "Deferred decisions section is missing target resolution phase.",
+      "location": "Section 8 — Deferred Decisions"
+    }
   ],
-  "confidence": "High"
+  "warnings": [],
+  "completeness_score": 72
 }

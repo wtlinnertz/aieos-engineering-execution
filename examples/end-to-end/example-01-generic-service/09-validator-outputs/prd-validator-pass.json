@@ -1,5 +1,5 @@
 {
-  "status": "READY",
+  "status": "PASS",
   "summary": "PRD clearly defines the problem, scope, goals, and constraints and is ready for architecture.",
   "hard_gates": {
     "problem_definition": "PASS",
@@ -10,5 +10,6 @@
     "readiness": "PASS"
   },
   "blocking_issues": [],
-  "confidence": "High"
+  "warnings": [],
+  "completeness_score": 100
 }

@@ -1,0 +1,39 @@
+{
+  "status": "FAIL",
+  "summary": "DCF is missing testing expectations and contains design principles that are not actionable.",
+  "hard_gates": {
+    "document_control": "PASS",
+    "purpose": "PASS",
+    "design_principles": "FAIL",
+    "quality_bars": "PASS",
+    "non_goals_enforcement": "PASS",
+    "operational_expectations": "PASS",
+    "testing_expectations": "FAIL",
+    "documentation_expectations": "FAIL",
+    "standard_enforceability": "FAIL"
+  },
+  "blocking_issues": [
+    {
+      "gate": "design_principles",
+      "description": "Design principle 'Write good code' is aspirational and not actionable as a constraint.",
+      "location": "Section 2 — Design Principles"
+    },
+    {
+      "gate": "testing_expectations",
+      "description": "Required test layers are not defined.",
+      "location": "Section 6 — Testing Expectations"
+    },
+    {
+      "gate": "documentation_expectations",
+      "description": "Required TDD sections are not listed.",
+      "location": "Section 7 — Documentation Expectations"
+    },
+    {
+      "gate": "standard_enforceability",
+      "description": "Multiple standards use vague language ('as appropriate', 'when possible') that cannot be validated.",
+      "location": "Sections 2, 5, 6"
+    }
+  ],
+  "warnings": [],
+  "completeness_score": 50
+}

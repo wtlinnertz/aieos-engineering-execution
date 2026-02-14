@@ -1,5 +1,5 @@
 {
-  "status": "READY",
+  "status": "PASS",
   "summary": "TDD provides a deterministic technical design aligned to the SAD and is ready for work decomposition.",
   "hard_gates": {
     "intent_alignment": "PASS",
@@ -11,5 +11,6 @@
     "readiness": "PASS"
   },
   "blocking_issues": [],
-  "confidence": "High"
+  "warnings": [],
+  "completeness_score": 100
 }

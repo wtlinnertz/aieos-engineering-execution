@@ -1,5 +1,5 @@
 {
-  "status": "NOT_READY",
+  "status": "FAIL",
   "summary": "WDD items bundle multiple outcomes and leave execution details ambiguous.",
   "hard_gates": {
     "traceability": "PASS",
@@ -11,9 +11,22 @@
     "readiness": "FAIL"
   },
   "blocking_issues": [
-    "A single work item combines API implementation and test creation.",
-    "Inputs required to execute work items are not explicitly listed.",
-    "Work items imply changes across multiple subsystems."
+    {
+      "gate": "atomicity",
+      "description": "A single work item combines API implementation and test creation.",
+      "location": "Work Item WDD-1"
+    },
+    {
+      "gate": "inputs_outputs",
+      "description": "Inputs required to execute work items are not explicitly listed.",
+      "location": "Work Item WDD-1 — Inputs"
+    },
+    {
+      "gate": "granularity",
+      "description": "Work items imply changes across multiple subsystems.",
+      "location": "Work Item WDD-1"
+    }
   ],
-  "confidence": "High"
+  "warnings": [],
+  "completeness_score": 45
 }

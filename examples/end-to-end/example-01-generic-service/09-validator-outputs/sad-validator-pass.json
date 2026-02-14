@@ -1,15 +1,21 @@
 {
-  "status": "READY",
+  "status": "PASS",
   "summary": "SAD defines clear system boundaries, components, and decisions without expanding scope.",
   "hard_gates": {
-    "intent_alignment": "PASS",
-    "scope": "PASS",
-    "boundaries": "PASS",
-    "architecture": "PASS",
-    "decisions": "PASS",
-    "guardrails": "PASS",
-    "readiness": "PASS"
+    "intent_integrity": "PASS",
+    "scope_discipline": "PASS",
+    "upstream_traceability": "PASS",
+    "structural_diagrams": "PASS",
+    "cross_cutting_concerns": "PASS",
+    "data_integration": "PASS",
+    "failure_modes": "PASS",
+    "quality_attributes": "PASS",
+    "deferred_decisions": "PASS",
+    "risk_awareness": "PASS",
+    "guardrail_alignment": "PASS",
+    "implementation_leakage": "PASS"
   },
   "blocking_issues": [],
-  "confidence": "High"
+  "warnings": [],
+  "completeness_score": 100
 }
