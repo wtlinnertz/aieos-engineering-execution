@@ -6,10 +6,10 @@ These files demonstrate:
 - What a PASS looks like
 - What a FAIL looks like
 - How validators report blocking issues
-- How confidence levels are expressed
+- How completeness scores are expressed
 
 All outputs:
-- Follow the exact validator schemas
+- Follow the standardized validator schema
 - Contain no suggestions or redesign
 - Reference only missing or ambiguous content
 
@@ -18,7 +18,9 @@ All outputs:
 ## Included Validators
 
 - PRD Validator
+- ACF Validator
 - SAD Validator
+- DCF Validator
 - TDD Validator
 - WDD Validator
 - Definition of Ready (DoR) Validator

@@ -72,7 +72,9 @@ Each template is designed to be:
 ### ✅ Validators
 Strict, non-prescriptive validators that act as **quality gates**:
 - PRD Validator
+- ACF Validator
 - SAD Validator
+- DCF Validator
 - TDD Validator
 - WDD Validator
 - Definition of Ready (DoR) Validator
