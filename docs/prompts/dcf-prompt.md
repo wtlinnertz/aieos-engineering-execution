@@ -19,5 +19,3 @@ INPUTS:
 OUTPUT:
 Produce a DCF using the DCF template exactly as written.
 Do not add explanatory text.
-
-BEGIN DCF TEMPLATE.

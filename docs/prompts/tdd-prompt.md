@@ -20,5 +20,3 @@ INPUTS:
 OUTPUT:
 Produce a TDD using the TDD template exactly as written.
 Do not add optional features or improvements.
-
-BEGIN TDD TEMPLATE.

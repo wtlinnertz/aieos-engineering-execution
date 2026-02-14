@@ -2,11 +2,10 @@
 
 This directory contains the **canonical AI generation prompts** for each artifact in the ai-sdlc-kit lifecycle.
 
-These prompts define **how AI behaves** when creating artifacts.  
+These prompts define **how AI behaves** when creating artifacts.
 They work in concert with:
 - Templates (shape)
 - Validators (truth)
-- The meta-orchestrator (order)
 
 Together, they form a **safe, deterministic AI delivery system**.
 
@@ -25,7 +24,6 @@ They are designed to be:
 - Copy/pasted
 - Embedded in tooling
 - Used by agents
-- Wrapped by a meta-orchestrator
 
 ---
 
@@ -76,12 +74,7 @@ Skipping steps weakens enforcement.
 ### Delivery & Execution
 - `tdd-prompt.md` — Generate technical design (requires intent pre-pass)
 - `wdd-prompt.md` — Generate atomic executable work (requires intent pre-pass)
-- `jira-story-prompt.md` — Generate execution-ready Jira stories
-
----
-
-### Control Layer
-- `meta-orchestrator-prompt.md` — Enforce sequencing, validation, and promotion
+- `story-prompt.md` — Generate execution-ready stories
 
 ---
 
@@ -118,7 +111,7 @@ These rules are enforced again by validators.
 
 ## Relationship to Validators
 
-Prompts guide **generation behavior**.  
+Prompts guide **generation behavior**.
 Validators determine **readiness for promotion**.
 
 Passing generation does **not** imply readiness.
@@ -130,22 +123,9 @@ Only validators can declare an artifact:
 
 ---
 
-## Relationship to the Meta-Orchestrator
-
-The meta-orchestrator:
-- Selects which prompt to run
-- Injects required context
-- Enforces pre-passes and freezes
-- Invokes validators
-- Blocks or promotes artifacts
-
-Prompts are intentionally dumb about lifecycle state.
-
----
-
 ## Recommended Usage Pattern
 
-Template + Prompt + Validator + Orchestrator
+Template + Prompt + Validator
 Removing any one of these reduces safety.
 
 ---
@@ -160,4 +140,4 @@ They trade short-term convenience for:
 - Scalability
 - Safe AI usage
 
-If a prompt feels “unhelpful,” it is likely protecting downstream execution.
+If a prompt feels "unhelpful," it is likely protecting downstream execution.
