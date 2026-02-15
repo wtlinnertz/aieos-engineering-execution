@@ -15,6 +15,14 @@ Define the problem, goals, scope, and success criteria.
 INPUTS:
 - Product brief / problem description (if provided)
 
+VALIDATOR WILL CHECK:
+- problem_definition
+- goals
+- scope
+- requirements
+- constraints
+- readiness
+
 OUTPUT:
 Produce a PRD using the PRD template exactly as written.
 Do not add or remove sections.

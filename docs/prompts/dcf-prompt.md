@@ -16,6 +16,17 @@ INPUTS:
 - Testing expectations (if provided)
 - Operational requirements (if provided)
 
+VALIDATOR WILL CHECK:
+- document_control
+- purpose
+- design_principles
+- quality_bars
+- non_goals_enforcement
+- operational_expectations
+- testing_expectations
+- documentation_expectations
+- standard_enforceability
+
 OUTPUT:
 Produce a DCF using the DCF template exactly as written.
 Do not add explanatory text.

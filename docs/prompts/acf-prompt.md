@@ -17,6 +17,17 @@ INPUTS:
 - Platform assumptions (if provided)
 - Regulatory or security constraints (if provided)
 
+VALIDATOR WILL CHECK:
+- document_control
+- purpose
+- platform_assumptions
+- security_guardrails
+- compliance
+- reliability
+- observability
+- forbidden_patterns
+- constraint_enforceability
+
 OUTPUT:
 Produce an ACF using the ACF template exactly as written.
 Do not add recommendations or explanations beyond what is stated.

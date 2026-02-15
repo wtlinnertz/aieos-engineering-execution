@@ -17,6 +17,15 @@ INPUTS:
 - Design Context File (DCF)
 - Approved Intent Summary
 
+VALIDATOR WILL CHECK:
+- intent_alignment
+- scope
+- interfaces
+- build_deploy
+- failure_handling
+- testing
+- readiness
+
 OUTPUT:
 Produce a TDD using the TDD template exactly as written.
 Do not add optional features or improvements.

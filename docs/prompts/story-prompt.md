@@ -16,6 +16,18 @@ INPUTS:
 - Frozen WDD
 - Story Template
 
+VALIDATOR WILL CHECK (DoR):
+- traceability
+- atomic_scope
+- acceptance_criteria
+- inputs_outputs
+- definition_of_done
+- dependencies
+- execution_ownership
+- ai_safety
+- granularity
+- rollback_behavior
+
 OUTPUT:
 Produce stories using the Story template exactly.
 Do not include explanations or commentary.

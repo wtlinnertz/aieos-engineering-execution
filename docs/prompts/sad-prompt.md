@@ -17,6 +17,20 @@ INPUTS:
 - Approved Intent Summary
 - Architecture Context File (ACF)
 
+VALIDATOR WILL CHECK:
+- intent_integrity
+- scope_discipline
+- upstream_traceability
+- structural_diagrams
+- cross_cutting_concerns
+- data_integration
+- failure_modes
+- quality_attributes
+- deferred_decisions
+- risk_awareness
+- guardrail_alignment
+- implementation_leakage
+
 OUTPUT:
 Produce a SAD using the SAD template exactly as written.
 Do not add sections.
