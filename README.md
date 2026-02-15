@@ -117,12 +117,11 @@ These principles are applied consistently across the repository.
 ## Quickstart
 
 1. Start with a PRD defining intent, scope, and non-goals
-2. Run an **Intent Summary pre-pass** to confirm understanding
-3. Generate the next artifact using the provided template
-4. Run the corresponding validator
-5. Fix blocking issues only
-6. Freeze and promote the artifact
-7. Repeat until you reach execution-ready stories
+2. Generate the next artifact using the provided prompt and template (intent verification is built in)
+3. Run the corresponding validator
+4. Fix blocking issues only
+5. Freeze and promote the artifact
+6. Repeat until you reach execution-ready stories
 
 See **`docs/index.md`** to get started.
 

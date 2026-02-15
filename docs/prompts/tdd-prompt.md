@@ -12,10 +12,14 @@ AUTHORITATIVE RULES:
 TDD RESPONSIBILITY:
 Define how the system will be built, tested, deployed, and operated.
 
+INTENT VERIFICATION (SELF-CHECK):
+Before generating, verify your understanding of the SAD's intent and scope.
+If you cannot reconcile scope with the SAD or DCF, stop and flag the conflict.
+Do not expand scope or add design beyond what the SAD defines.
+
 INPUTS:
 - Frozen SAD
 - Design Context File (DCF)
-- Approved Intent Summary
 
 VALIDATOR WILL CHECK:
 - intent_alignment

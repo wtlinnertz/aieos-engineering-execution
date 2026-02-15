@@ -79,7 +79,7 @@ When validating artifacts:
 - **Tool-agnostic**: No references to specific work management tools (Jira, etc.). Use "story" not "Jira story".
 - **Markdown as system of record**: All artifacts are Markdown, human and machine readable.
 - **Validators per document**: Every artifact type has a corresponding validator.
-- **Intent Summary pre-pass**: Required before generating SAD, TDD, or WDD. Not persisted.
+- **Intent verification**: Built into SAD, TDD, and WDD generation prompts as a self-check. Validators enforce intent integrity as a hard gate.
 
 ## Commit Message Style
 

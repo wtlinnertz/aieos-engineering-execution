@@ -12,6 +12,11 @@ AUTHORITATIVE RULES:
 WDD RESPONSIBILITY:
 Decompose a frozen TDD into the smallest executable work units.
 
+INTENT VERIFICATION (SELF-CHECK):
+Before generating, verify your understanding of the TDD's scope and non-goals.
+If you cannot reconcile scope with the TDD, stop and flag the conflict.
+Do not add design decisions or expand scope.
+
 INPUTS:
 - Frozen TDD
 

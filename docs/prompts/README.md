@@ -46,12 +46,11 @@ For each artifact generation:
 
 1. Ensure all **upstream artifacts are frozen**
 2. Gather required **context files** (ACF / DCF if applicable)
-3. Run the **Intent Summary pre-pass** (where required)
-4. Invoke the **canonical generation prompt**
-5. Generate the artifact using the **official template**
-6. Run the **corresponding validator**
-7. Fix blocking issues only
-8. Freeze and promote the artifact
+3. Invoke the **canonical generation prompt** (intent verification is built in)
+4. Generate the artifact using the **official template**
+5. Run the **corresponding validator**
+6. Fix blocking issues only
+7. Freeze and promote the artifact
 
 Skipping steps weakens enforcement.
 
@@ -66,31 +65,29 @@ Skipping steps weakens enforcement.
 ---
 
 ### Architecture & Design
-- `sad-prompt.md` — Generate system architecture (requires intent pre-pass)
+- `sad-prompt.md` — Generate system architecture (intent verified inline)
 - `dcf-prompt.md` — Generate design standards and quality expectations
 
 ---
 
 ### Delivery & Execution
-- `tdd-prompt.md` — Generate technical design (requires intent pre-pass)
-- `wdd-prompt.md` — Generate atomic executable work (requires intent pre-pass)
+- `tdd-prompt.md` — Generate technical design (intent verified inline)
+- `wdd-prompt.md` — Generate atomic executable work (intent verified inline)
 - `story-prompt.md` — Generate execution-ready stories
 
 ---
 
-## Intent Summary Pre-Pass
+## Intent Verification
 
-The following artifacts **require** an Intent Summary pre-pass:
+The following prompts include an **inline intent verification self-check**:
 - SAD
 - TDD
 - WDD
 
-The pre-pass:
-- Confirms AI understanding
-- Prevents silent scope expansion
-- Is not persisted as an artifact
-
-Generation may proceed only after human confirmation.
+The self-check:
+- Instructs the AI to restate upstream intent in Section 1 before generating
+- Stops generation if scope cannot be reconciled with upstream artifacts
+- Is enforced by the downstream validator as a hard gate (`intent_integrity`, `intent_alignment`, `traceability`)
 
 ---
 

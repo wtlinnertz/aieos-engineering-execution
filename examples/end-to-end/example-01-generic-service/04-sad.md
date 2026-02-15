@@ -12,7 +12,7 @@
 - Related ADRs: None
 
 ## 1. Intent Summary
-(Paste of approved intent summary — see `03-intent-summary.md`)
+(Restated from PRD-EX-001 — see also `03-intent-summary.md`)
 
 - Provide read-only access to reference data via a single internal API
 - Serve internal service consumers and automated batch processes only

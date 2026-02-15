@@ -15,8 +15,7 @@ Each template is designed to:
 For each SDLC stage:
 
 1. Start with the **upstream frozen artifact**
-2. Run the **Intent Summary pre-pass** (where required)
-3. Provide the AI with:
+2. Provide the AI with:
    - The upstream artifact
    - Any applicable context files (ACF, DCF)
    - The relevant template from this directory

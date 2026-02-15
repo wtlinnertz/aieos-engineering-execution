@@ -55,12 +55,13 @@ AUTHORITATIVE RULES:
 
 **Rules**
 - Intent Summary section exists
-- Intent Summary matches PRD verbatim
+- Intent Summary is consistent with PRD intent, constraints, and non-goals
+- No scope expansion beyond PRD
 - No additional commentary is present in the section
 
 **Failure Examples**
-- Paraphrased intent
-- Missing intent
+- Missing intent summary
+- Intent that contradicts or expands PRD scope
 - Editorial commentary added
 
 ---

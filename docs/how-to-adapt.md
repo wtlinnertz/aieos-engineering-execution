@@ -186,10 +186,10 @@ Use ACFs and DCFs instead.
 
 ---
 
-### ❌ Skipping Intent Summary Pre-Pass
-This is the cheapest alignment step in the system.
+### ❌ Removing Intent Verification from Prompts
+Intent verification is the cheapest alignment step in the system.
 
-Skipping it costs more later.
+Removing it from prompts costs more later — validators catch misalignment, but only after a full generation cycle.
 
 ---
 

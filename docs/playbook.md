@@ -128,27 +128,19 @@ Breaking a freeze requires explicit re-entry to the prior stage.
 
 ---
 
-## Intent Summary Pre-Pass (Mandatory)
+## Intent Verification (Built into Generation)
 
-Before generating **SAD**, **TDD**, or **WDD**, an Intent Summary pre-pass must be performed.
+Before generating **SAD**, **TDD**, or **WDD**, the AI must verify its understanding of upstream intent.
 
-### Purpose
-- Confirm AI understanding
-- Surface misalignment early
-- Prevent silent scope expansion
+### How It Works
+- Each generation prompt instructs the AI to restate the upstream intent, constraints, and non-goals in Section 1 of the artifact
+- If the AI cannot reconcile scope with upstream artifacts, it must stop and flag the conflict instead of generating
+- The downstream validator enforces intent integrity as a hard gate
 
-### Rules
-- The Intent Summary is not persisted
-- No requirements may be added
-- No design may be proposed
-
-### Standard Prompt
-
-Summarize the intent, constraints, and non-goals in 8–12 bullets.
-Do not generate the artifact yet.
-Do not add requirements or design.
-
-Generation proceeds only after human confirmation.
+### Why This Works
+- No separate manual step — verification is embedded in generation
+- Misalignment is caught by the validator (`intent_integrity`, `intent_alignment`, `traceability`)
+- Scope expansion is blocked by both the prompt rules and the validator
 
 ---
 
@@ -165,29 +157,27 @@ Generation proceeds only after human confirmation.
 
 ### SAD Refinement Ladder
 
-1. Run Intent Summary pre-pass
-2. Generate SAD from template
-3. Run SAD Validator
-4. Fix blocking issues only
-5. Freeze SAD
+1. Generate SAD from template (intent verified inline)
+2. Run SAD Validator
+3. Fix blocking issues only
+4. Freeze SAD
 
 ---
 
 ### TDD Refinement Ladder
 
-1. Run Intent Summary pre-pass
-2. Generate TDD from template
-3. Run TDD Validator
-4. Fix blocking issues only
-5. Freeze TDD
+1. Generate TDD from template (intent verified inline)
+2. Run TDD Validator
+3. Fix blocking issues only
+4. Freeze TDD
 
 ---
 
 ### WDD Refinement Ladder
 
-1. Run Intent Summary pre-pass
-2. Generate WDD from template
-3. Perform sanity and granularity checks
+1. Generate WDD from template (intent verified inline)
+2. Run WDD Validator
+3. Fix blocking issues only
 4. Freeze WDD
 
 ---

@@ -11,9 +11,9 @@
   - ACF ID / Link:
 - Related ADRs:
 
-## 1. Intent Summary (Paste Approved Pre-Pass)
-Paste the approved Intent Summary here verbatim.
-Do not restate or expand it.
+## 1. Intent Summary
+Restate the upstream intent, constraints, and non-goals from the PRD in 8–12 bullets.
+Do not add requirements or design. Do not expand scope.
 
 ## 2. Scope and Non-Goals (Hard Boundary)
 

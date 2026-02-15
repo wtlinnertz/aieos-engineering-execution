@@ -12,7 +12,7 @@ AUTHORITATIVE RULES:
 EVALUATION CRITERIA (HARD GATES):
 
 1. Intent Alignment
-- Approved Intent Summary present
+- Intent Summary present and consistent with SAD
 - No expansion beyond SAD intent
 
 2. Scope & Non-Goals

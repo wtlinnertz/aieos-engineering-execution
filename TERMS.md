@@ -140,11 +140,12 @@ The DoR ensures stories are:
 
 ---
 
-### Intent Summary Pre-Pass
-A mandatory, **ephemeral alignment step** run before generating SAD, TDD, or WDD artifacts.
-The AI summarizes intent, constraints, and non-goals to confirm understanding **before** generation.
+### Intent Verification
+An **inline self-check** built into the SAD, TDD, and WDD generation prompts.
+The AI restates upstream intent, constraints, and non-goals in Section 1 of the artifact before generating the rest.
+If the AI cannot reconcile scope, it stops and flags the conflict.
 
-The Intent Summary is **not** a persisted artifact.
+Intent integrity is enforced by the downstream validator as a hard gate.
 
 ---
 

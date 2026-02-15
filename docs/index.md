@@ -45,7 +45,7 @@ Defines the canonical process:
 - Artifact flow and promotion rules
 - Refinement ladders
 - Freeze points
-- Intent Summary pre-pass
+- Intent verification (built into prompts)
 - Enforcement responsibilities
 
 ➡️ See: `playbook.md`
@@ -106,13 +106,11 @@ A typical flow looks like this:
    - The relevant template
    - Any applicable context files (ACF, DCF)
 
-2. Run the **Intent Summary pre-pass** to confirm understanding.
+2. Generate the artifact using the template (intent verification is built into the prompt).
 
-3. Generate the artifact using the template.
+3. Run the corresponding validator.
 
-4. Run the corresponding validator.
-
-5. Fix only blocking issues.
+4. Fix only blocking issues.
 
 6. Freeze and promote the artifact.
 

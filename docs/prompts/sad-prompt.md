@@ -12,9 +12,13 @@ AUTHORITATIVE RULES:
 SAD RESPONSIBILITY:
 Describe the system boundary, major components, responsibilities, and interactions.
 
+INTENT VERIFICATION (SELF-CHECK):
+Before generating, restate the upstream intent, constraints, and non-goals in Section 1.
+If you cannot reconcile scope with the PRD or ACF, stop and flag the conflict.
+Do not add requirements or design during this step.
+
 INPUTS:
 - Frozen PRD
-- Approved Intent Summary
 - Architecture Context File (ACF)
 
 VALIDATOR WILL CHECK:
