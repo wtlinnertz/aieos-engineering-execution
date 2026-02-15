@@ -32,7 +32,7 @@ TERMS.md           # Glossary of project terminology
 4. DCF → DCF Validator → Freeze
 5. SAD + DCF → TDD → TDD Validator → Freeze
 6. TDD → WDD → WDD Validator → Freeze
-7. WDD → Stories → DoR Validator → Execute
+7. WDD → WDD Validator + DoR Validator → Freeze → Execute
 
 Prerequisite documents must exist and be frozen before downstream artifacts are generated.
 
@@ -76,7 +76,7 @@ When validating artifacts:
 
 ## Key Design Decisions
 
-- **Tool-agnostic**: No references to specific work management tools (Jira, etc.). Use "story" not "Jira story".
+- **Tool-agnostic**: No references to specific work management tools (Jira, etc.).
 - **Markdown as system of record**: All artifacts are Markdown, human and machine readable.
 - **Validators per document**: Every artifact type has a corresponding validator.
 - **Intent verification**: Built into SAD, TDD, and WDD generation prompts as a self-check. Validators enforce intent integrity as a hard gate.
@@ -87,8 +87,8 @@ Follow conventional commits: `docs: <description>`
 
 Examples from history:
 - `docs: enhance SAD validator with comprehensive validation rules and criteria`
-- `docs: add story prompt`
 - `docs: add WDD generation prompt`
+- `docs: align SAD template with validator requirements`
 
 ## What Not To Do
 

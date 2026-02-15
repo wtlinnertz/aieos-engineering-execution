@@ -43,8 +43,7 @@ For each SDLC stage:
 
 ### Delivery & Execution
 - `tdd-template.md` — Buildable technical design
-- `wdd-template.md` — Atomic, executable work decomposition
-- `story-template.md` — Execution-ready work items
+- `wdd-template.md` — Atomic, executable work items (execution-ready)
 
 ---
 

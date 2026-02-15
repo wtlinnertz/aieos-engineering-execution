@@ -60,7 +60,6 @@ You do **not** need a specific toolchain to use this kit.
 - DCF (Design Context File)
 - TDD (Technical Design Document)
 - WDD (Work Design Document)
-- Story templates
 
 Each template is designed to be:
 - Passed directly to an AI
@@ -121,7 +120,7 @@ These principles are applied consistently across the repository.
 3. Run the corresponding validator
 4. Fix blocking issues only
 5. Freeze and promote the artifact
-6. Repeat until you reach execution-ready stories
+6. Repeat until you reach execution-ready WDD work items
 
 See **`docs/index.md`** to get started.
 

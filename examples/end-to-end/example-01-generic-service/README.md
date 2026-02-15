@@ -1,6 +1,6 @@
 # End-to-End Example: Generic Service Deployment
 
-This example demonstrates the **complete AI-assisted SDLC flow** from PRD through execution-ready stories.
+This example demonstrates the **complete AI-assisted SDLC flow** from PRD through execution-ready work items.
 
 The example is:
 - Fully anonymized
@@ -27,8 +27,7 @@ The goal is to show:
 3. System Architecture Design (SAD)
 4. Design Context File (DCF)
 5. Technical Design Document (TDD)
-6. Work Design Document (WDD)
-7. Stories (READY)
+6. Work Design Document (WDD) — includes execution-ready work items
 
 Each artifact is frozen before promotion.
 
@@ -43,4 +42,3 @@ Each artifact is frozen before promotion.
 - `05-dcf.md`
 - `06-tdd.md`
 - `07-wdd.md`
-- `08-stories.md`

@@ -1,6 +1,6 @@
 {
   "status": "FAIL",
-  "summary": "Story contains ambiguous scope, missing inputs, and undefined rollback behavior.",
+  "summary": "Work item contains ambiguous scope, missing inputs, and undefined rollback behavior.",
   "hard_gates": {
     "traceability": "PASS",
     "atomic_scope": "FAIL",
@@ -16,7 +16,7 @@
   "blocking_issues": [
     {
       "gate": "atomic_scope",
-      "description": "Story includes multiple outcomes described using compound objectives.",
+      "description": "Work item includes multiple outcomes described using compound objectives.",
       "location": "Summary"
     },
     {
@@ -26,12 +26,12 @@
     },
     {
       "gate": "ai_safety",
-      "description": "Story uses open-ended language that leaves execution decisions unresolved.",
+      "description": "Work item uses open-ended language that leaves execution decisions unresolved.",
       "location": "Acceptance Criteria"
     },
     {
       "gate": "granularity",
-      "description": "Story implies changes across multiple subsystems.",
+      "description": "Work item implies changes across multiple subsystems.",
       "location": "Scope"
     },
     {

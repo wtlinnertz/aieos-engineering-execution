@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "summary": "Story is atomic, traceable, executable, and ready for immediate execution.",
+  "summary": "Work item is atomic, traceable, executable, and ready for immediate execution.",
   "hard_gates": {
     "traceability": "PASS",
     "atomic_scope": "PASS",

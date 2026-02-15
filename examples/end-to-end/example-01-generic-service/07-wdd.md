@@ -68,6 +68,12 @@ Implement the read-only API endpoint, data access layer, authentication validati
 - AC4: Given the data store is unavailable, when GET /reference-data/{key} is called, then a 500 error is returned and the service does not crash
 - AC5: Given the service is deployed, when GET /health is called, then status 200 is returned
 
+#### Definition of Done (Hard)
+- [ ] PR merged
+- [ ] Unit tests passing
+- [ ] Health check verified
+- [ ] Structured logs confirmed in aggregator
+
 #### Dependencies
 - Data store must be provisioned and accessible
 - Platform identity provider must be configured
@@ -113,6 +119,11 @@ Implement unit tests and integration tests for the Reference Data Service as def
 - AC3: Given a simulated data store failure, when the failure test is run, then the service returns 500 and does not crash
 - AC4: Given all tests pass, when the test report is generated, then it is accessible as a build artifact
 
+#### Definition of Done (Hard)
+- [ ] PR merged
+- [ ] All tests passing
+- [ ] Test report generated and accessible
+
 #### Dependencies
 - WDD-1 must be complete (API must be deployed and functional)
 
@@ -138,7 +149,7 @@ Items violating these rules must be split.
 ---
 
 ## 4. Freeze Declaration
-This WDD is approved and frozen. Story generation may proceed.
+This WDD is approved and frozen. Execution may proceed.
 
 - Approved By: Example Team
 - Date: 2025-01-28

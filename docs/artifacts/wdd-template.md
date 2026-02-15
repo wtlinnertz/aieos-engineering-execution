@@ -45,8 +45,13 @@ Include at least one failure condition.
 - AC1:
 - AC2:
 
+#### Definition of Done (Hard)
+- [ ] PR merged
+- [ ] Tests passing (type specified)
+- [ ] Evidence/logs generated
+
 #### Dependencies
-List dependencies or state “None”.
+List dependencies or state "None".
 - Dependency 1:
 
 #### Rollback / Failure Behavior
@@ -70,7 +75,7 @@ Items violating these rules must be split. See the Splitting Guidance section in
 ---
 
 ## 4. Freeze Declaration (when ready)
-This WDD is approved and frozen. Story generation may proceed.
+This WDD is approved and frozen. Execution may proceed.
 
 - Approved By:
 - Date:

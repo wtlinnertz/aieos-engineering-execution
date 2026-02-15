@@ -72,8 +72,7 @@ Skipping steps weakens enforcement.
 
 ### Delivery & Execution
 - `tdd-prompt.md` — Generate technical design (intent verified inline)
-- `wdd-prompt.md` — Generate atomic executable work (intent verified inline)
-- `story-prompt.md` — Generate execution-ready stories
+- `wdd-prompt.md` — Generate atomic executable work items (intent verified inline)
 
 ---
 

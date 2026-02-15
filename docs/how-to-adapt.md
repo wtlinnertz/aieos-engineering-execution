@@ -137,7 +137,7 @@ You will need to adapt:
 - Workflow states
 
 This does **not** require changing:
-- Story structure
+- WDD work item structure
 - DoR logic
 - Granularity rules
 

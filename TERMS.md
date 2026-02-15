@@ -112,13 +112,7 @@ Breaks a frozen TDD into **atomic, executable work items**, each with:
 - Explicit scope and non-goals
 - Acceptance criteria
 
-WDD items are intended to map cleanly to stories.
-
----
-
-### Story
-A unit of execution derived from a WDD item.
-A story must meet the **Definition of Ready (DoR)** before execution.
+WDD items are the execution units. Each item must pass the **Definition of Ready (DoR)** before execution.
 
 ---
 
@@ -131,8 +125,8 @@ Validators **do not redesign or suggest solutions**.
 ---
 
 ### Definition of Ready (DoR)
-A set of criteria that must be met before a story is eligible for execution.
-The DoR ensures stories are:
+A set of criteria that must be met before a WDD work item is eligible for execution.
+The DoR ensures work items are:
 - Atomic
 - Executable
 - Unambiguous

@@ -75,8 +75,9 @@ The SDLC flow is linear and gated:
   → Freeze
 
 - WDD
-  → Stories
-  → Definition of Ready (DoR)
+  → WDD Validator
+  → DoR Validator (per work item)
+  → Freeze
   → Execute
 
 No stage may be skipped.
@@ -93,7 +94,7 @@ Each artifact answers exactly one question:
 - **DCF** — What design standards constrain technical design?
 - **TDD** — How will this be built and operated?
 - **WDD** — What is the smallest executable work?
-- **Story** — Is this ready to execute now?
+- **WDD Item + DoR** — Is this ready to execute now?
 
 Artifacts that answer more than one question are invalid.
 
@@ -122,7 +123,7 @@ Freezing an artifact locks its intent and scope.
 - **SAD Freeze** — Architecture locked
 - **TDD Freeze** — Technical design locked
 - **WDD Freeze** — Work scope locked
-- **Story Ready** — Execution locked
+- **WDD Freeze** — Work items locked; execution may begin
 
 Breaking a freeze requires explicit re-entry to the prior stage.
 
@@ -182,11 +183,11 @@ Before generating **SAD**, **TDD**, or **WDD**, the AI must verify its understan
 
 ---
 
-### Story Refinement Ladder
+### Execution Readiness
 
-1. Generate stories from WDD
-2. Run Definition of Ready (DoR)
-3. Fix until READY
+1. Run DoR Validator against each WDD work item
+2. Fix blocking issues only
+3. Freeze WDD
 4. Execute
 
 ---
@@ -274,8 +275,8 @@ Confirms:
 
 ### Definition of Ready (DoR) Validator
 
-Confirms stories are:
-- Traceable to WDD and TDD
+Confirms WDD work items are:
+- Traceable to TDD
 - Atomic and executable
 - Unambiguous
 - AI-safe
@@ -283,7 +284,7 @@ Confirms stories are:
 
 ---
 
-## Granularity Rules (WDD and Stories)
+## Granularity Rules (WDD Work Items)
 
 Executable work must satisfy all of the following:
 
@@ -298,7 +299,7 @@ Work that violates these rules must be split.
 
 ---
 
-## Splitting Guidance (WDD and Stories)
+## Splitting Guidance (WDD Work Items)
 
 When a work item violates granularity rules, split it using these patterns:
 

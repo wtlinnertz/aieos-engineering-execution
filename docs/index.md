@@ -60,7 +60,7 @@ Lean, AI-first templates for each SDLC stage:
 - DCF
 - TDD
 - WDD
-- Story templates
+- WDD (with execution-ready work items)
 
 Templates are designed to:
 - Be passed directly to AI

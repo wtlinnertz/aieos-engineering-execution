@@ -20,7 +20,7 @@ Do not add design decisions or expand scope.
 INPUTS:
 - Frozen TDD
 
-VALIDATOR WILL CHECK:
+VALIDATOR WILL CHECK (WDD Validator):
 - traceability
 - scope
 - atomicity
@@ -28,6 +28,18 @@ VALIDATOR WILL CHECK:
 - acceptance_criteria
 - granularity
 - readiness
+
+VALIDATOR WILL CHECK (DoR per work item):
+- traceability
+- atomic_scope
+- acceptance_criteria
+- inputs_outputs
+- definition_of_done
+- dependencies
+- execution_ownership
+- ai_safety
+- granularity
+- rollback_behavior
 
 OUTPUT:
 Produce a WDD using the WDD template exactly as written.
