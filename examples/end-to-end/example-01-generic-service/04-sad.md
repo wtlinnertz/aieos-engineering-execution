@@ -54,6 +54,8 @@ The Reference Data Service is responsible for serving reference data to internal
 - All consumers must present valid service credentials
 - The service trusts the platform identity provider for authentication
 
+### Diagrams
+
 ```mermaid
 graph TB
     subgraph Internal Network
@@ -77,6 +79,8 @@ graph TB
 - Synchronous read from data store by data access component
 - Asynchronous log forwarding to central aggregator
 
+### Diagrams
+
 ```mermaid
 graph LR
     subgraph Reference Data Service
@@ -84,6 +88,16 @@ graph LR
     end
     DAC --> DS[(Data Store)]
     API --> LOG[Structured Logging]
+```
+
+```mermaid
+graph LR
+    Consumer -->|HTTP GET| API[API Component]
+    API -->|Query| DAC[Data Access Component]
+    DAC -->|Read| DS[(Data Store)]
+    DS -->|Result| DAC
+    DAC -->|Response DTO| API
+    API -->|JSON Response| Consumer
 ```
 
 ## 5. Key Architectural Decisions
@@ -116,7 +130,36 @@ graph LR
 - Stateless design allows horizontal scaling if demand increases
 - Single data store read per request; no fan-out
 
-## 7. Constraints and Guardrails (from ACF)
+## 7. Data and Integration
+
+### Data Stores
+- **Reference Data Store**: Owned by the Reference Data Service. Read-only access pattern; data is loaded externally (out of scope for this service).
+
+### Integration Patterns
+- Consumers integrate via synchronous HTTP GET requests
+- No event-driven or messaging integration; all interactions are request/response
+
+### State Transitions
+- Reference data is static from this service's perspective; no state transitions occur within the service boundary
+- Data freshness is managed by the external data loading process (out of scope)
+
+## 8. Failure Modes and Recovery
+
+| Failure Mode | Impact | Detection | Mitigation |
+|-------------|--------|-----------|------------|
+| Data store unavailable | Consumers receive error responses | Health check fails; error rate metric spikes | Service returns graceful error; stateless design allows restart without data loss |
+| Identity provider unavailable | Authentication fails; all requests rejected | Auth failure rate metric spikes | Service returns 503; consumers retry with backoff |
+| Reference data stale or missing | Consumers receive outdated or empty results | Monitoring on data freshness (external) | Out of scope — data loading is managed externally |
+
+## 9. Quality Attribute Scenarios (QAS)
+
+| Quality Attribute | Scenario | Response | Measure |
+|------------------|----------|----------|---------|
+| Availability | Data store becomes unreachable during normal operation | Service returns structured error response; does not crash; recovers when store is available | Service remains responsive; error rate visible in metrics |
+| Performance | Consumer sends a lookup request for a single key | Service reads from data store and returns JSON response | Response within acceptable latency for internal service calls |
+| Security | Unauthenticated request arrives at the API | Service rejects the request with 401; no data is returned | Zero unauthorized data access |
+
+## 10. Constraints and Guardrails (from ACF)
 - ACF-EX-001 constraints apply in full
 - No public ingress
 - Service-to-service authentication required
@@ -124,14 +167,14 @@ graph LR
 - Direct database access by consumers is forbidden
 - Structured logs and health check are mandatory
 
-## 8. Deferred Decisions (Explicit)
+## 11. Deferred Decisions (Explicit)
 
 | Decision | Reason | Target Resolution Phase |
 |----------|--------|------------------------|
 | Storage technology selection | Not an architectural concern; any read-capable store suffices | TDD |
 | Specific metrics tooling | Platform-dependent; not an architectural constraint | TDD |
 
-## 9. Risks and Assumptions
+## 12. Risks and Assumptions
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
@@ -143,18 +186,23 @@ graph LR
 - Platform identity provider is reliable and available
 - Central log aggregator is operational
 
-## 10. Readiness Checklist (Self-Check)
+## 13. Readiness Checklist (Self-Check)
 - [x] Intent summary matches PRD
 - [x] Non-goals are explicit
 - [x] ACF guardrails are addressed
 - [x] System boundary is clear
 - [x] Major components are identified
+- [x] C4 Context (L1) diagram present
+- [x] C4 Container (L2) diagram present
+- [x] Data Flow diagram present
+- [x] Data stores and integrations documented
+- [x] Failure modes table complete
+- [x] At least one QAS per quality attribute
 - [x] Architectural decisions are documented
-- [x] Cross-cutting concerns are covered
 - [x] Deferred decisions are explicit
 - [x] No implementation details present
 
-## 11. Freeze Declaration
+## 14. Freeze Declaration
 This SAD is approved and frozen. TDD work may proceed.
 
 - Approved By: Example Team
