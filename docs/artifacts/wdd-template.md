@@ -65,7 +65,7 @@ Every WDD item must satisfy all of the following:
 - No cross-environment deployment
 - Completable in a short, bounded time window
 
-Items violating these rules must be split.
+Items violating these rules must be split. See the Splitting Guidance section in the playbook for patterns.
 
 ---
 

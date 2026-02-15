@@ -308,6 +308,33 @@ Work that violates these rules must be split.
 
 ---
 
+## Splitting Guidance (WDD and Stories)
+
+When a work item violates granularity rules, split it using these patterns:
+
+### Cross-Repo Outcome
+A single outcome requires changes in multiple repositories (e.g., database migration + application code).
+
+**Split into:** One item per repository, each with its own observable outcome.
+- Item 1: Apply database migration (repo: infra, outcome: schema updated)
+- Item 2: Update application to use new schema (repo: app, outcome: feature works with new schema, dependency: Item 1)
+
+### Sequential Dependency
+An outcome requires steps that must execute in order (e.g., provision infrastructure then deploy service).
+
+**Split into:** One item per step with an explicit dependency chain.
+- Item 1: Provision infrastructure (outcome: resources exist)
+- Item 2: Deploy service to provisioned infrastructure (outcome: service running, dependency: Item 1)
+
+### Multi-Environment
+An outcome spans multiple environments (e.g., deploy to staging then production).
+
+**Split into:** One item per environment.
+- Item 1: Deploy to staging (outcome: service running in staging)
+- Item 2: Deploy to production (outcome: service running in production, dependency: Item 1 verified)
+
+---
+
 ## Human and AI Responsibilities
 
 - AI drafts artifacts and runs validators
