@@ -50,6 +50,11 @@ EVALUATION CRITERIA (HARD GATES):
 - Single PR feasible
 - No cross-environment execution
 
+10. Rollback / Failure Behavior
+- Failure behavior is defined
+- Rollback or compensation approach is stated
+- Not left blank or marked TBD
+
 OUTPUT FORMAT (MANDATORY):
 
 ```json
@@ -65,7 +70,8 @@ OUTPUT FORMAT (MANDATORY):
     "dependencies": "PASS | FAIL",
     "execution_ownership": "PASS | FAIL",
     "ai_safety": "PASS | FAIL",
-    "granularity": "PASS | FAIL"
+    "granularity": "PASS | FAIL",
+    "rollback_behavior": "PASS | FAIL"
   },
   "blocking_issues": [
     {

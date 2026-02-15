@@ -10,7 +10,8 @@
     "dependencies": "PASS",
     "execution_ownership": "PASS",
     "ai_safety": "PASS",
-    "granularity": "PASS"
+    "granularity": "PASS",
+    "rollback_behavior": "PASS"
   },
   "blocking_issues": [],
   "warnings": [],

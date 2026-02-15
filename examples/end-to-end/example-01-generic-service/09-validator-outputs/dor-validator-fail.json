@@ -1,6 +1,6 @@
 {
   "status": "FAIL",
-  "summary": "Story contains ambiguous scope and violates granularity rules.",
+  "summary": "Story contains ambiguous scope, missing inputs, and undefined rollback behavior.",
   "hard_gates": {
     "traceability": "PASS",
     "atomic_scope": "FAIL",
@@ -10,7 +10,8 @@
     "dependencies": "PASS",
     "execution_ownership": "PASS",
     "ai_safety": "FAIL",
-    "granularity": "FAIL"
+    "granularity": "FAIL",
+    "rollback_behavior": "FAIL"
   },
   "blocking_issues": [
     {
@@ -32,8 +33,13 @@
       "gate": "granularity",
       "description": "Story implies changes across multiple subsystems.",
       "location": "Scope"
+    },
+    {
+      "gate": "rollback_behavior",
+      "description": "Rollback / Failure Behavior section is blank.",
+      "location": "Rollback / Failure Behavior"
     }
   ],
   "warnings": [],
-  "completeness_score": 40
+  "completeness_score": 35
 }
