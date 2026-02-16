@@ -116,6 +116,18 @@ WDD items are the execution units. Each item must pass the **Definition of Ready
 
 ---
 
+### ORD (Operational Readiness Document)
+Verifies that **operational requirements from TDD, ACF, and DCF have been implemented and are working**, including:
+- Deployment verification
+- Observability verification
+- Alerting and monitoring verification
+- Failure and rollback verification
+- Runbook verification
+
+The ORD is an evidence-gathering artifact. It does not define new requirements — it confirms upstream requirements are satisfied with concrete evidence.
+
+---
+
 ## Validation & Governance
 
 ### Validator

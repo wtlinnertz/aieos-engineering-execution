@@ -77,7 +77,12 @@ The SDLC flow is linear and gated:
 
 - WDD (frozen)
   → DoR Validator (per work item: readiness, traceability, AI safety)
-  → Execute
+  → Execute (Tests → Plan → Code → Review)
+
+- Execute (all work items complete)
+  → ORD
+  → ORD Validator
+  → Production Ready
 
 No stage may be skipped.
 
@@ -94,6 +99,7 @@ Each artifact answers exactly one question:
 - **TDD** — How will this be built and operated?
 - **WDD** — What is the smallest executable work?
 - **WDD Item + DoR** — Is this ready to execute now?
+- **ORD** — Is this ready to run in production?
 
 Artifacts that answer more than one question are invalid.
 
@@ -219,6 +225,16 @@ Before generating **SAD**, **TDD**, or **WDD**, the AI must verify its understan
 
 ---
 
+### ORD Refinement Ladder (After Execution)
+
+1. Generate ORD from template using TDD, ACF, and DCF as inputs
+2. Gather evidence for each verification item
+3. Run ORD Validator
+4. Fix blocking issues only
+5. Approve ORD — system is production ready
+
+---
+
 ## Validators (Quality Gates)
 
 Validators are strict and non-prescriptive.
@@ -308,6 +324,19 @@ Confirms WDD work items are:
 - Unambiguous
 - AI-safe
 - Ready for immediate execution
+
+---
+
+### ORD Validator
+
+Confirms:
+- Deployment verified with evidence (per TDD §5)
+- Observability verified with evidence (per TDD §7, ACF §6)
+- Alerting and monitoring verified with evidence (per DCF §5)
+- Failure handling tested with evidence (per TDD §6)
+- Runbook procedures documented and tested (per TDD §9)
+- No open items blocking production
+- All evidence is concrete, not assertions
 
 ---
 

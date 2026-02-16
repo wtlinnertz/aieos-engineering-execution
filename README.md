@@ -60,6 +60,7 @@ You do **not** need a specific toolchain to use this kit.
 - DCF (Design Context File)
 - TDD (Technical Design Document)
 - WDD (Work Design Document)
+- ORD (Operational Readiness Document)
 
 Each template is designed to be:
 - Passed directly to an AI
@@ -77,6 +78,7 @@ Strict, non-prescriptive validators that act as **quality gates**:
 - TDD Validator
 - WDD Validator
 - Definition of Ready (DoR) Validator
+- ORD Validator
 
 Validators **do not redesign or suggest solutions** —
 they only determine readiness.

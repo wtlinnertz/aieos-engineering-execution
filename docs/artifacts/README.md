@@ -50,6 +50,11 @@ For each SDLC stage:
 
 ---
 
+### Operational Readiness
+- `ord-template.md` — Operational readiness verification (evidence-based)
+
+---
+
 ## Rules and Expectations
 
 - Templates must be used **as-is** unless explicitly extended

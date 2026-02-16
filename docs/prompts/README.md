@@ -76,6 +76,7 @@ Skipping steps weakens enforcement.
 - `test-prompt.md` — Generate test specifications from WDD acceptance criteria
 - `plan-prompt.md` — Generate implementation plan from test specs and TDD contracts
 - `review-prompt.md` — Review and verify implementation against WDD scope, TDD contracts, and DoD
+- `ord-prompt.md` — Generate operational readiness verification from TDD/ACF/DCF
 
 ---
 

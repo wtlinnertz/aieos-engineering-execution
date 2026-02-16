@@ -80,6 +80,7 @@ Strict, non-prescriptive readiness gates:
 - TDD Validator
 - WDD Validator
 - Definition of Ready (DoR) Validator
+- ORD Validator
 
 Validators determine **readiness**, not correctness or implementation quality.
 
