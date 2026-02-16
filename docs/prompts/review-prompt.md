@@ -27,13 +27,21 @@ REVIEW CHECKS:
 6. Test coverage — tests exist for happy path, failure conditions, and edge cases
 7. Scope expansion — flag any changes beyond the WDD work item boundary
 
+CODE QUALITY CHECKS:
+8. Error handling — covers all failure modes from TDD §6
+9. No hardcoded configuration — values that should come from WDD inputs are not embedded in code
+10. No unbounded operations — loops, queries, and retries have explicit limits
+11. No dead code — no unreachable paths or unused code introduced by the change
+12. Dependencies — match what was approved in the plan phase
+13. No duplicated logic — no copy-paste patterns that create maintenance risk
+
 VERIFICATION CHECKS:
-8. All acceptance criterion tests pass
-9. All failure condition tests pass
-10. No regressions in existing tests
-11. WDD Definition of Done items are satisfied (PR ready, tests passing, evidence generated)
-12. Rollback behavior is tested or verified as specified in WDD
-13. Evidence is concrete (test reports, log output, screenshots) — not assertions
+14. All acceptance criterion tests pass
+15. All failure condition tests pass
+16. No regressions in existing tests
+17. WDD Definition of Done items are satisfied (PR ready, tests passing, evidence generated)
+18. Rollback behavior is tested or verified as specified in WDD
+19. Evidence is concrete (test reports, log output, screenshots) — not assertions
 
 OUTPUT FORMAT:
 
@@ -48,6 +56,9 @@ OUTPUT FORMAT:
 
 ## Test Coverage
 <are acceptance criteria covered? failure conditions? edge cases?>
+
+## Code Quality
+<error handling complete? hardcoded values? unbounded operations? dead code? dependency drift?>
 
 ## Verification
 <are all tests passing? DoD satisfied? evidence present?>
