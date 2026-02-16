@@ -105,9 +105,18 @@ Each artifact answers exactly one question:
 - **TDD** — How will this be built and operated?
 - **WDD** — What is the smallest executable work?
 - **WDD Item + DoR** — Is this ready to execute now?
+
+Execution prompts each answer one question per work item:
+
+- **Test specs** (`test-prompt.md`) — What must pass before this is done?
+- **Plan** (`plan-prompt.md`) — What is the smallest change that makes tests pass?
+- **Review** (`review-prompt.md`) — Is this safe, correct, verified, and within scope?
+
+Post-execution:
+
 - **ORD** — Is this ready to run in production?
 
-Artifacts that answer more than one question are invalid.
+Artifacts and prompts that answer more than one question are invalid.
 
 ---
 
