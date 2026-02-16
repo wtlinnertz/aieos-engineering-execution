@@ -32,7 +32,7 @@ TERMS.md           # Glossary of project terminology
 4. DCF → DCF Validator → Freeze
 5. SAD + DCF → TDD → TDD Validator → Freeze
 6. TDD → WDD → WDD Validator → Freeze
-7. WDD → WDD Validator + DoR Validator → Freeze → Execute
+7. WDD → WDD Validator + DoR Validator → Freeze → Execute (see execution-guide.md)
 
 Prerequisite documents must exist and be frozen before downstream artifacts are generated.
 

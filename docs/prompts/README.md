@@ -73,6 +73,8 @@ Skipping steps weakens enforcement.
 ### Delivery & Execution
 - `tdd-prompt.md` — Generate technical design (intent verified inline)
 - `wdd-prompt.md` — Generate atomic executable work items (intent verified inline)
+- `test-prompt.md` — Generate test specifications from WDD acceptance criteria
+- `review-prompt.md` — Review implementation against WDD scope and TDD contracts
 
 ---
 

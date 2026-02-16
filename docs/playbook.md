@@ -190,7 +190,7 @@ Before generating **SAD**, **TDD**, or **WDD**, the AI must verify its understan
 1. Run DoR Validator against each WDD work item
 2. Fix blocking issues only
 3. Freeze WDD
-4. Execute
+4. Execute using the Execution Guide (see `execution-guide.md`)
 
 ---
 

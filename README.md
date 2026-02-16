@@ -93,6 +93,15 @@ A canonical, end-to-end playbook that defines:
 
 ---
 
+### 🔧 Execution Guide
+A structured protocol for safely executing WDD work items:
+- The execution loop: Context → Tests → Plan → Code → Verify → Review
+- Test-first workflow tied to acceptance criteria
+- Refinement ladder for iterative quality improvement
+- AI safety rules and completion criteria
+
+---
+
 ### 🧪 Examples
 Anonymized, end-to-end examples showing:
 - How artifacts evolve from PRD to execution

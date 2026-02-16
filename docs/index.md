@@ -52,6 +52,18 @@ Defines the canonical process:
 
 ---
 
+### 🔧 Execution Guide
+Defines how WDD work items are executed safely:
+- The execution loop: Context → Tests → Plan → Code → Verify → Review
+- Test-first workflow from acceptance criteria
+- Refinement ladder for iterative quality improvement
+- AI safety rules during execution
+- Completion criteria tied to WDD Definition of Done
+
+➡️ See: `execution-guide.md`
+
+---
+
 ### 📄 Artifact Templates
 Lean, AI-first templates for each SDLC stage:
 - PRD
