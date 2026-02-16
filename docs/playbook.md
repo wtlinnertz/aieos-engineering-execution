@@ -519,7 +519,9 @@ The review prompt checks both correctness and completeness:
 
 ### Execution Refinement Ladder
 
-When quality is not yet acceptable during execution, work through these steps top-down. Multiple iterations are normal.
+**Trigger:** The Review phase returns CONCERNS or BLOCKED, or tests fail repeatedly during Code.
+
+When this happens, work through these steps top-down before re-entering the failing phase. Multiple iterations are normal.
 
 1. **Clarify** — What assumptions were made? What details are missing? Resolve ambiguity before continuing.
 2. **Simplify** — Reduce complexity. Fewer branches, less nesting, clearer flow. Keep behavior identical.
