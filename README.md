@@ -115,12 +115,13 @@ These principles are applied consistently across the repository.
 
 ## Quickstart
 
-1. Start with a PRD defining intent, scope, and non-goals
-2. Generate the next artifact using the provided prompt and template (intent verification is built in)
-3. Run the corresponding validator
-4. Fix blocking issues only
-5. Freeze and promote the artifact
-6. Repeat until you reach execution-ready WDD work items
+1. Fill out a **Product Brief** to capture intent, scope, and context
+2. Generate a PRD using the provided prompt and template
+3. For each downstream artifact: generate using prompt and template (intent verification is built in)
+4. Run the corresponding validator
+5. Fix blocking issues only
+6. Freeze and promote the artifact
+7. Repeat until you reach execution-ready WDD work items
 
 See **`docs/index.md`** to get started.
 

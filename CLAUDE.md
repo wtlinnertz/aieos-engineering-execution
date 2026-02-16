@@ -26,7 +26,7 @@ TERMS.md           # Glossary of project terminology
 
 ## Artifact Flow (Non-Negotiable Order)
 
-1. PRD → PRD Validator → Freeze
+1. Product Brief (human intake) → PRD → PRD Validator → Freeze
 2. ACF → ACF Validator → Freeze
 3. PRD + ACF → SAD → SAD Validator → Freeze
 4. DCF → DCF Validator → Freeze

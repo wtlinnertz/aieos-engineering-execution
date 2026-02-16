@@ -28,6 +28,9 @@ For each SDLC stage:
 
 ## Template Index
 
+### Intake
+- `product-brief-template.md` — Structured intake form for PRD generation (human-authored)
+
 ### Context & Requirements
 - `prd-template.md` — Product intent, scope, and success criteria
 - `acf-template.md` — Architecture guardrails and constraints

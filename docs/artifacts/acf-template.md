@@ -30,11 +30,13 @@ Examples (customize to your organization’s baseline):
 ## 4. Compliance / Regulatory Constraints (Hard)
 - Constraint 1:
 - Constraint 2:
+- Data retention / archival requirements:
 
 ## 5. Reliability & Resilience Guardrails (Hard)
 - Availability expectations (qualitative):
 - Failure isolation expectations:
 - Rollback expectations:
+- Disaster recovery expectations:
 
 ## 6. Observability Guardrails (Hard)
 - Required telemetry types: logs, metrics, traces (as applicable)

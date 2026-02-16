@@ -13,7 +13,8 @@ PRD RESPONSIBILITY:
 Define the problem, goals, scope, and success criteria.
 
 INPUTS:
-- Product brief / problem description (if provided)
+- Product Brief (completed intake form, see product-brief-template.md)
+- If no Product Brief is available, accept any problem description or product context provided
 
 VALIDATOR WILL CHECK:
 - problem_definition

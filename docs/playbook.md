@@ -47,7 +47,8 @@ These principles apply to every stage:
 
 The SDLC flow is linear and gated:
 
-- PRD
+- Product Brief (human intake)
+  → PRD
   → PRD Validator
   → Freeze
 
@@ -149,10 +150,11 @@ Before generating **SAD**, **TDD**, or **WDD**, the AI must verify its understan
 
 ### PRD Refinement Ladder
 
-1. Author PRD
-2. Run PRD Validator
-3. Fix blocking issues only
-4. Freeze PRD
+1. Complete Product Brief (human intake)
+2. Generate PRD from template using Product Brief as input
+3. Run PRD Validator
+4. Fix blocking issues only
+5. Freeze PRD
 
 ---
 
