@@ -59,7 +59,22 @@ What happens if this fails? What is rolled back or compensated?
 
 ---
 
-## 3. Mandatory Granularity Rules (Hard)
+## 3. Work Groups (Optional)
+
+Group related work items that together deliver a **business-testable capability**. Work groups enable incremental business acceptance testing before the entire TDD is complete.
+
+### Work Group
+- Group ID:
+- Group Name:
+- Business Capability: (what becomes testable when all items in this group are complete)
+- Member Items: (list WDD Item IDs)
+- Acceptance Criteria (Group-Level): (business-level criteria verifiable after all member items are done)
+
+Repeat for each group. Every work item should belong to exactly one group. Items that are independently testable may form a single-item group.
+
+---
+
+## 4. Mandatory Granularity Rules (Hard)
 
 Every WDD item must satisfy all of the following:
 
@@ -74,7 +89,7 @@ Items violating these rules must be split. See the Splitting Guidance section in
 
 ---
 
-## 4. Freeze Declaration (when ready)
+## 5. Freeze Declaration (when ready)
 This WDD is approved and frozen. Execution may proceed.
 
 - Approved By:

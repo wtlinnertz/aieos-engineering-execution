@@ -40,6 +40,12 @@ EVALUATION CRITERIA (HARD GATES):
 - No design decisions remain
 - Dependencies explicitly listed
 
+8. Work Groups
+- Every work item is assigned to exactly one group
+- Each group has a business capability statement
+- Each group has group-level acceptance criteria
+- No group requires the entire TDD to be complete before it is testable
+
 OUTPUT FORMAT (MANDATORY):
 
 ```json
@@ -53,7 +59,8 @@ OUTPUT FORMAT (MANDATORY):
     "inputs_outputs": "PASS | FAIL",
     "acceptance_criteria": "PASS | FAIL",
     "granularity": "PASS | FAIL",
-    "readiness": "PASS | FAIL"
+    "readiness": "PASS | FAIL",
+    "work_groups": "PASS | FAIL"
   },
   "blocking_issues": [
     {

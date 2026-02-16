@@ -85,7 +85,10 @@ The SDLC flow is linear and gated:
   → Code (approved plan → tests pass)
   → Review (`review-prompt.md` → human approves PR)
 
-- Execute (all work items complete)
+- Execute (work group complete)
+  → Business Acceptance Testing (group-level criteria)
+
+- Execute (all work items and groups complete)
   → ORD (`ord-prompt.md`)
   → ORD Validator
   → Production Ready
@@ -328,6 +331,7 @@ Confirms:
 - No remaining design decisions
 - No cross-environment execution
 - No scope added beyond TDD
+- Every item assigned to a work group with business-testable capability
 
 ---
 
@@ -394,6 +398,29 @@ An outcome spans multiple environments (e.g., deploy to staging then production)
 **Split into:** One item per environment.
 - Item 1: Deploy to staging (outcome: service running in staging)
 - Item 2: Deploy to production (outcome: service running in production, dependency: Item 1 verified)
+
+---
+
+## Work Groups and Business Acceptance Testing
+
+Work groups organize related WDD items into **business-testable capabilities**. They enable incremental business acceptance testing (BAT) before the entire TDD scope is complete.
+
+### How Work Groups Work
+
+- Work groups are defined during WDD generation and frozen with the WDD
+- Each group names its member items and states what business capability becomes testable when all items are complete
+- Groups are organizational labels — they do not change item scope, granularity, or execution order
+- Every work item belongs to exactly one group
+
+### Business Acceptance Testing (BAT)
+
+When all items in a work group are complete (all PRs merged, all tests passing), the group's business-level acceptance criteria can be tested:
+
+1. All member items pass their individual completion criteria
+2. Group-level acceptance criteria are verified (business capability works end-to-end)
+3. Results are recorded as evidence
+
+BAT is not a gate for individual item execution. It is a checkpoint between item-level completion and full ORD readiness.
 
 ---
 

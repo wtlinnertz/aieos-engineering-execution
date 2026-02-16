@@ -116,6 +116,17 @@ WDD items are the execution units. Each item must pass the **Definition of Ready
 
 ---
 
+### Work Group
+A named grouping of related WDD items that together deliver a **business-testable capability**.
+Work groups enable incremental business acceptance testing (BAT) before the entire TDD scope is complete.
+
+Work groups are:
+- Defined during WDD generation and frozen with the WDD
+- Organizational labels — they do not change item scope, granularity, or execution order
+- Each group has business-level acceptance criteria verifiable when all member items are done
+
+---
+
 ### ORD (Operational Readiness Document)
 Verifies that **operational requirements from TDD, ACF, and DCF have been implemented and are working**, including:
 - Deployment verification

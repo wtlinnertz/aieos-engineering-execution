@@ -28,6 +28,7 @@ VALIDATOR WILL CHECK (WDD Validator):
 - acceptance_criteria
 - granularity
 - readiness
+- work_groups
 
 VALIDATOR WILL CHECK (DoR per work item):
 - traceability
@@ -41,6 +42,16 @@ VALIDATOR WILL CHECK (DoR per work item):
 - granularity
 - rollback_behavior
 
+WORK GROUP GENERATION:
+After decomposing work items, identify natural groupings:
+- Group items that together deliver a business-testable capability
+- Each group must have a clear business-level acceptance criterion
+- Every work item must belong to exactly one group
+- Items that are independently business-testable may form a single-item group
+- Groups are organizational labels — they do not change item scope, granularity, or execution order
+- Do not create groups that require all TDD work to be complete before testing
+
 OUTPUT:
 Produce a WDD using the WDD template exactly as written.
 Split work until all granularity rules are satisfied.
+Assign every work item to a work group.
