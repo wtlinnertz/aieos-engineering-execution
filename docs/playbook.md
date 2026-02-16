@@ -357,26 +357,22 @@ An outcome spans multiple environments (e.g., deploy to staging then production)
 
 Once a WDD work item passes the DoR Validator, it enters the execution loop:
 
-**Context → Tests → Plan → Code → Verify → Review → Done**
+**Tests → Plan → Code → Review → Done**
 
-Each phase has explicit inputs, outputs, and rules. Skipping phases weakens safety.
+Each phase has a prompt that drives AI behavior and a gate that controls progression. Skipping phases weakens safety.
 
 ### Execution Principles
 
-1. **Context over guessing** — Give the executor the same briefing you'd give a new teammate
-2. **Tests define targets** — If tests aren't defined, we're not ready to implement
-3. **Plan before code** — Approve an approach before changing files
-4. **Small, reversible steps** — Keep diffs focused; iterate with tests
-5. **Verification matters** — Tests and reviews are part of the loop, not an afterthought
-6. **Auditability** — Track what was done, what was tested, and what was reviewed
+1. **Tests define targets** — If tests aren't defined, we're not ready to implement
+2. **Plan before code** — Approve an approach before changing files
+3. **Small, reversible steps** — Keep diffs focused; iterate with tests
+4. **Verification is built into review** — Not a separate step; the review prompt checks completeness
+5. **Auditability** — Track what was done, what was tested, and what was reviewed
 
----
+### Execution Inputs
 
-### Phase 1: Context
+Before entering the loop, assemble everything needed for the work item:
 
-**Goal:** Assemble everything the executor needs before any code is written.
-
-**Required Inputs:**
 - WDD work item (intent, scope, inputs, outputs, acceptance criteria, DoD)
 - TDD interface contracts and relevant design sections
 - ACF security and compliance guardrails
@@ -390,73 +386,55 @@ Each phase has explicit inputs, outputs, and rules. Skipping phases weakens safe
 - Remove or replace sensitive data with placeholders
 - If requirements are unclear, clarify before proceeding — do not assume
 
-**Output:** A scoped context package ready to inform test generation and planning.
-
 ---
 
-### Phase 2: Tests First
+### Phase 1: Tests
 
 **Goal:** Turn acceptance criteria into verifiable test specifications before writing code.
 
-**Required Inputs:**
+**Prompt:** `test-prompt.md`
+**Gate:** Human approves test specifications
+
+**Inputs:**
 - WDD acceptance criteria (Given/When/Then format)
 - TDD testing strategy (test layers, pass/fail criteria)
 - DCF testing expectations (required test types, evidence requirements)
 
-**Rules:**
-- Generate tests that directly reflect the WDD acceptance criteria (use `test-prompt.md`)
-- Include at least one failure condition per acceptance criterion
-- Include edge cases and boundary conditions
-- Name tests clearly — test names should describe the scenario being verified
-- Do NOT write implementation code during this phase
-- Tests must be approved before proceeding to code
-
-**Test Categories:**
+**Output:** Approved test specifications grouped by category:
 1. **Acceptance tests** — Direct mapping from WDD Given/When/Then criteria
 2. **Failure tests** — At least one per acceptance criterion
 3. **Edge case tests** — Boundary conditions, empty inputs, invalid states
 4. **Regression tests** — If fixing a bug, a test that fails before the fix and passes after
 
-**Output:** Approved test specifications ready for implementation.
-
 ---
 
-### Phase 3: Plan
+### Phase 2: Plan
 
 **Goal:** Choose the smallest change that makes tests pass.
 
-**Required Inputs:**
+**Prompt:** `plan-prompt.md`
+**Gate:** Human approves implementation plan
+
+**Inputs:**
 - Approved test specifications
 - TDD interface contracts (method signatures, return types, status codes)
 - Relevant source code
 
-**Rules:**
-- Propose a plan only — do not write code yet
-- Identify the minimal set of files to change
-- Call out tradeoffs or risks
-- Preserve public interfaces unless explicitly approved to change
-- Lock down observable behavior (outputs, exceptions, status codes, data shapes)
-- If anything is unclear, ask before planning further
-
-**What to Lock Down:**
-- Method signatures (name, parameters, return type)
-- Observable behavior (outputs, exceptions, status codes)
-- Data contracts (JSON fields, schema shapes)
-- Dependencies (libraries, versions — verify before adding)
-
-**Output:** An approved implementation plan scoped to the WDD work item.
+**Output:** An approved implementation plan identifying files to change, interfaces to lock down, dependencies, risks, and sequencing.
 
 ---
 
-### Phase 4: Code
+### Phase 3: Code
 
 **Goal:** Implement the plan. Make tests pass.
+
+**Prompt:** None — the approved plan is the instruction
+**Gate:** All tests pass
 
 **Rules:**
 - Follow the approved plan
 - Make only the minimal changes needed to pass approved tests
 - Touch only files identified in the plan
-- Explain each change before applying it
 - Keep diffs small and focused — one logical change per step
 - If a dependency doesn't exist or version differs, ask before adding
 - If anything is unclear, ask before coding
@@ -470,39 +448,19 @@ Each phase has explicit inputs, outputs, and rules. Skipping phases weakens safe
 
 ---
 
-### Phase 5: Verify
+### Phase 4: Review
 
-**Goal:** Confirm that all acceptance criteria are met and the Definition of Done is satisfied.
+**Goal:** Confirm the change is safe, correct, within scope, verified, and ready to merge.
 
-**Verification Checklist:**
-- [ ] All acceptance criterion tests pass
-- [ ] All failure condition tests pass
-- [ ] Edge case tests pass
-- [ ] No regressions in existing tests
-- [ ] WDD Definition of Done items are satisfied:
-  - [ ] PR ready to merge
-  - [ ] Tests passing (type as specified in WDD)
-  - [ ] Evidence/logs generated (as specified in WDD)
-- [ ] Rollback behavior is tested or verified (as specified in WDD)
-
-**Rules:**
-- Do not skip verification — partial verification is a failure condition
-- If any DoD item cannot be satisfied, stop and escalate
-- Evidence must be concrete (test reports, log output, screenshots) — not assertions
-
----
-
-### Phase 6: Review
-
-**Goal:** Confirm the change is safe, correct, and within scope before merging.
+**Prompt:** `review-prompt.md`
+**Gate:** Human approves PR
 
 **AI Review (First Pass):**
-Use `review-prompt.md` to review the diff for:
-- Logic risks or correctness issues
-- Missed edge cases
-- Scope adherence (does the diff match the WDD work item?)
-- Interface compliance (does it match TDD contracts?)
-- Security concerns (secrets, injection, access control)
+The review prompt checks both correctness and completeness:
+- Scope adherence and interface compliance
+- Test coverage (acceptance, failure, edge cases)
+- Verification (all tests passing, DoD satisfied, evidence present)
+- Security concerns and factual risks
 
 **Human Review (Required):**
 - AI review is advisory — human review is mandatory
@@ -511,10 +469,6 @@ Use `review-prompt.md` to review the diff for:
   - Tests added/updated and what they assert
   - Test results (pass/fail evidence)
   - Risks or known limitations
-
-**Rules:**
-- Treat AI review suggestions as input, not decisions
-- Human reviewer must verify scope adherence
 - Changes that expand scope beyond the WDD work item must be rejected
 
 ---

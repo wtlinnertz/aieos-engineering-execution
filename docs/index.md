@@ -45,7 +45,7 @@ Defines the canonical process from product intent to delivered work:
 - Artifact flow and promotion rules
 - Refinement ladders and freeze points
 - Intent verification (built into prompts)
-- Execution loop: Context → Tests → Plan → Code → Verify → Review
+- Execution loop: Tests → Plan → Code → Review
 - Completion criteria and enforcement responsibilities
 
 ➡️ See: `playbook.md`
