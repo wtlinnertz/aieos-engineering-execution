@@ -77,10 +77,16 @@ The SDLC flow is linear and gated:
 
 - WDD (frozen)
   → DoR Validator (per work item: readiness, traceability, AI safety)
-  → Execute (Tests → Plan → Code → Review)
+  → Execute
+
+- Execute (per work item):
+  → Tests (`test-prompt.md` → human approves specs)
+  → Plan (`plan-prompt.md` → human approves plan)
+  → Code (approved plan → tests pass)
+  → Review (`review-prompt.md` → human approves PR)
 
 - Execute (all work items complete)
-  → ORD
+  → ORD (`ord-prompt.md`)
   → ORD Validator
   → Production Ready
 
