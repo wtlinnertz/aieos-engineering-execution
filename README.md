@@ -84,21 +84,12 @@ they only determine readiness.
 ---
 
 ### 📘 Playbook
-A canonical, end-to-end playbook that defines:
+A canonical, end-to-end playbook covering planning through execution:
 - Artifact flow and promotion rules
-- Refinement ladders
-- Freeze points
-- Intent alignment checkpoints
-- Enforcement responsibilities
-
----
-
-### 🔧 Execution Guide
-A structured protocol for safely executing WDD work items:
-- The execution loop: Context → Tests → Plan → Code → Verify → Review
-- Test-first workflow tied to acceptance criteria
-- Refinement ladder for iterative quality improvement
-- AI safety rules and completion criteria
+- Refinement ladders and freeze points
+- Intent verification checkpoints
+- Execution loop: Context → Tests → Plan → Code → Verify → Review
+- Completion criteria and enforcement responsibilities
 
 ---
 

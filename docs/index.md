@@ -41,26 +41,14 @@ These principles are applied consistently across all artifacts and validators.
 ## Documentation Sections
 
 ### 📘 Playbook
-Defines the canonical process:
+Defines the canonical process from product intent to delivered work:
 - Artifact flow and promotion rules
-- Refinement ladders
-- Freeze points
+- Refinement ladders and freeze points
 - Intent verification (built into prompts)
-- Enforcement responsibilities
+- Execution loop: Context → Tests → Plan → Code → Verify → Review
+- Completion criteria and enforcement responsibilities
 
 ➡️ See: `playbook.md`
-
----
-
-### 🔧 Execution Guide
-Defines how WDD work items are executed safely:
-- The execution loop: Context → Tests → Plan → Code → Verify → Review
-- Test-first workflow from acceptance criteria
-- Refinement ladder for iterative quality improvement
-- AI safety rules during execution
-- Completion criteria tied to WDD Definition of Done
-
-➡️ See: `execution-guide.md`
 
 ---
 
