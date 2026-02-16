@@ -41,7 +41,7 @@ Exactly what this work item accomplishes.
 
 #### Acceptance Criteria (Executable)
 Use Given/When/Then.
-Include at least one failure condition.
+Include at least one failure condition per acceptance criterion.
 - AC1:
 - AC2:
 

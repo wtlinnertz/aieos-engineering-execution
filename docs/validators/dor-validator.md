@@ -21,7 +21,7 @@ EVALUATION CRITERIA (HARD GATES):
 
 3. Acceptance Criteria
 - Uses Given / When / Then format
-- Includes at least one failure condition
+- Includes at least one failure condition per acceptance criterion
 
 4. Inputs and Outputs
 - Inputs explicitly listed

@@ -72,13 +72,11 @@ The SDLC flow is linear and gated:
 
 - TDD
   → WDD
-  → WDD Validator
+  → WDD Validator (document-level: scope, structure, granularity)
   → Freeze
 
-- WDD
-  → WDD Validator
-  → DoR Validator (per work item)
-  → Freeze
+- WDD (frozen)
+  → DoR Validator (per work item: readiness, traceability, AI safety)
   → Execute
 
 No stage may be skipped.
@@ -126,7 +124,35 @@ Freezing an artifact locks its intent and scope.
 - **WDD Freeze** — Work scope locked
 - **WDD Freeze** — Work items locked; execution may begin
 
-Breaking a freeze requires explicit re-entry to the prior stage.
+Breaking a freeze requires explicit re-entry to the prior stage (see Re-entry Protocol below).
+
+---
+
+## Re-entry Protocol
+
+When a frozen artifact must change, follow this protocol:
+
+### When Re-entry Is Required
+- A frozen artifact contains an error that affects downstream work
+- Requirements change after freeze (business priority shift, new constraint)
+- A downstream validator repeatedly fails due to upstream ambiguity
+
+### Re-entry Rules
+1. **Identify the highest affected artifact** — Change at the earliest point in the flow, not downstream
+2. **Unfreeze only that artifact** — Do not unfreeze downstream artifacts preemptively
+3. **Make the change** — Edit the artifact to resolve the issue
+4. **Re-validate** — Run the artifact's validator; it must PASS before re-freezing
+5. **Re-freeze** — Lock the artifact again
+6. **Cascade validation** — Re-validate all downstream frozen artifacts against the updated upstream; fix any that now fail
+
+### What Re-entry Does NOT Allow
+- Expanding scope beyond the original intent
+- Skipping validators on the changed artifact
+- Changing downstream artifacts without re-validating them
+
+### Responsibility
+- **Humans** decide whether re-entry is warranted
+- **AI** may flag the need for re-entry but must not unfreeze artifacts autonomously
 
 ---
 
@@ -185,12 +211,11 @@ Before generating **SAD**, **TDD**, or **WDD**, the AI must verify its understan
 
 ---
 
-### Execution Readiness
+### Execution Readiness (After WDD Freeze)
 
-1. Run DoR Validator against each WDD work item
-2. Fix blocking issues only
-3. Freeze WDD
-4. Execute using the Execution Guide (see `execution-guide.md`)
+1. Run DoR Validator against each WDD work item individually
+2. Fix blocking issues only (if fixes require WDD changes, re-validate via Re-entry Protocol)
+3. Execute using the Execution Guide (see `execution-guide.md`)
 
 ---
 

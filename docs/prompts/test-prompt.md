@@ -7,7 +7,7 @@ AUTHORITATIVE RULES:
 - Do NOT add test cases beyond what acceptance criteria require
 - Do NOT assume behavior that is not explicitly stated
 - Every acceptance criterion must map to at least one test
-- Every test must include at least one failure condition
+- Every acceptance criterion must have at least one failure test
 - Use Given/When/Then format
 
 TEST RESPONSIBILITY:

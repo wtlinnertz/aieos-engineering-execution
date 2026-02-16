@@ -56,6 +56,7 @@ Each phase has explicit inputs, outputs, and rules. Skipping phases weakens safe
 ### Required Inputs
 - WDD work item (intent, scope, inputs, outputs, acceptance criteria, DoD)
 - TDD interface contracts and relevant design sections
+- ACF security and compliance guardrails
 - DCF testing and operational expectations
 - Relevant source code and configuration
 
