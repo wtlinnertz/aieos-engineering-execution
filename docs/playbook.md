@@ -43,35 +43,47 @@ These principles apply to every stage:
 
 ---
 
+## How to Read This Playbook
+
+This playbook has three parts:
+
+1. **The Process** — The step-by-step flow from product intent to production. Follow this top to bottom for your first project.
+2. **The Execution Loop** — The inner loop for implementing each work item. Follow this per WDD item.
+3. **Rules and Reference** — Design principles, governance rules, and validator details. Consult as needed.
+
+---
+
+# Part 1: The Process
+
 ## Canonical Artifact Flow
 
 The SDLC flow is linear and gated:
 
 - Product Brief (human intake)
-  → PRD
+  → PRD (`prd-prompt.md`)
   → PRD Validator
   → Freeze
 
-- ACF
+- ACF (`acf-prompt.md`)
   → ACF Validator
   → Freeze
 
 - PRD + ACF
-  → SAD
+  → SAD (`sad-prompt.md`)
   → SAD Validator
   → Freeze
 
-- DCF
+- DCF (`dcf-prompt.md`)
   → DCF Validator
   → Freeze
 
 - SAD + DCF
-  → TDD
+  → TDD (`tdd-prompt.md`)
   → TDD Validator
   → Freeze
 
 - TDD
-  → WDD
+  → WDD (`wdd-prompt.md`)
   → WDD Validator (document-level: scope, structure, granularity)
   → Freeze
 
@@ -86,9 +98,9 @@ The SDLC flow is linear and gated:
   → Review (`review-prompt.md` → human approves PR)
 
 - Execute (work group complete)
-  → Business Acceptance Testing (group-level criteria)
+  → Business Acceptance Testing (TBD — process not yet defined)
 
-- Execute (all work items and groups complete)
+- Execute (all work items complete)
   → ORD (`ord-prompt.md`)
   → ORD Validator
   → Production Ready
@@ -97,335 +109,203 @@ No stage may be skipped.
 
 ---
 
-## Artifact Responsibilities (Single-Responsibility Rule)
+## How to Generate an Artifact
 
-Each artifact answers exactly one question:
+Every artifact follows the same generation pattern:
 
-- **PRD** — What problem are we solving and why?
-- **ACF** — What architectural guardrails apply?
-- **SAD** — What is the system shape?
-- **DCF** — What design standards constrain technical design?
-- **TDD** — How will this be built and operated?
-- **WDD** — What is the smallest executable work?
-- **WDD Item + DoR** — Is this ready to execute now?
+1. **Gather inputs** — Assemble the frozen upstream artifacts listed in the prompt
+2. **Use the prompt** — Provide the inputs and the corresponding `{type}-prompt.md` to the AI
+3. **Use the template** — The AI generates output following `{type}-template.md` exactly
+4. **Run the validator** — Provide the generated artifact to `{type}-validator.md`
+5. **Fix blocking issues only** — If the validator returns FAIL, fix only the blocking issues and re-run
+6. **Freeze** — Once the validator returns PASS, the artifact is frozen and may not be changed without re-entry
 
-Execution prompts each answer one question per work item:
+### How to Run a Validator
 
-- **Test specs** (`test-prompt.md`) — What must pass before this is done?
-- **Plan** (`plan-prompt.md`) — What is the smallest change that makes tests pass?
-- **Review** (`review-prompt.md`) — Is this safe, correct, verified, and within scope?
+Validators are prompts. To run one:
 
-Post-execution:
+1. Provide the artifact as input to the corresponding `{type}-validator.md`
+2. The validator returns structured JSON with `status: PASS | FAIL`
+3. If FAIL: review `blocking_issues`, fix them in the artifact, re-run the validator
+4. If PASS: the artifact is ready to freeze and promote
+5. Do not fix warnings unless they indicate a real problem — warnings are non-blocking
 
-- **ORD** — Is this ready to run in production?
-
-Artifacts and prompts that answer more than one question are invalid.
-
----
-
-## Artifact Promotion Model
-
-Artifacts are **promoted**, not rewritten.
-
-- Each downstream artifact:
-  - Narrows scope
-  - Increases specificity
-  - Must not reinterpret upstream intent
-- Promotion occurs only after validator PASS
-- Validator failure returns the artifact to its own stage
-
-Downstream artifacts may **not** expand scope.
+Validators do not redesign or suggest solutions. They evaluate only what is explicitly present.
 
 ---
 
-## Freeze Rules
+## Context Files (ACF and DCF)
 
-Freezing an artifact locks its intent and scope.
+The ACF (Architecture Context File) and DCF (Design Context File) are **organizational context** — they define guardrails and standards that apply across projects.
 
-- **PRD Freeze** — Product intent locked
-- **SAD Freeze** — Architecture locked
-- **TDD Freeze** — Technical design locked
-- **WDD Freeze** — Work scope locked
-- **WDD Freeze** — Work items locked; execution may begin
-
-Breaking a freeze requires explicit re-entry to the prior stage (see Re-entry Protocol below).
+- If your organization already has a frozen ACF or DCF, use it. Do not recreate per project.
+- If not, create them as part of your first project and reuse them going forward.
+- ACF and DCF have no upstream artifact dependency — they can be created at any time before they are needed.
+- ACF must be frozen before SAD generation. DCF must be frozen before TDD generation.
 
 ---
 
-## Re-entry Protocol
+## Step 1: PRD (Product Requirements Document)
 
-When a frozen artifact must change, follow this protocol:
+**What:** Define the problem and why it matters.
 
-### When Re-entry Is Required
-- A frozen artifact contains an error that affects downstream work
-- Requirements change after freeze (business priority shift, new constraint)
-- A downstream validator repeatedly fails due to upstream ambiguity
+**Prompt:** `prd-prompt.md`
+**Inputs:** Product Brief (human-written intake)
+**Validator:** `prd-validator.md`
+**Gate:** Validator PASS + human approval
+**Output:** Frozen PRD
 
-### Re-entry Rules
-1. **Identify the highest affected artifact** — Change at the earliest point in the flow, not downstream
-2. **Unfreeze only that artifact** — Do not unfreeze downstream artifacts preemptively
-3. **Make the change** — Edit the artifact to resolve the issue
-4. **Re-validate** — Run the artifact's validator; it must PASS before re-freezing
-5. **Re-freeze** — Lock the artifact again
-6. **Cascade validation** — Re-validate all downstream frozen artifacts against the updated upstream; fix any that now fail
-
-### What Re-entry Does NOT Allow
-- Expanding scope beyond the original intent
-- Skipping validators on the changed artifact
-- Changing downstream artifacts without re-validating them
-
-### Responsibility
-- **Humans** decide whether re-entry is warranted
-- **AI** may flag the need for re-entry but must not unfreeze artifacts autonomously
+### Steps
+1. Human completes a Product Brief (goals, constraints, context)
+2. Generate PRD using `prd-prompt.md` with the Product Brief as input
+3. Run `prd-validator.md` against the generated PRD
+4. Fix blocking issues only; re-run validator until PASS
+5. Human reviews and approves
+6. Freeze PRD
 
 ---
 
-## Intent Verification (Built into Generation)
+## Step 2: ACF (Architecture Context File)
 
-Before generating **SAD**, **TDD**, or **WDD**, the AI must verify its understanding of upstream intent.
+**What:** Define architectural guardrails that constrain all downstream design.
 
-### How It Works
-- Each generation prompt instructs the AI to restate the upstream intent, constraints, and non-goals in Section 1 of the artifact
-- If the AI cannot reconcile scope with upstream artifacts, it must stop and flag the conflict instead of generating
-- The downstream validator enforces intent integrity as a hard gate
+**Prompt:** `acf-prompt.md`
+**Inputs:** Organizational standards, platform constraints, security and compliance requirements
+**Validator:** `acf-validator.md`
+**Gate:** Validator PASS + human approval
+**Output:** Frozen ACF
 
-### Why This Works
-- No separate manual step — verification is embedded in generation
-- Misalignment is caught by the validator (`intent_integrity`, `intent_alignment`, `traceability`)
-- Scope expansion is blocked by both the prompt rules and the validator
+### Steps
+1. Generate ACF using `acf-prompt.md` with organizational context as input
+2. Run `acf-validator.md` against the generated ACF
+3. Fix blocking issues only; re-run validator until PASS
+4. Human reviews and approves
+5. Freeze ACF
 
----
-
-## Refinement Ladders
-
-### PRD Refinement Ladder
-
-1. Complete Product Brief (human intake)
-2. Generate PRD from template using Product Brief as input
-3. Run PRD Validator
-4. Fix blocking issues only
-5. Freeze PRD
+If an organization-wide ACF already exists and is frozen, skip this step and use the existing ACF.
 
 ---
 
-### SAD Refinement Ladder
+## Step 3: SAD (System Architecture Design)
 
-1. Generate SAD from template (intent verified inline)
-2. Run SAD Validator
-3. Fix blocking issues only
-4. Freeze SAD
+**What:** Define the system shape — boundaries, components, and architectural decisions.
+
+**Prompt:** `sad-prompt.md`
+**Inputs:** Frozen PRD + Frozen ACF
+**Validator:** `sad-validator.md`
+**Gate:** Validator PASS + human approval
+**Output:** Frozen SAD
+
+The SAD prompt includes **intent verification**: the AI restates upstream intent in Section 1 before generating. If scope cannot be reconciled, the AI stops and flags the conflict.
+
+### Steps
+1. Generate SAD using `sad-prompt.md` with frozen PRD and frozen ACF as inputs
+2. Run `sad-validator.md` against the generated SAD
+3. Fix blocking issues only; re-run validator until PASS
+4. Human reviews and approves
+5. Freeze SAD
 
 ---
 
-### TDD Refinement Ladder
+## Step 4: DCF (Design Context File)
 
-1. Generate TDD from template (intent verified inline)
-2. Run TDD Validator
-3. Fix blocking issues only
-4. Freeze TDD
+**What:** Define design standards and quality expectations that constrain TDD creation.
+
+**Prompt:** `dcf-prompt.md`
+**Inputs:** Organizational design standards, testing expectations, operational expectations
+**Validator:** `dcf-validator.md`
+**Gate:** Validator PASS + human approval
+**Output:** Frozen DCF
+
+### Steps
+1. Generate DCF using `dcf-prompt.md` with organizational standards as input
+2. Run `dcf-validator.md` against the generated DCF
+3. Fix blocking issues only; re-run validator until PASS
+4. Human reviews and approves
+5. Freeze DCF
+
+If an organization-wide DCF already exists and is frozen, skip this step and use the existing DCF.
 
 ---
 
-### WDD Refinement Ladder
+## Step 5: TDD (Technical Design Document)
 
-1. Generate WDD from template (intent verified inline)
-2. Run WDD Validator
-3. Fix blocking issues only
+**What:** Define a buildable technical design — interfaces, contracts, deployment, failure handling, testing.
+
+**Prompt:** `tdd-prompt.md`
+**Inputs:** Frozen SAD + Frozen DCF
+**Validator:** `tdd-validator.md`
+**Gate:** Validator PASS + human approval
+**Output:** Frozen TDD
+
+The TDD prompt includes **intent verification**: the AI restates upstream intent in Section 1 before generating.
+
+### Steps
+1. Generate TDD using `tdd-prompt.md` with frozen SAD and frozen DCF as inputs
+2. Run `tdd-validator.md` against the generated TDD
+3. Fix blocking issues only; re-run validator until PASS
+4. Human reviews and approves
+5. Freeze TDD
+
+---
+
+## Step 6: WDD (Work Design Document)
+
+**What:** Decompose a frozen TDD into atomic, executable work items grouped into business-testable work groups.
+
+**Prompt:** `wdd-prompt.md`
+**Inputs:** Frozen TDD
+**Validator:** `wdd-validator.md` (document-level), then `dor-validator.md` (per work item)
+**Gate:** Both validators PASS + human approval
+**Output:** Frozen WDD with all work items passing DoR
+
+The WDD prompt includes **intent verification**: the AI restates upstream intent in Section 1 before generating.
+
+### Steps
+1. Generate WDD using `wdd-prompt.md` with frozen TDD as input
+2. Run `wdd-validator.md` against the full WDD document
+3. Fix blocking issues only; re-run validator until PASS
 4. Freeze WDD
+5. Run `dor-validator.md` against each work item individually
+6. Fix blocking issues only (if fixes require WDD changes, follow the Re-entry Protocol)
+7. Human reviews and approves
+8. Begin execution
 
 ---
 
-### Execution Readiness (After WDD Freeze)
+## Step 7: Execute (Per Work Item)
 
-1. Run DoR Validator against each WDD work item individually
-2. Fix blocking issues only (if fixes require WDD changes, re-validate via Re-entry Protocol)
-3. Begin execution (see Execution Loop below)
+Once a WDD work item passes the DoR Validator, it enters the execution loop. See **Part 2: The Execution Loop** below.
 
 ---
 
-### ORD Refinement Ladder (After Execution)
+## Step 8: Work Groups
 
-1. Generate ORD from template using TDD, ACF, and DCF as inputs
-2. Gather evidence for each verification item
-3. Run ORD Validator
-4. Fix blocking issues only
-5. Approve ORD — system is production ready
+When all items in a work group are complete, the group's business-level acceptance criteria can be verified. See **Work Groups and Business Acceptance Testing** below.
 
 ---
 
-## Validators (Quality Gates)
+## Step 9: ORD (Operational Readiness Document)
 
-Validators are strict and non-prescriptive.
+**What:** Verify that all operational requirements from TDD, ACF, and DCF have been implemented and are working.
 
-They:
-- Do not redesign artifacts
-- Do not suggest solutions
-- Do not infer missing information
-- Evaluate only what is explicitly present
+**Prompt:** `ord-prompt.md`
+**Inputs:** Frozen TDD (§5-7, §9) + Frozen ACF (§3, §5-6) + Frozen DCF (§5)
+**Validator:** `ord-validator.md`
+**Gate:** Validator PASS + human approval
+**Output:** Approved ORD — system is production ready
 
-If required information is missing or ambiguous, the validator must FAIL.
-
----
-
-## Validator Responsibilities
-
-### PRD Validator
-
-Confirms:
-- Clear problem statement
-- Explicit goals and success criteria
-- Defined scope and non-goals
-- Documented constraints and assumptions
+### Steps
+1. Generate ORD using `ord-prompt.md` with frozen TDD, ACF, and DCF as inputs
+2. Gather concrete evidence for each verification item (evidence must be concrete, timestamped, traceable, and retrievable)
+3. Run `ord-validator.md` against the completed ORD
+4. Fix blocking issues only; re-run validator until PASS
+5. Human reviews and approves
+6. System is production ready
 
 ---
 
-### ACF Validator
-
-Confirms:
-- Platform assumptions are stated
-- Security guardrails are defined
-- Reliability and observability expectations are stated
-- Forbidden patterns are listed
-- Constraints are enforceable
-
----
-
-### SAD Validator
-
-Confirms:
-- System boundaries are defined
-- Major components are identified
-- Architectural decisions are documented
-- ACF guardrails are respected
-
----
-
-### DCF Validator
-
-Confirms:
-- Design principles are defined
-- Quality bars are measurable
-- Non-goals enforcement rules are present
-- Testing and operational expectations are stated
-- Standards are enforceable
-
----
-
-### TDD Validator
-
-Confirms:
-- Interfaces and contracts are explicit
-- Build and deployment steps are defined
-- Failure and rollback behavior is specified
-- Test strategy is clear
-- No scope expansion beyond SAD
-- No violation of stated non-goals
-
----
-
-### WDD Validator
-
-Confirms:
-- One outcome per item
-- Explicit inputs and outputs
-- No remaining design decisions
-- No cross-environment execution
-- No scope added beyond TDD
-- Every item assigned to a work group with business-testable capability
-
----
-
-### Definition of Ready (DoR) Validator
-
-Confirms WDD work items are:
-- Traceable to TDD
-- Atomic and executable
-- Unambiguous
-- AI-safe
-- Ready for immediate execution
-
----
-
-### ORD Validator
-
-Confirms:
-- Deployment verified with evidence (per TDD §5)
-- Observability verified with evidence (per TDD §7, ACF §6)
-- Alerting and monitoring verified with evidence (per DCF §5)
-- Failure handling tested with evidence (per TDD §6)
-- Security guardrails verified with evidence (per ACF §3)
-- Runbook procedures documented and tested (per TDD §9)
-- No open items blocking production
-- All evidence is concrete, not assertions
-
----
-
-## Granularity Rules (WDD Work Items)
-
-Executable work must satisfy all of the following:
-
-- One observable outcome
-- One repository or subsystem
-- One pull request
-- One environment
-- No design decisions
-- Bounded execution time
-
-Work that violates these rules must be split.
-
----
-
-## Splitting Guidance (WDD Work Items)
-
-When a work item violates granularity rules, split it using these patterns:
-
-### Cross-Repo Outcome
-A single outcome requires changes in multiple repositories (e.g., database migration + application code).
-
-**Split into:** One item per repository, each with its own observable outcome.
-- Item 1: Apply database migration (repo: infra, outcome: schema updated)
-- Item 2: Update application to use new schema (repo: app, outcome: feature works with new schema, dependency: Item 1)
-
-### Sequential Dependency
-An outcome requires steps that must execute in order (e.g., provision infrastructure then deploy service).
-
-**Split into:** One item per step with an explicit dependency chain.
-- Item 1: Provision infrastructure (outcome: resources exist)
-- Item 2: Deploy service to provisioned infrastructure (outcome: service running, dependency: Item 1)
-
-### Multi-Environment
-An outcome spans multiple environments (e.g., deploy to staging then production).
-
-**Split into:** One item per environment.
-- Item 1: Deploy to staging (outcome: service running in staging)
-- Item 2: Deploy to production (outcome: service running in production, dependency: Item 1 verified)
-
----
-
-## Work Groups and Business Acceptance Testing
-
-Work groups organize related WDD items into **business-testable capabilities**. They enable incremental business acceptance testing (BAT) before the entire TDD scope is complete.
-
-### How Work Groups Work
-
-- Work groups are defined during WDD generation and frozen with the WDD
-- Each group names its member items and states what business capability becomes testable when all items are complete
-- Groups are organizational labels — they do not change item scope, granularity, or execution order
-- Every work item belongs to exactly one group
-
-### Business Acceptance Testing (BAT)
-
-When all items in a work group are complete (all PRs merged, all tests passing), the group's business-level acceptance criteria can be tested:
-
-1. All member items pass their individual completion criteria
-2. Group-level acceptance criteria are verified (business capability works end-to-end)
-3. Results are recorded as evidence
-
-BAT is not a gate for individual item execution. It is a checkpoint between item-level completion and full ORD readiness.
-
----
-
-## The Execution Loop
+# Part 2: The Execution Loop
 
 Once a WDD work item passes the DoR Validator, it enters the execution loop:
 
@@ -568,6 +448,279 @@ A WDD work item is complete when:
 3. PR is reviewed and approved (AI + human)
 4. Evidence is generated and accessible
 5. No scope expansion occurred beyond the WDD work item
+
+---
+
+### Work Groups and Business Acceptance Testing
+
+Work groups organize related WDD items into **business-testable capabilities**. They enable incremental business acceptance testing (BAT) before the entire TDD scope is complete.
+
+#### How Work Groups Work
+
+- Work groups are defined during WDD generation and frozen with the WDD
+- Each group names its member items and states what business capability becomes testable when all items are complete
+- Groups are organizational labels — they do not change item scope, granularity, or execution order
+- Every work item belongs to exactly one group
+
+#### Business Acceptance Testing (BAT)
+
+**Status: TBD** — The BAT process (who runs it, what the output format is, and how it gates progression) is not yet defined. BAT is expected to happen after work group completion but before ORD, and will be specified in a future update.
+
+When defined, BAT will verify:
+1. All member items pass their individual completion criteria
+2. Group-level acceptance criteria are satisfied (business capability works end-to-end)
+3. Results are recorded as evidence
+
+---
+
+# Part 3: Rules and Reference
+
+## Artifact Responsibilities (Single-Responsibility Rule)
+
+Each artifact answers exactly one question:
+
+- **PRD** — What problem are we solving and why?
+- **ACF** — What architectural guardrails apply?
+- **SAD** — What is the system shape?
+- **DCF** — What design standards constrain technical design?
+- **TDD** — How will this be built and operated?
+- **WDD** — What is the smallest executable work?
+- **WDD Item + DoR** — Is this ready to execute now?
+
+Execution prompts each answer one question per work item:
+
+- **Test specs** (`test-prompt.md`) — What must pass before this is done?
+- **Plan** (`plan-prompt.md`) — What is the smallest change that makes tests pass?
+- **Review** (`review-prompt.md`) — Is this safe, correct, verified, and within scope?
+
+Post-execution:
+
+- **ORD** — Is this ready to run in production?
+
+Artifacts and prompts that answer more than one question are invalid.
+
+---
+
+## Artifact Promotion Model
+
+Artifacts are **promoted**, not rewritten.
+
+- Each downstream artifact:
+  - Narrows scope
+  - Increases specificity
+  - Must not reinterpret upstream intent
+- Promotion occurs only after validator PASS
+- Validator failure returns the artifact to its own stage
+
+Downstream artifacts may **not** expand scope.
+
+---
+
+## Freeze Rules
+
+Freezing an artifact locks its intent and scope.
+
+- **PRD Freeze** — Product intent locked
+- **ACF Freeze** — Architectural guardrails locked
+- **SAD Freeze** — Architecture locked
+- **DCF Freeze** — Design standards locked
+- **TDD Freeze** — Technical design locked
+- **WDD Freeze** — Work items locked; execution may begin
+
+Breaking a freeze requires explicit re-entry to the prior stage (see Re-entry Protocol below).
+
+---
+
+## Re-entry Protocol
+
+When a frozen artifact must change, follow this protocol:
+
+### When Re-entry Is Required
+- A frozen artifact contains an error that affects downstream work
+- Requirements change after freeze (business priority shift, new constraint)
+- A downstream validator repeatedly fails due to upstream ambiguity
+
+### Re-entry Rules
+1. **Identify the highest affected artifact** — Change at the earliest point in the flow, not downstream
+2. **Unfreeze only that artifact** — Do not unfreeze downstream artifacts preemptively
+3. **Make the change** — Edit the artifact to resolve the issue
+4. **Re-validate** — Run the artifact's validator; it must PASS before re-freezing
+5. **Re-freeze** — Lock the artifact again
+6. **Cascade validation** — Re-validate all downstream frozen artifacts against the updated upstream; fix any that now fail
+
+### What Re-entry Does NOT Allow
+- Expanding scope beyond the original intent
+- Skipping validators on the changed artifact
+- Changing downstream artifacts without re-validating them
+
+### Responsibility
+- **Humans** decide whether re-entry is warranted
+- **AI** may flag the need for re-entry but must not unfreeze artifacts autonomously
+
+---
+
+## Intent Verification (Built into Generation)
+
+Before generating **SAD**, **TDD**, or **WDD**, the AI must verify its understanding of upstream intent.
+
+### How It Works
+- Each generation prompt instructs the AI to restate the upstream intent, constraints, and non-goals in Section 1 of the artifact
+- If the AI cannot reconcile scope with upstream artifacts, it must stop and flag the conflict instead of generating
+- The downstream validator enforces intent integrity as a hard gate
+
+### Why This Works
+- No separate manual step — verification is embedded in generation
+- Misalignment is caught by the validator (`intent_integrity`, `intent_alignment`, `traceability`)
+- Scope expansion is blocked by both the prompt rules and the validator
+
+---
+
+## Granularity Rules (WDD Work Items)
+
+Executable work must satisfy all of the following:
+
+- One observable outcome
+- One repository or subsystem
+- One pull request
+- One environment
+- No design decisions
+- Bounded execution time
+
+Work that violates these rules must be split.
+
+---
+
+## Splitting Guidance (WDD Work Items)
+
+When a work item violates granularity rules, split it using these patterns:
+
+### Cross-Repo Outcome
+A single outcome requires changes in multiple repositories (e.g., database migration + application code).
+
+**Split into:** One item per repository, each with its own observable outcome.
+- Item 1: Apply database migration (repo: infra, outcome: schema updated)
+- Item 2: Update application to use new schema (repo: app, outcome: feature works with new schema, dependency: Item 1)
+
+### Sequential Dependency
+An outcome requires steps that must execute in order (e.g., provision infrastructure then deploy service).
+
+**Split into:** One item per step with an explicit dependency chain.
+- Item 1: Provision infrastructure (outcome: resources exist)
+- Item 2: Deploy service to provisioned infrastructure (outcome: service running, dependency: Item 1)
+
+### Multi-Environment
+An outcome spans multiple environments (e.g., deploy to staging then production).
+
+**Split into:** One item per environment.
+- Item 1: Deploy to staging (outcome: service running in staging)
+- Item 2: Deploy to production (outcome: service running in production, dependency: Item 1 verified)
+
+---
+
+## Validators (Quality Gates)
+
+Validators are strict and non-prescriptive.
+
+They:
+- Do not redesign artifacts
+- Do not suggest solutions
+- Do not infer missing information
+- Evaluate only what is explicitly present
+
+If required information is missing or ambiguous, the validator must FAIL.
+
+---
+
+## Validator Responsibilities
+
+### PRD Validator
+
+Confirms:
+- Clear problem statement
+- Explicit goals and success criteria
+- Defined scope and non-goals
+- Documented constraints and assumptions
+
+---
+
+### ACF Validator
+
+Confirms:
+- Platform assumptions are stated
+- Security guardrails are defined
+- Reliability and observability expectations are stated
+- Forbidden patterns are listed
+- Constraints are enforceable
+
+---
+
+### SAD Validator
+
+Confirms:
+- System boundaries are defined
+- Major components are identified
+- Architectural decisions are documented
+- ACF guardrails are respected
+
+---
+
+### DCF Validator
+
+Confirms:
+- Design principles are defined
+- Quality bars are measurable
+- Non-goals enforcement rules are present
+- Testing and operational expectations are stated
+- Standards are enforceable
+
+---
+
+### TDD Validator
+
+Confirms:
+- Interfaces and contracts are explicit
+- Build and deployment steps are defined
+- Failure and rollback behavior is specified
+- Test strategy is clear
+- No scope expansion beyond SAD
+- No violation of stated non-goals
+
+---
+
+### WDD Validator
+
+Confirms:
+- One outcome per item
+- Explicit inputs and outputs
+- No remaining design decisions
+- No cross-environment execution
+- No scope added beyond TDD
+- Every item assigned to a work group with business-testable capability
+
+---
+
+### Definition of Ready (DoR) Validator
+
+Confirms WDD work items are:
+- Traceable to TDD
+- Atomic and executable
+- Unambiguous
+- AI-safe
+- Ready for immediate execution
+
+---
+
+### ORD Validator
+
+Confirms:
+- Deployment verified with evidence (per TDD §5)
+- Observability verified with evidence (per TDD §7, ACF §6)
+- Alerting and monitoring verified with evidence (per DCF §5)
+- Failure handling tested with evidence (per TDD §6)
+- Security guardrails verified with evidence (per ACF §3)
+- Runbook procedures documented and tested (per TDD §9)
+- No open items blocking production
+- All evidence is concrete, not assertions
 
 ---
 
