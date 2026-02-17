@@ -60,7 +60,7 @@ Lean, AI-first templates for each SDLC stage:
 - DCF
 - TDD
 - WDD
-- WDD (with execution-ready work items)
+- ORD
 
 Templates are designed to:
 - Be passed directly to AI
@@ -100,22 +100,15 @@ Anonymized examples showing:
 
 ## How to Use This Kit with AI
 
-A typical flow looks like this:
+Each artifact is generated and validated in separate AI sessions:
 
-1. Provide the AI with:
-   - The upstream artifact
-   - The relevant template
-   - Any applicable context files (ACF, DCF)
+1. **Generate** — Provide the AI with the prompt, template, and frozen upstream artifacts
+2. **Validate** — In a new session, provide the validator and the generated artifact
+3. **Freeze** — Once PASS and human-approved, lock the artifact and move on
 
-2. Generate the artifact using the template (intent verification is built into the prompt).
+The human orchestrates the flow. The AI generates and validates one artifact at a time.
 
-3. Run the corresponding validator.
-
-4. Fix only blocking issues.
-
-6. Freeze and promote the artifact.
-
-Repeat until you reach execution-ready work.
+For detailed guidance, session examples, and common mistakes to avoid, see: `how-to-use-with-ai.md`
 
 ---
 
