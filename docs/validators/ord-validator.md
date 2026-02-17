@@ -48,6 +48,9 @@ EVALUATION CRITERIA (HARD GATES):
 
 8. Evidence Quality
 - All evidence is concrete (logs, screenshots, test results, configuration exports)
+- All evidence is timestamped (when it was collected)
+- All evidence is traceable (links to the upstream requirement it satisfies)
+- All evidence is retrievable (includes a location — URL, path, or system reference)
 - No evidence fields contain only assertions ("this works", "will be configured")
 - No evidence fields are blank or marked pending
 

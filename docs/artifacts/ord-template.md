@@ -18,7 +18,18 @@ The ORD is an **evidence-gathering artifact** — it does not define new require
 What system or component is being verified?
 Restate from TDD §1. Do not expand.
 
-## 2. Deployment Verification
+## 2. Evidence Standards
+
+Every evidence item in this document must meet these properties:
+
+- **Concrete** — An artifact (log, report, screenshot, test output), not an assertion ("we tested this")
+- **Timestamped** — When the evidence was collected
+- **Traceable** — Links back to the specific upstream requirement it satisfies
+- **Retrievable** — A location where the evidence can be accessed (URL, path, or system reference)
+
+Evidence format, storage location, and retention requirements are defined in the organization's DCF (§6 Testing Expectations). If the DCF does not specify these, use whatever format is most durable and accessible to the team.
+
+## 3. Deployment Verification
 Verify that deployment succeeded as defined in TDD §5 (Build and Deployment Approach).
 
 For each deployment step in the TDD:
@@ -27,7 +38,7 @@ For each deployment step in the TDD:
 - Evidence (logs, screenshots, or test results):
 - Status: Verified | Not Verified | N/A
 
-## 3. Observability Verification
+## 4. Observability Verification
 Verify that observability requirements from TDD §7 and ACF §6 are satisfied.
 
 For each observability requirement:
@@ -36,7 +47,7 @@ For each observability requirement:
 - Evidence:
 - Status: Verified | Not Verified | N/A
 
-## 4. Alerting and Monitoring
+## 5. Alerting and Monitoring
 Verify that monitoring and alerting expectations from DCF §5 are satisfied.
 
 For each monitoring/alerting expectation:
@@ -45,7 +56,7 @@ For each monitoring/alerting expectation:
 - Evidence (alert definition, test fire result):
 - Status: Verified | Not Verified | N/A
 
-## 5. Failure and Rollback Verification
+## 6. Failure and Rollback Verification
 Verify that failure handling works as designed in TDD §6 (Failure Handling and Rollback).
 
 For each failure mode in the TDD:
@@ -54,7 +65,7 @@ For each failure mode in the TDD:
 - Evidence (test result, simulation log):
 - Status: Verified | Not Verified | N/A
 
-## 6. Security Verification
+## 7. Security Verification
 Verify that security guardrails from ACF §3 are satisfied in the implementation.
 
 For each security guardrail in the ACF:
@@ -69,7 +80,7 @@ If ACF defines security review triggers and any were matched during execution, c
 - Reviewer:
 - Outcome:
 
-## 7. Runbook Verification
+## 8. Runbook Verification
 Verify that operational procedures from TDD §9 (Operational Notes) are documented and tested.
 
 - [ ] Deploy procedure documented and tested
@@ -79,23 +90,24 @@ Verify that operational procedures from TDD §9 (Operational Notes) are document
 
 Evidence:
 
-## 8. Open Items
+## 9. Open Items
 List anything not yet verified. Each item must have an owner and a deadline.
 
 | Item | Owner | Deadline | Blocks Production? |
 |------|-------|----------|-------------------|
 |      |       |          | Yes / No          |
 
-## 9. Readiness Checklist (Self-Check)
+## 10. Readiness Checklist (Self-Check)
 - [ ] All deployment steps verified with evidence
 - [ ] All observability requirements verified with evidence
 - [ ] All alerting/monitoring expectations verified with evidence
 - [ ] All failure modes tested with evidence
 - [ ] All ACF security guardrails verified with evidence
 - [ ] Runbook procedures documented and tested
+- [ ] All evidence meets evidence standards (concrete, timestamped, traceable, retrievable)
 - [ ] No open items blocking production
 
-## 10. Readiness Declaration (when ready)
+## 11. Readiness Declaration (when ready)
 This system is operationally ready for production.
 
 - Approved By:

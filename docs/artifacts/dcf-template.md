@@ -50,6 +50,13 @@ Add your own:
 - Evidence requirements (logs, reports, artifacts):
 - Promotion gates (what blocks progression):
 
+### Evidence Management
+Define how evidence is handled for audit and compliance:
+- Required evidence formats: (e.g., structured logs, test reports, screenshots)
+- Evidence storage location: (e.g., artifact repository, document management system)
+- Retention requirements: (e.g., 1 year for test results, 7 years for compliance records)
+- Accessibility requirements: (e.g., retrievable within 24 hours for audit)
+
 ## 7. Documentation Expectations (Hard)
 - Required sections in a TDD:
 - Required diagram types (if any):

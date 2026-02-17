@@ -35,7 +35,7 @@ VALIDATOR WILL CHECK:
 - security_verification: evidence present for each ACF §3 guardrail
 - runbook_verification: procedures documented per TDD §9
 - no_open_blockers: no unresolved items blocking production
-- evidence_quality: all evidence is concrete, not assertions
+- evidence_quality: all evidence is concrete, timestamped, traceable, and retrievable
 
 OUTPUT:
 Generate a complete ORD using the ORD template.
