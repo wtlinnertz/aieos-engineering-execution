@@ -546,6 +546,7 @@ When a frozen artifact must change, follow this protocol:
 4. **Re-validate** — Run the artifact's validator; it must PASS before re-freezing
 5. **Re-freeze** — Lock the artifact again
 6. **Cascade validation** — Re-validate all downstream frozen artifacts against the updated upstream; fix any that now fail
+7. **Assess execution impact** — If re-entry affects a WDD with items in progress or completed, identify which work items are impacted by the change. Impacted completed items must be re-verified against the updated upstream. Impacted in-progress items must incorporate the change. Unaffected items continue as-is.
 
 ### What Re-entry Does NOT Allow
 - Expanding scope beyond the original intent
