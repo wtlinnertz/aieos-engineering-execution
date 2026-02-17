@@ -27,9 +27,10 @@ The goal is to show:
 3. System Architecture Design (SAD)
 4. Design Context File (DCF)
 5. Technical Design Document (TDD)
-6. Work Design Document (WDD) — includes execution-ready work items
+6. Work Design Document (WDD) — includes execution-ready work items and work groups
+7. Operational Readiness Document (ORD) — evidence-based production readiness verification
 
-Each artifact is frozen before promotion.
+Each artifact is frozen before promotion. The ORD is generated after execution and deployment, with evidence gathered from the deployed system.
 
 ---
 
@@ -37,8 +38,8 @@ Each artifact is frozen before promotion.
 
 - `01-prd.md`
 - `02-acf.md`
-- `03-intent-summary.md`
 - `04-sad.md`
 - `05-dcf.md`
 - `06-tdd.md`
 - `07-wdd.md`
+- `08-ord.md`

@@ -8,7 +8,8 @@
     "inputs_outputs": "FAIL",
     "acceptance_criteria": "PASS",
     "granularity": "FAIL",
-    "readiness": "FAIL"
+    "readiness": "FAIL",
+    "work_groups": "FAIL"
   },
   "blocking_issues": [
     {

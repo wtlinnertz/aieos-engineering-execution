@@ -1,0 +1,33 @@
+{
+  "status": "FAIL",
+  "summary": "All evidence fields are pending; no verification has been performed.",
+  "hard_gates": {
+    "deployment_verification": "FAIL",
+    "observability_verification": "FAIL",
+    "alerting_verification": "FAIL",
+    "failure_handling_verification": "FAIL",
+    "security_verification": "FAIL",
+    "runbook_verification": "FAIL",
+    "no_open_blockers": "FAIL",
+    "evidence_quality": "FAIL"
+  },
+  "blocking_issues": [
+    {
+      "gate": "deployment_verification",
+      "description": "All deployment verification items are marked 'Not Verified' with pending evidence.",
+      "location": "§3 Deployment Verification"
+    },
+    {
+      "gate": "evidence_quality",
+      "description": "All evidence fields contain '[PENDING — requires verification]' rather than concrete evidence.",
+      "location": "§3–§8"
+    },
+    {
+      "gate": "no_open_blockers",
+      "description": "Open item blocks production: 'All evidence fields pending'.",
+      "location": "§9 Open Items"
+    }
+  ],
+  "warnings": [],
+  "completeness_score": 5
+}

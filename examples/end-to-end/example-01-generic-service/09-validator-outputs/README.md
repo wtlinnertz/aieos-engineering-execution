@@ -24,6 +24,7 @@ All outputs:
 - TDD Validator
 - WDD Validator
 - Definition of Ready (DoR) Validator
+- ORD Validator
 
 ---
 

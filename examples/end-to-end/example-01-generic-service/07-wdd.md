@@ -133,7 +133,19 @@ Implement unit tests and integration tests for the Reference Data Service as def
 
 ---
 
-## 3. Mandatory Granularity Rules (Hard)
+## 3. Work Groups
+
+### Work Group
+- Group ID: WG-1
+- Group Name: Core Service Delivery
+- Business Capability: Reference data is retrievable via authenticated API with full observability and test coverage
+- Member Items: WDD-1, WDD-2
+- Acceptance Criteria (Group-Level):
+  - Given the service is deployed and all tests pass, when an authenticated consumer requests reference data by key, then the correct data is returned with structured logging and metrics observable
+
+---
+
+## 4. Mandatory Granularity Rules (Hard)
 
 Every WDD item must satisfy all of the following:
 
@@ -148,7 +160,7 @@ Items violating these rules must be split.
 
 ---
 
-## 4. Freeze Declaration
+## 5. Freeze Declaration
 This WDD is approved and frozen. Execution may proceed.
 
 - Approved By: Example Team

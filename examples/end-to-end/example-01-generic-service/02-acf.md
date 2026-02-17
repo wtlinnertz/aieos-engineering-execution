@@ -23,6 +23,16 @@ Define architectural guardrails that constrain the design of internal services d
 - Encryption: TLS required for all in-transit communication
 - Secrets handling: Secrets must be injected via platform secrets manager; no hardcoded secrets
 
+### Security Review Triggers
+A dedicated security review is required during execution when any of the following occur:
+- Changes to service-to-service authentication or authorization logic
+- Introduction of new API endpoints accessible by external consumers
+- Changes to secrets handling or injection mechanisms
+- New external dependencies added to the service
+- Changes to data classification or handling of sensitive data
+
+When triggered, the review phase must include security-specific verification against the guardrails in this section.
+
 ## 4. Compliance / Regulatory Constraints (Hard)
 - All services must produce audit-ready logs
 - No data may leave the internal network boundary

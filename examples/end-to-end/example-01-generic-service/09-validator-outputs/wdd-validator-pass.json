@@ -8,7 +8,8 @@
     "inputs_outputs": "PASS",
     "acceptance_criteria": "PASS",
     "granularity": "PASS",
-    "readiness": "PASS"
+    "readiness": "PASS",
+    "work_groups": "PASS"
   },
   "blocking_issues": [],
   "warnings": [],

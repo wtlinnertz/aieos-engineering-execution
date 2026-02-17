@@ -38,6 +38,12 @@ Define the design-level standards and quality expectations that all TDDs must fo
 - Evidence requirements: Test reports must be generated and accessible
 - Promotion gates: All tests must pass before deployment to any environment
 
+### Evidence Management
+- Required evidence formats: Test reports, structured logs, deployment logs
+- Evidence storage location: CI/CD pipeline artifact storage
+- Retention requirements: Test reports retained for 1 year; deployment logs retained for 1 year
+- Accessibility requirements: Retrievable via pipeline build history
+
 ## 7. Documentation Expectations (Hard)
 - Required sections in a TDD: Interfaces, Build/Deploy, Failure Handling, Testing Strategy
 - Required diagram types: None (kept simple for this context)
