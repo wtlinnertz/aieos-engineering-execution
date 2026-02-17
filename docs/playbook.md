@@ -319,6 +319,8 @@ Once a WDD work item passes the DoR Validator, it enters the execution loop:
 
 Each phase has a prompt that drives AI behavior and a gate that controls progression. Skipping phases weakens safety.
 
+**Execution order:** If a work item's inputs depend on another item's outputs, the dependency must be completed first. Execute items in dependency order. Independent items may be executed in parallel.
+
 ### Execution Principles
 
 1. **Tests define targets** — If tests aren't defined, we're not ready to implement
