@@ -193,16 +193,68 @@ Removing it from prompts costs more later — validators catch misalignment, but
 
 ---
 
+## Setting Up Your Project
+
+### Where the Kit Lives
+
+Keep the kit as a **central, shared repository**. Teams reference the kit's prompts, validators, and templates — they do not copy them into each project. When the kit improves, every team benefits immediately.
+
+### Where Artifacts Live
+
+Generated artifacts (PRD, SAD, TDD, WDD, ORD) live in the **app repo** under a conventional path:
+
+```
+my-app/
+  docs/sdlc/
+    01-prd.md
+    02-sad.md
+    03-tdd.md
+    04-wdd.md
+    05-ord.md
+```
+
+The numbered prefix follows the artifact flow, so the directory listing reads in promotion order.
+
+**Why the app repo?** Artifacts describe *this* system — they should live with it. Git gives you version history, branching, and freeze semantics for free. PRD changes and code changes share the same history, making traceability natural.
+
+### Where ACF and DCF Live
+
+This depends on your organization:
+
+**If your organization has shared standards** — ACF and DCF live in a central location (the kit repo, a governance repo, or wherever org-level standards are maintained). Projects reference them; they are not duplicated per project.
+
+**If teams set their own standards** — ACF and DCF are project-level artifacts and live in `docs/sdlc/` alongside everything else:
+
+```
+my-app/
+  docs/sdlc/
+    01-prd.md
+    02-acf.md
+    03-sad.md
+    04-dcf.md
+    05-tdd.md
+    06-wdd.md
+    07-ord.md
+```
+
+**If some standards are shared and some are team-specific** — Use an org-level ACF/DCF for the shared baseline. Teams can extend with a project-level ACF/DCF that adds team-specific constraints without contradicting the org-level file. Reference both as inputs when generating artifacts.
+
+Start with project-level context files. Extract to a shared location only when you've proven reuse across multiple projects.
+
+---
+
 ## Recommended Adoption Path
 
 A proven, low-risk path:
 
 1. Use the kit **as-is** on one pilot initiative
-2. Add a **minimal ACF**
-3. Add a **minimal DCF**
-4. Integrate the **DoR validator** first
-5. Expand enforcement gradually
-6. Only then customize further
+2. Set up `docs/sdlc/` in your app repo
+3. Add a **minimal ACF** (project-level is fine to start)
+4. Add a **minimal DCF** (project-level is fine to start)
+5. Integrate the **DoR validator** first
+6. Expand enforcement gradually
+7. Extract ACF/DCF to a shared location only after reuse is proven
+8. Only then customize further
 
 Do not start by changing templates or validators.
 
@@ -211,10 +263,11 @@ Do not start by changing templates or validators.
 ## Scaling Across Teams
 
 When scaling:
-- Centralize ACF ownership
-- Version ACFs and DCFs
-- Treat changes as breaking or non-breaking
+- Extract proven ACFs and DCFs to a shared location
+- Assign ownership for shared context files
+- Version ACFs and DCFs — treat changes as breaking or non-breaking
 - Communicate changes explicitly
+- Allow team-level extensions that add constraints without contradicting shared standards
 
 The model scales best when **context is centralized** and **execution is decentralized**.
 
