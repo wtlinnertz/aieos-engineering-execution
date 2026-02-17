@@ -382,8 +382,11 @@ Before entering the loop, assemble everything needed for the work item:
 **Prompt:** None — the approved plan is the instruction
 **Gate:** All tests pass
 
+Test specifications from Phase 1 are implemented as executable test code in this phase. Write the test code first, confirm it fails, then write the production code to make it pass.
+
 **Rules:**
 - Follow the approved plan
+- Write test code from approved test specifications before writing production code
 - Make only the minimal changes needed to pass approved tests
 - Touch only files identified in the plan
 - Keep diffs small and focused — one logical change per step
