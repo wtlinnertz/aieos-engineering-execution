@@ -85,10 +85,9 @@ The SDLC flow is linear and gated:
 - TDD
   → WDD (`wdd-prompt.md`)
   → WDD Validator (document-level: scope, structure, granularity)
-  → Freeze
-
-- WDD (frozen)
   → DoR Validator (per work item: readiness, traceability, AI safety)
+  → Human approval
+  → Freeze
   → Execute
 
 - Execute (per work item):
@@ -265,10 +264,10 @@ The WDD prompt includes **intent verification**: the AI restates upstream intent
 1. Generate WDD using `wdd-prompt.md` with frozen TDD as input
 2. Run `wdd-validator.md` against the full WDD document
 3. Fix blocking issues only; re-run validator until PASS
-4. Freeze WDD
-5. Run `dor-validator.md` against each work item individually
-6. Fix blocking issues only (if fixes require WDD changes, follow the Re-entry Protocol)
-7. Human reviews and approves
+4. Run `dor-validator.md` against each work item individually
+5. Fix blocking issues only; re-run validator until PASS (if fixes require WDD changes, re-run `wdd-validator.md` as well)
+6. Human reviews and approves
+7. Freeze WDD
 8. Begin execution
 
 ---
