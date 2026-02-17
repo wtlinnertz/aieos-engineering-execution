@@ -294,13 +294,16 @@ When all items in a work group are complete, the group's business-level acceptan
 **Gate:** Validator PASS + human approval
 **Output:** Approved ORD — system is production ready
 
+The ORD requires evidence from a **deployed system**, not just from code review or test output. Deploy according to TDD §5, then gather evidence from the running system to populate the ORD.
+
 ### Steps
-1. Generate ORD using `ord-prompt.md` with frozen TDD, ACF, and DCF as inputs
-2. Gather concrete evidence for each verification item (evidence must be concrete, timestamped, traceable, and retrievable)
-3. Run `ord-validator.md` against the completed ORD
-4. Fix blocking issues only; re-run validator until PASS
-5. Human reviews and approves
-6. System is production ready
+1. Deploy according to TDD §5 (Build and Deployment Approach)
+2. Generate ORD using `ord-prompt.md` with frozen TDD, ACF, and DCF as inputs
+3. Gather concrete evidence from the deployed system for each verification item (evidence must be concrete, timestamped, traceable, and retrievable)
+4. Run `ord-validator.md` against the completed ORD
+5. Fix blocking issues only; re-run validator until PASS
+6. Human reviews and approves
+7. System is production ready
 
 ---
 
