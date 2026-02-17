@@ -321,6 +321,8 @@ Each phase has a prompt that drives AI behavior and a gate that controls progres
 
 **Execution order:** If a work item's inputs depend on another item's outputs, the dependency must be completed first. Execute items in dependency order. Independent items may be executed in parallel.
 
+**Cancellation:** A human may cancel a work item at any point with a recorded reason. If other items depend on the cancelled item, assess and resolve the impact before continuing. Cancellation does not require re-entry unless the WDD itself needs to change.
+
 ### Execution Principles
 
 1. **Tests define targets** — If tests aren't defined, we're not ready to implement
