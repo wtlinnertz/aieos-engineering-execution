@@ -104,7 +104,7 @@ The SDLC flow is linear and gated:
   → ORD Validator
   → Production Ready
 
-No stage may be skipped.
+No stage may be skipped. Reusing a frozen ACF or DCF from a prior project satisfies the stage — it does not skip it.
 
 ---
 
@@ -134,6 +134,8 @@ Validators are prompts. To run one:
 - If the root cause is ambiguity or error in an upstream artifact, trigger the Re-entry Protocol
 
 Validators do not redesign or suggest solutions. They evaluate only what is explicitly present.
+
+**Human approval is the final gate.** A validator PASS is necessary but not sufficient. If a human rejects an artifact despite a passing validator, the artifact goes back for revision. The human may see issues — ambiguity, poor judgment, misaligned intent — that a validator cannot catch.
 
 ---
 
@@ -298,7 +300,7 @@ When all items in a work group are complete, the group's business-level acceptan
 **Gate:** Validator PASS + human approval
 **Output:** Approved ORD — system is production ready
 
-The ORD requires evidence from a **deployed system**, not just from code review or test output. Deploy according to TDD §5, then gather evidence from the running system to populate the ORD.
+The ORD operates at the **system level**, not the work item level. Per-item evidence (test results, review outcomes) is captured during execution. The ORD gathers system-level evidence (deployment, observability, alerting, failure handling) from a **deployed system**. Deploy according to TDD §5, then gather evidence from the running system to populate the ORD.
 
 ### Steps
 1. Deploy according to TDD §5 (Build and Deployment Approach)
