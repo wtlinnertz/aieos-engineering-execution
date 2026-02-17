@@ -353,6 +353,7 @@ Confirms:
 - Observability verified with evidence (per TDD §7, ACF §6)
 - Alerting and monitoring verified with evidence (per DCF §5)
 - Failure handling tested with evidence (per TDD §6)
+- Security guardrails verified with evidence (per ACF §3)
 - Runbook procedures documented and tested (per TDD §9)
 - No open items blocking production
 - All evidence is concrete, not assertions

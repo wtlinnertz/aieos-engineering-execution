@@ -15,7 +15,7 @@ Confirm that operational requirements defined in upstream artifacts are implemen
 
 INPUTS:
 - Frozen TDD (§5 Build and Deployment, §6 Failure Handling, §7 Observability, §9 Operational Notes)
-- Frozen ACF (§5 Reliability Guardrails, §6 Observability Guardrails)
+- Frozen ACF (§3 Security Guardrails, §5 Reliability Guardrails, §6 Observability Guardrails)
 - Frozen DCF (§5 Operational Expectations)
 
 GENERATION RULES:
@@ -23,14 +23,16 @@ GENERATION RULES:
 2. For each observability requirement in TDD §7 and ACF §6 — create an observability verification item
 3. For each monitoring/alerting expectation in DCF §5 — create an alerting verification item
 4. For each failure mode in TDD §6 — create a failure/rollback verification item
-5. For each operational procedure in TDD §9 — create a runbook verification item
-6. If an upstream requirement is vague, flag it as an open item rather than guessing
+5. For each security guardrail in ACF §3 — create a security verification item
+6. For each operational procedure in TDD §9 — create a runbook verification item
+7. If an upstream requirement is vague, flag it as an open item rather than guessing
 
 VALIDATOR WILL CHECK:
 - deployment_verification: evidence present for each TDD §5 step
 - observability_verification: evidence present for each TDD §7 / ACF §6 requirement
 - alerting_verification: evidence present for each DCF §5 expectation
 - failure_handling_verification: evidence present for each TDD §6 failure mode
+- security_verification: evidence present for each ACF §3 guardrail
 - runbook_verification: procedures documented per TDD §9
 - no_open_blockers: no unresolved items blocking production
 - evidence_quality: all evidence is concrete, not assertions

@@ -54,7 +54,22 @@ For each failure mode in the TDD:
 - Evidence (test result, simulation log):
 - Status: Verified | Not Verified | N/A
 
-## 6. Runbook Verification
+## 6. Security Verification
+Verify that security guardrails from ACF §3 are satisfied in the implementation.
+
+For each security guardrail in the ACF:
+- Guardrail (from ACF §3):
+- How verified (code review, test, scan, manual check):
+- Evidence:
+- Status: Verified | Not Verified | N/A
+
+If ACF defines security review triggers and any were matched during execution, confirm that security review was performed:
+- Trigger matched:
+- Review performed: Yes | No
+- Reviewer:
+- Outcome:
+
+## 7. Runbook Verification
 Verify that operational procedures from TDD §9 (Operational Notes) are documented and tested.
 
 - [ ] Deploy procedure documented and tested
@@ -64,22 +79,23 @@ Verify that operational procedures from TDD §9 (Operational Notes) are document
 
 Evidence:
 
-## 7. Open Items
+## 8. Open Items
 List anything not yet verified. Each item must have an owner and a deadline.
 
 | Item | Owner | Deadline | Blocks Production? |
 |------|-------|----------|-------------------|
 |      |       |          | Yes / No          |
 
-## 8. Readiness Checklist (Self-Check)
+## 9. Readiness Checklist (Self-Check)
 - [ ] All deployment steps verified with evidence
 - [ ] All observability requirements verified with evidence
 - [ ] All alerting/monitoring expectations verified with evidence
 - [ ] All failure modes tested with evidence
+- [ ] All ACF security guardrails verified with evidence
 - [ ] Runbook procedures documented and tested
 - [ ] No open items blocking production
 
-## 9. Readiness Declaration (when ready)
+## 10. Readiness Declaration (when ready)
 This system is operationally ready for production.
 
 - Approved By:

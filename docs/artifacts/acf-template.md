@@ -27,6 +27,16 @@ Examples (customize to your organization’s baseline):
 - Encryption requirements (in transit / at rest):
 - Secrets handling expectations:
 
+### Security Review Triggers
+Define conditions under which a dedicated security review is required during execution:
+- Trigger 1: (e.g., changes to authentication or authorization flows)
+- Trigger 2: (e.g., handling of sensitive data — PII, PHI, PCI)
+- Trigger 3: (e.g., new externally-facing API endpoints)
+- Trigger 4: (e.g., changes to cryptographic implementations)
+- Trigger 5: (e.g., new external dependencies)
+
+When triggered, the review phase must include security-specific verification against the guardrails in this section.
+
 ## 4. Compliance / Regulatory Constraints (Hard)
 - Constraint 1:
 - Constraint 2:

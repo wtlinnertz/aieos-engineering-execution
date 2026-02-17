@@ -16,6 +16,7 @@ INPUTS:
 - Implementation diff or changed files
 - WDD work item (scope, acceptance criteria, inputs, outputs, DoD)
 - TDD interface contracts (signatures, return types, status codes, data shapes)
+- ACF security guardrails (§3) and security review triggers
 - Test results (pass/fail evidence)
 
 REVIEW CHECKS:
@@ -23,7 +24,7 @@ REVIEW CHECKS:
 2. Interface compliance — implementation matches TDD contracts (signatures, return types, status codes)
 3. Acceptance criteria coverage — each WDD criterion has a corresponding test
 4. Failure handling — failure conditions and rollback behavior match WDD/TDD
-5. Security — no secrets in code, no injection risks, access control respected
+5. Security — no secrets in code, no injection risks, access control respected, ACF §3 security guardrails not violated, authentication/authorization changes match ACF requirements
 6. Test coverage — tests exist for happy path, failure conditions, and edge cases
 7. Scope expansion — flag any changes beyond the WDD work item boundary
 
@@ -59,6 +60,9 @@ OUTPUT FORMAT:
 
 ## Code Quality
 <error handling complete? hardcoded values? unbounded operations? dead code? dependency drift?>
+
+## Security
+<ACF guardrails respected? secrets exposed? injection risks? auth/authz correct? security review trigger matched?>
 
 ## Verification
 <are all tests passing? DoD satisfied? evidence present?>
