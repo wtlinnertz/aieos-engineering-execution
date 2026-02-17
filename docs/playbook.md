@@ -129,6 +129,10 @@ Validators are prompts. To run one:
 4. If PASS: the artifact is ready to freeze and promote
 5. Do not fix warnings unless they indicate a real problem — warnings are non-blocking
 
+**If the same gate keeps failing** after two fix-and-revalidate cycles, stop and assess:
+- If the root cause is in the current artifact, escalate to a human for guidance
+- If the root cause is ambiguity or error in an upstream artifact, trigger the Re-entry Protocol
+
 Validators do not redesign or suggest solutions. They evaluate only what is explicitly present.
 
 ---
