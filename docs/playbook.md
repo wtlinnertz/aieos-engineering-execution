@@ -129,6 +129,8 @@ Validators are prompts. To run one:
 4. If PASS: the artifact is ready to freeze and promote
 5. Do not fix warnings unless they indicate a real problem — warnings are non-blocking
 
+**If the failure is due to incomplete inputs** (e.g., the product brief left decisions unresolved and the PRD correctly marked them as open), the fix belongs in the input, not the artifact. Update the input with the missing decisions, then regenerate the artifact from scratch. This is not re-entry — nothing is frozen yet.
+
 **If the same gate keeps failing** after two fix-and-revalidate cycles, stop and assess:
 - If the root cause is in the current artifact, escalate to a human for guidance
 - If the root cause is ambiguity or error in an upstream artifact, trigger the Re-entry Protocol
