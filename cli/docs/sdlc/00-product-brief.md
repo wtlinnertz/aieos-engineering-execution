@@ -87,14 +87,15 @@
 ## When
 
 ### Release Criteria
-- CLI can execute the full planning flow: Product Brief → PRD → ACF → SAD → DCF → TDD → WDD (with validation and freeze at each step)
+- CLI can execute the full artifact flow: Product Brief → PRD → ACF → SAD → DCF → TDD → WDD → ORD (with validation and freeze at each step)
+- ORD generation and validation work the same as other artifacts; the user gathers deployment evidence manually before running the CLI
 - CLI can execute the validation loop (FAIL → show issues → regenerate → re-validate)
 - CLI enforces prerequisite order and freeze state
 - CLI works with at least one LLM provider (Anthropic Claude)
 - Documentation exists for installation and basic usage
 
 ### Success Criteria
-- A user can take a product brief from zero to a frozen WDD using only the CLI (no manual prompt assembly)
+- A user can take a product brief from zero to a frozen WDD (and through to ORD after execution) using only the CLI (no manual prompt assembly)
 - Validation results match what you'd get from manually running the validator prompts
 - Freeze state is enforced — you cannot skip steps or generate out of order
 
