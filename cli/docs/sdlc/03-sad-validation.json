@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "summary": "The SAD is complete, architecturally sound, traceable to upstream artifacts, and free of implementation leakage.",
+  "hard_gates": {
+    "intent_integrity": "PASS",
+    "scope_discipline": "PASS",
+    "upstream_traceability": "PASS",
+    "structural_diagrams": "PASS",
+    "cross_cutting_concerns": "PASS",
+    "data_integration": "PASS",
+    "failure_modes": "PASS",
+    "quality_attributes": "PASS",
+    "deferred_decisions": "PASS",
+    "risk_awareness": "PASS",
+    "guardrail_alignment": "PASS",
+    "implementation_leakage": "PASS"
+  },
+  "blocking_issues": [],
+  "warnings": [
+    {
+      "description": "Section 5 Key Architectural Decisions states 'No automatic retries in v1' under the synchronous execution decision — this is closer to implementation detail than architectural decision. Consider whether retry policy belongs here or in TDD.",
+      "location": "Section 5 — Decision 3 Consequences"
+    }
+  ],
+  "completeness_score": "91"
+}
