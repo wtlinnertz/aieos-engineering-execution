@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "summary": "The DCF is complete, all standards are explicit and enforceable, and no open items remain.",
+  "hard_gates": {
+    "document_control": "PASS",
+    "purpose": "PASS",
+    "design_principles": "PASS",
+    "quality_bars": "PASS",
+    "non_goals_enforcement": "PASS",
+    "operational_expectations": "PASS",
+    "testing_expectations": "PASS",
+    "documentation_expectations": "PASS",
+    "standard_enforceability": "PASS"
+  },
+  "blocking_issues": [],
+  "warnings": [
+    {
+      "description": "Evidence Management subsection marks retention and accessibility as 'Not applicable' — acceptable for a local CLI tool but worth confirming intentional.",
+      "location": "Section 6 — Evidence Management"
+    }
+  ],
+  "completeness_score": "93"
+}
