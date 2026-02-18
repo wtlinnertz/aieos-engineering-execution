@@ -13,9 +13,8 @@ ACF RESPONSIBILITY:
 Define architectural constraints and standards that downstream design must obey.
 
 INPUTS:
-- Organization standards (if provided)
-- Platform assumptions (if provided)
-- Regulatory or security constraints (if provided)
+- Architecture Context (completed intake form, see architecture-context-template.md)
+- If no Architecture Context form is available, accept any organizational standards, platform assumptions, or regulatory/security constraints provided
 
 VALIDATOR WILL CHECK:
 - document_control

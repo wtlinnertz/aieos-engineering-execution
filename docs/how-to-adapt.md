@@ -241,6 +241,43 @@ my-app/
 
 Start with project-level context files. Extract to a shared location only when you've proven reuse across multiple projects.
 
+### Where Human-Authored Inputs Live
+
+Some artifacts require human-authored inputs before they can be generated:
+
+- **Product Brief** — feeds the PRD prompt (template: `product-brief-template.md`)
+- **Architecture Context** — feeds the ACF prompt (template: `architecture-context-template.md`)
+
+These are not AI-generated artifacts — they are the human decisions that drive generation. Store them in `docs/sdlc/` with a `00-` prefix to distinguish them from generated artifacts:
+
+```
+my-app/
+  docs/sdlc/
+    00-product-brief.md          ← human input
+    00-architecture-context.md   ← human input
+    01-prd.md                    ← generated, validated, frozen
+    02-acf.md
+    ...
+```
+
+The `00-` prefix keeps inputs visually grouped before the generated artifacts in directory listings.
+
+### Where Validator Results Live
+
+Store the final passing validator result alongside the artifact it validated:
+
+```
+my-app/
+  docs/sdlc/
+    01-prd.md
+    01-prd-validation.json
+    02-acf.md
+    02-acf-validation.json
+    ...
+```
+
+The pattern is `{nn}-{type}-validation.json`. Store only the final passing result — the one that gates the freeze decision. Earlier failed attempts are in git history if needed.
+
 ---
 
 ## Recommended Adoption Path
