@@ -123,10 +123,30 @@ Once WDD work items pass the DoR Validator, they enter the execution loop. Each 
 |-------|--------|-----------------|
 | Tests | `test-prompt.md` | WDD work item + TDD testing strategy + DCF testing expectations |
 | Plan | `plan-prompt.md` | Approved test specs + TDD interface contracts + relevant source code |
-| Code | None (plan is the instruction) | Approved plan + source code |
+| Code | `code-prompt.md` | Approved plan + approved test specs + WDD work item + ACF guardrails + source code |
 | Review | `review-prompt.md` | Completed code + test results + WDD acceptance criteria + ACF guardrails |
 
 Each phase is a separate AI session. The human approves the output of each phase before the next one begins.
+
+### Generating the Execution Plan
+
+Before starting the execution loop, use `execution-plan-prompt.md` to produce an ordered execution plan from the frozen WDD. This sequences every work item through the four phases, respects work group order and dependencies, and identifies the specific upstream artifact sections needed as input for each phase.
+
+> [paste contents of `execution-plan-prompt.md`]
+>
+> **Frozen WDD:**
+> [paste frozen WDD]
+>
+> **Frozen TDD:**
+> [paste frozen TDD]
+>
+> **Frozen ACF:**
+> [paste frozen ACF]
+>
+> **Frozen DCF:**
+> [paste frozen DCF]
+
+The output is a checklist you follow through the execution loop — one work item at a time, one phase at a time.
 
 ---
 

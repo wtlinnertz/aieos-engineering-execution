@@ -32,8 +32,9 @@ TERMS.md           # Glossary of project terminology
 4. DCF → DCF Validator → Freeze
 5. SAD + DCF → TDD → TDD Validator → Freeze
 6. TDD → WDD → WDD Validator → DoR Validator → Human Approval → Freeze
-7. WDD (frozen) → Execute (see Execution Loop in playbook.md)
-8. Execute → ORD → ORD Validator → Production Ready
+7. WDD (frozen) → Execution Plan (`execution-plan-prompt.md`) → Human Approval
+8. Execute per work item in plan order (Tests → Plan → Code → Review)
+9. Execute → ORD → ORD Validator → Production Ready
 
 Prerequisite documents must exist and be frozen before downstream artifacts are generated.
 

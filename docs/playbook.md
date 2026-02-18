@@ -88,12 +88,13 @@ The SDLC flow is linear and gated:
   → DoR Validator (per work item: readiness, traceability, AI safety)
   → Human approval
   → Freeze
+  → Execution Plan (`execution-plan-prompt.md`)
   → Execute
 
-- Execute (per work item):
+- Execute (per work item, in execution plan order):
   → Tests (`test-prompt.md` → human approves specs)
   → Plan (`plan-prompt.md` → human approves plan)
-  → Code (approved plan → tests pass)
+  → Code (`code-prompt.md` → tests pass)
   → Review (`review-prompt.md` → human approves PR)
 
 - Execute (work group complete)
@@ -280,19 +281,36 @@ The WDD prompt includes **intent verification**: the AI restates upstream intent
 
 ---
 
-## Step 7: Execute (Per Work Item)
+## Step 7: Execution Plan
 
-Once a WDD work item passes the DoR Validator, it enters the execution loop. See **Part 2: The Execution Loop** below.
+**What:** Produce an ordered execution plan that sequences every work item through the four execution phases, respecting work group order and dependencies.
+
+**Prompt:** `execution-plan-prompt.md`
+**Inputs:** Frozen WDD + Frozen TDD + Frozen ACF + Frozen DCF
+**Gate:** Human approves execution plan
+**Output:** Ordered execution plan with per-item, per-phase inputs identified
+
+### Steps
+1. Run `execution-plan-prompt.md` with the frozen WDD, TDD, ACF, and DCF
+2. Review the execution order — confirm dependency sequencing and work group order
+3. Approve the plan
+4. Begin execution following the plan
 
 ---
 
-## Step 8: Work Groups
+## Step 8: Execute (Per Work Item)
+
+Once the execution plan is approved, execute each work item in plan order. See **Part 2: The Execution Loop** below.
+
+---
+
+## Step 9: Work Groups
 
 When all items in a work group are complete, the group's business-level acceptance criteria can be verified. See **Work Groups and Business Acceptance Testing** below.
 
 ---
 
-## Step 9: ORD (Operational Readiness Document)
+## Step 10: ORD (Operational Readiness Document)
 
 **What:** Verify that all operational requirements from TDD, ACF, and DCF have been implemented and are working.
 
@@ -396,7 +414,7 @@ Before entering the loop, assemble everything needed for the work item:
 
 **Goal:** Implement the plan. Make tests pass.
 
-**Prompt:** None — the approved plan is the instruction
+**Prompt:** `code-prompt.md`
 **Gate:** All tests pass
 
 Test specifications from Phase 1 are implemented as executable test code in this phase. Write the test code first, confirm it fails, then write the production code to make it pass.

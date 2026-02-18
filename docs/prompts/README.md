@@ -75,7 +75,9 @@ Skipping steps weakens enforcement.
 - `wdd-prompt.md` — Generate atomic executable work items (intent verified inline)
 - `test-prompt.md` — Generate test specifications from WDD acceptance criteria
 - `plan-prompt.md` — Generate implementation plan from test specs and TDD contracts
+- `code-prompt.md` — Implement approved plan, make tests pass
 - `review-prompt.md` — Review and verify implementation against WDD scope, TDD contracts, and DoD
+- `execution-plan-prompt.md` — Sequence work items through execution phases with per-item inputs
 - `ord-prompt.md` — Generate operational readiness verification from TDD/ACF/DCF
 
 ---
