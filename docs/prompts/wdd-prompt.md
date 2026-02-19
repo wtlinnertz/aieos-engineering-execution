@@ -51,6 +51,15 @@ After decomposing work items, identify natural groupings:
 - Groups are organizational labels — they do not change item scope, granularity, or execution order
 - Do not create groups that require all TDD work to be complete before testing
 
+PACKAGING AND DISTRIBUTION ITEMS:
+Work items covering packaging, distribution, deployment verification, infrastructure provisioning, or release tasks should be assigned Assignee Type "Human". These items:
+- Use verification checklists as acceptance criteria instead of Given/When/Then (e.g., "Verify package installs cleanly", "Verify deployment completes without errors")
+- Follow a verification checklist execution model instead of the four-phase AI loop (see playbook: Human-Assigned Work Items)
+- Must still have explicit inputs, outputs, Definition of Done, and rollback behavior
+- May form their own work group or be grouped with related items depending on business-testable capability
+
+Do not force packaging/distribution items into the AI execution model. Recognize them as human-verification tasks during decomposition.
+
 OUTPUT:
 Produce a WDD using the WDD template exactly as written.
 Split work until all granularity rules are satisfied.
