@@ -70,6 +70,11 @@ Skipping steps weakens enforcement.
 
 ---
 
+### Quality & Governance
+- `consistency-prompt.md` — Cross-artifact traceability and consistency check
+
+---
+
 ### Delivery & Execution
 - `tdd-prompt.md` — Generate technical design (intent verified inline)
 - `wdd-prompt.md` — Generate atomic executable work items (intent verified inline)
@@ -77,7 +82,11 @@ Skipping steps weakens enforcement.
 - `plan-prompt.md` — Generate implementation plan from test specs and TDD contracts
 - `code-prompt.md` — Implement approved plan, make tests pass
 - `review-prompt.md` — Review and verify implementation against WDD scope, TDD contracts, and DoD
-- `execution-plan-prompt.md` — Sequence work items through execution phases with per-item inputs
+- `execution-plan-prompt.md` — Determine execution order and extract per-item context from upstream artifacts
+- `execution-plan-tests-prompt.md` — Assemble ready-to-use Phase 1 (Tests) prompts per work item
+- `execution-plan-plan-prompt.md` — Assemble ready-to-use Phase 2 (Plan) prompts per work item
+- `execution-plan-code-prompt.md` — Assemble ready-to-use Phase 3 (Code) prompts per work item
+- `execution-plan-review-prompt.md` — Assemble ready-to-use Phase 4 (Review) prompts per work item
 - `ord-prompt.md` — Generate operational readiness verification from TDD/ACF/DCF
 
 ---
