@@ -20,8 +20,9 @@ EVALUATION CRITERIA (HARD GATES):
 - No compound objectives
 
 3. Acceptance Criteria
-- Uses Given / When / Then format
-- Includes at least one failure condition per acceptance criterion
+- For AI-assigned items (Assignee Type: AI Agent or Either): Uses Given / When / Then format with at least one failure condition per acceptance criterion
+- For human-assigned items (Assignee Type: Human): Uses verification checklist format (action + expected evidence) with at least one failure/rollback check
+- Format must match the Assignee Type — Given/When/Then for AI items, verification checklists for human items
 
 4. Inputs and Outputs
 - Inputs explicitly listed
