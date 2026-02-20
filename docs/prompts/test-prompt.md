@@ -33,5 +33,24 @@ Each test must include:
 - Expected outcome
 - Failure condition
 
+After all test specifications, include a **Test Structure Specification**:
+
+## Test Structure
+
+**Test file:** `<path where test file will be created, following project conventions>`
+
+**Test grouping:**
+```
+<group: acceptance criteria description>
+  <test: test name from specs above>
+  <test: test name from specs above>
+<group: failure conditions>
+  <test: test name>
+<group: edge cases>
+  <test: test name>
+```
+
+Map each group to its corresponding acceptance criterion or test category. Phase 3 must create the test file at the specified path and implement tests in this exact structure.
+
 Do not include implementation code or framework-specific syntax.
-Stop after writing test specifications. Do not write implementation code.
+Stop after writing test specifications and test structure. Do not write implementation code.
