@@ -45,6 +45,9 @@ Prerequisite documents must exist and be frozen before downstream artifacts are 
 - Validators: `{type}-validator.md` (e.g., `prd-validator.md`)
 - Example artifacts: `{nn}-{type}.md` (e.g., `01-prd.md`, `02-acf.md`)
 - Artifact IDs: `{TYPE}-{PROJECT}-{NNN}` (e.g., `PRD-EX-001`)
+- Execution plan context files: `{nn}-{wdd-item-id}-context.md` (e.g., `09-WDD-EX-001-context.md`)
+- Execution phase outputs: `{nn}-{wdd-item-id}-{phase}.md` where phase is `tests`, `plan`, or `review` (e.g., `09-WDD-EX-001-tests.md`)
+- Work group gate files: `{nn}-wg-{n}-gate.md` (e.g., `16-wg-05-gate.md`)
 
 ## Validator Output Format (Standardized)
 
