@@ -31,7 +31,7 @@ TERMS.md           # Glossary of project terminology
 3. PRD + ACF → SAD → SAD Validator → Freeze
 4. DCF → DCF Validator → Freeze
 5. SAD + DCF → TDD → TDD Validator → Freeze
-6. TDD → WDD → WDD Validator → DoR Validator → Human Approval → Freeze
+6. TDD → WDD → WDD Validator → DoR Validator → Consistency Check → Human Approval → Freeze
 7. WDD (frozen) → Execution Plan (`execution-plan-prompt.md`) → Human Approval
 8. Execute per work item in plan order (Tests → Plan → Code → Review)
 9. Execute → ORD → ORD Validator → Production Ready
