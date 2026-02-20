@@ -130,23 +130,45 @@ Each phase is a separate AI session. The human approves the output of each phase
 
 ### Generating the Execution Plan
 
-Before starting the execution loop, use `execution-plan-prompt.md` to produce an ordered execution plan from the frozen WDD. This sequences every work item through the four phases, respects work group order and dependencies, and identifies the specific upstream artifact sections needed as input for each phase.
+Before starting the execution loop, generate the execution plan, then use the phase-specific prompts to assemble ready-to-use prompts for each phase — one phase at a time.
+
+**Step 1: Generate the execution plan**
 
 > [paste contents of `execution-plan-prompt.md`]
 >
-> **Frozen WDD:**
-> [paste frozen WDD]
+> **Frozen WDD:** [paste frozen WDD]
 >
-> **Frozen TDD:**
-> [paste frozen TDD]
+> **Frozen TDD:** [paste frozen TDD]
 >
-> **Frozen ACF:**
-> [paste frozen ACF]
+> **Frozen ACF:** [paste frozen ACF]
 >
-> **Frozen DCF:**
-> [paste frozen DCF]
+> **Frozen DCF:** [paste frozen DCF]
 
-The output is a checklist you follow through the execution loop — one work item at a time, one phase at a time.
+This produces an execution order and per-work-item context (relevant TDD/ACF/DCF sections extracted per item). Save the output.
+
+**Step 2: Assemble Phase 1 (Tests) prompts**
+
+> [paste contents of `execution-plan-tests-prompt.md`]
+>
+> **Approved Execution Plan:** [paste execution plan output]
+
+This produces assembled, ready-to-use test prompts for each work item. Run each one in a separate AI session. Approve the test specifications.
+
+**Step 3: Assemble Phase 2 (Plan) prompts**
+
+> [paste contents of `execution-plan-plan-prompt.md`]
+>
+> **Approved Execution Plan:** [paste execution plan output]
+>
+> **Approved Phase 1 Output:** [paste approved test specs per work item]
+
+This produces assembled plan prompts with test specs included. Run, approve.
+
+**Step 4–5: Repeat for Code and Review**
+
+Use `execution-plan-code-prompt.md` (after Phase 2) and `execution-plan-review-prompt.md` (after Phase 3) the same way — each takes the execution plan plus the approved outputs from previous phases and produces ready-to-use prompts.
+
+Each phase prompt assembles everything — no manual input gathering needed.
 
 ---
 
