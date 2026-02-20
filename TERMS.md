@@ -127,6 +127,11 @@ Work groups are:
 
 ---
 
+### Work Group Gate
+A checkpoint recorded when all items in a work group are complete. The gate captures cumulative state: test counts, build status, completed items, and review status. Work group gates are recorded between groups in the execution plan. The next work group may not begin until the current group's gate is satisfied.
+
+---
+
 ### ORD (Operational Readiness Document)
 Verifies that **operational requirements from TDD, ACF, and DCF have been implemented and are working**, including:
 - Deployment verification
