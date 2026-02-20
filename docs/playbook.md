@@ -86,6 +86,7 @@ The SDLC flow is linear and gated:
   → WDD (`wdd-prompt.md`)
   → WDD Validator (document-level: scope, structure, granularity)
   → DoR Validator (per work item: readiness, traceability, AI safety)
+  → Consistency Check (`consistency-prompt.md` — cross-artifact traceability)
   → Human approval
   → Freeze
   → Execution Plan (`execution-plan-prompt.md`)
@@ -275,9 +276,48 @@ The WDD prompt includes **intent verification**: the AI restates upstream intent
 3. Fix blocking issues only; re-run validator until PASS
 4. Run `dor-validator.md` against each work item individually
 5. Fix blocking issues only; re-run validator until PASS (if fixes require WDD changes, re-run `wdd-validator.md` as well)
-6. Human reviews and approves
-7. Freeze WDD
-8. Begin execution
+6. Run consistency check (see Step 6a)
+7. Human reviews and approves
+8. Freeze WDD
+9. Begin execution
+
+---
+
+## Step 6a: Consistency Check
+
+**What:** Verify that intent, requirements, constraints, and scope flow consistently across all frozen artifacts without gaps, contradictions, or unauthorized expansion.
+
+**Prompt:** `consistency-prompt.md`
+**Inputs:** All frozen upstream artifacts (PRD, ACF, SAD, DCF, TDD) and the validated WDD (not yet frozen). Frozen addendums are included where they exist.
+**Validator:** `consistency-validator.md`
+**Gate:** Validator PASS (fixing inconsistencies may require the Re-entry Protocol for upstream frozen artifacts, followed by downstream cascade revalidation)
+**Output:** Consistency report (JSON) confirming cross-artifact traceability
+
+The consistency check is distinct from per-artifact validators. Per-artifact validators check internal quality (is this PRD well-formed?). The consistency check verifies **cross-artifact relationships** (does every PRD requirement trace through to a WDD work item?).
+
+### Checks Performed
+
+1. **Requirement Coverage** — Every PRD requirement maps to at least one SAD component
+2. **Requirement-to-Work Traceability** — Every PRD functional requirement traces to at least one WDD work item
+3. **Scope Containment** — No downstream artifact introduces scope absent from upstream
+4. **Non-Goal Enforcement** — No downstream artifact contradicts a stated non-goal
+5. **Constraint Propagation** — No downstream artifact violates an ACF constraint
+6. **Interface Alignment** — SAD integration points match TDD specifications
+7. **Addendum Integration** — Frozen addendum changes are reflected downstream
+
+### Steps
+1. Gather all frozen upstream artifacts, their frozen addendums, and the validated WDD
+2. Run `consistency-prompt.md` with all artifacts as input
+3. Review the consistency report — examine any inconsistencies flagged
+4. Run `consistency-validator.md` against the report
+5. Fix blocking inconsistencies in the appropriate upstream artifact (using the Re-entry Protocol if the artifact is already frozen)
+6. Re-run consistency check until PASS
+
+### When to Run
+
+- **Required:** After DoR validation passes and before WDD freeze
+- **Optional:** After any addendum is frozen, to verify downstream coherence
+- **Optional:** At any point during the artifact flow as a progress check (the check handles missing artifacts gracefully, issuing warnings rather than failures)
 
 ---
 
@@ -288,13 +328,18 @@ The WDD prompt includes **intent verification**: the AI restates upstream intent
 **Prompt:** `execution-plan-prompt.md`
 **Inputs:** Frozen WDD + Frozen TDD + Frozen ACF + Frozen DCF
 **Gate:** Human approves execution plan
-**Output:** Ordered execution plan with per-item, per-phase inputs identified
+**Output:** Execution order and per-work-item context (relevant TDD/ACF/DCF sections extracted per item)
 
 ### Steps
 1. Run `execution-plan-prompt.md` with the frozen WDD, TDD, ACF, and DCF
 2. Review the execution order — confirm dependency sequencing and work group order
 3. Approve the plan
-4. Begin execution following the plan
+4. For each phase, use the corresponding phase assembly prompt to generate ready-to-use prompts per work item:
+   - `execution-plan-tests-prompt.md` — assembles Phase 1 (Tests) prompts from the execution plan
+   - `execution-plan-plan-prompt.md` — assembles Phase 2 (Plan) prompts, includes approved Phase 1 output
+   - `execution-plan-code-prompt.md` — assembles Phase 3 (Code) prompts, includes approved Phase 1 and Phase 2 output
+   - `execution-plan-review-prompt.md` — assembles Phase 4 (Review) prompts, includes Phase 3 diff and test results
+5. Run each assembled prompt in a separate AI session, approve the output, then generate the next phase's prompts
 
 ---
 
@@ -335,13 +380,13 @@ The ORD operates at the **system level**, not the work item level. Per-item evid
 
 # Part 2: The Execution Loop
 
-Once a WDD work item passes the DoR Validator, it enters the execution loop:
+Once the WDD passes the DoR Validator, the consistency check, and human approval, and is frozen, its work items enter the execution loop:
 
 **Tests → Plan → Code → Review → Done**
 
 Each phase has a prompt that drives AI behavior and a gate that controls progression. Skipping phases weakens safety.
 
-**Execution order:** If a work item's inputs depend on another item's outputs, the dependency must be completed first. Execute items in dependency order. Independent items may be executed in parallel.
+**Execution order:** If a work item's inputs depend on another item's outputs, the dependency must be completed first. Execute items in dependency order. Independent items within the same work group may be executed in parallel if they share no file-level conflicts and the executor can maintain separate context for each. In practice, parallel execution is most valuable when different people (or separate AI sessions) work on different items that touch different subsystems. When items modify overlapping files, sequential execution avoids merge conflicts and context confusion. The execution plan marks items as "parallel-safe" or "sequential" based on file overlap analysis.
 
 **Cancellation:** A human may cancel a work item at any point with a recorded reason. If other items depend on the cancelled item, assess and resolve the impact before continuing. Cancellation does not require re-entry unless the WDD itself needs to change.
 
@@ -354,6 +399,19 @@ Each phase has a prompt that drives AI behavior and a gate that controls progres
 3. **Small, reversible steps** — Keep diffs focused; iterate with tests
 4. **Verification is built into review** — Not a separate step; the review prompt checks completeness
 5. **Auditability** — Track what was done, what was tested, and what was reviewed
+
+### Execution Artifact Naming
+
+Phase outputs are saved as files alongside the execution plan. Use this naming convention:
+
+- `{nn}-{wdd-item-id}-context.md` — Per-work-item context extracted from upstream artifacts
+- `{nn}-{wdd-item-id}-tests.md` — Phase 1 approved test specifications
+- `{nn}-{wdd-item-id}-plan.md` — Phase 2 approved implementation plan
+- `{nn}-{wdd-item-id}-review.md` — Phase 4 review output
+
+Where `{nn}` is a sequence number continuing from the execution plan file (e.g., if the execution plan is `07-execution-plan.md`, the first item's context would be `08-WDD-PROJ-001-context.md`).
+
+Phase 3 (Code) does not produce a separate document — its output is committed code and test results.
 
 ### Execution Inputs
 
@@ -392,6 +450,14 @@ Before entering the loop, assemble everything needed for the work item:
 3. **Edge case tests** — Boundary conditions, empty inputs, invalid states
 4. **Regression tests** — If fixing a bug, a test that fails before the fix and passes after
 
+**Test Structure Specification:**
+In addition to test specifications, Phase 1 output must include:
+- **Test file path** — Where the test file will be created (following project conventions)
+- **Test grouping structure** — Logical groupings and individual test names
+- **Mapping** — Which test group maps to which acceptance criterion
+
+This structure ensures Phase 3 implements tests in the correct location with the correct organization. The test structure is part of the approved output — Phase 3 must follow it exactly.
+
 ---
 
 ### Phase 2: Plan
@@ -407,6 +473,8 @@ Before entering the loop, assemble everything needed for the work item:
 - Relevant source code
 
 **Output:** An approved implementation plan identifying files to change, interfaces to lock down, dependencies, risks, and sequencing.
+
+**Existing Tests to Update:** If this work item modifies a shared interface (adds methods, changes return types, extends data structures), the plan must list existing test files whose mocks or assertions will break due to the change. For each file, state the specific update needed (e.g., "add stub methods to mock factory", "update expected shape in test AT-03-06"). This prevents discovery of mock drift during Phase 3.
 
 ---
 
@@ -435,6 +503,16 @@ Test specifications from Phase 1 are implemented as executable test code in this
 - If answers degrade or context is lost, restart with fresh context
 - Multiple iterations are normal
 
+**Context Recovery (when iteration requires a fresh session):**
+When Phase 3 requires multiple iterations and the AI session must be restarted (context window exhaustion, degraded answers, or session timeout):
+1. Start the new session with the approved test specs, approved plan, and the work item context file
+2. Include the current state of changed files (not the original versions)
+3. Include the most recent test output (full error messages and stack traces)
+4. Summarize what has been attempted: which approaches worked, which failed, and why
+5. Do not re-explain the entire project — the context file contains everything needed
+
+If the same test fails after three focused debugging attempts, escalate to the Execution Refinement Ladder before continuing.
+
 ---
 
 ### Phase 4: Review
@@ -459,6 +537,20 @@ The review prompt checks both correctness and completeness:
   - Test results (pass/fail evidence)
   - Risks or known limitations
 - Changes that expand scope beyond the WDD work item must be rejected
+
+---
+
+### Human-Assigned Work Items
+
+WDD items with Assignee Type "Human" follow a **verification checklist model** instead of the four-phase AI execution loop. These items typically cover packaging, distribution, deployment verification, infrastructure provisioning, or other tasks that require direct human action.
+
+**Execution model for human-assigned items:**
+1. Human performs the work described in the WDD item
+2. Human completes each acceptance criterion as a verification checklist (check-and-record, not Given/When/Then)
+3. Human records evidence for each checklist item (screenshots, logs, command output)
+4. Another human reviews the evidence against the WDD item's acceptance criteria and DoD
+
+Human-assigned items still follow the execution plan order and respect dependency chains. They still require evidence and must satisfy their Definition of Done. The difference is that they do not pass through the AI-driven Tests/Plan/Code/Review phases.
 
 ---
 
@@ -488,6 +580,25 @@ A WDD work item is complete when:
 
 ---
 
+### Version Control Workflow
+
+This playbook does not prescribe a specific branching strategy. However, the following practices align with the execution loop and must be adapted to the project's version control conventions:
+
+**Branch per work item:** Create a branch for each WDD work item before entering Phase 3. The branch name should include the WDD Item ID for traceability.
+
+**Commit discipline:**
+- Commit after Phase 3 produces passing tests (test code + production code)
+- Each commit should represent one logical change within the work item
+- Commit messages should reference the WDD Item ID
+
+**Pull request per work item:** Phase 4 (Review) assumes a reviewable pull request exists. Create the PR after all tests pass in Phase 3. The PR description should link to the WDD work item and include test evidence.
+
+**Merge after review:** Merge only after both AI review (Phase 4) and human review approve. The WDD item's Definition of Done includes "PR merged."
+
+**Work group gates:** Do not begin the next work group until all PRs from the current group are merged and the work group gate is satisfied.
+
+---
+
 ### Work Groups and Business Acceptance Testing
 
 Work groups organize related WDD items into **business-testable capabilities**. They enable incremental business acceptance testing (BAT) before the entire TDD scope is complete.
@@ -498,6 +609,24 @@ Work groups organize related WDD items into **business-testable capabilities**. 
 - Each group names its member items and states what business capability becomes testable when all items are complete
 - Groups are organizational labels — they do not change item scope, granularity, or execution order
 - Every work item belongs to exactly one group
+
+#### Work Group Gates
+
+When all items in a work group are complete (all PRs merged, all tests passing), record a work group gate before proceeding to the next group.
+
+**Gate artifact file:** Persist the gate as `{nn}-wg-{n}-gate.md` in the execution artifacts directory, using the next available sequence number. The gate file is written after all items in the group pass review.
+
+```
+## WG-{n} Gate: {group name}
+- Tests: {count} passing, 0 failing
+- Test count delta: +{n} from previous gate (or from baseline for WG-1)
+- Build: clean (zero errors)
+- Items completed: {list of WDD Item IDs}
+- Reviews: all PASS
+- Evidence: {link or path to test results}
+```
+
+A work group gate is a checkpoint, not a validator. It records cumulative state. If any line cannot be satisfied, the group is not complete.
 
 #### Business Acceptance Testing (BAT)
 
@@ -745,6 +874,18 @@ Confirms WDD work items are:
 - Unambiguous
 - AI-safe
 - Ready for immediate execution
+
+---
+
+### Consistency Validator
+
+Verifies cross-artifact relationships:
+- Every PRD requirement traces to SAD components and WDD work items
+- No downstream artifact introduces scope absent from upstream
+- No downstream artifact contradicts a stated non-goal
+- ACF constraints are respected in all technical artifacts
+- SAD integration points align with TDD specifications
+- Frozen addendum changes are reflected downstream
 
 ---
 
