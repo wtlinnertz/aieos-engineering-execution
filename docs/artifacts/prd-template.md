@@ -33,7 +33,6 @@ Explicitly state what is out of scope.
 ## 5. Requirements
 
 ### 5.1 Functional Requirements
-Use “The system SHALL …”
 - FR-1:
 - FR-2:
 
