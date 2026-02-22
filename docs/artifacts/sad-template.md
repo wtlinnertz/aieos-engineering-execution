@@ -25,8 +25,6 @@ Do not add requirements or design. Do not expand scope.
 - Non-goal 1:
 - Non-goal 2:
 
-Rule: Anything not listed as in-scope is out of scope by default.
-
 ## 3. System Context (Black Box)
 Describe the system as a black box.
 
@@ -126,8 +124,6 @@ Describe data or artifact state transitions at the architectural level.
 | Mode 1 | | | |
 | Mode 2 | | | |
 
-Mitigation must be architectural, not procedural.
-
 ## 9. Quality Attribute Scenarios (QAS)
 
 Define at least one scenario per major quality attribute.
@@ -158,20 +154,7 @@ List items intentionally deferred to TDD-level detail.
 - Assumption 1:
 - Assumption 2:
 
-## 13. Readiness Checklist (Self-Check)
-- [ ] Intent Summary pasted and unchanged
-- [ ] Scope and non-goals explicit
-- [ ] Boundaries and major components clear
-- [ ] C4 Context (L1) diagram present
-- [ ] C4 Container (L2) diagram present
-- [ ] Data Flow diagram present
-- [ ] Data stores and integrations documented
-- [ ] Failure modes table complete
-- [ ] At least one QAS per quality attribute
-- [ ] Decisions resolved or explicitly deferred
-- [ ] No implementation details (build steps, configs, pipelines)
-
-## 14. Freeze Declaration (when ready)
+## 13. Freeze Declaration (when ready)
 This SAD is approved and frozen. Downstream artifacts may not reinterpret or expand this architecture.
 
 - Approved By:
