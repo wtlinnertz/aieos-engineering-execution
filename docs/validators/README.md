@@ -46,12 +46,18 @@ All validators follow these rules:
 
 ---
 
+## Validators and Specs
+
+Validators reference **specs** (`docs/specs/{type}-spec.md`) for their evaluation criteria. The spec defines the hard gates, content rules, and quality criteria. The validator defines how to judge pass/fail and what output to produce.
+
+When running a validator, provide both the spec and the validator alongside the artifact being evaluated.
+
 ## Validator Execution Model
 
 For each artifact:
 
-1. Generate the artifact using the appropriate template
-2. Run the corresponding validator
+1. Generate the artifact using the spec, prompt, and template
+2. Run the corresponding validator with the spec
 3. If the validator FAILS:
    - Fix blocking issues only
    - Re-run the validator
@@ -79,6 +85,13 @@ For each artifact:
 ### Delivery & Execution
 - `wdd-validator.md`
 - `dor-validator.md`
+- `ord-validator.md`
+
+---
+
+### Quality & Governance
+- `consistency-validator.md`
+- `impact-analysis-validator.md`
 
 ---
 
