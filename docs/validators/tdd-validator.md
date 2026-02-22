@@ -9,39 +9,10 @@ AUTHORITATIVE RULES:
 - Evaluate only what is explicitly present
 - Be strict: ambiguity is a failure condition
 
-EVALUATION CRITERIA (HARD GATES):
-
-1. Intent Alignment
-- Intent Summary present and consistent with SAD
-- No expansion beyond SAD intent
-
-2. Scope & Non-Goals
-- Scope explicitly defined
-- Non-goals explicitly restated
-- No violation of non-goals
-
-3. Interfaces & Contracts
-- Interfaces explicitly defined
-- Inputs and outputs explicit
-- Error modes defined
-
-4. Build & Deployment
-- Build steps defined
-- Deployment steps defined
-- Required inputs listed
-
-5. Failure & Rollback
-- Failure modes defined
-- Rollback or compensation behavior defined
-
-6. Testing Strategy
-- Test types defined
-- Pass/fail criteria defined
-- At least one failure test defined
-
-7. Readiness
-- No unresolved decisions
-- Design is deterministic
+SPEC REFERENCE:
+Evaluate this artifact against the hard gates, content rules, format requirements,
+and completeness criteria defined in `tdd-spec.md`.
+Each hard gate in your output must correspond to a hard gate defined in the spec.
 
 OUTPUT FORMAT (MANDATORY):
 
