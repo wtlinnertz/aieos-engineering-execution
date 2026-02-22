@@ -10,52 +10,21 @@ AUTHORITATIVE RULES:
 - Be strict: ambiguity is a failure condition
 - ACFs define guardrails, not architecture
 
-EVALUATION CRITERIA (HARD GATES):
+SPEC REFERENCE:
+Evaluate this artifact against the hard gates, content rules, format requirements,
+and completeness criteria defined in `acf-spec.md`.
+Each hard gate in your output must correspond to a hard gate defined in the spec.
 
-1. Document Control
-- ACF ID present
-- Owner identified
-- Status is explicit (Draft | Approved | Frozen)
-- Applicability scope defined
-
-2. Purpose
-- Purpose section exists
-- Purpose describes what guardrails the ACF enforces
-- Purpose does not describe a solution or architecture
-
-3. Platform Assumptions
-- Runtime environment(s) stated
-- Deployment model(s) stated
-- Networking posture stated (at least high level)
-- Identity model stated (at least high level)
-
-4. Security Guardrails
-- At least one security guardrail defined
-- Guardrails are constraints, not solutions
-- No implementation details (specific tools, configs, commands)
-
-5. Compliance & Regulatory
-- Compliance section present
-- Constraints listed or explicitly marked "None applicable" with justification
-
-6. Reliability & Resilience
-- Availability expectations stated (qualitative or quantitative)
-- Failure isolation expectations stated
-- Rollback expectations stated
-
-7. Observability
-- Required telemetry types stated
-- Minimum operational signals defined
-
-8. Forbidden Patterns
-- At least one forbidden pattern listed
-- Forbidden patterns are clear and enforceable
-- No vague prohibitions (e.g., "avoid bad practices")
-
-9. Constraint Enforceability
-- All hard-marked constraints are testable or verifiable
-- No aspirational language in hard constraints
-- Guardrails are specific enough to validate against in a SAD
+HARD GATES:
+- document_control
+- purpose
+- platform_assumptions
+- security_guardrails
+- compliance
+- reliability
+- observability
+- forbidden_patterns
+- constraint_enforceability
 
 OUTPUT FORMAT (MANDATORY):
 
