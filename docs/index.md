@@ -52,8 +52,27 @@ Defines the canonical process from product intent to delivered work:
 
 ---
 
+### 🏗️ Engineering & Product Principles
+Organizational standards that inform ACF and DCF creation:
+- Engineering standards (code quality, testing, architecture, security)
+- Product standards (problem diagnosis, outcomes, scope, traceability)
+
+➡️ See: `principles/`
+
+---
+
+### 📋 Artifact Specifications
+Authoritative content rules and quality criteria for each artifact:
+- Define what makes an artifact good (content rules, format requirements, hard gates)
+- Single source of truth for quality criteria — referenced by prompts and validators
+- Human-readable without AI instructions or judgment procedures
+
+➡️ See: `specs/`
+
+---
+
 ### 📄 Artifact Templates
-Lean, AI-first templates for each SDLC stage:
+Lean, AI-first templates for each SDLC stage (structure only):
 - PRD
 - ACF
 - SAD
@@ -102,8 +121,8 @@ Anonymized examples showing:
 
 Each artifact is generated and validated in separate AI sessions:
 
-1. **Generate** — Provide the AI with the prompt, template, and frozen upstream artifacts
-2. **Validate** — In a new session, provide the validator and the generated artifact
+1. **Generate** — Provide the AI with the spec, prompt, template, and frozen upstream artifacts
+2. **Validate** — In a new session, provide the spec, validator, and the generated artifact
 3. **Freeze** — Once PASS and human-approved, lock the artifact and move on
 
 The human orchestrates the flow. The AI generates and validates one artifact at a time.
@@ -143,6 +162,7 @@ Small, focused improvements are preferred.
 ## Where to Go Next
 
 - Read the **Playbook** → `playbook.md`
+- Review **Specifications** → `specs/`
 - Browse **Templates** → `artifacts/`
 - Review **Validators** → `validators/`
 - Explore **Examples** → `../examples/`
