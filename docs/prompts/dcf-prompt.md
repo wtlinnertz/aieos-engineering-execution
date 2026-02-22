@@ -16,16 +16,10 @@ INPUTS:
 - Testing expectations (if provided)
 - Operational requirements (if provided)
 
-VALIDATOR WILL CHECK:
-- document_control
-- purpose
-- design_principles
-- quality_bars
-- non_goals_enforcement
-- operational_expectations
-- testing_expectations
-- documentation_expectations
-- standard_enforceability
+SPEC REFERENCE:
+The authoritative content rules, format requirements, completeness criteria,
+and hard gates for this artifact are defined in `dcf-spec.md`.
+Generate content that satisfies all rules in the spec.
 
 OUTPUT:
 Produce a DCF using the DCF template exactly as written.
