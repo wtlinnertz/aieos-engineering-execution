@@ -74,22 +74,7 @@ Repeat for each group. Every work item should belong to exactly one group. Items
 
 ---
 
-## 4. Mandatory Granularity Rules (Hard)
-
-Every WDD item must satisfy all of the following:
-
-- One observable outcome
-- One pull request
-- One subsystem or repo
-- No design decisions
-- No cross-environment deployment
-- Completable in a short, bounded time window
-
-Items violating these rules must be split. See the Splitting Guidance section in the playbook for patterns.
-
----
-
-## 5. Freeze Declaration (when ready)
+## 4. Freeze Declaration (when ready)
 This WDD is approved and frozen. Execution may proceed.
 
 - Approved By:
