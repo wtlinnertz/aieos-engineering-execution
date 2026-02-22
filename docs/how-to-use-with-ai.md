@@ -20,12 +20,17 @@ Each step is a separate AI session. This keeps context clean and prevents the AI
 
 Start a new AI session and provide:
 
-1. **The generation prompt** — The `{type}-prompt.md` file for the artifact you're generating
-2. **The template** — The `{type}-template.md` file so the AI follows the exact structure
-3. **The frozen upstream artifacts** — The inputs listed in the prompt
+1. **The spec** — The `{type}-spec.md` file that defines content rules, format requirements, and hard gates
+2. **The generation prompt** — The `{type}-prompt.md` file for the artifact you're generating
+3. **The template** — The `{type}-template.md` file so the AI follows the exact structure
+4. **The frozen upstream artifacts** — The inputs listed in the prompt
 
 ### Example: Generating a SAD
 
+> Here is the specification for a System Architecture Design:
+>
+> [paste contents of `sad-spec.md`]
+>
 > Here is the prompt for generating a System Architecture Design:
 >
 > [paste contents of `sad-prompt.md`]
@@ -44,12 +49,13 @@ Start a new AI session and provide:
 >
 > Generate the SAD following the template exactly.
 
-The AI will produce a SAD that follows the template structure, traces to the PRD, and respects ACF guardrails.
+The AI will produce a SAD that follows the template structure, satisfies the spec's content rules, traces to the PRD, and respects ACF guardrails.
 
 ### Tips for Generation
 
 - **One artifact per session.** Don't generate a PRD and SAD in the same session. Context bleeds and quality drops.
 - **Paste the full upstream artifacts.** Don't summarize — the AI needs the details to trace requirements correctly.
+- **Include the spec.** The spec defines what quality criteria the content must satisfy. Without it, the AI relies only on embedded prompt rules.
 - **Include the template.** Without it, the AI may invent its own structure, making validation harder.
 - **Don't prompt the AI to be creative.** The prompts are designed to constrain output. Let them work.
 
@@ -59,11 +65,16 @@ The AI will produce a SAD that follows the template structure, traces to the PRD
 
 Start a **new** AI session (not the one that generated the artifact) and provide:
 
-1. **The validator** — The `{type}-validator.md` file
-2. **The artifact to validate** — The generated artifact
+1. **The spec** — The `{type}-spec.md` file that defines the evaluation criteria
+2. **The validator** — The `{type}-validator.md` file
+3. **The artifact to validate** — The generated artifact
 
 ### Example: Validating a SAD
 
+> Here is the specification for a System Architecture Design:
+>
+> [paste contents of `sad-spec.md`]
+>
 > Here is the validator for a System Architecture Design:
 >
 > [paste contents of `sad-validator.md`]
@@ -99,17 +110,17 @@ If the same AI that generated the artifact also validates it, it has a bias towa
 
 ## Inputs by Artifact Type
 
-| Artifact | Prompt | Inputs |
-|----------|--------|--------|
-| PRD | `prd-prompt.md` | Product brief (human-written) |
-| ACF | `acf-prompt.md` | Organizational context (human-written or existing) |
-| SAD | `sad-prompt.md` | Frozen PRD + Frozen ACF |
-| DCF | `dcf-prompt.md` | Organizational context (human-written or existing) |
-| TDD | `tdd-prompt.md` | Frozen SAD + Frozen DCF |
-| WDD | `wdd-prompt.md` | Frozen TDD |
-| ORD | `ord-prompt.md` | Frozen TDD + Frozen ACF + Frozen DCF |
+| Artifact | Spec | Prompt | Inputs |
+|----------|------|--------|--------|
+| PRD | `prd-spec.md` | `prd-prompt.md` | Product brief (human-written) |
+| ACF | `acf-spec.md` | `acf-prompt.md` | Organizational context (human-written or existing) |
+| SAD | `sad-spec.md` | `sad-prompt.md` | Frozen PRD + Frozen ACF |
+| DCF | `dcf-spec.md` | `dcf-prompt.md` | Organizational context (human-written or existing) |
+| TDD | `tdd-spec.md` | `tdd-prompt.md` | Frozen SAD + Frozen DCF |
+| WDD | `wdd-spec.md` | `wdd-prompt.md` | Frozen TDD |
+| ORD | `ord-spec.md` | `ord-prompt.md` | Frozen TDD + Frozen ACF + Frozen DCF |
 
-For validation, the input is always: the validator + the artifact being validated.
+For validation, the input is always: the spec + the validator + the artifact being validated.
 
 The DoR Validator (`dor-validator.md`) is run per WDD work item, not against the full WDD.
 
@@ -175,8 +186,8 @@ Each phase prompt assembles everything — no manual input gathering needed.
 ## Practical Workflow Summary
 
 ```
-Session 1:  prompt + template + inputs  →  generated artifact
-Session 2:  validator + artifact        →  PASS/FAIL JSON
+Session 1:  spec + prompt + template + inputs  →  generated artifact
+Session 2:  spec + validator + artifact        →  PASS/FAIL JSON
             (if FAIL: fix, then new Session 2)
 Session 3:  human reviews, approves, freezes
             → move to next artifact
@@ -189,6 +200,8 @@ Repeat for each artifact in the flow: PRD → ACF → SAD → DCF → TDD → WD
 ## Common Mistakes
 
 **Dumping everything into one session.** The AI loses focus. Keep sessions artifact-scoped.
+
+**Skipping the spec.** Without the spec, the AI doesn't know what content rules and quality criteria to satisfy. The validator may still catch issues, but generation quality suffers.
 
 **Skipping the template.** Without a template, the AI structures the artifact however it wants, and the validator flags structural issues.
 
