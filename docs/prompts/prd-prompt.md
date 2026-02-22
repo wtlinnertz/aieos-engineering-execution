@@ -16,13 +16,10 @@ INPUTS:
 - Product Brief (completed intake form, see product-brief-template.md)
 - If no Product Brief is available, accept any problem description or product context provided
 
-VALIDATOR WILL CHECK:
-- problem_definition
-- goals
-- scope
-- requirements
-- constraints
-- readiness
+SPEC REFERENCE:
+The authoritative content rules, format requirements, completeness criteria,
+and hard gates for this artifact are defined in `prd-spec.md`.
+Generate content that satisfies all rules in the spec.
 
 OUTPUT:
 Produce a PRD using the PRD template exactly as written.
