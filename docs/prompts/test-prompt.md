@@ -18,39 +18,12 @@ INPUTS:
 - TDD testing strategy (test layers, pass/fail criteria)
 - DCF testing expectations (required test types, evidence requirements)
 
-TEST CATEGORIES (generate in this order):
-1. Acceptance tests — one per WDD Given/When/Then criterion
-2. Failure tests — at least one failure condition per acceptance criterion
-3. Edge case tests — boundary conditions, empty inputs, invalid states
-4. Regression tests — if fixing a bug, a test that fails before the fix
+SPEC REFERENCE:
+The authoritative test categories, required test properties, test structure specification,
+and completeness criteria for this phase are defined in `execution-spec.md` (Phase 1: Tests).
+Generate test specifications that satisfy all rules in the spec.
 
 OUTPUT:
-Produce test specifications grouped by category.
-Each test must include:
-- Test name (descriptive, Given/When/Then style)
-- Preconditions
-- Input
-- Expected outcome
-- Failure condition
-
-After all test specifications, include a **Test Structure Specification**:
-
-## Test Structure
-
-**Test file:** `<path where test file will be created, following project conventions>`
-
-**Test grouping:**
-```
-<group: acceptance criteria description>
-  <test: test name from specs above>
-  <test: test name from specs above>
-<group: failure conditions>
-  <test: test name>
-<group: edge cases>
-  <test: test name>
-```
-
-Map each group to its corresponding acceptance criterion or test category. Phase 3 must create the test file at the specified path and implement tests in this exact structure.
-
+Produce test specifications grouped by category, then a Test Structure Specification.
 Do not include implementation code or framework-specific syntax.
 Stop after writing test specifications and test structure. Do not write implementation code.
