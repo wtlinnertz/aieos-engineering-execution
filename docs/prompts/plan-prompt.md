@@ -18,19 +18,10 @@ INPUTS:
 - TDD interface contracts (method signatures, return types, status codes, data shapes)
 - Relevant source code and configuration
 
-PLAN REQUIREMENTS:
-1. List every file to be created or modified
-2. For each file, describe what changes are needed and why
-3. Identify interfaces to lock down (signatures, return types, data contracts)
-4. List any new dependencies required (libraries, versions — must be verified)
-5. Call out tradeoffs, risks, or assumptions
-6. Identify the order of changes if sequencing matters
-
-WHAT TO LOCK DOWN:
-- Method signatures (name, parameters, return type)
-- Observable behavior (outputs, exceptions, status codes)
-- Data contracts (JSON fields, schema shapes)
-- Dependencies (libraries, versions)
+SPEC REFERENCE:
+The authoritative plan requirements, interface lock-down rules, required plan sections,
+and completeness criteria for this phase are defined in `execution-spec.md` (Phase 2: Plan).
+Generate a plan that satisfies all rules in the spec.
 
 OUTPUT FORMAT:
 
