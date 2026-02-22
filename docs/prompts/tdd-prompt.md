@@ -21,14 +21,10 @@ INPUTS:
 - Frozen SAD
 - Design Context File (DCF)
 
-VALIDATOR WILL CHECK:
-- intent_alignment
-- scope
-- interfaces
-- build_deploy
-- failure_handling
-- testing
-- readiness
+SPEC REFERENCE:
+The authoritative content rules, format requirements, completeness criteria,
+and hard gates for this artifact are defined in `tdd-spec.md`.
+Generate content that satisfies all rules in the spec.
 
 OUTPUT:
 Produce a TDD using the TDD template exactly as written.
