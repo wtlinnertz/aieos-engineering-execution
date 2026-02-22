@@ -4,10 +4,18 @@ This directory contains the **canonical AI generation prompts** for each artifac
 
 These prompts define **how AI behaves** when creating artifacts.
 They work in concert with:
-- Templates (shape)
-- Validators (truth)
+- Specs (content rules and quality criteria)
+- Templates (structure)
+- Validators (judgment)
 
-Together, they form a **safe, deterministic AI delivery system**.
+Together, they form a **four-file system** where each file answers exactly one question:
+
+| File | Question |
+|------|----------|
+| **Spec** (`{type}-spec.md`) | What makes this artifact good? |
+| **Template** (`{type}-template.md`) | What does the blank form look like? |
+| **Prompt** (`{type}-prompt.md`) | How should AI behave when generating? |
+| **Validator** (`{type}-validator.md`) | How to judge pass/fail? |
 
 ---
 
@@ -72,6 +80,7 @@ Skipping steps weakens enforcement.
 
 ### Quality & Governance
 - `consistency-prompt.md` — Cross-artifact traceability and consistency check
+- `impact-analysis-prompt.md` — Assess downstream ripple effects of a proposed change
 
 ---
 
@@ -136,7 +145,7 @@ Only validators can declare an artifact:
 
 ## Recommended Usage Pattern
 
-Template + Prompt + Validator
+Spec + Template + Prompt + Validator
 Removing any one of these reduces safety.
 
 ---
