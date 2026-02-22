@@ -10,53 +10,21 @@ AUTHORITATIVE RULES:
 - Be strict: ambiguity is a failure condition
 - DCFs define design standards, not designs
 
-EVALUATION CRITERIA (HARD GATES):
+SPEC REFERENCE:
+Evaluate this artifact against the hard gates, content rules, format requirements,
+and completeness criteria defined in `dcf-spec.md`.
+Each hard gate in your output must correspond to a hard gate defined in the spec.
 
-1. Document Control
-- DCF ID present
-- Owner identified
-- Status is explicit (Draft | Approved | Frozen)
-- Applicability scope defined
-
-2. Purpose
-- Purpose section exists
-- Purpose describes what design standards the DCF enforces
-- Purpose does not describe a specific design or implementation
-
-3. Design Principles
-- At least one design principle defined
-- Principles are actionable constraints, not aspirational statements
-- No implementation details (specific tools, configs, commands)
-
-4. Quality Bars
-- At least one quality bar defined
-- Quality bars are measurable or verifiable
-- Bars are constraints on TDD content, not suggestions
-
-5. Non-Goals Enforcement
-- Non-goals enforcement section present
-- Rules prevent scope expansion in TDD
-- Rules are concrete and enforceable
-
-6. Operational Expectations
-- Deployment verification expectations stated
-- Monitoring/alerting expectations stated
-- Auditability expectations stated
-
-7. Testing Expectations
-- Required test layers defined
-- Evidence requirements defined
-- Promotion gates defined
-
-8. Documentation Expectations
-- Required TDD sections listed
-- Required diagram types listed (if any)
-- Required traceability markers listed
-
-9. Standard Enforceability
-- All hard-marked standards are testable or verifiable
-- No aspirational language in hard constraints
-- Standards are specific enough to validate against in a TDD
+HARD GATES:
+- document_control
+- purpose
+- design_principles
+- quality_bars
+- non_goals_enforcement
+- operational_expectations
+- testing_expectations
+- documentation_expectations
+- standard_enforceability
 
 OUTPUT FORMAT (MANDATORY):
 
