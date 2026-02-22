@@ -12,40 +12,10 @@ AUTHORITATIVE RULES:
 CONSISTENCY CHECK RESPONSIBILITY:
 Verify that intent, requirements, constraints, and scope flow consistently from upstream artifacts to downstream artifacts without gaps, contradictions, or unauthorized expansion.
 
-TRACEABILITY CHECKS:
-
-1. Requirement Coverage
-   - Every PRD functional requirement (FR-*) must map to at least one SAD component or responsibility
-   - Every PRD non-functional requirement (NFR-*) must be addressed in at least one SAD quality attribute or cross-cutting concern
-   - Report any PRD requirement with no downstream trace as "dropped_requirement"
-
-2. Requirement-to-Work Traceability
-   - Every PRD functional requirement must trace through to at least one WDD work item
-   - Report any FR with no WDD work item as "dropped_requirement"
-   - Report any WDD work item that cannot trace back to a PRD requirement as "phantom_scope"
-
-3. Scope Containment
-   - No TDD interface, module, or component may exist without a corresponding SAD component
-   - No WDD work item may introduce scope not present in the TDD
-   - Report violations as "phantom_scope"
-
-4. Non-Goal Enforcement
-   - Collect all non-goals from the PRD
-   - Verify no SAD component, TDD interface, or WDD work item contradicts a stated non-goal
-   - Report violations as "non_goal_violation"
-
-5. Constraint Propagation
-   - Collect all constraints from the ACF (technology, compliance, operational)
-   - Verify SAD, TDD, and WDD do not violate any ACF constraint
-   - Report violations as "constraint_violation"
-
-6. Interface Alignment
-   - SAD-declared integration points, protocols, and boundaries must align with TDD technical specifications
-   - Report mismatches as "contradiction"
-
-7. Addendum Integration
-   - If addendums exist for any artifact, verify that changes introduced by frozen addendums are reflected in downstream artifacts
-   - Report unintegrated addendum changes as "dropped_requirement"
+SPEC REFERENCE:
+The authoritative traceability checks, inconsistency types, completeness criteria,
+and hard gates for this analysis are defined in `consistency-spec.md`.
+Perform all checks defined in the spec.
 
 PROCESS:
 1. Read all provided frozen artifacts and addendums
@@ -57,15 +27,6 @@ INPUTS:
 - All frozen upstream artifacts (PRD, ACF, SAD, DCF, TDD) and their frozen addendums
 - The WDD (may be validated but not yet frozen — this is the typical entry point)
 - Not all artifacts may be present — check only what exists, warn about missing artifacts
-
-VALIDATOR WILL CHECK:
-- requirement_coverage
-- requirement_to_work
-- scope_containment
-- non_goal_enforcement
-- constraint_propagation
-- interface_alignment
-- addendum_integration
 
 OUTPUT FORMAT (MANDATORY):
 
