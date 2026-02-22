@@ -97,17 +97,7 @@ List anything not yet verified. Each item must have an owner and a deadline.
 |------|-------|----------|-------------------|
 |      |       |          | Yes / No          |
 
-## 10. Readiness Checklist (Self-Check)
-- [ ] All deployment steps verified with evidence
-- [ ] All observability requirements verified with evidence
-- [ ] All alerting/monitoring expectations verified with evidence
-- [ ] All failure modes tested with evidence
-- [ ] All ACF security guardrails verified with evidence
-- [ ] Runbook procedures documented and tested
-- [ ] All evidence meets evidence standards (concrete, timestamped, traceable, retrievable)
-- [ ] No open items blocking production
-
-## 11. Readiness Declaration (when ready)
+## 10. Readiness Declaration (when ready)
 This system is operationally ready for production.
 
 - Approved By:
