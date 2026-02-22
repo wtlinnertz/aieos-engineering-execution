@@ -21,19 +21,10 @@ INPUTS:
 - Frozen PRD
 - Architecture Context File (ACF)
 
-VALIDATOR WILL CHECK:
-- intent_integrity
-- scope_discipline
-- upstream_traceability
-- structural_diagrams
-- cross_cutting_concerns
-- data_integration
-- failure_modes
-- quality_attributes
-- deferred_decisions
-- risk_awareness
-- guardrail_alignment
-- implementation_leakage
+SPEC REFERENCE:
+The authoritative content rules, format requirements, completeness criteria,
+and hard gates for this artifact are defined in `sad-spec.md`.
+Generate content that satisfies all rules in the spec.
 
 OUTPUT:
 Produce a SAD using the SAD template exactly as written.
