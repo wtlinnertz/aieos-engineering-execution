@@ -9,42 +9,10 @@ AUTHORITATIVE RULES:
 - Evaluate only what is explicitly present
 - Be strict: ambiguity is a failure condition
 
-EVALUATION CRITERIA (HARD GATES):
-
-1. Traceability
-- Parent TDD referenced
-- TDD is frozen
-
-2. Scope Integrity
-- Scope copied verbatim from TDD
-- No scope expansion
-
-3. Atomicity
-- One outcome per work item
-- No bundled work
-
-4. Inputs & Outputs
-- Inputs explicitly listed
-- Outputs explicitly listed
-
-5. Acceptance Criteria
-- Executable acceptance criteria present
-- Failure behavior included
-
-6. Granularity
-- Single PR feasible
-- Single subsystem or repo
-- No cross-environment execution
-
-7. Readiness
-- No design decisions remain
-- Dependencies explicitly listed
-
-8. Work Groups
-- Every work item is assigned to exactly one group
-- Each group has a business capability statement
-- Each group has group-level acceptance criteria
-- No group requires the entire TDD to be complete before it is testable
+SPEC REFERENCE:
+Evaluate this artifact against the hard gates, content rules, format requirements,
+and completeness criteria defined in `wdd-spec.md`.
+Each hard gate in your output must correspond to a hard gate defined in the spec.
 
 OUTPUT FORMAT (MANDATORY):
 
