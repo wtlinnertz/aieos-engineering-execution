@@ -21,26 +21,10 @@ INPUTS:
 - ACF security guardrails (§3) and compliance constraints (§4)
 - Relevant source code and configuration
 
-IMPLEMENTATION ORDER:
-1. Write test code from approved test specifications — confirm tests fail
-2. Write production code following the approved plan — make tests pass
-3. Run all tests — confirm no regressions
-
-RULES:
-- Touch only files identified in the approved plan
-- Keep diffs small and focused — one logical change per step
-- Run tests after each change
-- If a dependency doesn't exist or version differs, ask before adding
-- If tests fail, debug with full context (error messages, stack traces, test output)
-- No secrets, credentials, or sensitive data in code
-- No hardcoded configuration — values that should come from config or environment must not be embedded
-- No unbounded operations — loops, queries, and retries must have explicit limits
-
-ITERATION:
-- Multiple iterations are normal
-- If tests fail, fix the issue and re-run
-- If answers degrade or context is lost, restart with fresh context
-- If implementation reveals scope issues, stop and report — do not expand scope
+SPEC REFERENCE:
+The authoritative implementation order, safety rules, iteration rules,
+and completeness criteria for this phase are defined in `execution-spec.md` (Phase 3: Code).
+Follow all rules in the spec.
 
 OUTPUT:
 Working code that passes all approved tests. No scope expansion.
