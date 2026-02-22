@@ -9,33 +9,18 @@ AUTHORITATIVE RULES:
 - Evaluate only what is explicitly present
 - Be strict: ambiguity is a failure condition
 
-EVALUATION CRITERIA (HARD GATES):
+SPEC REFERENCE:
+Evaluate this artifact against the hard gates, content rules, format requirements,
+and completeness criteria defined in `prd-spec.md`.
+Each hard gate in your output must correspond to a hard gate defined in the spec.
 
-1. Problem Definition
-- Clear problem statement
-- Identified users or personas
-- Clear rationale ("why now")
-
-2. Goals & Success Criteria
-- Explicit goals
-- Measurable success criteria
-
-3. Scope & Non-Goals
-- In-scope functionality clearly defined
-- Explicit non-goals listed
-- No implied scope
-
-4. Requirements
-- Functional requirements explicitly stated
-- Non-functional requirements explicitly stated
-
-5. Constraints & Assumptions
-- Constraints documented
-- Assumptions documented
-
-6. Readiness
-- No unresolved critical questions
-- PRD is internally consistent
+HARD GATES:
+- problem_definition
+- goals
+- scope
+- requirements
+- constraints
+- readiness
 
 OUTPUT FORMAT (MANDATORY):
 
