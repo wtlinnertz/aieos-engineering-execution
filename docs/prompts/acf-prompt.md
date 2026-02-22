@@ -16,16 +16,10 @@ INPUTS:
 - Architecture Context (completed intake form, see architecture-context-template.md)
 - If no Architecture Context form is available, accept any organizational standards, platform assumptions, or regulatory/security constraints provided
 
-VALIDATOR WILL CHECK:
-- document_control
-- purpose
-- platform_assumptions
-- security_guardrails
-- compliance
-- reliability
-- observability
-- forbidden_patterns
-- constraint_enforceability
+SPEC REFERENCE:
+The authoritative content rules, format requirements, completeness criteria,
+and hard gates for this artifact are defined in `acf-spec.md`.
+Generate content that satisfies all rules in the spec.
 
 OUTPUT:
 Produce an ACF using the ACF template exactly as written.
