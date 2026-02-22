@@ -9,50 +9,10 @@ AUTHORITATIVE RULES:
 - Evaluate only what is explicitly present
 - Be strict: assertions without evidence are a failure condition
 
-EVALUATION CRITERIA (HARD GATES):
-
-1. Deployment Verification
-- Every deployment step from TDD §5 has a corresponding verification item
-- Each item has concrete evidence (logs, screenshots, or test results)
-- No items marked "Not Verified" without being listed as open items
-
-2. Observability Verification
-- Every observability requirement from TDD §7 and ACF §6 has a verification item
-- Each item has concrete evidence (log sample, metric dashboard, trace screenshot)
-- No items marked "Not Verified" without being listed as open items
-
-3. Alerting Verification
-- Every monitoring/alerting expectation from DCF §5 has a verification item
-- Each item has evidence of configuration and testing (alert definition, test fire result)
-- No items marked "Not Verified" without being listed as open items
-
-4. Failure Handling Verification
-- Every failure mode from TDD §6 has a verification item
-- Each item has evidence of testing (test result, simulation log)
-- Rollback behavior is verified, not just documented
-
-5. Security Verification
-- Every security guardrail from ACF §3 has a verification item
-- Each item has evidence of how it was verified (code review, test, scan)
-- If ACF defines security review triggers and any were matched, review evidence is present
-- No items marked "Not Verified" without being listed as open items
-
-6. Runbook Verification
-- Deploy, verify, and rollback procedures are documented
-- Ownership/on-call expectations are documented
-- Procedures have been tested (not just written)
-
-7. No Open Blockers
-- No open items with "Blocks Production? = Yes"
-- All blocking items are resolved with evidence
-
-8. Evidence Quality
-- All evidence is concrete (logs, screenshots, test results, configuration exports)
-- All evidence is timestamped (when it was collected)
-- All evidence is traceable (links to the upstream requirement it satisfies)
-- All evidence is retrievable (includes a location — URL, path, or system reference)
-- No evidence fields contain only assertions ("this works", "will be configured")
-- No evidence fields are blank or marked pending
+SPEC REFERENCE:
+Evaluate this artifact against the hard gates, content rules, evidence standards,
+and completeness criteria defined in `ord-spec.md`.
+Each hard gate in your output must correspond to a hard gate defined in the spec.
 
 OUTPUT FORMAT (MANDATORY):
 
