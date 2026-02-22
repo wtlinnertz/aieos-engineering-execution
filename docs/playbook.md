@@ -115,11 +115,19 @@ No stage may be skipped. Reusing a frozen ACF or DCF from a prior project satisf
 Every artifact follows the same generation pattern:
 
 1. **Gather inputs** — Assemble the frozen upstream artifacts listed in the prompt
-2. **Use the prompt** — Provide the inputs and the corresponding `{type}-prompt.md` to the AI
-3. **Use the template** — The AI generates output following `{type}-template.md` exactly
-4. **Run the validator** — Provide the generated artifact to `{type}-validator.md`
-5. **Fix blocking issues only** — If the validator returns FAIL, fix only the blocking issues and re-run
-6. **Freeze** — Once the validator returns PASS, the artifact is frozen and may not be changed without re-entry
+2. **Use the spec + prompt + template** — Provide the inputs, the corresponding `{type}-spec.md` (content rules), `{type}-prompt.md` (AI instructions), and `{type}-template.md` (structure) to the AI
+3. **Run the validator** — Provide the generated artifact and the corresponding `{type}-spec.md` to `{type}-validator.md`
+4. **Fix blocking issues only** — If the validator returns FAIL, fix only the blocking issues and re-run
+5. **Freeze** — Once the validator returns PASS, the artifact is frozen and may not be changed without re-entry
+
+Each artifact type has four files that work together:
+
+| File | Question | Location |
+|------|----------|----------|
+| **Spec** (`{type}-spec.md`) | What makes this artifact good? | `docs/specs/` |
+| **Template** (`{type}-template.md`) | What does the blank form look like? | `docs/artifacts/` |
+| **Prompt** (`{type}-prompt.md`) | How should AI behave when generating? | `docs/prompts/` |
+| **Validator** (`{type}-validator.md`) | How to judge pass/fail? | `docs/validators/` |
 
 ### How to Run a Validator
 
@@ -151,6 +159,7 @@ The ACF (Architecture Context File) and DCF (Design Context File) are **organiza
 - If not, create them as part of your first project and reuse them going forward.
 - ACF and DCF have no upstream artifact dependency — they can be created at any time before they are needed.
 - ACF must be frozen before SAD generation. DCF must be frozen before TDD generation.
+- If your organization has engineering standards or product principles documented (see `docs/principles/`), use them as source material when generating your ACF and DCF. The principles define organizational policy; the ACF and DCF translate that policy into enforceable guardrails for the SDLC flow.
 
 ---
 
@@ -526,8 +535,9 @@ If the same test fails after three focused debugging attempts, escalate to the E
 The review prompt checks both correctness and completeness:
 - Scope adherence and interface compliance
 - Test coverage (acceptance, failure, edge cases)
+- Code standards (DCF design principles and quality bars)
 - Verification (all tests passing, DoD satisfied, evidence present)
-- Security concerns and factual risks
+- Security concerns (ACF guardrails) and factual risks
 
 **Human Review (Required):**
 - AI review is advisory — human review is mandatory
@@ -663,6 +673,11 @@ Post-execution:
 
 - **ORD** — Is this ready to run in production?
 
+Quality and governance prompts each answer one question:
+
+- **Consistency Check** (`consistency-prompt.md`) — Do all artifacts trace consistently from upstream to downstream?
+- **Impact Analysis** (`impact-analysis-prompt.md`) — What downstream artifacts and work items are affected by this change?
+
 Artifacts and prompts that answer more than one question are invalid.
 
 ---
@@ -701,6 +716,14 @@ Breaking a freeze requires explicit re-entry to the prior stage (see Re-entry Pr
 
 When a frozen artifact must change, follow this protocol:
 
+### Before Re-entry: Impact Analysis (Recommended)
+
+Before committing to re-entry, run the impact analysis prompt (`impact-analysis-prompt.md`) to map downstream effects. Provide the proposed change description, the target artifact type, and all frozen artifacts.
+
+This step is optional but strongly recommended — it helps assess cascade cost before committing to the change. The impact report identifies which downstream artifacts would need revision, which work items are affected, and whether the Re-entry Protocol is necessary.
+
+Impact analysis is also useful before proposing an addendum to any frozen artifact, even when re-entry may not be needed. For example, an addendum to the WDD may not require upstream re-entry, but it can still affect in-progress or completed work items. Running impact analysis first helps assess the full cost of the change.
+
 ### When Re-entry Is Required
 - A frozen artifact contains an error that affects downstream work
 - Requirements change after freeze (business priority shift, new constraint)
@@ -713,7 +736,7 @@ When a frozen artifact must change, follow this protocol:
 4. **Re-validate** — Run the artifact's validator; it must PASS before re-freezing
 5. **Re-freeze** — Lock the artifact again
 6. **Cascade validation** — Re-validate all downstream frozen artifacts against the updated upstream; fix any that now fail
-7. **Assess execution impact** — If re-entry affects a WDD with items in progress or completed, identify which work items are impacted by the change. Impacted completed items must be re-verified against the updated upstream. Impacted in-progress items must incorporate the change. Unaffected items continue as-is.
+7. **Assess execution impact** — If re-entry affects a WDD with items in progress or completed, identify which work items are impacted by the change. If impact analysis was run before re-entry, reference its report for work item impact and severity classifications. Impacted completed items must be re-verified against the updated upstream. Impacted in-progress items must incorporate the change. Unaffected items continue as-is.
 
 ### What Re-entry Does NOT Allow
 - Expanding scope beyond the original intent
@@ -886,6 +909,17 @@ Verifies cross-artifact relationships:
 - ACF constraints are respected in all technical artifacts
 - SAD integration points align with TDD specifications
 - Frozen addendum changes are reflected downstream
+
+---
+
+### Impact Analysis Validator
+
+Verifies the completeness and accuracy of a change impact analysis report:
+- Every downstream artifact in the chain below the change target is accounted for
+- Affected WDD work items are identified with severity classification
+- Constraint and non-goal propagation is traced where applicable
+- Downstream addendum conflicts are assessed
+- Report structure is complete with all required fields
 
 ---
 
