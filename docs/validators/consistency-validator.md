@@ -9,43 +9,20 @@ AUTHORITATIVE RULES:
 - Evaluate only what is explicitly present in the report
 - Be strict: ambiguity is a failure condition
 
-EVALUATION CRITERIA (HARD GATES):
+SPEC REFERENCE:
+Evaluate this consistency report against the hard gates, traceability checks,
+and completeness criteria defined in `consistency-spec.md`.
+Each hard gate in your output must correspond to a hard gate defined in the spec.
 
-1. Requirement Coverage
-   - Every PRD requirement has a documented downstream trace
-   - No requirements listed as untraced
-   - Failure: Any untraced requirement
-
-2. Requirement-to-Work Traceability
-   - Every functional requirement traces to at least one WDD work item
-   - No orphaned work items exist
-   - Failure: Any dropped requirement or orphaned work item
-
-3. Scope Containment
-   - No downstream artifact introduces scope absent from its upstream source
-   - Failure: Any phantom scope identified
-
-4. Non-Goal Enforcement
-   - No downstream artifact contradicts a stated non-goal
-   - Failure: Any non-goal violation
-
-5. Constraint Propagation
-   - No downstream artifact violates an ACF constraint
-   - Failure: Any constraint violation
-
-6. Interface Alignment
-   - SAD integration points match TDD specifications
-   - Failure: Any contradiction between SAD and TDD interfaces
-
-7. Addendum Integration
-   - Frozen addendum changes are reflected downstream
-   - Failure: Any unintegrated addendum change
-
-8. Report Completeness
-   - Artifacts checked list is populated
-   - Traceability matrix has non-zero totals (unless no artifacts exist)
-   - Inconsistencies array is present (may be empty)
-   - Failure: Report is structurally incomplete or missing required sections
+HARD GATES:
+- requirement_coverage
+- requirement_to_work
+- scope_containment
+- non_goal_enforcement
+- constraint_propagation
+- interface_alignment
+- addendum_integration
+- report_completeness
 
 OUTPUT FORMAT (MANDATORY):
 
