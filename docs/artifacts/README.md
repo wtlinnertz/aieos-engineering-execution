@@ -30,6 +30,7 @@ For each SDLC stage:
 
 ### Intake
 - `product-brief-template.md` — Structured intake form for PRD generation (human-authored)
+- `architecture-context-template.md` — Lightweight intake form for ACF generation (human-authored)
 
 ### Context & Requirements
 - `prd-template.md` — Product intent, scope, and success criteria
@@ -55,6 +56,14 @@ For each SDLC stage:
 
 ---
 
+## Templates vs Specs
+
+Templates define **structure** — section order, field names, table shapes. They answer: "What does the blank form look like?"
+
+Specs (in `docs/specs/`) define **content rules** — what each section must contain, format requirements, hard gates. They answer: "What makes this artifact good?"
+
+Templates do not contain inline quality rules or self-check checklists. Those belong in specs.
+
 ## Rules and Expectations
 
 - Templates must be used **as-is** unless explicitly extended
@@ -62,7 +71,7 @@ For each SDLC stage:
 - Anything not explicitly in scope is out of scope by default
 - Non-goals are enforceable
 
-These rules are enforced by validators defined in `docs/validators/`.
+These rules are enforced by validators defined in `docs/validators/`, which evaluate against specs defined in `docs/specs/`.
 
 ---
 
