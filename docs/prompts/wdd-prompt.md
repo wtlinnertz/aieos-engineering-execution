@@ -20,45 +20,10 @@ Do not add design decisions or expand scope.
 INPUTS:
 - Frozen TDD
 
-VALIDATOR WILL CHECK (WDD Validator):
-- traceability
-- scope
-- atomicity
-- inputs_outputs
-- acceptance_criteria
-- granularity
-- readiness
-- work_groups
-
-VALIDATOR WILL CHECK (DoR per work item):
-- traceability
-- atomic_scope
-- acceptance_criteria
-- inputs_outputs
-- definition_of_done
-- dependencies
-- execution_ownership
-- ai_safety
-- granularity
-- rollback_behavior
-
-WORK GROUP GENERATION:
-After decomposing work items, identify natural groupings:
-- Group items that together deliver a business-testable capability
-- Each group must have a clear business-level acceptance criterion
-- Every work item must belong to exactly one group
-- Items that are independently business-testable may form a single-item group
-- Groups are organizational labels — they do not change item scope, granularity, or execution order
-- Do not create groups that require all TDD work to be complete before testing
-
-PACKAGING AND DISTRIBUTION ITEMS:
-Work items covering packaging, distribution, deployment verification, infrastructure provisioning, or release tasks should be assigned Assignee Type "Human". These items:
-- Use verification checklists as acceptance criteria instead of Given/When/Then (e.g., "Verify package installs cleanly", "Verify deployment completes without errors")
-- Follow a verification checklist execution model instead of the four-phase AI loop (see playbook: Human-Assigned Work Items)
-- Must still have explicit inputs, outputs, Definition of Done, and rollback behavior
-- May form their own work group or be grouped with related items depending on business-testable capability
-
-Do not force packaging/distribution items into the AI execution model. Recognize them as human-verification tasks during decomposition.
+SPEC REFERENCE:
+The authoritative content rules, format requirements, granularity rules, completeness criteria,
+and hard gates for this artifact are defined in `wdd-spec.md`.
+Generate content that satisfies all rules in the spec.
 
 OUTPUT:
 Produce a WDD using the WDD template exactly as written.
