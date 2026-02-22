@@ -46,8 +46,6 @@ For each interface:
 - Configuration inputs required:
 - Secrets required (names only; no values):
 
-Rule: If an engineer/AI would ask a question, this section is incomplete.
-
 ## 6. Failure Handling and Rollback (Hard)
 - Failure modes:
 - Detection signals:
@@ -84,15 +82,7 @@ List required dependencies. If none, state “None”.
 - Risks:
 - Assumptions:
 
-## 12. Readiness Checklist (Self-Check)
-- [ ] Scope and non-goals explicit and aligned with SAD
-- [ ] Interfaces and contracts explicit
-- [ ] Build/deploy steps deterministic
-- [ ] Failure and rollback behavior defined
-- [ ] Tests defined with pass/fail criteria
-- [ ] No unresolved decisions
-
-## 13. Freeze Declaration (when ready)
+## 12. Freeze Declaration (when ready)
 This TDD is approved and frozen. Downstream artifacts may not reinterpret or expand this design.
 
 - Approved By:
