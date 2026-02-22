@@ -26,32 +26,14 @@ INPUTS:
 - WDD work item (scope, acceptance criteria, inputs, outputs, DoD)
 - TDD interface contracts (signatures, return types, status codes, data shapes)
 - ACF security guardrails (§3) and security review triggers
+- DCF design principles (§2) and quality bars (§3)
 - Test results (pass/fail evidence)
 
-REVIEW CHECKS:
-1. Scope adherence — changes match WDD work item scope; no additions
-2. Interface compliance — implementation matches TDD contracts (signatures, return types, status codes)
-3. Acceptance criteria coverage — each WDD criterion has a corresponding test
-4. Failure handling — failure conditions and rollback behavior match WDD/TDD
-5. Security — no secrets in code, no injection risks, access control respected, ACF §3 security guardrails not violated, authentication/authorization changes match ACF requirements
-6. Test coverage — tests exist for happy path, failure conditions, and edge cases
-7. Scope expansion — flag any changes beyond the WDD work item boundary
-
-CODE QUALITY CHECKS:
-8. Error handling — covers all failure modes from TDD §6
-9. No hardcoded configuration — values that should come from WDD inputs are not embedded in code
-10. No unbounded operations — loops, queries, and retries have explicit limits
-11. No dead code — no unreachable paths or unused code introduced by the change
-12. Dependencies — match what was approved in the plan phase
-13. No duplicated logic — no copy-paste patterns that create maintenance risk
-
-VERIFICATION CHECKS:
-14. All acceptance criterion tests pass
-15. All failure condition tests pass
-16. No regressions in existing tests
-17. WDD Definition of Done items are satisfied (PR ready, tests passing, evidence generated)
-18. Rollback behavior is tested or verified as specified in WDD
-19. Evidence is concrete (test reports, log output, screenshots) — not assertions
+SPEC REFERENCE:
+The authoritative review checks (scope, interface, security, code quality, verification),
+adversarial stance requirements, review verdicts, and completeness criteria for this phase
+are defined in `execution-spec.md` (Phase 4: Review).
+Evaluate against all checks defined in the spec.
 
 OUTPUT FORMAT:
 
