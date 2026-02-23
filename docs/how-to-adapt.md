@@ -268,6 +268,21 @@ my-app/
 
 The `00-` prefix keeps inputs visually grouped before the generated artifacts in directory listings.
 
+### Configuring AI Tool Awareness
+
+Most AI tools support project-level instruction files that are loaded at the start of every session. Use these to give the AI automatic awareness of the kit and your project's conventions — without manually pasting instructions each time.
+
+See `how-to-use-with-ai.md` → "Setting Up Your AI Tool" for the specific file names per tool and what to include.
+
+At minimum, the instruction file should reference:
+- The kit's location (path to prompts, specs, templates, validators)
+- Your project's artifact directory (`docs/sdlc/`)
+- The artifact flow and key constraints (freeze-before-promote, separate sessions)
+
+This is especially important when the kit is a shared repository separate from the project repo — the AI needs to know where to find both.
+
+---
+
 ### Where Validator Results Live
 
 Store the final passing validator result alongside the artifact it validated:
