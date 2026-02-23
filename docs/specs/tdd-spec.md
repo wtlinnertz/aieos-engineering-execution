@@ -48,11 +48,28 @@ The TDD must define how the system will be built, tested, deployed, and operated
 - Missing non-goals
 - Design that contradicts a stated non-goal
 
+### Technical Overview (§3)
+
+**Rules**
+- Must identify all major components from the SAD with their technical role
+- Each component must specify: language/framework, key libraries or patterns, and how it maps to the SAD architecture
+- When the system has multiple distinct technology layers (e.g., frontend, API, data access, infrastructure), each layer must have its own technical context
+- Key data flows between components must be described
+- Must be concrete enough that an implementer knows what technology stack applies to each component without consulting external sources
+
+**Failure Examples**
+- Single narrative paragraph for a multi-layer system with no per-component breakdown
+- Component listed without language/framework ("API service" with no technology context)
+- Technology choices that contradict ACF-approved patterns
+- Missing component that exists in the SAD
+
 ### Interfaces and Contracts (§4)
 
 **Rules**
 - Every interface must be explicitly defined
 - Each interface must specify: inputs (schemas/parameters), outputs (schemas/results), error modes
+- Each interface must identify which SAD component or boundary it belongs to
+- External-facing interfaces (crossing the system boundary) must declare backward compatibility expectations
 - Versioning expectations defined where applicable
 - Interfaces must be concrete enough to implement without interpretation
 
@@ -60,6 +77,8 @@ The TDD must define how the system will be built, tested, deployed, and operated
 - Interface with undefined inputs or outputs
 - Missing error modes
 - Vague interface description ("handles requests")
+- Interface with no reference to a SAD component or boundary
+- Public API with no backward compatibility statement
 
 ### Build and Deployment (§5)
 
