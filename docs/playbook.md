@@ -163,6 +163,36 @@ The ACF (Architecture Context File) and DCF (Design Context File) are **organiza
 
 ---
 
+## Working with Existing Codebases
+
+The kit works for both greenfield and brownfield projects. For greenfield, the artifact flow starts from a blank slate. For brownfield (existing codebase), there is an additional prerequisite: **understanding what exists before generating artifacts**.
+
+### Codebase Analysis (Brownfield Prerequisite)
+
+Before generating ACF, DCF, or SAD for a project with an existing codebase, run the codebase analysis prompt (`codebase-analysis-prompt.md`) to produce a structured report of what exists:
+
+- Technology stack, frameworks, and libraries
+- Architectural patterns and component boundaries
+- External integrations and data patterns
+- Testing infrastructure and code conventions
+- Security patterns and deployment configuration
+
+The codebase analysis report is **input material**, not a governed artifact. It is not frozen, validated, or promoted. The human reviews the report for accuracy, then uses it as source material when generating ACF, DCF, and SAD — the same way `code-craftsmanship.md` or `product-craftsmanship.md` are used as source material.
+
+### How Brownfield Changes the Flow
+
+| Step | Greenfield | Brownfield |
+|------|-----------|------------|
+| Codebase Analysis | Not needed | Run `codebase-analysis-prompt.md` first |
+| ACF | Define from organizational standards | Define from organizational standards + analysis report |
+| DCF | Define from organizational standards | Define from organizational standards + analysis report |
+| SAD | Design from scratch | Describe the existing architecture relevant to the change, informed by analysis report |
+| TDD onward | No difference | No difference |
+
+The artifact flow itself does not change. The codebase analysis simply provides the factual foundation that would otherwise require manual extraction by the human.
+
+---
+
 ## Step 1: PRD (Product Requirements Document)
 
 **What:** Define the problem and why it matters.
@@ -188,7 +218,7 @@ The ACF (Architecture Context File) and DCF (Design Context File) are **organiza
 **What:** Define architectural guardrails that constrain all downstream design.
 
 **Prompt:** `acf-prompt.md`
-**Inputs:** Organizational standards, platform constraints, security and compliance requirements
+**Inputs:** Architecture Context intake form (`architecture-context-template.md`), organizational standards, platform constraints, security and compliance requirements. For brownfield projects, use `codebase-analysis-prompt.md` Output A to pre-fill the intake form.
 **Validator:** `acf-validator.md`
 **Gate:** Validator PASS + human approval
 **Output:** Frozen ACF
@@ -209,7 +239,7 @@ If an organization-wide ACF already exists and is frozen, skip this step and use
 **What:** Define the system shape — boundaries, components, and architectural decisions.
 
 **Prompt:** `sad-prompt.md`
-**Inputs:** Frozen PRD + Frozen ACF
+**Inputs:** Frozen PRD + Frozen ACF. For brownfield projects, also provide a System Context intake form (`system-context-template.md`); use `codebase-analysis-prompt.md` Output C to pre-fill it.
 **Validator:** `sad-validator.md`
 **Gate:** Validator PASS + human approval
 **Output:** Frozen SAD
@@ -230,7 +260,7 @@ The SAD prompt includes **intent verification**: the AI restates upstream intent
 **What:** Define design standards and quality expectations that constrain TDD creation.
 
 **Prompt:** `dcf-prompt.md`
-**Inputs:** Organizational design standards, testing expectations, operational expectations
+**Inputs:** Design Context intake form (`design-context-template.md`), organizational design standards, testing expectations, operational expectations. For brownfield projects, use `codebase-analysis-prompt.md` Output B to pre-fill the intake form.
 **Validator:** `dcf-validator.md`
 **Gate:** Validator PASS + human approval
 **Output:** Frozen DCF
@@ -313,6 +343,7 @@ The consistency check is distinct from per-artifact validators. Per-artifact val
 5. **Constraint Propagation** — No downstream artifact violates an ACF constraint
 6. **Interface Alignment** — SAD integration points match TDD specifications
 7. **Addendum Integration** — Frozen addendum changes are reflected downstream
+8. **Boundary Consistency** — SAD boundaries, data ownership, and failure modes align with TDD specifications
 
 ### Steps
 1. Gather all frozen upstream artifacts, their frozen addendums, and the validated WDD
@@ -508,9 +539,21 @@ Test specifications from Phase 1 are implemented as executable test code in this
 
 **Iteration:**
 - Run tests after each change
-- If tests fail, debug with full context (error messages, stack traces, test output)
+- If tests fail, map each failure to its acceptance criterion before attempting a fix (structured failure feedback)
+- If the same failure persists after 3 fix attempts, stop and escalate to the human with a structured report (what failed, what was tried, why it didn't work)
+- Do not loop indefinitely — if progress stalls (same failure repeating, or new failures replacing old ones without net progress), escalate rather than retry
 - If answers degrade or context is lost, restart with fresh context
 - Multiple iterations are normal
+
+**Completion Verification:**
+Before signaling Phase 3 complete, verify:
+1. All acceptance criterion tests pass
+2. All failure condition tests pass
+3. No regressions in existing tests
+4. Every file changed is in the approved plan's file list
+5. No scope expansion detected (no capabilities beyond what tests require)
+
+If any verification item fails, do not proceed to Phase 4 — fix or escalate.
 
 **Context Recovery (when iteration requires a fresh session):**
 When Phase 3 requires multiple iterations and the AI session must be restarted (context window exhaustion, degraded answers, or session timeout):
@@ -677,6 +720,10 @@ Quality and governance prompts each answer one question:
 
 - **Consistency Check** (`consistency-prompt.md`) — Do all artifacts trace consistently from upstream to downstream?
 - **Impact Analysis** (`impact-analysis-prompt.md`) — What downstream artifacts and work items are affected by this change?
+
+Utility prompts produce input material (not governed artifacts):
+
+- **Codebase Analysis** (`codebase-analysis-prompt.md`) — What exists in this codebase? (feeds ACF, DCF, SAD generation for brownfield projects)
 
 Artifacts and prompts that answer more than one question are invalid.
 
@@ -909,6 +956,7 @@ Verifies cross-artifact relationships:
 - ACF constraints are respected in all technical artifacts
 - SAD integration points align with TDD specifications
 - Frozen addendum changes are reflected downstream
+- SAD boundaries, data ownership, and failure modes align with TDD specifications
 
 ---
 
