@@ -4,6 +4,50 @@ This guide explains how to use the kit's prompts, templates, and validators with
 
 ---
 
+## Setting Up Your AI Tool
+
+Most AI coding tools support project-level instruction files that are loaded automatically at the start of every session. Use these to give the AI persistent awareness of the kit and your project's conventions.
+
+| Tool | Instruction File | Location |
+|------|-----------------|----------|
+| Claude Code / VS Code (Claude) | `CLAUDE.md` | Project root |
+| Cursor | `.cursorrules` | Project root |
+| Windsurf | `.windsurfrules` | Project root |
+| Other tools | Check tool documentation | Varies |
+
+### What to Include in Your Project Instruction File
+
+At minimum, your instruction file should tell the AI:
+
+1. **Where the kit lives** — Path or reference to the kit's prompts, specs, templates, and validators
+2. **Where artifacts live** — Your project's `docs/sdlc/` directory structure
+3. **The artifact flow** — The non-negotiable promotion order (PRD → ACF → SAD → DCF → TDD → WDD → Execute → ORD)
+4. **Key constraints** — Freeze-before-promote, one artifact per session, validators as hard gates
+
+If the kit is a separate repository, reference it by path. If copied into your project, reference the local directory.
+
+### Example Instruction File Entry
+
+```
+## SDLC Kit
+
+This project uses ai-sdlc-kit for structured artifact generation and validation.
+
+Kit location: ../ai-sdlc-kit/docs/
+Project artifacts: docs/sdlc/
+
+Artifact flow: PRD → ACF → SAD → DCF → TDD → WDD → Execute → ORD
+- Each artifact must be frozen before downstream artifacts are generated
+- Use a separate AI session for generation and validation
+- Validators are hard gates — any failure means FAIL
+
+See the kit's playbook.md for the full process definition.
+```
+
+This ensures every AI session — regardless of tool — starts with the right context without requiring you to re-explain the kit each time.
+
+---
+
 ## The Core Pattern
 
 Every artifact follows the same three-step pattern:
@@ -113,9 +157,9 @@ If the same AI that generated the artifact also validates it, it has a bias towa
 | Artifact | Spec | Prompt | Inputs |
 |----------|------|--------|--------|
 | PRD | `prd-spec.md` | `prd-prompt.md` | Product brief (human-written) |
-| ACF | `acf-spec.md` | `acf-prompt.md` | Architecture Context intake form (`architecture-context-template.md`) + organizational standards |
+| ACF | `acf-spec.md` | `acf-prompt.md` | Architecture Context intake form (`architecture-context-template.md`) + engineering principles (`code-craftsmanship.md` §2) |
 | SAD | `sad-spec.md` | `sad-prompt.md` | Frozen PRD + Frozen ACF. Brownfield: + System Context intake form (`system-context-template.md`) |
-| DCF | `dcf-spec.md` | `dcf-prompt.md` | Design Context intake form (`design-context-template.md`) + organizational standards |
+| DCF | `dcf-spec.md` | `dcf-prompt.md` | Design Context intake form (`design-context-template.md`) + engineering principles (`code-craftsmanship.md`) + product principles (`product-craftsmanship.md`) |
 | TDD | `tdd-spec.md` | `tdd-prompt.md` | Frozen SAD + Frozen DCF |
 | WDD | `wdd-spec.md` | `wdd-prompt.md` | Frozen TDD |
 | ORD | `ord-spec.md` | `ord-prompt.md` | Frozen TDD + Frozen ACF + Frozen DCF |
@@ -138,6 +182,8 @@ Once WDD work items pass the DoR Validator, they enter the execution loop. Each 
 | Review | `review-prompt.md` | Completed code + test results + WDD acceptance criteria + ACF guardrails |
 
 Each phase is a separate AI session. The human approves the output of each phase before the next one begins.
+
+**Important:** The execution phase prompts reference `execution-spec.md` for iteration rules, escalation criteria, and completion verification. Include the execution spec as context when running code and review phases so the AI follows the correct protocols for failure handling and scope control.
 
 ### Generating the Execution Plan
 
