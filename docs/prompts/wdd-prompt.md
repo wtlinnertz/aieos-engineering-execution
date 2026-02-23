@@ -25,6 +25,14 @@ The authoritative content rules, format requirements, granularity rules, complet
 and hard gates for this artifact are defined in `wdd-spec.md`.
 Generate content that satisfies all rules in the spec.
 
+CAPABILITY INFERENCE:
+For each work item, infer Required Capabilities from:
+- The subsystem or layer the item targets (e.g., database, API, UI)
+- The TDD contracts and interfaces it implements
+- The inputs and outputs it handles (e.g., infrastructure config → infrastructure capability)
+- Security-sensitive operations (e.g., auth, encryption → security capability)
+Use short domain labels. Do not use role titles or team names.
+
 OUTPUT:
 Produce a WDD using the WDD template exactly as written.
 Split work until all granularity rules are satisfied.

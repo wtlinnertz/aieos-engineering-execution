@@ -47,7 +47,12 @@ OUTPUT FORMAT (MANDATORY):
 }
 ```
 
+ADVISORY CHECKS (non-blocking):
+- If any work item is missing Required Capabilities, emit a warning (not a blocking issue).
+- If capabilities use role titles or team names instead of skill domains, emit a warning.
+
 DECISION RULE:
 - If ANY hard gate fails, status MUST be FAIL.
+- Advisory check failures produce warnings only and do not affect the status.
 
 INPUT WDD BEGINS BELOW.

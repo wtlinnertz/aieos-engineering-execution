@@ -23,6 +23,7 @@ Repeat this section for each work item.
 - WDD Item ID:
 - Parent TDD Section:
 - Assignee Type: AI Agent | Human | Either
+- Required Capabilities: (e.g., backend, database, API-design, security)
 
 #### Intent (1–2 sentences)
 Exactly what this work item accomplishes.

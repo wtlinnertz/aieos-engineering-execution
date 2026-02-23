@@ -31,6 +31,7 @@
 - WDD Item ID: WDD-EX-001
 - Parent TDD Section: Sections 4, 6 (Interfaces, Failure Handling)
 - Assignee Type: Either
+- Required Capabilities: backend, database, API-design, security
 
 #### Intent (1–2 sentences)
 Implement the read-only API endpoint with data access layer and authentication validation, returning reference data by key with correct status codes.
@@ -83,6 +84,7 @@ Implement the read-only API endpoint with data access layer and authentication v
 - WDD Item ID: WDD-EX-002
 - Parent TDD Section: Section 4 (Interfaces — health endpoint)
 - Assignee Type: Either
+- Required Capabilities: backend, API-design
 
 #### Intent (1–2 sentences)
 Implement the health check endpoint that reports service operational status.
@@ -124,6 +126,7 @@ Implement the health check endpoint that reports service operational status.
 - WDD Item ID: WDD-EX-003
 - Parent TDD Section: Section 7 (Observability)
 - Assignee Type: Either
+- Required Capabilities: backend, observability
 
 #### Intent (1–2 sentences)
 Implement structured JSON request logging for all API requests to enable operational observability.
@@ -166,6 +169,7 @@ Implement structured JSON request logging for all API requests to enable operati
 - WDD Item ID: WDD-EX-004
 - Parent TDD Section: Section 5 (Build and Deploy)
 - Assignee Type: Human
+- Required Capabilities: infrastructure, CI-CD, container
 
 #### Intent (1–2 sentences)
 Configure container build and CI/CD pipeline deployment for the Reference Data Service to the standard platform runtime.
@@ -212,6 +216,7 @@ Configure container build and CI/CD pipeline deployment for the Reference Data S
 - WDD Item ID: WDD-EX-005
 - Parent TDD Section: Section 8 (Testing Strategy)
 - Assignee Type: Either
+- Required Capabilities: backend, testing
 
 #### Intent (1–2 sentences)
 Implement unit tests and integration tests for the Reference Data Service as defined in the TDD testing strategy.

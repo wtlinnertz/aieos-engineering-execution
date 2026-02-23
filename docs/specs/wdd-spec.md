@@ -30,7 +30,7 @@ The WDD must decompose a frozen TDD into atomic, executable work items grouped i
 ### Work Items (§2)
 
 **Rules**
-- Each work item must have: Intent, In Scope, Out of Scope, Inputs, Outputs, Acceptance Criteria, Definition of Done, Dependencies, Rollback/Failure Behavior
+- Each work item must have: Intent, In Scope, Out of Scope, Inputs, Outputs, Acceptance Criteria, Definition of Done, Dependencies, Rollback/Failure Behavior, Required Capabilities
 - Intent must be 1–2 sentences describing exactly what the item accomplishes
 - Inputs and outputs must be explicitly listed
 - Dependencies must be explicitly listed or stated as "None"
@@ -79,6 +79,20 @@ The WDD must decompose a frozen TDD into atomic, executable work items grouped i
 - Missing Assignee Type
 - Deployment item assigned to AI Agent
 - Human item with Given/When/Then acceptance criteria
+
+### Required Capabilities
+
+**Rules**
+- Every work item must list at least one required capability
+- Capabilities describe technical skill domains, not roles or people
+- Capabilities must be inferred from the work item's subsystem, inputs, outputs, and TDD contracts
+- Use short, recognizable domain labels (e.g., `backend`, `frontend`, `database`, `infrastructure`, `API-design`, `security`, `observability`)
+- Do not reference team names, individual names, or job titles
+
+**Failure Examples**
+- Empty or missing capabilities list
+- Role-based labels ("Senior Engineer", "Tech Lead")
+- Overly broad labels that apply to every item ("engineering", "development")
 
 ### Work Groups (§3)
 
