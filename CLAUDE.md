@@ -15,9 +15,10 @@ docs/
   artifacts/       # Templates and intake forms for each SDLC artifact
   prompts/         # Canonical AI generation prompts (behavior only)
   validators/      # Strict quality gate definitions (judgment only)
-  playbook.md      # End-to-end process definition
-  index.md         # Documentation entry point
-  how-to-adapt.md  # Organizational adoption guidance
+  governance-model.md    # AIEOS structural rules, taxonomy, and invariants
+  playbook.md            # End-to-end process definition
+  index.md               # Documentation entry point
+  how-to-adapt.md        # Organizational adoption guidance
   how-to-use-with-ai.md  # Artifact-by-artifact AI usage guide
 
 examples/
