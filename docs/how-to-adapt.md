@@ -247,14 +247,20 @@ Some artifacts require human-authored inputs before they can be generated:
 
 - **Product Brief** — feeds the PRD prompt (template: `product-brief-template.md`)
 - **Architecture Context** — feeds the ACF prompt (template: `architecture-context-template.md`)
+- **Design Context** — feeds the DCF prompt (template: `design-context-template.md`)
+- **System Context** — feeds the SAD prompt for brownfield projects (template: `system-context-template.md`)
 
-These are not AI-generated artifacts — they are the human decisions that drive generation. Store them in `docs/sdlc/` with a `00-` prefix to distinguish them from generated artifacts:
+These are not AI-generated artifacts — they are the human decisions that drive generation. For brownfield projects, the `codebase-analysis-prompt.md` can pre-fill the Architecture Context, Design Context, and System Context forms from codebase analysis — the human reviews and edits before using them as input.
+
+Store intake forms in `docs/sdlc/` with a `00-` prefix to distinguish them from generated artifacts:
 
 ```
 my-app/
   docs/sdlc/
     00-product-brief.md          ← human input
     00-architecture-context.md   ← human input
+    00-design-context.md         ← human input (optional, for DCF)
+    00-system-context.md         ← human input (brownfield only, for SAD)
     01-prd.md                    ← generated, validated, frozen
     02-acf.md
     ...
