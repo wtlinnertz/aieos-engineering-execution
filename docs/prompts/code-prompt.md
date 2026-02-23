@@ -21,10 +21,20 @@ INPUTS:
 - ACF security guardrails (§3) and compliance constraints (§4)
 - Relevant source code and configuration
 
+ITERATION PROTOCOL:
+- If tests fail, map each failure to its acceptance criterion before attempting a fix
+- If the same failure persists after 3 fix attempts, stop and escalate to the human
+- Do not loop indefinitely — escalate if progress stalls
+
+COMPLETION PROTOCOL:
+Before signaling done, verify: all acceptance criterion tests pass, all failure condition
+tests pass, no regressions, all changed files are in the approved plan, no scope expansion.
+If any check fails, fix or escalate — do not hand off to review.
+
 SPEC REFERENCE:
-The authoritative implementation order, safety rules, iteration rules,
-and completeness criteria for this phase are defined in `execution-spec.md` (Phase 3: Code).
-Follow all rules in the spec.
+The authoritative implementation order, safety rules, iteration rules, structured failure
+feedback, completion verification, and escalation criteria for this phase are defined in
+`execution-spec.md` (Phase 3: Code). Follow all rules in the spec.
 
 OUTPUT:
 Working code that passes all approved tests. No scope expansion.
