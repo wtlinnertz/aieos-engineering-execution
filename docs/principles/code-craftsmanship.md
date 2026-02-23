@@ -67,7 +67,52 @@ Names must eliminate the need for explanatory comments.
 
 ---
 
-## 1.4 No Duplication (Strict DRY)
+## 1.4 Self-Documenting Code
+
+Code must read like a narrative — a reader should understand *what happens and why* by reading top-to-bottom without jumping between files.
+
+### Module Orientation
+
+* A file's purpose must be clear from its first few lines.
+* Group related logic together — do not scatter a single concern across a file.
+* Public API at the top, private helpers below.
+* A reader encountering the file for the first time should understand its role before reaching implementation details.
+
+### Narrative Flow Within Functions
+
+* Structure functions as: setup → action → result.
+* Use guard clauses and early returns to clear away edge cases first, so the main logic reads as a clean, uninterrupted path.
+* Avoid interleaving validation and business logic — validate upfront, then execute.
+* Sequential steps should appear in execution order.
+
+### Extraction Over Comments
+
+* When a block of code needs a comment to explain *what* it does, extract it into a well-named function instead.
+* The function name becomes the documentation.
+* Prefer `calculateShippingDiscount(order)` over `// calculate the shipping discount` followed by inline math.
+* Extract when naming improves comprehension, not when it merely reduces line count.
+
+### When Comments Are Required
+
+Comments are warranted only when code cannot speak for itself:
+
+* **Why comments** — business rationale, regulatory constraints, non-obvious design choices.
+* **Warning comments** — performance traps, ordering dependencies, "this looks wrong but is correct because...".
+* **Contract comments** — public API boundaries where callers need usage guidance.
+
+Comments that restate what code already says (e.g., `// increment counter` above `counter++`) are prohibited — they add noise and drift from the implementation.
+
+### File and Symbol Ordering
+
+* Organize files so a reader encounters concepts in dependency order: high-level first, details later.
+* Constants and types at the top, public functions next, private helpers last.
+* Within a class, group by behavior (all methods for one capability together), not by visibility modifier.
+
+Code that requires a map to navigate is code that needs restructuring.
+
+---
+
+## 1.5 No Duplication (Strict DRY)
 
 * Repeated logic must be extracted.
 * Magic strings must be constants.
@@ -78,7 +123,7 @@ Duplication compounds future risk.
 
 ---
 
-## 1.5 Complexity Control
+## 1.6 Complexity Control
 
 ### Nesting
 
@@ -101,7 +146,7 @@ Duplication compounds future risk.
 
 ---
 
-## 1.6 Explicit Error Handling
+## 1.7 Explicit Error Handling
 
 * No silent failures.
 * No empty catch blocks.
@@ -113,7 +158,7 @@ Duplication compounds future risk.
 
 ---
 
-## 1.7 Dependency Discipline
+## 1.8 Dependency Discipline
 
 * Dependencies must be injected, not hidden.
 * No implicit globals.
