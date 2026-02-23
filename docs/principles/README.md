@@ -44,7 +44,7 @@ ACF + DCF → SAD, TDD, WDD (constrained by guardrails)
 
 | Principle Section | Feeds Into |
 |---|---|
-| §1 Core Engineering Doctrine (SRP, naming, DRY, complexity) | DCF §2 Design Principles |
+| §1 Core Engineering Doctrine (SRP, naming, self-documenting code, DRY, complexity) | DCF §2 Design Principles |
 | §2 Architecture Standards | ACF (architecture guardrails) |
 | §3 Test Design Standards | DCF §6 Testing Expectations |
 | §4 Implementation Standards | DCF §3 Quality Bars |
