@@ -78,6 +78,8 @@ Sections that are not applicable must be explicitly marked as such with justific
 - All diagrams must be syntactically valid Mermaid
 - Diagrams must describe structure, not execution steps
 - Diagrams must have architectural relevance
+- System boundary must be explicitly declared: what is inside the system, what is external, and what crosses the boundary
+- External actors and systems must be identified with their interaction type (sync API, async event, batch, etc.)
 
 **Failure Examples**
 - Missing diagram
@@ -85,11 +87,15 @@ Sections that are not applicable must be explicitly marked as such with justific
 - Commands, configs, or code embedded in diagrams
 - Execution flow depicted instead of architecture
 - Invalid Mermaid syntax
+- System boundary not identifiable from diagrams or accompanying text
+- External systems listed without interaction type
 
 ### Cross-Cutting Concerns (§6)
 
 **Rules**
 - Security section must be present with architectural content
+- Trust boundaries must be identified where authentication or authorization boundaries exist
+- Interfaces that cross trust boundaries must be explicitly called out
 - Reliability and Resilience section must be present with architectural content
 - Observability section must be present with architectural content
 - Performance and Scale section must be present with architectural content
@@ -101,19 +107,23 @@ Sections that are not applicable must be explicitly marked as such with justific
 - Procedural steps described instead of architecture
 - Vague statements without substance
 - Missing sections
+- No trust boundaries identified when the system has authentication or authorization
 
 ### Data and Integration (§7)
 
 **Rules**
-- Data stores must be identified with ownership and access patterns
+- Data stores must be identified with authoritative ownership (which component is the single source of truth)
+- Access patterns must distinguish read vs. write boundaries
+- Data that crosses component boundaries must have explicit flow direction and ownership transfer (or lack thereof)
 - Integration patterns must be described architecturally
 - Data flows must include artifact or state transitions
 
 **Failure Examples**
 - Data flow described without state changes
-- Ownership not identified
+- Ownership not identified or ambiguous (multiple components claim write access without explicit ownership)
 - Integration described as step-by-step process
 - Tool-specific integration details
+- Data crossing component boundaries without declared ownership
 
 ### Failure Modes and Recovery (§8)
 
