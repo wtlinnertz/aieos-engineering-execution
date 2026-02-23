@@ -102,6 +102,9 @@ Each context file contains:
 <paste the full WDD item verbatim: intent, scope, inputs, outputs, acceptance criteria, DoD, dependencies, failure behavior>
 
 #### TDD Sections
+**Technical Context:**
+<paste the TDD Technical Overview entry for the component(s) this item belongs to: language/framework, key libraries or patterns, and SAD mapping>
+
 **Testing Strategy:**
 <paste the specific TDD sections relevant to this item's testing>
 
