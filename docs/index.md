@@ -40,6 +40,18 @@ These principles are applied consistently across all artifacts and validators.
 
 ## Documentation Sections
 
+### 📐 Governance Model
+Defines the structural rules, taxonomy, and invariants for the AIEOS kit system:
+- Four-file system (spec, template, prompt, validator)
+- Repository structure and naming conventions
+- Artifact promotion model and freeze semantics
+- Inter-kit handoff contracts
+- Kit invariants and adoption guidance
+
+➡️ See: `governance-model.md`
+
+---
+
 ### 📘 Playbook
 Defines the canonical process from product intent to delivered work:
 - Artifact flow and promotion rules
