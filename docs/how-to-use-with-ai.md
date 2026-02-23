@@ -1,4 +1,4 @@
-# How to Use ai-sdlc-kit with AI
+# How to Use aieos-engineering-execution with AI
 
 This guide explains how to use the kit's prompts, templates, and validators with an AI assistant to generate and validate SDLC artifacts.
 
@@ -31,9 +31,9 @@ If the kit is a separate repository, reference it by path. If copied into your p
 ```
 ## SDLC Kit
 
-This project uses ai-sdlc-kit for structured artifact generation and validation.
+This project uses aieos-engineering-execution for structured artifact generation and validation.
 
-Kit location: ../ai-sdlc-kit/docs/
+Kit location: ../aieos-engineering-execution/docs/
 Project artifacts: docs/sdlc/
 
 Artifact flow: PRD → ACF → SAD → DCF → TDD → WDD → Execute → ORD

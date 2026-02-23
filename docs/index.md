@@ -1,6 +1,6 @@
-# ai-sdlc-kit Documentation
+# aieos-engineering-execution Documentation
 
-Welcome to **ai-sdlc-kit** — a practical toolkit for using AI safely across the full **software development lifecycle (SDLC)**.
+Welcome to **aieos-engineering-execution** — a practical toolkit for using AI safely across the full **software development lifecycle (SDLC)**.
 
 This documentation explains **how to use the kit**, **why it works**, and **how the pieces fit together**.
 

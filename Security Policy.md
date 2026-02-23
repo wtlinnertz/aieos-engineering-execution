@@ -2,7 +2,7 @@
 
 ## Supported Content
 
-**ai-sdlc-kit** is a documentation- and template-based repository.
+**aieos-engineering-execution** is a documentation- and template-based repository.
 It does **not** provide a running service, hosted application, or executable software.
 
 Security reports should focus on:
@@ -71,4 +71,4 @@ This repository prioritizes **safety, clarity, and reuse**.
 
 If something could reasonably cause harm if copied into a real system, it’s worth reporting.
 
-Thank you for helping keep **ai-sdlc-kit** safe and reusable.
+Thank you for helping keep **aieos-engineering-execution** safe and reusable.

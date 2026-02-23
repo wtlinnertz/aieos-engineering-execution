@@ -5,7 +5,7 @@ This example demonstrates the **complete AI-assisted SDLC flow** from PRD throug
 The example is:
 - Fully anonymized
 - Tool-agnostic
-- Aligned to ai-sdlc-kit templates and validators
+- Aligned to aieos-engineering-execution templates and validators
 
 ---
 

@@ -1,6 +1,6 @@
 # AI Generation Prompts
 
-This directory contains the **canonical AI generation prompts** for each artifact in the ai-sdlc-kit lifecycle.
+This directory contains the **canonical AI generation prompts** for each artifact in the aieos-engineering-execution lifecycle.
 
 These prompts define **how AI behaves** when creating artifacts.
 They work in concert with:

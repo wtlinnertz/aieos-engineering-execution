@@ -1,6 +1,6 @@
 # TERMS
 
-This document defines common terms used throughout the **ai-sdlc-kit** repository.
+This document defines common terms used throughout the **aieos-engineering-execution** repository.
 These definitions are intentionally **tool-agnostic**, **employer-neutral**, and **AI-friendly**.
 
 ---

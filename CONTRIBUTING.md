@@ -1,6 +1,6 @@
 # CONTRIBUTING
 
-Thank you for your interest in contributing to **ai-sdlc-kit**.
+Thank you for your interest in contributing to **aieos-engineering-execution**.
 
 This repository is a **public, employer-neutral toolkit** for AI-assisted SDLC artifacts, validators, and workflows. Contributions are welcome, provided they follow the rules below.
 

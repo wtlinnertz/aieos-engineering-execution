@@ -1,6 +1,6 @@
-# ai-sdlc-kit Test Plan
+# aieos-engineering-execution Test Plan
 
-This document defines the test scenarios for validating the ai-sdlc-kit framework across all supported flow paths.
+This document defines the test scenarios for validating the aieos-engineering-execution framework across all supported flow paths.
 
 ## Purpose
 

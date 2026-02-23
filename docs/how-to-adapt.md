@@ -1,6 +1,6 @@
-# How to Adapt ai-sdlc-kit to Your Organization
+# How to Adapt aieos-engineering-execution to Your Organization
 
-This guide explains **what you should customize**, **what must remain invariant**, and **how to layer organizational policy** on top of ai-sdlc-kit without breaking its guarantees.
+This guide explains **what you should customize**, **what must remain invariant**, and **how to layer organizational policy** on top of aieos-engineering-execution without breaking its guarantees.
 
 The goal is adoption without dilution.
 
@@ -8,12 +8,12 @@ The goal is adoption without dilution.
 
 ## First: What This Kit Is (and Is Not)
 
-ai-sdlc-kit is:
+aieos-engineering-execution is:
 - A **process and artifact model**
 - A **set of enforceable quality gates**
 - A **safe way to use AI across the SDLC**
 
-ai-sdlc-kit is not:
+aieos-engineering-execution is not:
 - A toolchain
 - A framework
 - A prescriptive architecture
@@ -346,7 +346,7 @@ These are signals to tighten enforcement, not loosen it.
 
 ## Final Guidance
 
-ai-sdlc-kit is intentionally opinionated where it matters.
+aieos-engineering-execution is intentionally opinionated where it matters.
 
 Adapt the **edges**, not the **core**.
 

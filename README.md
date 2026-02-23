@@ -1,4 +1,4 @@
-# ai-sdlc-kit
+# aieos-engineering-execution
 
 **AI-assisted templates, validators, and workflows for moving through SDLC.**
 
@@ -6,7 +6,7 @@
 
 ## What This Is
 
-**ai-sdlc-kit** is a practical, open toolkit for teams that want to use AI safely and effectively across the **software development lifecycle (SDLC)**.
+**aieos-engineering-execution** is a practical, open toolkit for teams that want to use AI safely and effectively across the **software development lifecycle (SDLC)**.
 
 It provides:
 - Lean, AI-first artifact templates
@@ -28,7 +28,7 @@ but without structure and gates, it creates:
 - Unexecutable work
 - Fragile delivery
 
-**ai-sdlc-kit** addresses this by enforcing:
+**aieos-engineering-execution** addresses this by enforcing:
 - Clear intent before generation
 - Explicit scope and non-goals
 - Deterministic handoffs between stages

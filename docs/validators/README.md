@@ -2,7 +2,7 @@
 
 Validators are **strict quality gates** that determine whether an artifact is ready to be promoted to the next stage.
 
-They are a core enforcement mechanism of **ai-sdlc-kit**.
+They are a core enforcement mechanism of **aieos-engineering-execution**.
 
 ---
 

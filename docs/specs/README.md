@@ -1,6 +1,6 @@
 # Artifact Specifications
 
-This directory contains the **authoritative content rules and quality criteria** for each artifact in the ai-sdlc-kit lifecycle.
+This directory contains the **authoritative content rules and quality criteria** for each artifact in the aieos-engineering-execution lifecycle.
 
 Specifications define **what makes an artifact good** — independent of who produces it (human or AI) and how it is evaluated.
 

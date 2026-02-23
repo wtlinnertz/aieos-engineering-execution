@@ -1,8 +1,8 @@
-# CLAUDE.md — AI Operating Instructions for ai-sdlc-kit
+# CLAUDE.md — AI Operating Instructions for aieos-engineering-execution
 
 ## Project Overview
 
-**ai-sdlc-kit** is a structured AI-assisted SDLC documentation and governance framework. It provides artifact templates, generation prompts, validators, and a playbook for moving from product intent to execution-ready work.
+**aieos-engineering-execution** is a structured AI-assisted SDLC documentation and governance framework. It provides artifact templates, generation prompts, validators, and a playbook for moving from product intent to execution-ready work.
 
 This is a **documentation and process** project, not a code project. All artifacts are Markdown.
 

@@ -2,7 +2,7 @@
 
 ## Our Pledge
 
-We pledge to make participation in **ai-sdlc-kit** a respectful, inclusive, and harassment-free experience for everyone.
+We pledge to make participation in **aieos-engineering-execution** a respectful, inclusive, and harassment-free experience for everyone.
 
 This project is a public, community-driven repository focused on improving AI-assisted software delivery practices. We expect all participants to engage constructively and professionally.
 

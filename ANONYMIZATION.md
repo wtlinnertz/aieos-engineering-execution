@@ -1,6 +1,6 @@
 # ANONYMIZATION
 
-This document defines the **mandatory anonymization rules** for all content in the **ai-sdlc-kit** repository.
+This document defines the **mandatory anonymization rules** for all content in the **aieos-engineering-execution** repository.
 
 The goal is to ensure this repository remains:
 - Publicly shareable
