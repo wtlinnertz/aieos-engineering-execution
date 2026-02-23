@@ -129,11 +129,31 @@ Implement the approved plan. Make approved tests pass. Nothing more.
 - Multiple iterations are normal
 - If tests fail, fix the issue and re-run
 - If implementation reveals scope issues, stop and report — do not expand scope
+- Maximum iteration bound: if tests still fail after 3 fix attempts for the same failure, stop and escalate to the human with a structured report (what failed, what was tried, why it didn't work)
+- Do not loop indefinitely — if progress stalls (same failure repeating, or new failures replacing old ones without net progress), escalate rather than retry
+
+**Structured Failure Feedback**
+- When tests fail during iteration, map each failure back to its acceptance criterion
+- Report failures as: which test failed, which acceptance criterion it covers, what the expected vs. actual outcome was
+- This targeted feedback drives the next fix attempt — do not treat raw test output as undifferentiated noise
+
+**Completion Verification**
+Before signaling Phase 3 complete, verify:
+1. All acceptance criterion tests pass
+2. All failure condition tests pass
+3. No regressions in existing tests
+4. Every file changed is in the approved plan's file list
+5. No scope expansion detected (no capabilities beyond what tests require)
+
+If any verification item fails, do not proceed to Phase 4 — fix or escalate.
 
 **Failure Examples**
 - Expanding scope to "improve" something outside the work item
 - Writing production code before tests
 - Hardcoding a config value that should come from environment
+- Retrying the same failing approach more than 3 times without escalating
+- Signaling completion when a failure condition test is still failing
+- Reporting "tests pass" without checking for regressions
 
 ---
 
