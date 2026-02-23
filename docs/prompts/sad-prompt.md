@@ -20,6 +20,7 @@ Do not add requirements or design during this step.
 INPUTS:
 - Frozen PRD
 - Architecture Context File (ACF)
+- System Context (optional — for existing codebases, see system-context-template.md or use `codebase-analysis-prompt.md` Output C to pre-fill it)
 
 SPEC REFERENCE:
 The authoritative content rules, format requirements, completeness criteria,
