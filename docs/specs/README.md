@@ -66,6 +66,7 @@ Read the spec directly. It describes what a good artifact looks like in plain la
 ### Quality Gates
 - `dor-spec.md` — Definition of Ready (per WDD work item)
 - `consistency-spec.md` — Cross-artifact consistency check
+- `impact-analysis-spec.md` — Change impact analysis
 - `execution-spec.md` — Execution phase rules (Test / Plan / Code / Review)
 
 ---
