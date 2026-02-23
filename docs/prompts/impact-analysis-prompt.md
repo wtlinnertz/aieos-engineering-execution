@@ -61,13 +61,10 @@ INPUTS:
 - All frozen artifacts and their frozen addendums
 - Not all artifacts may be present — analyze only what exists, warn about missing artifacts
 
-VALIDATOR WILL CHECK:
-- downstream_artifact_impact
-- work_item_impact
-- constraint_impact
-- non_goal_impact
-- addendum_cascade
-- report_completeness
+SPEC REFERENCE:
+The authoritative impact checks, severity definitions, decision rules, and hard gates
+for this analysis are defined in `impact-analysis-spec.md`.
+Generate content that satisfies all rules in the spec.
 
 OUTPUT FORMAT (MANDATORY):
 
