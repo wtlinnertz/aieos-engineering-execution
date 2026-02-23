@@ -99,6 +99,8 @@ Strict, non-prescriptive readiness gates:
 - TDD Validator
 - WDD Validator
 - Definition of Ready (DoR) Validator
+- Consistency Validator (cross-artifact traceability)
+- Impact Analysis Validator (change impact assessment)
 - ORD Validator
 
 Validators determine **readiness**, not correctness or implementation quality.
