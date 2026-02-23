@@ -15,17 +15,17 @@
     {
       "gate": "atomicity",
       "description": "A single work item combines API implementation and test creation.",
-      "location": "Work Item WDD-1"
+      "location": "Work Item WDD-EX-001"
     },
     {
       "gate": "inputs_outputs",
       "description": "Inputs required to execute work items are not explicitly listed.",
-      "location": "Work Item WDD-1 — Inputs"
+      "location": "Work Item WDD-EX-001 — Inputs"
     },
     {
       "gate": "granularity",
       "description": "Work items imply changes across multiple subsystems.",
-      "location": "Work Item WDD-1"
+      "location": "Work Item WDD-EX-001"
     }
   ],
   "warnings": [],
