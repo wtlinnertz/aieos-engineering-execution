@@ -30,7 +30,9 @@ For each SDLC stage:
 
 ### Intake
 - `product-brief-template.md` — Structured intake form for PRD generation (human-authored)
-- `architecture-context-template.md` — Lightweight intake form for ACF generation (human-authored)
+- `architecture-context-template.md` — Lightweight intake form for ACF generation (human-authored or pre-filled from codebase analysis)
+- `design-context-template.md` — Lightweight intake form for DCF generation (human-authored or pre-filled from codebase analysis)
+- `system-context-template.md` — Lightweight intake form for SAD generation in brownfield projects (human-authored or pre-filled from codebase analysis)
 
 ### Context & Requirements
 - `prd-template.md` — Product intent, scope, and success criteria
