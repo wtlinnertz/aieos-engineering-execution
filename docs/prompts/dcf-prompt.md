@@ -12,9 +12,9 @@ DCF RESPONSIBILITY:
 Define the technical design expectations that all TDDs must follow.
 
 INPUTS:
-- Engineering standards (if provided)
-- Testing expectations (if provided)
-- Operational requirements (if provided)
+- Design Context (completed intake form, see design-context-template.md)
+- If no Design Context form is available, accept any engineering standards, testing expectations, or operational requirements provided
+- Codebase Analysis Report (optional — if working with an existing codebase, use `codebase-analysis-prompt.md` Output B to pre-fill the design-context-template)
 
 SPEC REFERENCE:
 The authoritative content rules, format requirements, completeness criteria,
