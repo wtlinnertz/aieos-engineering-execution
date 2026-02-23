@@ -9,6 +9,10 @@ AUTHORITATIVE RULES:
 - Evaluate only what is explicitly present in the report
 - Be strict: ambiguity is a failure condition
 
+SPEC REFERENCE:
+The authoritative impact checks, severity definitions, decision rules, and hard gates
+are defined in `impact-analysis-spec.md`. Evaluate against all rules in the spec.
+
 EVALUATION CRITERIA (HARD GATES):
 
 1. Downstream Artifact Impact
