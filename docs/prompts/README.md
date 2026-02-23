@@ -84,6 +84,11 @@ Skipping steps weakens enforcement.
 
 ---
 
+### Utility (Input Material, Not Governed Artifacts)
+- `codebase-analysis-prompt.md` — Analyze an existing codebase to produce structured input for ACF, DCF, and SAD generation (brownfield projects)
+
+---
+
 ### Delivery & Execution
 - `tdd-prompt.md` — Generate technical design (intent verified inline)
 - `wdd-prompt.md` — Generate atomic executable work items (intent verified inline)
