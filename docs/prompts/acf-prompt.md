@@ -15,6 +15,7 @@ Define architectural constraints and standards that downstream design must obey.
 INPUTS:
 - Architecture Context (completed intake form, see architecture-context-template.md)
 - If no Architecture Context form is available, accept any organizational standards, platform assumptions, or regulatory/security constraints provided
+- Codebase Analysis Report (optional — if working with an existing codebase, use `codebase-analysis-prompt.md` output as additional input for technology stack, integrations, and security patterns)
 
 SPEC REFERENCE:
 The authoritative content rules, format requirements, completeness criteria,
