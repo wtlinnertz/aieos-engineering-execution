@@ -113,9 +113,9 @@ If the same AI that generated the artifact also validates it, it has a bias towa
 | Artifact | Spec | Prompt | Inputs |
 |----------|------|--------|--------|
 | PRD | `prd-spec.md` | `prd-prompt.md` | Product brief (human-written) |
-| ACF | `acf-spec.md` | `acf-prompt.md` | Organizational context (human-written or existing) |
-| SAD | `sad-spec.md` | `sad-prompt.md` | Frozen PRD + Frozen ACF |
-| DCF | `dcf-spec.md` | `dcf-prompt.md` | Organizational context (human-written or existing) |
+| ACF | `acf-spec.md` | `acf-prompt.md` | Architecture Context intake form (`architecture-context-template.md`) + organizational standards |
+| SAD | `sad-spec.md` | `sad-prompt.md` | Frozen PRD + Frozen ACF. Brownfield: + System Context intake form (`system-context-template.md`) |
+| DCF | `dcf-spec.md` | `dcf-prompt.md` | Design Context intake form (`design-context-template.md`) + organizational standards |
 | TDD | `tdd-spec.md` | `tdd-prompt.md` | Frozen SAD + Frozen DCF |
 | WDD | `wdd-spec.md` | `wdd-prompt.md` | Frozen TDD |
 | ORD | `ord-spec.md` | `ord-prompt.md` | Frozen TDD + Frozen ACF + Frozen DCF |
