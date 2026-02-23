@@ -43,9 +43,25 @@
 ## 3. Technical Overview
 The service is a stateless HTTP API that reads reference data from a relational data store and returns it to authenticated consumers. It runs as a container on the standard platform runtime.
 
+### Components (from SAD)
+
+| Component | Role | Technology | Patterns |
+|-----------|------|------------|----------|
+| API Component | HTTP request handling, authentication validation, routing, error responses | Standard platform HTTP framework (per ACF) | Request/response middleware chain, guard clauses for auth |
+| Data Access Component | Reads from backing data store, maps data to response schema | Standard platform data access library (per ACF) | Repository pattern, connection pooling via platform defaults |
+
+### Key Data Flows
+- Consumer → API Component: Authenticated HTTP GET request
+- API Component → Data Access Component: Query by key
+- Data Access Component → Data Store: SQL read
+- Data Store → Data Access Component → API Component → Consumer: Response DTO mapped to JSON
+
 ## 4. Interfaces and Contracts (Hard)
 
 ### GET /reference-data/{key}
+
+**SAD Component:** API Component (crosses system boundary — consumed by external service consumers)
+**Backward Compatibility:** Response schema is stable. New optional fields may be added. Existing fields will not be removed or renamed without a versioned replacement endpoint.
 
 **Request:**
 - Method: GET
@@ -69,6 +85,8 @@ The service is a stateless HTTP API that reads reference data from a relational 
 - Body: `{ "error": "internal_error", "message": "Unable to retrieve data" }`
 
 ### GET /health
+
+**SAD Component:** API Component (operational/platform boundary — used by deployment pipeline and monitoring)
 
 **Response:**
 - Status: 200 OK
