@@ -22,6 +22,7 @@ HARD GATES:
 - constraint_propagation
 - interface_alignment
 - addendum_integration
+- boundary_consistency
 - report_completeness
 
 OUTPUT FORMAT (MANDATORY):
@@ -38,6 +39,7 @@ OUTPUT FORMAT (MANDATORY):
     "constraint_propagation": "PASS | FAIL",
     "interface_alignment": "PASS | FAIL",
     "addendum_integration": "PASS | FAIL",
+    "boundary_consistency": "PASS | FAIL",
     "report_completeness": "PASS | FAIL"
   },
   "blocking_issues": [
