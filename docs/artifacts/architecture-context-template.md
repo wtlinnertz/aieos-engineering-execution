@@ -1,9 +1,10 @@
 # Architecture Context (ACF Intake)
 
 A lightweight intake form for capturing architectural decisions before generating an ACF.
-This is a **human-authored input**, not an AI-generated artifact.
 
 Fill in what you know. Leave unknown sections blank — the ACF generation prompt will mark them as "Not provided."
+
+**For existing codebases:** Run `codebase-analysis-prompt.md` to pre-fill this form from codebase analysis (Output A). Review the pre-filled form for accuracy before using it as ACF input.
 
 ---
 
