@@ -77,6 +77,18 @@ The consistency check verifies that intent, requirements, constraints, and scope
 - PRD Addendum adds FR-10 but no downstream artifact references it
 - SAD Addendum modifies a component boundary but TDD still reflects the original
 
+### 8. Boundary Consistency
+**Rules**
+- SAD-declared system boundaries must align with TDD interface declarations (external vs. internal)
+- SAD data ownership must be consistent with TDD data access patterns
+- SAD failure modes for boundary crossings must align with TDD failure handling for the same boundaries
+- Mismatches are "contradiction"
+
+**Failure Examples**
+- SAD declares component A owns data store X, but TDD has component B writing directly to X
+- SAD shows async boundary between services, but TDD failure handling assumes synchronous behavior
+- SAD declares an interface as internal-only, but TDD exposes it externally with no justification
+
 ## Inconsistency Types
 
 | Type | Meaning |
@@ -89,7 +101,7 @@ The consistency check verifies that intent, requirements, constraints, and scope
 
 ## Completeness Rules
 
-- All 7 traceability checks must be performed
+- All 8 traceability checks must be performed
 - Missing downstream artifacts are warnings, not failures (the artifact may not yet exist)
 - Implicit coverage is not coverage — if a link is not explicit, it is missing
 - A traceability matrix must be built: PRD requirements → SAD components → TDD modules → WDD work items
@@ -110,7 +122,8 @@ The consistency check verifies that intent, requirements, constraints, and scope
 5. **constraint_propagation** — No downstream artifact violates ACF constraints
 6. **interface_alignment** — SAD integration points match TDD specifications
 7. **addendum_integration** — Frozen addendum changes reflected downstream
+8. **boundary_consistency** — SAD boundaries, data ownership, and failure modes align with TDD specifications
 
 ### Consistency Report Validation (evaluated by consistency validator)
-All 7 checks above, plus:
-8. **report_completeness** — Artifacts checked list populated, traceability matrix has non-zero totals, inconsistencies array present
+All 8 checks above, plus:
+9. **report_completeness** — Artifacts checked list populated, traceability matrix has non-zero totals, inconsistencies array present
