@@ -12,26 +12,28 @@ This is a **documentation and process** project, not a code project. All artifac
 docs/
   principles/      # Organizational engineering and product standards (ACF/DCF input)
   specs/           # Authoritative content rules and quality criteria per artifact
-  artifacts/       # Lean, AI-first templates for each SDLC artifact (structure only)
+  artifacts/       # Templates and intake forms for each SDLC artifact
   prompts/         # Canonical AI generation prompts (behavior only)
   validators/      # Strict quality gate definitions (judgment only)
   playbook.md      # End-to-end process definition
   index.md         # Documentation entry point
   how-to-adapt.md  # Organizational adoption guidance
+  how-to-use-with-ai.md  # Artifact-by-artifact AI usage guide
 
 examples/
   end-to-end/
     example-01-generic-service/   # Complete worked example
 
-TERMS.md           # Glossary of project terminology
+tests/
+  kit-test-plan.md  # Structural and flow scenario test plan
 ```
 
 ## Artifact Flow (Non-Negotiable Order)
 
-1. Product Brief (human intake) → PRD → PRD Validator → Freeze
-2. ACF → ACF Validator → Freeze
+1. Product Brief (intake form) → PRD → PRD Validator → Freeze
+2. Architecture Context (intake form) → ACF → ACF Validator → Freeze
 3. PRD + ACF → SAD → SAD Validator → Freeze
-4. DCF → DCF Validator → Freeze
+4. Design Context (intake form) → DCF → DCF Validator → Freeze
 5. SAD + DCF → TDD → TDD Validator → Freeze
 6. TDD → WDD → WDD Validator → DoR Validator → Consistency Check → Human Approval → Freeze
 7. WDD (frozen) → Execution Plan (`execution-plan-prompt.md`) → Human Approval
@@ -40,12 +42,17 @@ TERMS.md           # Glossary of project terminology
 
 Prerequisite documents must exist and be frozen before downstream artifacts are generated.
 
+**Brownfield projects**: Run `codebase-analysis-prompt.md` first to pre-fill intake forms for ACF, DCF, and SAD.
+
+**Re-entry / changes to frozen artifacts**: Use `impact-analysis-prompt.md` to assess downstream effects before modifying any frozen artifact.
+
 ## Naming Conventions
 
 - Specs: `{type}-spec.md` (e.g., `prd-spec.md`) — in `docs/specs/`
-- Templates: `{type}-template.md` (e.g., `prd-template.md`)
-- Prompts: `{type}-prompt.md` (e.g., `prd-prompt.md`)
-- Validators: `{type}-validator.md` (e.g., `prd-validator.md`)
+- Templates: `{type}-template.md` (e.g., `prd-template.md`) — in `docs/artifacts/`
+- Intake forms: `{context}-template.md` (e.g., `architecture-context-template.md`) — in `docs/artifacts/`
+- Prompts: `{type}-prompt.md` (e.g., `prd-prompt.md`) — in `docs/prompts/`
+- Validators: `{type}-validator.md` (e.g., `prd-validator.md`) — in `docs/validators/`
 - Example artifacts: `{nn}-{type}.md` (e.g., `01-prd.md`, `02-acf.md`)
 - Artifact IDs: `{TYPE}-{PROJECT}-{NNN}` (e.g., `PRD-EX-001`)
 - Execution plan context files: `{nn}-{wdd-item-id}-context.md` (e.g., `09-WDD-EX-001-context.md`)
@@ -87,7 +94,8 @@ When validating artifacts:
 ## Key Design Decisions
 
 - **Four-file system**: Each artifact type has four files — spec (content rules), template (structure), prompt (AI behavior), validator (judgment). Each file answers exactly one question.
-- **Tool-agnostic**: No references to specific work management tools (Jira, etc.).
+- **Tool-agnostic**: No references to specific work management tools (Jira, etc.) or AI providers.
+- **Greenfield and brownfield**: Supports both new projects and existing codebases via intake forms and codebase analysis.
 - **Markdown as system of record**: All artifacts are Markdown, human and machine readable.
 - **Validators per document**: Every artifact type has a corresponding validator.
 - **Specs as single source of truth**: Hard gates, content rules, and quality criteria are defined in specs. Prompts and validators reference specs, not inline their own rules.
