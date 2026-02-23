@@ -31,10 +31,11 @@ The kit's architecture already has a home for organizational standards:
 When generating your ACF and DCF, use these principles as source material. The principles define policy; the ACF and DCF translate that policy into enforceable guardrails for the SDLC flow.
 
 ```
-Principles (organizational policy)
-  → ACF (architecture guardrails) + DCF (design standards)
-    → SAD, TDD, WDD (constrained by ACF/DCF)
-      → Execution (code reviewed against ACF security + DCF quality bars)
+Engineering Principles → ACF (architecture guardrails) + DCF (design standards)
+Product Principles     → PRD prompt (generation behavior) + ACF/DCF
+
+ACF + DCF → SAD, TDD, WDD (constrained by guardrails)
+         → Execution (code reviewed against ACF security + DCF quality bars)
 ```
 
 ## Mapping: Principles → Kit Artifacts
@@ -56,14 +57,14 @@ Principles (organizational policy)
 
 | Principle Section | Feeds Into |
 |---|---|
-| Work Classification | PRD generation input (problem framing) |
-| Diagnose Before Prescribing | PRD §1 Problem Statement |
-| Outcomes Over Output | PRD §2 Goals, §10 Acceptance Criteria |
-| Explicit Assumptions | PRD §7 Assumptions |
-| Strategic Alignment | PRD §1 Problem Statement (rationale) |
-| Clear Scope Boundaries | PRD §3 Non-Goals, §8 Out of Scope |
+| Work Classification | PRD prompt (problem framing and rigor scaling) |
+| Diagnose Before Prescribing | PRD prompt, PRD §1 Problem Statement |
+| Outcomes Over Output | PRD prompt, PRD §2 Goals, §10 Acceptance Criteria |
+| Explicit Assumptions | PRD prompt, PRD §7 Assumptions |
+| Strategic Alignment | PRD prompt, PRD §1 Problem Statement (rationale) |
+| Clear Scope Boundaries | PRD prompt, PRD §3 Non-Goals, §8 Out of Scope |
 | Traceability | Consistency check, downstream artifact flow |
-| Evidence Over Opinion | PRD generation input, ORD evidence standards |
+| Evidence Over Opinion | PRD prompt, ORD evidence standards |
 
 ## Principles Index
 
