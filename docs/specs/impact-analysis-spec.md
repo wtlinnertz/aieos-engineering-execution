@@ -1,0 +1,104 @@
+# Impact Analysis Specification
+
+The impact analysis assesses the downstream ripple effects of a proposed change to a frozen SDLC artifact. It maps what is affected and how severely, enabling informed re-entry decisions.
+
+## Upstream Dependencies
+
+- A proposed change: addendum draft, change description, bug report, or feature request
+- The target artifact type (which frozen artifact would be changed)
+- All frozen artifacts and their frozen addendums
+- Not all artifacts may be present — analyze only what exists, warn about missing artifacts
+
+## Impact Checks
+
+### 1. Downstream Artifact Impact
+**Rules**
+- Every downstream artifact in the chain below the change target must be accounted for
+- Each impacted artifact must identify the specific sections that reference or depend on the changed content
+- Each impacted artifact must have a severity classification (`must_revise`, `review_recommended`, `likely_unaffected`) with a reason
+- Missing downstream artifacts are warnings, not failures
+
+**Severity Definitions**
+- `must_revise` — The downstream artifact directly references changed content and would become inconsistent
+- `review_recommended` — The downstream artifact references related content that may be affected
+- `likely_unaffected` — The downstream artifact exists but does not reference the changed sections
+
+**Failure Examples**
+- PRD change affects SAD, but SAD is not listed in impacted artifacts
+- TDD is listed as impacted but has no severity classification
+- Impacted artifact has severity but no reason explaining why
+
+### 2. Work Item Impact
+**Rules**
+- WDD work items tracing to affected requirements, components, or interfaces must be identified
+- Each impacted work item must have a severity classification (`must_revise`, `review_recommended`)
+- Each impacted work item should note its current execution status if known (`not_started`, `in_progress`, `completed`, `unknown`)
+- Completed work items with `must_revise` severity must be flagged for re-verification
+- In-progress work items with `must_revise` severity must incorporate the change
+
+**Failure Examples**
+- Change affects a TDD interface but no WDD work items implementing that interface are listed
+- Work item is listed as impacted but has no severity classification
+- Completed work item has `must_revise` severity but is not flagged for re-verification
+
+### 3. Constraint Impact
+**Rules**
+- If the change affects ACF constraints (technology, compliance, operational) or DCF standards (coding, testing, documentation), all downstream artifacts inheriting those constraints must be identified
+- Constraint changes typically have broad impact — this must be flagged clearly
+- Each affected artifact must identify the specific constraint that propagates
+
+**Failure Examples**
+- ACF security constraint is changed but TDD security-related sections are not assessed
+- DCF testing standard is changed but no downstream artifacts are listed as inheriting the standard
+
+### 4. Non-Goal Impact
+**Rules**
+- If the change affects stated non-goals in the PRD, downstream artifacts that use those non-goals as scope boundaries must be identified
+- Removing or modifying a non-goal may expand downstream scope — this must be flagged
+- Each affected artifact must identify the specific non-goal boundary
+
+**Failure Examples**
+- PRD non-goal is removed but WDD items that were scoped based on that non-goal are not assessed
+- Non-goal change is identified but downstream scope expansion risk is not flagged
+
+### 5. Addendum Cascade
+**Rules**
+- If downstream artifacts already have frozen addendums, potential conflicts with the proposed change must be assessed
+- Conflicts between the proposed change and existing addendums must be reported
+- Missing addendum assessment when addendums exist is a failure
+
+**Failure Examples**
+- TDD has a frozen addendum but the impact analysis does not check for conflicts with the proposed PRD change
+- Conflict exists between proposed change and existing addendum but is not reported
+
+## Report Structure Rules
+
+The impact analysis report must include:
+- Change target artifact and sections affected
+- Impacted artifacts array (may be empty if no impact)
+- Impacted work items array (may be empty)
+- Hard gate results for all 5 impact checks
+- `re_entry_required` flag
+- `estimated_cascade_depth` count
+
+## Decision Rules
+
+- Status is `IMPACT` if any impacted artifact has severity `must_revise`
+- Status is `NO_IMPACT` if no downstream artifacts are affected or all are `likely_unaffected`
+- A hard gate FAILs if that check identifies at least one `must_revise` item
+- `re_entry_required` is true if any frozen artifact has `must_revise` severity
+- `estimated_cascade_depth` counts how many levels of the artifact chain are affected (e.g., PRD change affecting SAD and TDD = depth 2)
+- Missing downstream artifacts are warnings, not failures
+
+## Hard Gates
+
+### Impact Analysis Report (generated by impact analysis prompt)
+1. **downstream_artifact_impact** — Every downstream artifact in the chain is accounted for with severity and reason
+2. **work_item_impact** — WDD work items tracing to affected content are identified with severity
+3. **constraint_impact** — ACF/DCF constraint changes are traced to all inheriting downstream artifacts
+4. **non_goal_impact** — PRD non-goal changes are traced to downstream scope boundaries
+5. **addendum_cascade** — Downstream addendum conflicts are assessed
+
+### Impact Analysis Report Validation (evaluated by impact analysis validator)
+All 5 checks above, plus:
+6. **report_completeness** — Change target specified, impacted artifacts array present, hard gates present, `re_entry_required` and `estimated_cascade_depth` present
