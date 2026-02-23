@@ -58,14 +58,17 @@ The Reference Data Service is responsible for serving reference data to internal
 
 ```mermaid
 graph TB
-    subgraph Internal Network
-        C1[Service Consumer A] -->|GET /reference-data/key| RDS[Reference Data Service]
-        C2[Service Consumer B] -->|GET /reference-data/key| RDS
-        C3[Batch Process] -->|GET /reference-data/key| RDS
-        RDS -->|Read| DS[(Data Store)]
-        RDS -->|Logs| LA[Log Aggregator]
-        IDP[Identity Provider] -.->|Auth validation| RDS
+    C1[Service Consumer A] -->|"Sync HTTP GET"| RDS
+    C2[Service Consumer B] -->|"Sync HTTP GET"| RDS
+    C3[Batch Process] -->|"Sync HTTP GET"| RDS
+    IDP[Identity Provider] -.->|"Sync auth validation"| RDS
+
+    subgraph System Boundary
+        RDS[Reference Data Service]
     end
+
+    RDS -->|"Sync read"| DS[(Data Store)]
+    RDS -->|"Async log forwarding"| LA[Log Aggregator]
 ```
 
 ## 4. High-Level Architecture (White Box)
@@ -133,7 +136,7 @@ graph LR
 ## 7. Data and Integration
 
 ### Data Stores
-- **Reference Data Store**: Owned by the Reference Data Service. Read-only access pattern; data is loaded externally (out of scope for this service).
+- **Reference Data Store**: Owned by the Reference Data Service (authoritative source of truth for reference data within this system). This service has read-only access. Write access is held exclusively by an external data loading process outside this service's boundary; no component within this service has write access.
 
 ### Integration Patterns
 - Consumers integrate via synchronous HTTP GET requests
