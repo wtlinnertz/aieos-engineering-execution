@@ -331,6 +331,72 @@ The model scales best when **context is centralized** and **execution is decentr
 
 ---
 
+## Using Complexity Estimates for Planning
+
+WDD work items include a **Complexity Estimate** (S, M, or L) and a **Required Capabilities** list. These are planning signals — not commitments.
+
+### What the AI Provides
+
+The AI assigns complexity based on **structural factors visible in the WDD**:
+
+| Factor | What It Measures |
+|--------|-----------------|
+| Scope indicator count | Number of In Scope bullets |
+| Acceptance criteria count | Testing surface (including failure conditions) |
+| Dependency count | Coordination overhead with other work items |
+| Capability breadth | Number of distinct skill domains required |
+| Integration surface | Whether external systems or boundaries are involved |
+| Novelty | Whether patterns are well-established or unfamiliar |
+
+Each estimate includes a one-sentence justification referencing these factors, so the reasoning is transparent and auditable.
+
+### What the AI Cannot Know
+
+The AI has no knowledge of:
+- Your team's velocity or historical throughput
+- Individual team members' skill levels or availability
+- The current state of the codebase (tech debt, test coverage, documentation quality)
+- Your organization's ceremony overhead (PR review turnaround, deployment windows, approval chains)
+- Whether "backend" work in your codebase is straightforward or involves a legacy system
+
+**This is why complexity estimates are advisory, not hard gates.**
+
+### Calibrating S/M/L to Your Team
+
+Each team should establish their own calibration table that maps S/M/L to effort ranges based on actual velocity data. Example:
+
+| Size | Typical Effort (Team A) | Typical Effort (Team B) |
+|------|------------------------|------------------------|
+| S | 2–4 hours | Half day |
+| M | 1–2 days | 1–3 days |
+| L | 3–5 days | 3–7 days |
+
+To build this calibration:
+1. Run the kit on 2–3 initiatives without calibrating
+2. Record actual effort per work item alongside the AI's S/M/L estimate
+3. After 15–20 completed work items, calculate your team's average effort per size
+4. Use that as your planning baseline — update quarterly as the team evolves
+
+### How POs and PDMs Should Use This
+
+**For sprint planning:**
+- Use Required Capabilities to identify *who* can do the work
+- Use Complexity Estimate to estimate *how much* work it is (after calibration)
+- Use Dependencies to determine *ordering* constraints
+- Use Work Groups to identify *what can be parallelized*
+
+**For capacity planning:**
+- Sum the calibrated effort per size across work items
+- Compare against available team capacity per capability domain
+- Identify bottlenecks where too many items require the same capability
+
+**What to watch for:**
+- If the AI consistently over- or under-estimates relative to your team's experience, adjust your calibration — don't change the AI's sizing factors
+- If most items are sized L, the WDD may need further decomposition (granularity rules may not be strict enough)
+- If all items are sized S, the TDD scope may be too small for structured governance overhead
+
+---
+
 ## Common Failure Modes
 
 Watch for:

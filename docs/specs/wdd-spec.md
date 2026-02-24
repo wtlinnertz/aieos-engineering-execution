@@ -94,6 +94,41 @@ The WDD must decompose a frozen TDD into atomic, executable work items grouped i
 - Role-based labels ("Senior Engineer", "Tech Lead")
 - Overly broad labels that apply to every item ("engineering", "development")
 
+### Complexity Estimate
+
+**Rules**
+- Every work item must include a Complexity Estimate: S | M | L
+- Complexity is a relative sizing signal for planning, not a commitment or deadline
+- The estimate must be accompanied by a one-sentence justification referencing the sizing factors
+
+**Sizing Definitions**
+
+| Size | Label | Characteristics |
+|------|-------|----------------|
+| **S** | Small | Single concern; no dependencies on other work items; straightforward implementation with well-understood patterns; ≤ 2 acceptance criteria |
+| **M** | Medium | Multiple concerns or one dependency on another work item; moderate implementation requiring some integration; 3–4 acceptance criteria |
+| **L** | Large | Cross-cutting concerns, multiple dependencies, or unfamiliar/complex domain; significant integration or coordination required; ≥ 5 acceptance criteria |
+
+**Sizing Factors (used to determine S/M/L)**
+1. **Scope indicator count** — Number of In Scope bullets (more bullets → higher complexity)
+2. **Acceptance criteria count** — Number of ACs including failure conditions (more criteria → more testing surface)
+3. **Dependency count** — Number of work item dependencies (more dependencies → more coordination)
+4. **Capability breadth** — Number of distinct Required Capabilities (more domains → more expertise needed)
+5. **Integration surface** — Whether the item touches external systems, APIs, or infrastructure boundaries
+6. **Novelty** — Whether the item uses well-established patterns or requires unfamiliar approaches
+
+**Important Limitations**
+- These estimates reflect structural complexity visible in the WDD, not actual effort hours
+- The AI has no knowledge of team velocity, codebase state, or individual skill levels
+- Teams must calibrate S/M/L to their own velocity data (e.g., "S = half day, M = 1-2 days, L = 3-5 days" — defined per team, not per kit)
+- Estimates are advisory — they do not gate validation or freeze
+
+**Failure Examples**
+- Missing complexity estimate
+- Estimate without justification
+- Justification referencing team-specific context the AI cannot know ("this is easy for our team")
+- Using numeric hour estimates instead of S/M/L
+
 ### Work Groups (§3)
 
 **Rules**

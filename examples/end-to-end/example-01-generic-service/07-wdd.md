@@ -32,6 +32,7 @@
 - Parent TDD Section: Sections 4, 6 (Interfaces, Failure Handling)
 - Assignee Type: Either
 - Required Capabilities: backend, database, API-design, security
+- Complexity Estimate: M — Multiple concerns (API, data access, auth) with external integration across 4 acceptance criteria, but uses well-established patterns.
 
 #### Intent (1–2 sentences)
 Implement the read-only API endpoint with data access layer and authentication validation, returning reference data by key with correct status codes.
@@ -85,6 +86,7 @@ Implement the read-only API endpoint with data access layer and authentication v
 - Parent TDD Section: Section 4 (Interfaces — health endpoint)
 - Assignee Type: Either
 - Required Capabilities: backend, API-design
+- Complexity Estimate: S — Single concern with no item dependencies, 2 acceptance criteria, and straightforward implementation pattern.
 
 #### Intent (1–2 sentences)
 Implement the health check endpoint that reports service operational status.
@@ -127,6 +129,7 @@ Implement the health check endpoint that reports service operational status.
 - Parent TDD Section: Section 7 (Observability)
 - Assignee Type: Either
 - Required Capabilities: backend, observability
+- Complexity Estimate: S — Single middleware concern with 2 acceptance criteria and one dependency; well-understood logging pattern.
 
 #### Intent (1–2 sentences)
 Implement structured JSON request logging for all API requests to enable operational observability.
@@ -170,6 +173,7 @@ Implement structured JSON request logging for all API requests to enable operati
 - Parent TDD Section: Section 5 (Build and Deploy)
 - Assignee Type: Human
 - Required Capabilities: infrastructure, CI-CD, container
+- Complexity Estimate: M — Moderate integration across 3 infrastructure dependencies with pipeline coordination; 3 acceptance criteria spanning build, deploy, and verification.
 
 #### Intent (1–2 sentences)
 Configure container build and CI/CD pipeline deployment for the Reference Data Service to the standard platform runtime.
@@ -217,6 +221,7 @@ Configure container build and CI/CD pipeline deployment for the Reference Data S
 - Parent TDD Section: Section 8 (Testing Strategy)
 - Assignee Type: Either
 - Required Capabilities: backend, testing
+- Complexity Estimate: M — Multiple test types (unit + integration + failure) across multiple components with 4 acceptance criteria; requires running service for integration tests.
 
 #### Intent (1–2 sentences)
 Implement unit tests and integration tests for the Reference Data Service as defined in the TDD testing strategy.

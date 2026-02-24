@@ -50,6 +50,9 @@ OUTPUT FORMAT (MANDATORY):
 ADVISORY CHECKS (non-blocking):
 - If any work item is missing Required Capabilities, emit a warning (not a blocking issue).
 - If capabilities use role titles or team names instead of skill domains, emit a warning.
+- If any work item is missing a Complexity Estimate (S/M/L), emit a warning.
+- If a Complexity Estimate is present but has no justification, emit a warning.
+- If a Complexity Estimate appears inconsistent with the work item's observable factors (e.g., marked S but has 5+ acceptance criteria, multiple dependencies, and 4+ capabilities), emit a warning noting the discrepancy.
 
 DECISION RULE:
 - If ANY hard gate fails, status MUST be FAIL.

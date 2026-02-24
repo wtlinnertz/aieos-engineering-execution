@@ -24,6 +24,7 @@ Repeat this section for each work item.
 - Parent TDD Section:
 - Assignee Type: AI Agent | Human | Either
 - Required Capabilities: (e.g., backend, database, API-design, security)
+- Complexity Estimate: S | M | L — (one-sentence justification)
 
 #### Intent (1–2 sentences)
 Exactly what this work item accomplishes.
