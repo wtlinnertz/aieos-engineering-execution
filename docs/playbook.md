@@ -179,16 +179,38 @@ Before generating ACF, DCF, or SAD for a project with an existing codebase, run 
 - Testing infrastructure and code conventions
 - Security patterns and deployment configuration
 
-The codebase analysis report is **input material**, not a governed artifact. It is not frozen, validated, or promoted. The human reviews the report for accuracy, then uses it as source material when generating ACF, DCF, and SAD — the same way `code-craftsmanship.md` or `product-craftsmanship.md` are used as source material.
+The codebase analysis report is **input material**, not a governed artifact. It is not frozen, validated, or promoted.
+
+### Brownfield Intake Sequence
+
+The codebase analysis prompt produces four outputs. Three of them map directly to intake form templates:
+
+| Codebase Analysis Output | Fills This Intake Form | Feeds This Artifact |
+|--------------------------|----------------------|-------------------|
+| **Output A**: Architecture Context | `architecture-context-template.md` | ACF |
+| **Output B**: Design Context | `design-context-template.md` | DCF |
+| **Output C**: System Context | `system-context-template.md` | SAD |
+| **Output D**: Ambiguities and Gaps | No template — human review only | All |
+
+**Step-by-step:**
+
+1. **Run codebase analysis** — Provide the codebase to `codebase-analysis-prompt.md`. It produces Outputs A, B, C, and D.
+2. **Review Output D first** — Ambiguities and gaps require human judgment. Resolve what you can before proceeding.
+3. **Review and edit each pre-filled intake form** — The AI extracted facts from the codebase, but it may have missed context, misidentified patterns, or left fields blank. The human corrects, adds organizational context (e.g., PRD constraints, compliance requirements, team standards), and confirms accuracy.
+4. **Use the reviewed intake forms as inputs** — Feed the corrected `architecture-context-template.md` to `acf-prompt.md`, the corrected `design-context-template.md` to `dcf-prompt.md`, and the corrected `system-context-template.md` to `sad-prompt.md`.
+5. **Continue the normal artifact flow** — Generate, validate, freeze as usual.
+
+**Important:** Pre-filled forms are a starting point, not a finished product. The human must review and edit before using them as generation input. Fields the AI could not determine from the codebase are left blank — the human fills these from organizational knowledge, PRD constraints, or team standards.
 
 ### How Brownfield Changes the Flow
 
 | Step | Greenfield | Brownfield |
 |------|-----------|------------|
 | Codebase Analysis | Not needed | Run `codebase-analysis-prompt.md` first |
-| ACF | Define from organizational standards | Define from organizational standards + analysis report |
-| DCF | Define from organizational standards | Define from organizational standards + analysis report |
-| SAD | Design from scratch | Describe the existing architecture relevant to the change, informed by analysis report |
+| Intake Forms | Human fills from scratch | AI pre-fills from codebase analysis; human reviews and edits |
+| ACF | Define from organizational standards | Define from organizational standards + reviewed intake form |
+| DCF | Define from organizational standards | Define from organizational standards + reviewed intake form |
+| SAD | Design from scratch | Describe the existing architecture, informed by reviewed intake form |
 | TDD onward | No difference | No difference |
 
 The artifact flow itself does not change. The codebase analysis simply provides the factual foundation that would otherwise require manual extraction by the human.
