@@ -47,6 +47,20 @@ Fill in what you know. Leave unknown sections blank — the SAD generation promp
 
 ---
 
+## Infrastructure Environment
+
+- Hosting and platform: (cloud provider, region(s), on-premises, hybrid)
+- Network topology: (load balancers, API gateways, CDN, DNS, firewall rules, VPC/subnet layout)
+- Container and orchestration: (Kubernetes cluster details, ECS services, Docker Compose topology)
+- Managed services: (databases, queues, caches, storage, serverless functions — services outside the application code)
+- Environment topology: (number of environments, promotion flow, how environments differ)
+- Scaling configuration: (auto-scaling rules, resource limits, rate limits)
+- Monitoring and alerting: (APM tools, log aggregation, alerting rules, dashboards)
+- Backup and recovery: (backup schedules, recovery procedures, RTO/RPO)
+- Infrastructure as Code: (Terraform, CloudFormation, Pulumi — location of IaC files if in repo)
+
+---
+
 ## Existing Documentation
 
 - README content summary:
@@ -73,4 +87,5 @@ Before handing this to the SAD generation prompt, confirm:
 - [ ] External integrations are listed
 - [ ] Data stores and ownership are documented
 - [ ] Security boundaries are identified
+- [ ] Infrastructure environment is documented (hosting, networking, managed services)
 - [ ] Known concerns are captured for the SAD's Risks section

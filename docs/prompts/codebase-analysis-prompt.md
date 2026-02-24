@@ -14,6 +14,8 @@ Extract the architectural, technical, and operational facts from an existing cod
 
 INPUTS:
 - Access to the existing codebase (source files, configuration, tests, documentation)
+- Infrastructure-as-Code files if present (Terraform, CloudFormation, Pulumi, Ansible, Kubernetes manifests, Helm charts, Docker Compose)
+- CI/CD pipeline definitions (GitHub Actions, GitLab CI, Jenkins, etc.)
 - Optionally, any existing documentation the team has (READMEs, wikis, architecture notes)
 
 OUTPUT:
@@ -58,6 +60,17 @@ Produce a filled `architecture-context-template.md`. Use the exact template stru
 - Target environments: <detected from configs, Dockerfiles, CI/CD targets>
 - Any deployment constraints: <detected or leave blank>
 
+## Infrastructure and Platform
+
+- Cloud provider or hosting platform: <detected from IaC files, CI/CD targets, SDK imports>
+- Infrastructure as Code: <detected from Terraform, CloudFormation, Pulumi, Ansible files>
+- Container orchestration: <detected from Kubernetes manifests, Helm charts, ECS task definitions, Docker Compose>
+- Networking: <detected from IaC network resources, ingress definitions, load balancer configs>
+- Managed services consumed: <detected from IaC resource definitions, SDK clients, connection strings>
+- Scaling approach: <detected from auto-scaling configs, HPA definitions, or leave blank>
+- Observability stack: <detected from monitoring configs, agent definitions, dashboard files>
+- Disaster recovery and backup: <leave blank — rarely determinable from code alone>
+
 ## Testing
 
 - Test framework: <detected from config and test files>
@@ -80,6 +93,7 @@ Produce a filled `architecture-context-template.md`. Use the exact template stru
 - [x/blank] Secrets handling is defined
 - [x/blank] State management approach is clear
 - [x/blank] Distribution/deployment method is specified
+- [x/blank] Infrastructure and platform details are captured
 - [ ] Hard constraints from the PRD are referenced (requires human input)
 ```
 
@@ -99,7 +113,7 @@ The design-context-template covers: design principles, quality bars, testing sta
 
 Produce a filled `system-context-template.md`. Use the exact template structure. Fill in each field based on codebase analysis. Leave fields blank only if the information cannot be determined from the codebase.
 
-The system-context-template covers: system structure, external integrations, data patterns, security boundaries, existing documentation, and known architectural concerns. Fill in all sections that can be determined from the codebase.
+The system-context-template covers: system structure, external integrations, data patterns, security boundaries, infrastructure environment, existing documentation, and known architectural concerns. Fill in all sections that can be determined from the codebase. For the Infrastructure Environment section, extract what is determinable from IaC files, Kubernetes manifests, CI/CD pipelines, and monitoring configurations. Note that much infrastructure context (network topology, environment differences, scaling rules, DR procedures) typically requires human input beyond what the codebase contains.
 
 ---
 
@@ -112,6 +126,7 @@ Report items that require human judgment before proceeding with artifact generat
 - Missing test coverage for significant components
 - Undocumented integrations or dependencies
 - Areas where conventions are not followed
+- Infrastructure details that could not be determined from code (network topology, environment differences, scaling rules, DR procedures, managed service configurations)
 - Information that could not be determined from the codebase alone
 
 ---

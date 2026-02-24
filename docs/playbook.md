@@ -202,6 +202,8 @@ The codebase analysis prompt produces four outputs. Three of them map directly t
 
 **Important:** Pre-filled forms are a starting point, not a finished product. The human must review and edit before using them as generation input. Fields the AI could not determine from the codebase are left blank — the human fills these from organizational knowledge, PRD constraints, or team standards.
 
+**Infrastructure and platform context:** The codebase analysis extracts infrastructure details from IaC files (Terraform, CloudFormation, Pulumi), Kubernetes manifests, CI/CD pipelines, and monitoring configurations when present in the repository. However, much infrastructure context lives outside the codebase — network topology, environment differences, managed service configurations, scaling rules, disaster recovery procedures, and cloud console settings. During the human review step (Step 3 above), supplement the pre-filled infrastructure sections from operational knowledge, cloud provider consoles, network diagrams, runbooks, and team expertise. The Architecture Context and System Context intake forms include dedicated infrastructure sections for this purpose.
+
 ### How Brownfield Changes the Flow
 
 | Step | Greenfield | Brownfield |

@@ -48,6 +48,19 @@ Fill in what you know. Leave unknown sections blank — the ACF generation promp
 
 ---
 
+## Infrastructure and Platform
+
+- Cloud provider or hosting platform: (e.g., AWS, Azure, GCP, on-premises, hybrid)
+- Infrastructure as Code: (e.g., Terraform, CloudFormation, Pulumi, Ansible — or manually provisioned)
+- Container orchestration: (e.g., Kubernetes, ECS, Docker Compose, none)
+- Networking: (e.g., VPC layout, load balancers, CDN, DNS, API gateway)
+- Managed services consumed: (e.g., RDS, SQS, S3, Cloud Functions — services not visible in application code)
+- Scaling approach: (e.g., auto-scaling groups, horizontal pod autoscaler, fixed capacity)
+- Observability stack: (e.g., Prometheus + Grafana, Datadog, CloudWatch, ELK)
+- Disaster recovery and backup: (e.g., multi-region, backup schedule, RTO/RPO targets)
+
+---
+
 ## Testing
 
 - Test framework: (e.g., Vitest, Jest, pytest, JUnit)
@@ -78,4 +91,5 @@ Before handing this to the ACF generation prompt, confirm:
 - [ ] Secrets handling is defined
 - [ ] State management approach is clear
 - [ ] Distribution/deployment method is specified
+- [ ] Infrastructure and platform details are captured (if applicable)
 - [ ] Hard constraints from the PRD are referenced
