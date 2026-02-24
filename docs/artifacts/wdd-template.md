@@ -52,6 +52,11 @@ Include at least one failure condition per acceptance criterion.
 - [ ] Tests passing (type specified)
 - [ ] Evidence/logs generated
 
+#### Interface Contract References
+List TDD §4 contracts this item implements or consumes. State role (provider or consumer).
+Omit or state "None" if internal to a single component.
+- Contract 1:
+
 #### Dependencies
 List dependencies or state "None".
 - Dependency 1:

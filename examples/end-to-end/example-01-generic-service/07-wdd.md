@@ -71,6 +71,9 @@ Implement the read-only API endpoint with data access layer and authentication v
 - [ ] Integration tests passing for success, not-found, unauthorized, and failure scenarios
 - [ ] Code reviewed
 
+#### Interface Contract References
+- TDD-EX-001 §4 `GET /reference-data/{key}` — **provider** (implements this contract)
+
 #### Dependencies
 - Data store must be provisioned and accessible
 - Platform identity provider must be configured
@@ -114,6 +117,9 @@ Implement the health check endpoint that reports service operational status.
 - [ ] Unit tests passing for health endpoint
 - [ ] Health endpoint manually verified in test environment
 - [ ] Code reviewed
+
+#### Interface Contract References
+- TDD-EX-001 §4 `GET /health` — **provider** (implements this contract)
 
 #### Dependencies
 - WDD-EX-001 must be complete (health endpoint integrates with the same service)
@@ -159,6 +165,9 @@ Implement structured JSON request logging for all API requests to enable operati
 - [ ] Structured log output verified in test environment
 - [ ] Code reviewed
 
+#### Interface Contract References
+None — internal to single component (logging middleware does not implement or consume a TDD §4 interface)
+
 #### Dependencies
 - WDD-EX-001 must be complete (logging middleware wraps the API endpoints)
 
@@ -203,6 +212,9 @@ Configure container build and CI/CD pipeline deployment for the Reference Data S
 - [ ] Pipeline configuration merged
 - [ ] Successful deployment verified via pipeline logs
 - [ ] Health check passing post-deployment
+
+#### Interface Contract References
+None — infrastructure and pipeline configuration (does not implement or consume a TDD §4 interface)
 
 #### Dependencies
 - WDD-EX-001, WDD-EX-002, and WDD-EX-003 must be complete (application code must exist to build)
@@ -257,6 +269,10 @@ Implement unit tests and integration tests for the Reference Data Service as def
 - [ ] All unit tests passing
 - [ ] All integration tests passing
 - [ ] Test report generated and accessible as build artifact
+
+#### Interface Contract References
+- TDD-EX-001 §4 `GET /reference-data/{key}` — **consumer** (integration tests call this contract)
+- TDD-EX-001 §4 `GET /health` — **consumer** (integration tests call this contract)
 
 #### Dependencies
 - WDD-EX-001, WDD-EX-002, and WDD-EX-003 must be complete (API must be functional for integration tests)

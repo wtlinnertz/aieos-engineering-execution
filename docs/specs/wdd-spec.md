@@ -30,7 +30,7 @@ The WDD must decompose a frozen TDD into atomic, executable work items grouped i
 ### Work Items (§2)
 
 **Rules**
-- Each work item must have: Intent, In Scope, Out of Scope, Inputs, Outputs, Acceptance Criteria, Definition of Done, Dependencies, Rollback/Failure Behavior, Required Capabilities
+- Each work item must have: Intent, In Scope, Out of Scope, Inputs, Outputs, Acceptance Criteria, Definition of Done, Dependencies, Rollback/Failure Behavior, Required Capabilities, Interface Contract References (when applicable)
 - Intent must be 1–2 sentences describing exactly what the item accomplishes
 - Inputs and outputs must be explicitly listed
 - Dependencies must be explicitly listed or stated as "None"
@@ -128,6 +128,19 @@ The WDD must decompose a frozen TDD into atomic, executable work items grouped i
 - Estimate without justification
 - Justification referencing team-specific context the AI cannot know ("this is easy for our team")
 - Using numeric hour estimates instead of S/M/L
+
+### Interface Contract References
+
+**Rules**
+- Work items that implement or consume an interface crossing a component boundary must include an Interface Contract Reference identifying the specific TDD §4 contract
+- The reference must name the TDD interface and state the work item's role: **provider** (implements the contract) or **consumer** (calls or depends on the contract)
+- Work items that do not cross component boundaries should omit this field or state "None — internal to single component"
+- When two or more work items reference the same TDD contract (one as provider, one as consumer), they can be developed in parallel using stubs
+
+**Failure Examples**
+- Work item implements a cross-boundary API but has no Interface Contract Reference
+- Reference names the TDD but not the specific interface (e.g., "TDD §4" without naming the contract)
+- Role (provider/consumer) is missing
 
 ### Work Groups (§3)
 

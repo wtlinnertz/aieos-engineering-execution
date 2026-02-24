@@ -397,6 +397,63 @@ To build this calibration:
 
 ---
 
+## Parallel Development with Interface Contracts
+
+One of the most practical benefits of the TDD's **§4 Interfaces and Contracts** section is enabling developers to work in parallel across component boundaries — a frontend developer and a middleware developer, or a middleware developer and a database developer, coding simultaneously against an agreed contract.
+
+### How It Works
+
+The artifact flow naturally produces the contracts needed for parallel work:
+
+1. **SAD** defines the components, boundaries, and interaction types (sync API, async event, etc.)
+2. **TDD §4** specifies the exact contracts: inputs, outputs, schemas, error modes, backward compatibility
+3. **WDD** decomposes work so that each item references the specific TDD contract it implements or consumes
+4. **Developers** implement their side of the contract independently, using stubs or mocks for the other side
+
+The TDD contract is the "agreement" — once frozen, both sides code against it without waiting for each other.
+
+### Contract-First Development Pattern
+
+After the TDD is frozen, teams can follow this pattern:
+
+1. **Extract contracts** — Identify every interface in TDD §4 that crosses a component boundary
+2. **Assign sides** — Each side of the contract belongs to a different work item (and potentially a different developer)
+3. **Build stubs first** — Each developer creates a stub or mock of the *other* side from the TDD contract, then codes their implementation against it
+4. **Integrate against the contract** — When both sides are ready, integration testing verifies they match the contract
+
+This pattern works because TDD interfaces are required to be "concrete enough to implement without interpretation" — which also means they are concrete enough to mock without interpretation.
+
+### What Makes a Contract Stub-Ready
+
+A TDD interface contract enables parallel development when it includes:
+- **Complete input schemas** — the stub can validate incoming data
+- **Complete output schemas** — the stub can return realistic responses
+- **All error modes** — the stub can simulate failure scenarios
+- **Boundary identification** — developers know which SAD component owns each side
+
+If a developer cannot write a working stub from the TDD contract alone, the contract is not specific enough.
+
+### Using WDD for Coordination
+
+WDD work items that cross component boundaries include an **Interface Contract Reference** identifying the specific TDD §4 contract that governs the boundary. This makes dependencies explicit:
+
+- The developer implementing the *provider* side knows exactly what contract to satisfy
+- The developer implementing the *consumer* side knows exactly what to mock
+- The WDD dependency chain shows which items share a contract boundary
+
+When planning sprints, use the Interface Contract Reference to identify work items that can proceed in parallel (different sides of the same contract) versus items that must be sequential (same side, different layers).
+
+### When Contracts Change
+
+If a TDD contract needs to change after freeze, the standard re-entry protocol applies:
+1. Impact analysis identifies all work items referencing that contract
+2. Both sides of the contract are re-validated
+3. Any stubs or mocks built against the old contract must be updated
+
+This is why freezing the TDD before execution matters — it prevents the contract from shifting under developers who are already coding against it.
+
+---
+
 ## Common Failure Modes
 
 Watch for:

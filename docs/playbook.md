@@ -64,7 +64,8 @@ The SDLC flow is linear and gated:
   → PRD Validator
   → Freeze
 
-- ACF (`acf-prompt.md`)
+- Architecture Context (human intake)
+  → ACF (`acf-prompt.md`)
   → ACF Validator
   → Freeze
 
@@ -73,7 +74,8 @@ The SDLC flow is linear and gated:
   → SAD Validator
   → Freeze
 
-- DCF (`dcf-prompt.md`)
+- Design Context (human intake)
+  → DCF (`dcf-prompt.md`)
   → DCF Validator
   → Freeze
 
@@ -288,11 +290,13 @@ If an organization-wide DCF already exists and is frozen, skip this step and use
 
 The TDD prompt includes **intent verification**: the AI restates upstream intent in Section 1 before generating.
 
+TDD §4 (Interfaces and Contracts) defines the contracts that enable parallel development. Cross-boundary interfaces must be **stub-ready** — concrete enough that a developer implementing either side can write a working stub of the other side from the contract alone.
+
 ### Steps
 1. Generate TDD using `tdd-prompt.md` with frozen SAD and frozen DCF as inputs
 2. Run `tdd-validator.md` against the generated TDD
 3. Fix blocking issues only; re-run validator until PASS
-4. Human reviews and approves
+4. Human reviews and approves — verify that cross-boundary interfaces are stub-ready for parallel development
 5. Freeze TDD
 
 ---
@@ -307,7 +311,7 @@ The TDD prompt includes **intent verification**: the AI restates upstream intent
 **Gate:** Both validators PASS + human approval
 **Output:** Frozen WDD with all work items passing DoR
 
-The WDD prompt includes **intent verification**: the AI restates upstream intent in Section 1 before generating.
+The WDD prompt includes **intent verification**: the AI restates upstream intent in Section 1 before generating. Each work item also includes an **Interface Contract Reference** identifying which TDD §4 contract it implements (provider) or consumes (consumer), enabling parallel development coordination.
 
 ### Steps
 1. Generate WDD using `wdd-prompt.md` with frozen TDD as input
@@ -427,6 +431,8 @@ Once the WDD passes the DoR Validator, the consistency check, and human approval
 Each phase has a prompt that drives AI behavior and a gate that controls progression. Skipping phases weakens safety.
 
 **Execution order:** If a work item's inputs depend on another item's outputs, the dependency must be completed first. Execute items in dependency order. Independent items within the same work group may be executed in parallel if they share no file-level conflicts and the executor can maintain separate context for each. In practice, parallel execution is most valuable when different people (or separate AI sessions) work on different items that touch different subsystems. When items modify overlapping files, sequential execution avoids merge conflicts and context confusion. The execution plan marks items as "parallel-safe" or "sequential" based on file overlap analysis.
+
+**Parallel development with interface contracts:** When two work items reference the same TDD §4 contract — one as **provider** and one as **consumer** — they can be developed in parallel. Each developer builds a stub of the other side from the TDD contract, implements their side independently, then integrates when both are ready. The WDD's Interface Contract References identify these provider/consumer relationships explicitly. See `how-to-adapt.md` → "Parallel Development with Interface Contracts" for the full pattern.
 
 **Cancellation:** A human may cancel a work item at any point with a recorded reason. If other items depend on the cancelled item, assess and resolve the impact before continuing. Cancellation does not require re-entry unless the WDD itself needs to change.
 
@@ -915,7 +921,7 @@ Confirms:
 ### TDD Validator
 
 Confirms:
-- Interfaces and contracts are explicit
+- Interfaces and contracts are explicit; cross-boundary interfaces are stub-ready
 - Build and deployment steps are defined
 - Failure and rollback behavior is specified
 - Test strategy is clear

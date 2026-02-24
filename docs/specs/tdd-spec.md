@@ -72,6 +72,7 @@ The TDD must define how the system will be built, tested, deployed, and operated
 - External-facing interfaces (crossing the system boundary) must declare backward compatibility expectations
 - Versioning expectations defined where applicable
 - Interfaces must be concrete enough to implement without interpretation
+- Interfaces that cross component boundaries must be stub-ready: a developer implementing either side of the contract must be able to write a working stub or mock of the other side from the contract definition alone, without consulting external sources or making assumptions
 
 **Failure Examples**
 - Interface with undefined inputs or outputs
@@ -79,6 +80,7 @@ The TDD must define how the system will be built, tested, deployed, and operated
 - Vague interface description ("handles requests")
 - Interface with no reference to a SAD component or boundary
 - Public API with no backward compatibility statement
+- Interface between two components where the output schema is described in prose rather than structured fields (not stub-ready)
 
 ### Build and Deployment (§5)
 
@@ -177,7 +179,7 @@ The TDD must define how the system will be built, tested, deployed, and operated
 
 1. **intent_alignment** — Intent Summary present and consistent with SAD; no expansion
 2. **scope** — Scope explicitly defined; non-goals restated; no violations
-3. **interfaces** — Interfaces explicitly defined with inputs, outputs, and error modes
+3. **interfaces** — Interfaces explicitly defined with inputs, outputs, and error modes; cross-boundary interfaces are stub-ready
 4. **build_deploy** — Build and deployment steps defined and deterministic
 5. **failure_handling** — Failure modes defined with rollback/compensation behavior
 6. **testing** — Test types defined with pass/fail criteria; at least one failure test

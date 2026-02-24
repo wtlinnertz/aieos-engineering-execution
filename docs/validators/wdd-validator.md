@@ -53,6 +53,8 @@ ADVISORY CHECKS (non-blocking):
 - If any work item is missing a Complexity Estimate (S/M/L), emit a warning.
 - If a Complexity Estimate is present but has no justification, emit a warning.
 - If a Complexity Estimate appears inconsistent with the work item's observable factors (e.g., marked S but has 5+ acceptance criteria, multiple dependencies, and 4+ capabilities), emit a warning noting the discrepancy.
+- If a work item's inputs or outputs reference a TDD §4 interface that crosses a component boundary but no Interface Contract Reference is present, emit a warning.
+- If an Interface Contract Reference is present but does not specify the role (provider or consumer), emit a warning.
 
 DECISION RULE:
 - If ANY hard gate fails, status MUST be FAIL.

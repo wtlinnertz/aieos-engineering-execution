@@ -33,6 +33,12 @@ For each work item, infer Required Capabilities from:
 - Security-sensitive operations (e.g., auth, encryption → security capability)
 Use short domain labels. Do not use role titles or team names.
 
+INTERFACE CONTRACT REFERENCES:
+For each work item, determine whether it implements or consumes an interface that crosses a component boundary (as defined in TDD §4).
+- If yes: add an Interface Contract Reference naming the specific TDD §4 contract and the work item's role (provider or consumer)
+- If no: omit the field or state "None — internal to single component"
+When two work items reference the same contract (one as provider, one as consumer), they can be developed in parallel using stubs built from the TDD contract.
+
 COMPLEXITY ESTIMATION:
 For each work item, assign a Complexity Estimate (S, M, or L) by evaluating these factors:
 1. Scope indicator count — number of In Scope bullets
