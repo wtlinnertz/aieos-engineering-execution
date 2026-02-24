@@ -346,7 +346,8 @@ The WDD prompt includes **intent verification**: the AI restates upstream intent
 6. Run consistency check (see Step 6a)
 7. Human reviews and approves
 8. Freeze WDD
-9. Begin execution
+9. Optionally, run `team-composition-prompt.md` with the frozen WDD (and frozen TDD) to produce a team composition document identifying roles, required skills, deliverables, and parallel development opportunities. This is advisory — it informs staffing decisions but does not gate execution.
+10. Begin execution
 
 ---
 

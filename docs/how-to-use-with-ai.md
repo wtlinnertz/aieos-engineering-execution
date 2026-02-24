@@ -168,6 +168,16 @@ For validation, the input is always: the spec + the validator + the artifact bei
 
 The DoR Validator (`dor-validator.md`) is run per WDD work item, not against the full WDD.
 
+### Utility Prompts
+
+These prompts produce input material or advisory outputs — they are not governed artifacts with specs or validators.
+
+| Prompt | Purpose | Inputs |
+|--------|---------|--------|
+| `codebase-analysis-prompt.md` | Pre-fill intake forms for brownfield projects | Existing codebase |
+| `impact-analysis-prompt.md` | Assess downstream effects before modifying a frozen artifact | Frozen artifacts + proposed change |
+| `team-composition-prompt.md` | Derive team roles, skills, and deliverables from work items | Frozen WDD + Frozen TDD (recommended) |
+
 ---
 
 ## The Execution Loop
