@@ -177,6 +177,7 @@ These prompts produce input material or advisory outputs — they are not govern
 | `codebase-analysis-prompt.md` | Pre-fill intake forms for brownfield projects | Existing codebase |
 | `impact-analysis-prompt.md` | Assess downstream effects before modifying a frozen artifact | Frozen artifacts + proposed change |
 | `team-composition-prompt.md` | Derive team roles, skills, and deliverables from work items | Frozen WDD + Frozen TDD (recommended) |
+| `wdd-csv-export-prompt.md` | Export WDD work items as CSV for import into work management tools | Frozen WDD + optional field mapping override |
 
 ---
 

@@ -347,7 +347,8 @@ The WDD prompt includes **intent verification**: the AI restates upstream intent
 7. Human reviews and approves
 8. Freeze WDD
 9. Optionally, run `team-composition-prompt.md` with the frozen WDD (and frozen TDD) to produce a team composition document identifying roles, required skills, deliverables, and parallel development opportunities. This is advisory — it informs staffing decisions but does not gate execution.
-10. Begin execution
+10. Optionally, run `wdd-csv-export-prompt.md` with the frozen WDD to export work items as CSV for import into a work management tool (Jira, Azure DevOps, Linear, etc.). The prompt supports custom field mappings per tool. This is advisory — the human reviews the CSV before importing.
+11. Begin execution
 
 ---
 
