@@ -29,7 +29,7 @@ Produce a single CSV with one row per WDD work item and one header row.
 | Work Group | Group ID and Group Name | e.g., WG-1: Core API Functionality |
 | Dependencies | Dependencies field | Verbatim from WDD |
 | Required Capabilities | Required Capabilities field | Comma-separated list |
-| Complexity | Complexity Estimate size | S, M, L, or XL only (not the justification) |
+| Complexity | Complexity Estimate size | S, M, or L only (not the justification) |
 | Assignee Type | Assignee Type field | Human, AI Agent, or Either |
 | Rollback Behavior | Rollback / Failure Behavior | Verbatim from WDD |
 | Interface Contracts | Interface Contract References | Verbatim from WDD |
