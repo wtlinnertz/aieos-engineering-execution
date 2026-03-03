@@ -31,21 +31,29 @@ tests/
 
 ## Artifact Flow (Non-Negotiable Order)
 
-1. Product Brief (intake form) → PRD → PRD Validator → Freeze
-2. Architecture Context (intake form) → ACF → ACF Validator → Freeze
-3. PRD + ACF → SAD → SAD Validator → Freeze
-4. Design Context (intake form) → DCF → DCF Validator → Freeze
-5. SAD + DCF → TDD → TDD Validator → Freeze
-6. TDD → WDD → WDD Validator → DoR Validator → Consistency Check → Human Approval → Freeze
-7. WDD (frozen) → Execution Plan (`execution-plan-prompt.md`) → Human Approval
-8. Execute per work item in plan order (Tests → Plan → Code → Review)
-9. Execute → ORD → ORD Validator → Production Ready
+The PRD slot accepts input from two paths — both produce a frozen PRD and continue identically:
+
+- **Path A (Discovery entry):** Receive frozen DPRD from Product Intelligence Kit → place as `docs/sdlc/01-prd.md` → PRD acceptance check (`prd-validator.md`) → Freeze
+- **Path B (Direct entry):** Product Brief (intake form) → PRD (`prd-prompt.md`) → PRD Validator → Freeze
+
+After PRD is frozen (either path):
+
+1. Architecture Context (intake form) → ACF → ACF Validator → Freeze
+2. PRD + ACF → SAD → SAD Validator → Freeze
+3. Design Context (intake form) → DCF → DCF Validator → Freeze
+4. SAD + DCF → TDD → TDD Validator → Freeze
+5. TDD → WDD → WDD Validator → DoR Validator → Consistency Check → Human Approval → Freeze
+6. WDD (frozen) → Execution Plan (`execution-plan-prompt.md`) → Human Approval
+7. Execute per work item in plan order (Tests → Plan → Code → Review)
+8. Execute → ORD → ORD Validator → Production Ready
 
 Prerequisite documents must exist and be frozen before downstream artifacts are generated.
 
 **Brownfield projects**: Run `codebase-analysis-prompt.md` first to pre-fill intake forms for ACF, DCF, and SAD.
 
 **Re-entry / changes to frozen artifacts**: Use `impact-analysis-prompt.md` to assess downstream effects before modifying any frozen artifact.
+
+**Cross-kit re-entry (upstream DPRD change)**: If a Path A DPRD changes after EEK artifacts exist, run `impact-analysis-prompt.md` first, then follow the Cross-Kit Re-Entry Protocol in `docs/playbook.md`.
 
 ## Naming Conventions
 
@@ -111,6 +119,10 @@ Examples from history:
 - `docs: add WDD generation prompt`
 - `docs: align SAD template with validator requirements`
 
+## Governance Model Sync
+
+`docs/governance-model.md` must remain byte-for-byte identical across all AIEOS kits. When updating, update all kits simultaneously. This file is a shared contract — drift between kits breaks structural compatibility. See governance-model.md §15 for versioning and change protocol.
+
 ## What Not To Do
 
 - Do not introduce new document types without explicit request
@@ -119,3 +131,4 @@ Examples from history:
 - Do not add tool-specific references
 - Do not skip the artifact dependency order
 - Do not silently modify existing constraints
+- Do not modify a DPRD received via Path A — if the DPRD fails acceptance check, return it to the Product Intelligence Kit for correction

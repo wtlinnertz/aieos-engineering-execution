@@ -4,7 +4,18 @@ The PRD defines the problem, goals, scope, and success criteria for a product in
 
 ## Upstream Dependencies
 
-- Product Brief (intake form) or equivalent problem description
+This kit accepts PRDs from two entry paths. Both produce a frozen PRD that satisfies this spec.
+
+**Path A — Discovery Entry (from Product Intelligence Kit):**
+- Frozen Discovery PRD (DPRD) from the Product Intelligence Kit
+- The DPRD IS the PRD — it is NOT regenerated through `prd-prompt.md`
+- Place the DPRD as `docs/sdlc/01-prd.md` and validate directly against this spec using `prd-validator.md`
+- A DPRD that has passed the PIK's DPRD validator satisfies all 6 hard gates of this spec
+- Extra DPRD traceability sections (upstream artifact references) are not evaluated by `prd-validator.md` and do not cause failures
+
+**Path B — Direct Entry:**
+- Product Brief (intake form, see `product-brief-template.md`) or equivalent problem description
+- Generate a PRD using `prd-prompt.md`, then validate against this spec
 
 ## Required Sections
 

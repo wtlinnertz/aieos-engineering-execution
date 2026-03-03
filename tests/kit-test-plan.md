@@ -166,36 +166,94 @@ These checks verify that the kit's files are internally consistent — no broken
 
 ---
 
+### S-11: Cross-Kit Handoff Contract Integrity
+
+**What:** The inter-kit interface between the Product Intelligence Kit (upstream) and this kit (downstream) is correctly specified and internally consistent.
+
+**How:** Verify the following:
+
+1. **Hard gate alignment** — The 6 hard gates in `prd-spec.md` exactly match the 6 "Engineering Execution Kit Gates" listed in the Product Intelligence Kit's `discovery-prd-spec.md`. Same names, same count.
+
+2. **Dual entry path in prd-spec.md** — `prd-spec.md` Upstream Dependencies section explicitly documents:
+   - Path A: Frozen Discovery PRD (DPRD) from Product Intelligence Kit (no regeneration)
+   - Path B: Product Brief (intake form) for direct entry
+
+3. **Dual entry path in prd-prompt.md** — `prd-prompt.md` contains a conditional instruction:
+   - If input is a DPRD: do NOT generate a new PRD; the DPRD is the PRD; direct operator to validate with prd-validator.md
+   - If input is a Product Brief: generate a PRD per spec
+
+4. **Playbook Path A** — `playbook.md` Canonical Artifact Flow documents Path A: DPRD → PRD acceptance check (prd-validator.md) → freeze, and continues with same flow as Path B from that point.
+
+5. **Cross-kit re-entry protocol** — `playbook.md` documents what happens when a frozen DPRD changes after EEK artifacts have been created: EEK team runs impact analysis (`impact-analysis-prompt.md`) before incorporating the change.
+
+6. **Governance model sync rule** — `CLAUDE.md` contains a rule stating that `governance-model.md` must remain identical across all AIEOS kits.
+
+7. **Kickoff document removed** — `docs/product-intelligence-kit-kickoff.md` does NOT exist (it has been moved to the Product Intelligence Kit).
+
+8. **Cross-kit example exists in PIK** — `aieos-product-intelligence-kit/examples/cross-kit/README.md` exists and covers step-by-step handoff mechanics. `examples/cross-kit/01-prd-validation.json` exists as a sample acceptance check output using correct JSON schema.
+
+**Pass criteria:** All 8 sub-checks pass.
+
+---
+
 ## Part 2: Flow Scenarios
 
 Each scenario defines a specific path through the kit. Scenarios are designed so that together they cover all major dimensions.
 
 ### Coverage Matrix
 
-| Dimension | F-01 | F-02 | F-03 | F-04 | F-05 | F-06 | F-07 | F-08 | F-09 | F-10 |
-|-----------|------|------|------|------|------|------|------|------|------|------|
-| Greenfield | x | | x | x | x | | x | x | | x |
-| Brownfield | | x | | | | x | | | x | |
-| New ACF/DCF | x | x | | | | | | | x | |
-| Reuse ACF/DCF | | | x | | | | | | | |
-| Validator PASS 1st try | x | x | | | | | | | | |
-| Validator FAIL + fix | | | x | | | | | | | |
-| Repeated failure → re-entry | | | | x | | | | | | |
-| No addendums | x | x | x | | | x | x | x | x | |
-| Addendum + cascade | | | | | x | | | | | |
-| Re-entry w/ impact analysis | | | | x | | | | | | |
-| AI-assigned work items | x | x | x | x | x | x | | | x | x |
-| Human-assigned work items | | | | | | | x | | | |
-| Sequential execution | x | x | x | x | x | x | x | | x | |
-| Parallel execution | | | | | | | | x | | |
-| Phase 3 happy path | x | x | | | | x | | x | x | |
-| Phase 3 escalation (3 failures) | | | | | | | | | | x |
-| Phase 3 context recovery | | | x | | | | | | | |
-| Single work group | | x | | | | | x | | | |
-| Multiple work groups + gates | x | | x | x | x | x | | x | x | |
-| Consistency PASS | x | x | | | | x | x | x | x | |
-| Consistency FAIL | | | | | x | | | | | |
-| Work item cancellation | | | | | | | | | | x |
+| Dimension | F-00 | F-01 | F-02 | F-03 | F-04 | F-05 | F-06 | F-07 | F-08 | F-09 | F-10 |
+|-----------|------|------|------|------|------|------|------|------|------|------|------|
+| DPRD entry path (from PIK) | x | | | | | | | | | | |
+| Product Brief entry path | | x | x | x | x | x | x | x | x | x | x |
+| Greenfield | x | x | | x | x | x | | x | x | | x |
+| Brownfield | | | x | | | | x | | | x | |
+| New ACF/DCF | x | x | x | | | | | | | x | |
+| Reuse ACF/DCF | | | | x | | | | | | | |
+| Validator PASS 1st try | x | x | x | | | | | | | | |
+| Validator FAIL + fix | | | | x | | | | | | | |
+| Repeated failure → re-entry | | | | | x | | | | | | |
+| No addendums | x | x | x | x | | | x | x | x | x | |
+| Addendum + cascade | | | | | | x | | | | | |
+| Re-entry w/ impact analysis | | | | | x | | | | | | |
+| AI-assigned work items | x | x | x | x | x | x | x | | | x | x |
+| Human-assigned work items | | | | | | | | x | | | |
+| Sequential execution | x | x | x | x | x | x | x | x | | x | |
+| Parallel execution | | | | | | | | | x | | |
+| Phase 3 happy path | x | x | x | | | | x | | x | x | |
+| Phase 3 escalation (3 failures) | | | | | | | | | | | x |
+| Phase 3 context recovery | | | | x | | | | | | | |
+| Single work group | | | x | | | | | x | | | |
+| Multiple work groups + gates | x | x | | x | x | x | x | | x | x | |
+| Consistency PASS | x | x | x | | | | x | x | x | x | |
+| Consistency FAIL | | | | | | x | | | | | |
+| Work item cancellation | | | | | | | | | | | x |
+
+---
+
+### F-00: Discovery PRD Entry Path (From Product Intelligence Kit)
+
+**What:** Complete end-to-end flow where the PRD slot is filled by a frozen Discovery PRD (DPRD) delivered from the Product Intelligence Kit. No PRD generation step — the DPRD is accepted as-is and validated.
+
+**Preconditions:** Frozen, validated DPRD from the Product Intelligence Kit. No existing ACF or DCF.
+
+**Flow:**
+
+| Step | Action | Files Used | Inputs | Expected Output | Verify |
+|------|--------|-----------|--------|-----------------|--------|
+| 1 | Receive frozen DPRD from Product Intelligence Kit | — | Frozen DPRD document | DPRD placed as `docs/sdlc/01-prd.md` in consuming project | File exists at correct path |
+| 2 | Run PRD acceptance check | `prd-spec.md` + `prd-validator.md` | DPRD (as 01-prd.md) | PASS JSON (6 gates) | All 6 PRD hard gates pass; extra DPRD traceability sections do not cause failures |
+| 3 | Freeze PRD slot | — | — | Frozen PRD (the DPRD) | No regeneration occurred |
+| 4 | Human fills architecture context | `architecture-context-template.md` | Human knowledge | Completed intake form | Same as F-01 step 5 |
+| 5–36 | ACF → SAD → DCF → TDD → WDD → Execute → ORD | (same as F-01 steps 6–36) | — | — | Same verifications as F-01 |
+
+**Key verifications:**
+- DPRD is NOT regenerated — it is placed directly as `01-prd.md` and validated
+- Extra DPRD sections (upstream artifact references: PFD, VH, AR, EL) do not trigger PRD validator failures — the validator only evaluates the 6 core gates
+- PRD hard gates pass: problem_definition, goals, scope, requirements, constraints, readiness
+- After acceptance validation, the flow is identical to F-01 from step 5 onward
+- If DPRD fails PRD acceptance check: the issue belongs in the DPRD — trigger PIK re-entry protocol, do not modify the DPRD in this kit
+- Traceability from PRD → SAD → TDD → WDD is maintained exactly as in F-01
 
 ---
 
@@ -560,11 +618,13 @@ Use this checklist to track which tests have been run and their results.
 | S-08: Intake Template Completeness | PASS | All 4 intake templates exist and are correctly referenced by their prompts |
 | S-09: Codebase Analysis Output Alignment | PASS | Output A embeds architecture-context-template structure exactly. Outputs B and C reference their templates by name with "use exact template structure" instruction. |
 | S-10: Consistency Spec Check Count | PASS | All 3 sources agree: spec (8 checks + report_completeness), playbook (8 checks listed), validator (8 + report_completeness = 9 hard gates) |
+| S-11: Cross-Kit Handoff Contract Integrity | PASS | All 8 sub-checks pass: gate alignment, dual entry in prd-spec, dual entry in prd-prompt, playbook Path A, cross-kit re-entry protocol, governance sync rule, kickoff doc removed, cross-kit example exists in PIK |
 
 ### Flow Scenarios
 
 | Scenario | Status | Issues Found |
 |----------|--------|--------------|
+| F-00: Discovery PRD Entry Path | | |
 | F-01: Greenfield Happy Path | | |
 | F-02: Brownfield with Codebase Analysis | | |
 | F-03: Reuse ACF/DCF + Validator Fix Cycle | | |
@@ -582,9 +642,10 @@ Use this checklist to track which tests have been run and their results.
 
 Run tests in this order for maximum early signal:
 
-1. **Structural checks first** (S-01 through S-10) — these are fast, mechanical, and catch broken plumbing
-2. **F-01: Greenfield Happy Path** — validates the core flow works end-to-end
-3. **F-02: Brownfield with Codebase Analysis** — validates the brownfield additions
-4. **F-03: Reuse ACF/DCF + Fix Cycle** — validates validator failure handling
-5. **F-04: Re-entry Protocol** — validates the most complex governance path
-6. **Remaining scenarios** — in any order, based on which paths your organization uses most
+1. **Structural checks first** (S-01 through S-11) — these are fast, mechanical, and catch broken plumbing
+2. **F-00: Discovery PRD Entry Path** — validates the cross-kit handoff works end-to-end
+3. **F-01: Greenfield Happy Path** — validates the direct-entry core flow works end-to-end
+4. **F-02: Brownfield with Codebase Analysis** — validates the brownfield additions
+5. **F-03: Reuse ACF/DCF + Fix Cycle** — validates validator failure handling
+6. **F-04: Re-entry Protocol** — validates the most complex governance path
+7. **Remaining scenarios** — in any order, based on which paths your organization uses most

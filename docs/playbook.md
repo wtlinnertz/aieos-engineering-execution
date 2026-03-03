@@ -55,14 +55,36 @@ This playbook has three parts:
 
 # Part 1: The Process
 
-## Canonical Artifact Flow
+## PRD Entry Paths
 
-The SDLC flow is linear and gated:
+The PRD slot is the entry point to this kit. It accepts input from two paths. Both produce a frozen PRD and continue with the same flow.
 
-- Product Brief (human intake)
-  → PRD (`prd-prompt.md`)
+**Path A — From Product Intelligence Kit (Discovery Entry):**
+The Product Intelligence Kit produces a Frozen Discovery PRD (DPRD) as its terminal artifact. The DPRD is delivered to this kit and placed directly as the PRD — no regeneration occurs.
+
+```
+Frozen DPRD (from Product Intelligence Kit)
+  → Place as docs/sdlc/01-prd.md
+  → PRD Acceptance Check (prd-validator.md — confirmation only, no generation)
+  → Save result as docs/sdlc/01-prd-validation.json
+  → If PASS: freeze PRD slot → continue with ACF step below
+  → If FAIL: return failing validator output to PIK team; do not begin ACF
+```
+
+**Path B — Direct Entry:**
+When no upstream discovery process was used, a human fills the Product Brief intake form and a PRD is generated from it.
+
+```
+Product Brief (human intake)
+  → PRD (prd-prompt.md)
   → PRD Validator
   → Freeze
+  → Continue with ACF step below
+```
+
+## Canonical Artifact Flow
+
+After the PRD slot is frozen (via either path above), the flow is identical:
 
 - Architecture Context (human intake)
   → ACF (`acf-prompt.md`)
@@ -221,15 +243,30 @@ The artifact flow itself does not change. The codebase analysis simply provides 
 
 ## Step 1: PRD (Product Requirements Document)
 
-**What:** Define the problem and why it matters.
+**What:** Fill the PRD slot — either by receiving a Frozen Discovery PRD from the Product Intelligence Kit (Path A), or by generating one from a Product Brief (Path B). Both paths produce a frozen PRD. See the **PRD Entry Paths** section above for the full decision flow.
 
-**Prompt:** `prd-prompt.md`
-**Inputs:** Product Brief (human-written intake)
-**Validator:** `prd-validator.md`
-**Gate:** Validator PASS + human approval
 **Output:** Frozen PRD
 
-### Steps
+### Path A — Discovery PRD (from Product Intelligence Kit)
+
+**Inputs:** Frozen Discovery PRD (DPRD)
+**Prompt:** None — no generation required
+**Validator:** `prd-validator.md` (acceptance check only)
+
+1. Receive frozen DPRD from Product Intelligence Kit
+2. Place DPRD as `docs/sdlc/01-prd.md`
+3. Run `prd-validator.md` against the DPRD (acceptance check — not generation)
+4. Save result as `docs/sdlc/01-prd-validation.json`
+5. If PASS: freeze PRD slot
+6. If FAIL: return failing validator output to PIK team — do not begin ACF
+
+### Path B — Direct Entry (Product Brief)
+
+**Inputs:** Product Brief (human-written intake)
+**Prompt:** `prd-prompt.md`
+**Validator:** `prd-validator.md`
+**Gate:** Validator PASS + human approval
+
 1. Human completes a Product Brief (goals, constraints, context)
 2. Generate PRD using `prd-prompt.md` with the Product Brief as input
 3. Run `prd-validator.md` against the generated PRD
@@ -825,6 +862,63 @@ Impact analysis is also useful before proposing an addendum to any frozen artifa
 ### Responsibility
 - **Humans** decide whether re-entry is warranted
 - **AI** may flag the need for re-entry but must not unfreeze artifacts autonomously
+
+---
+
+## Cross-Kit Re-Entry Protocol (Upstream PRD Change)
+
+When the PRD was delivered from the Product Intelligence Kit (Path A) and that DPRD must change after EEK artifacts have been created:
+
+### When This Applies
+- The Product Intelligence Kit team notifies this kit that a frozen DPRD must be revised
+- A change to the DPRD affects §2 Problem Statement, §3 Goals, §4 Non-Goals, §6 Requirements, or §11 Acceptance Criteria
+
+### Protocol
+
+1. **Receive notification** — The PIK team sends a proposed change description (what section is changing, what is changing, why) before re-validating the DPRD. Work on artifacts and work items that depend on the affected sections pauses. Work on sections unaffected by the proposed change may continue.
+
+2. **Run impact analysis on the proposal** — Run `impact-analysis-prompt.md` using the proposed change description (not the final updated DPRD) and all frozen EEK artifacts. This assesses downstream cost before the PIK commits to the change. Report findings back to the PIK team — which artifacts are affected, which work items are impacted, at what severity.
+
+3. **Joint decision to proceed** — Both team leads review the impact report and agree to proceed. If impact is contested or too large, this is the decision point to pause or reframe before the PIK invests in re-entry.
+
+4. **Receive updated DPRD** — The PIK team delivers the updated, re-validated, re-frozen DPRD.
+
+5. **PRD acceptance check** — Re-run `prd-validator.md` against the updated DPRD. All 6 PRD gates must PASS.
+
+6. **Re-freeze PRD slot** — Replace `docs/sdlc/01-prd.md` with the updated DPRD and record as version 2 (or append version note).
+
+7. **Cascade re-validation** — Re-validate all affected EEK artifacts (SAD, TDD, WDD) top-down against the updated PRD. Follow the standard Re-entry Protocol for cascade rules.
+
+8. **Human approval** — Required at each step. Neither kit self-approves cross-kit changes.
+
+### What Triggers This vs. Standard Re-entry
+
+| Change | Protocol |
+|--------|----------|
+| PRD §2 Problem Statement change | Cross-kit re-entry — notify PIK team, full cascade |
+| PRD §3 Goals change | Cross-kit re-entry — notify PIK team, full cascade |
+| PRD §4 Non-Goals change | Cross-kit re-entry — notify PIK team, full cascade |
+| PRD §6 Requirements change | Cross-kit re-entry — notify PIK team, full cascade |
+| PRD §11 Acceptance Criteria change | Cross-kit re-entry — notify PIK team, full cascade |
+| PRD §8 Assumptions change | EEK notification to PIK; run impact analysis; cascade likely not needed |
+| PRD §10 Open Questions resolved | EEK notification to PIK; assess impact; cascade if resolution changes scope |
+| Typo / clarification only | PIK delivers updated DPRD; re-run acceptance check; no cascade |
+
+**Determining "typo / clarification only":** Both the Product team lead and Engineering team lead must agree that the change does not alter meaning, intent, or scope. If either lead disagrees, treat as the next higher category (Assumptions or full cross-kit re-entry, depending on what changed). When in doubt, escalate.
+
+### In-Progress Work Items During Cross-Kit Re-Entry
+
+Cross-kit re-entry follows the same execution impact rules as standard re-entry (see Re-entry Protocol §"Assess execution impact" above). Specifically:
+
+- **Unaffected work items**: continue execution without interruption
+- **In-progress items affected by the change**: pause, incorporate the upstream change after cascade re-validation, then resume
+- **Completed items affected by the change**: re-verify against the updated upstream; if they no longer satisfy acceptance criteria, re-open
+
+The impact analysis result (step 2 of the protocol above) identifies which work items are affected and at what severity.
+
+### If DPRD Fails PRD Acceptance Check
+
+If the DPRD fails the PRD acceptance check (`prd-validator.md`), the fix belongs in the DPRD — not in this kit. Return the failing validator output to the PIK team and request a corrected DPRD. Do not modify the DPRD directly in this kit. Work on downstream artifacts does not begin until a passing acceptance check has been recorded.
 
 ---
 
