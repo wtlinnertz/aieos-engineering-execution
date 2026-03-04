@@ -60,11 +60,15 @@ The ACF defines architecture guardrails that constrain the SAD and all downstrea
 - At least one security guardrail must be defined
 - Guardrails must be constraints, not solutions
 - No implementation details (specific tools, configs, commands)
+- Dependency vulnerability posture must be stated (e.g., "no known high or critical severity CVEs permitted in production dependencies")
+- Cryptography constraints must be stated (e.g., prohibition on custom cryptographic implementations, minimum protocol versions, prohibited algorithms)
 
 **Failure Examples**
 - "Use AWS KMS for encryption" — implementation detail, not a guardrail
 - No security guardrails defined at all
 - "Follow best practices" — not a constraint
+- No dependency vulnerability posture defined
+- No cryptography constraints defined
 
 ### Compliance & Regulatory
 **Rules**
@@ -138,7 +142,7 @@ The ACF defines architecture guardrails that constrain the SAD and all downstrea
 1. **document_control** — ACF ID, owner, status, and applicability scope present
 2. **purpose** — Purpose describes guardrails, not solutions
 3. **platform_assumptions** — Runtime, deployment, networking, and identity stated
-4. **security_guardrails** — At least one guardrail defined as constraint (not solution)
+4. **security_guardrails** — At least one guardrail defined as constraint (not solution); dependency vulnerability posture and cryptography constraints explicitly addressed
 5. **compliance** — Compliance constraints listed or "None applicable" with justification
 6. **reliability** — Availability, failure isolation, and rollback expectations stated
 7. **observability** — Required telemetry types and minimum signals defined

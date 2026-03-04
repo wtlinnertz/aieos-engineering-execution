@@ -256,6 +256,9 @@ All code must:
   * File paths
 * Use parameterized queries where applicable.
 * Never log secrets or sensitive information.
+* Pin all dependencies to explicit versions — unpinned or floating version ranges are not permitted.
+* Never implement custom cryptographic algorithms. Use platform-approved libraries only. Deprecated algorithms (MD5, SHA-1, DES, RC4) are prohibited.
+* Document any deviation from these controls with a risk assessment and expiration date — undocumented security exceptions are automatic blockers.
 
 Security violations are automatic blockers.
 

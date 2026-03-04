@@ -123,6 +123,7 @@ Implement the approved plan. Make approved tests pass. Nothing more.
 - No secrets, credentials, or sensitive data in code
 - No hardcoded configuration — values from config or environment must not be embedded
 - No unbounded operations — loops, queries, and retries must have explicit limits
+- New dependencies must be version-pinned — floating version ranges are not permitted
 - If a dependency doesn't exist or version differs, ask before adding
 
 **Iteration Rules**
@@ -177,7 +178,7 @@ Actively search for defects, scope violations, contract mismatches, and coverage
 2. Interface compliance — implementation matches TDD contracts (signatures, return types, status codes)
 3. Acceptance criteria coverage — each WDD criterion has a corresponding test
 4. Failure handling — failure conditions and rollback behavior match WDD/TDD
-5. Security — no secrets in code, no injection risks, access control respected, ACF §3 guardrails not violated
+5. Security — no secrets in code, no injection risks, access control respected, ACF §3 guardrails not violated, new dependencies are version-pinned and free of known high or critical severity vulnerabilities
 6. Code standards — implementation respects DCF §2 design principles and §3 quality bars
 7. Test coverage — tests exist for happy path, failure conditions, and edge cases
 8. Scope expansion — flag any changes beyond the WDD work item boundary
