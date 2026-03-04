@@ -121,7 +121,7 @@ Examples from history:
 
 ## Governance Model Sync
 
-`docs/governance-model.md` must remain byte-for-byte identical across all AIEOS kits. When updating, update all kits simultaneously. This file is a shared contract — drift between kits breaks structural compatibility. See governance-model.md §15 for versioning and change protocol.
+`docs/governance-model.md` is a synchronized copy of `aieos-spec/governance-model.md`, which is the canonical authority. Do not edit the kit copy directly — update `aieos-spec` first, then sync all kit copies to match exactly. See governance-model.md §15 for versioning and change protocol.
 
 ## What Not To Do
 
