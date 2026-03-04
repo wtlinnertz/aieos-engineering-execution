@@ -187,9 +187,22 @@ The ACF (Architecture Context File) and DCF (Design Context File) are **organiza
 
 ---
 
-## Working with Existing Codebases
+## Working with Greenfield and Brownfield Projects
 
-The kit works for both greenfield and brownfield projects. For greenfield, the artifact flow starts from a blank slate. For brownfield (existing codebase), there is an additional prerequisite: **understanding what exists before generating artifacts**.
+The kit works for both greenfield and brownfield projects. Both paths use the same artifact flow. The difference is in how intake forms are prepared before artifact generation.
+
+### Greenfield Intake Facilitation
+
+For greenfield projects, there is no codebase to analyze. The Architecture Context and Design Context intake forms must be filled from organizational standards, team decisions, and PRD constraints.
+
+Run `greenfield-intake-prompt.md` with the frozen PRD (and any team notes) to facilitate this:
+
+1. **Run greenfield intake** — Provide the frozen PRD to `greenfield-intake-prompt.md`. It extracts explicit PRD constraints into Output A (Architecture Context) and Output B (Design Context), and produces Output C: a consolidated list of every field that requires a team decision, with a specific question for each.
+2. **Work through the decisions** — Answer each question in Output C and fill in the corresponding fields in Outputs A and B.
+3. **Use the completed forms as inputs** — Feed the completed `architecture-context-template.md` to `acf-prompt.md` and the completed `design-context-template.md` to `dcf-prompt.md`.
+4. **Continue the normal artifact flow** — Generate, validate, freeze as usual.
+
+For greenfield SADs, no intake form is needed — the SAD is generated directly from the frozen PRD and frozen ACF.
 
 ### Codebase Analysis (Brownfield Prerequisite)
 
@@ -230,11 +243,10 @@ The codebase analysis prompt produces four outputs. Three of them map directly t
 
 | Step | Greenfield | Brownfield |
 |------|-----------|------------|
-| Codebase Analysis | Not needed | Run `codebase-analysis-prompt.md` first |
-| Intake Forms | Human fills from scratch | AI pre-fills from codebase analysis; human reviews and edits |
-| ACF | Define from organizational standards | Define from organizational standards + reviewed intake form |
-| DCF | Define from organizational standards | Define from organizational standards + reviewed intake form |
-| SAD | Design from scratch | Describe the existing architecture, informed by reviewed intake form |
+| Intake Facilitation | Run `greenfield-intake-prompt.md` — extracts PRD constraints, lists team decisions | Run `codebase-analysis-prompt.md` — extracts facts from codebase |
+| ACF Intake Form | AI extracts PRD constraints; human decides runtime, deps, infra | AI pre-fills from codebase analysis; human reviews and supplements |
+| DCF Intake Form | AI extracts PRD constraints; human decides standards and conventions | AI pre-fills from codebase analysis; human reviews and supplements |
+| SAD Intake Form | Not used — SAD generates directly from PRD + ACF | Human reviews AI-pre-filled system context form |
 | TDD onward | No difference | No difference |
 
 The artifact flow itself does not change. The codebase analysis simply provides the factual foundation that would otherwise require manual extraction by the human.
@@ -281,7 +293,7 @@ The artifact flow itself does not change. The codebase analysis simply provides 
 **What:** Define architectural guardrails that constrain all downstream design.
 
 **Prompt:** `acf-prompt.md`
-**Inputs:** Architecture Context intake form (`architecture-context-template.md`), organizational standards, platform constraints, security and compliance requirements. For brownfield projects, use `codebase-analysis-prompt.md` Output A to pre-fill the intake form.
+**Inputs:** Architecture Context intake form (`architecture-context-template.md`), organizational standards, platform constraints, security and compliance requirements. For greenfield projects, use `greenfield-intake-prompt.md` to facilitate form completion. For brownfield projects, use `codebase-analysis-prompt.md` Output A to pre-fill the intake form.
 **Validator:** `acf-validator.md`
 **Gate:** Validator PASS + human approval
 **Output:** Frozen ACF
@@ -323,7 +335,7 @@ The SAD prompt includes **intent verification**: the AI restates upstream intent
 **What:** Define design standards and quality expectations that constrain TDD creation.
 
 **Prompt:** `dcf-prompt.md`
-**Inputs:** Design Context intake form (`design-context-template.md`), organizational design standards, testing expectations, operational expectations. For brownfield projects, use `codebase-analysis-prompt.md` Output B to pre-fill the intake form.
+**Inputs:** Design Context intake form (`design-context-template.md`), organizational design standards, testing expectations, operational expectations. For greenfield projects, use `greenfield-intake-prompt.md` to facilitate form completion. For brownfield projects, use `codebase-analysis-prompt.md` Output B to pre-fill the intake form.
 **Validator:** `dcf-validator.md`
 **Gate:** Validator PASS + human approval
 **Output:** Frozen DCF
@@ -583,7 +595,7 @@ This structure ensures Phase 3 implements tests in the correct location with the
 
 **Output:** An approved implementation plan identifying files to change, interfaces to lock down, dependencies, risks, and sequencing.
 
-**Existing Tests to Update:** If this work item modifies a shared interface (adds methods, changes return types, extends data structures), the plan must list existing test files whose mocks or assertions will break due to the change. For each file, state the specific update needed (e.g., "add stub methods to mock factory", "update expected shape in test AT-03-06"). This prevents discovery of mock drift during Phase 3.
+**Existing Tests to Update:** If this work item modifies a shared interface (adds methods, changes return types, extends data structures), the plan must list existing test files whose mocks or assertions will break due to the change. For each file, state the specific update needed (e.g., "add stub methods to mock factory", "update expected shape in test AT-03-06"). This prevents discovery of mock drift during Phase 3. Run `mock-impact-prompt.md` with the WDD work item and TDD §4 interface contracts to identify affected files before writing the plan.
 
 ---
 
@@ -750,14 +762,30 @@ When all items in a work group are complete (all PRs merged, all tests passing),
 
 A work group gate is a checkpoint, not a validator. It records cumulative state. If any line cannot be satisfied, the group is not complete.
 
+Run `work-group-gate-prompt.md` with all member item review files and test results to verify conditions and produce the gate artifact. The prompt outputs the ready-to-save gate file, or a BLOCKED report listing which conditions are not met.
+
 #### Business Acceptance Testing (BAT)
 
-**Status: TBD** — The BAT process (who runs it, what the output format is, and how it gates progression) is not yet defined. BAT is expected to happen after work group completion but before ORD, and will be specified in a future update.
+BAT verifies that a work group's business capability works end-to-end. It is conducted after the work group gate is recorded and before proceeding to the next group or to ORD.
 
-When defined, BAT will verify:
-1. All member items pass their individual completion criteria
-2. Group-level acceptance criteria are satisfied (business capability works end-to-end)
-3. Results are recorded as evidence
+**Who runs it:** A product owner, stakeholder, or QA lead — someone who can verify business outcomes without knowledge of implementation internals.
+
+**Prompt:** `bat-prompt.md`
+**Inputs:** WDD work group definition (group ID, business capability, member item IDs, group-level acceptance criteria) + individual WDD items for all member items
+**Output:** Document 1 — a structured manual verification protocol (one step per group-level acceptance criterion). Document 2 — a results recording template that becomes the evidence artifact.
+
+**Steps:**
+1. Confirm the work group gate for WG-{n} is recorded
+2. Run `bat-prompt.md` to generate the verification protocol
+3. A product owner or stakeholder executes the protocol against the deployed system
+4. Record results in the Document 2 template
+5. File the completed results as `{nn}-wg-{n}-bat-results.md`
+
+BAT verifies:
+1. Group-level acceptance criteria are satisfied (business capability works end-to-end)
+2. Results are recorded as evidence
+
+If BAT fails, the work group is not complete. Investigate the failing criteria, determine whether they represent a work item gap or a scope misunderstanding, and apply the appropriate correction before re-running BAT.
 
 ---
 
@@ -792,7 +820,11 @@ Quality and governance prompts each answer one question:
 
 Utility prompts produce input material (not governed artifacts):
 
+- **Greenfield Intake** (`greenfield-intake-prompt.md`) — What decisions must a greenfield team make before generating ACF and DCF? (extracts PRD constraints, lists required decisions)
 - **Codebase Analysis** (`codebase-analysis-prompt.md`) — What exists in this codebase? (feeds ACF, DCF, SAD generation for brownfield projects)
+- **Mock Impact** (`mock-impact-prompt.md`) — Which existing test files will break when this work item changes a shared interface? (feeds Phase 2 plan)
+- **Work Group Gate** (`work-group-gate-prompt.md`) — Are all gate conditions met for this work group? (produces the gate artifact file)
+- **Business Acceptance Testing** (`bat-prompt.md`) — Does this work group's business capability work end-to-end? (produces verification protocol and results template)
 
 Artifacts and prompts that answer more than one question are invalid.
 

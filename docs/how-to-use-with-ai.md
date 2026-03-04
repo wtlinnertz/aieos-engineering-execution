@@ -174,8 +174,12 @@ These prompts produce input material or advisory outputs — they are not govern
 
 | Prompt | Purpose | Inputs |
 |--------|---------|--------|
+| `greenfield-intake-prompt.md` | Facilitate ACF and DCF intake form completion for greenfield projects | Frozen PRD + optional team notes |
 | `codebase-analysis-prompt.md` | Pre-fill intake forms for brownfield projects | Existing codebase |
 | `impact-analysis-prompt.md` | Assess downstream effects before modifying a frozen artifact | Frozen artifacts + proposed change |
+| `mock-impact-prompt.md` | Identify existing test files that need mock updates when a work item changes a shared interface | WDD work item + TDD §4 + existing test files |
+| `work-group-gate-prompt.md` | Verify work group gate conditions and produce the gate artifact file | WDD work group + Phase 4 review files + test results |
+| `bat-prompt.md` | Generate business acceptance testing protocol and results template for a work group | WDD work group + member items |
 | `team-composition-prompt.md` | Derive team roles, skills, and deliverables from work items | Frozen WDD + Frozen TDD (recommended) |
 | `wdd-csv-export-prompt.md` | Export WDD work items as CSV for import into work management tools | Frozen WDD + optional field mapping override |
 
