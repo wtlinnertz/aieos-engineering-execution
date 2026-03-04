@@ -55,6 +55,32 @@ This playbook has three parts:
 
 # Part 1: The Process
 
+## Step 0: Kit Entry Gate
+
+**What:** Confirm the work is appropriately routed to EEK, select the entry path, and establish that a priority decision exists before any artifact generation begins.
+
+**Spec:** `docs/specs/kit-entry-spec.md`
+**Template:** `docs/artifacts/kit-entry-template.md`
+**Validator:** `docs/validators/kit-entry-validator.md`
+**Gate:** Validator PASS + human freeze
+**Output:** Frozen Kit Entry Record
+
+### Steps
+
+1. Complete `kit-entry-template.md`:
+   - Check whether a frozen Work Classification Record exists (from PIK) — if so, reference its ID and confirm it routes to EEK; if not, document why classification was not performed
+   - Select exactly one entry path: Path A (DPRD from PIK) or Path B (direct entry)
+   - Record the priority decision reference
+   - State the scope boundary (in scope and out of scope)
+2. Run `kit-entry-validator.md` against the completed record
+3. Fix any blocking issues; re-run until PASS
+4. Complete the Freeze Declaration
+5. Proceed to the PRD Entry Path selected in the record
+
+The Kit Entry Gate is not re-run when re-entering EEK under the Re-entry Protocol — it applies only to initial kit entry.
+
+---
+
 ## PRD Entry Paths
 
 The PRD slot is the entry point to this kit. It accepts input from two paths. Both produce a frozen PRD and continue with the same flow.
@@ -84,7 +110,7 @@ Product Brief (human intake)
 
 ## Canonical Artifact Flow
 
-After the PRD slot is frozen (via either path above), the flow is identical:
+After the Kit Entry Record is frozen and the PRD slot is filled (via either path above), the flow is identical:
 
 - Architecture Context (human intake)
   → ACF (`acf-prompt.md`)
