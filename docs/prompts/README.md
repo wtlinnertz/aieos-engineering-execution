@@ -86,6 +86,10 @@ Skipping steps weakens enforcement.
 
 ### Utility (Input Material, Not Governed Artifacts)
 - `codebase-analysis-prompt.md` — Analyze an existing codebase to produce structured input for ACF, DCF, and SAD generation (brownfield projects)
+- `greenfield-intake-prompt.md` — Facilitate ACF and DCF intake form completion for greenfield projects by extracting PRD constraints and listing decisions the team must make
+- `bat-prompt.md` — Generate a business acceptance testing protocol and results template for a WDD work group after its gate is recorded
+- `mock-impact-prompt.md` — Identify existing test files that will require mock or assertion updates when a work item modifies a shared interface (populates Phase 2 plan)
+- `work-group-gate-prompt.md` — Verify work group gate conditions are met and produce the gate artifact file
 
 ---
 
