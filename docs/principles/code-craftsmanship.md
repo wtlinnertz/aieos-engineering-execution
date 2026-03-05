@@ -1,5 +1,7 @@
 # Engineering Standards
 
+Version: v1.0
+
 ## Purpose
 
 This document defines the mandatory engineering standards governing:
@@ -363,3 +365,18 @@ Quality must be verified:
 
 No stage advances on assumption.
 
+
+---
+
+## Enforcement Mapping
+
+| Rule Category | Enforced By |
+|---------------|-------------|
+| Core engineering doctrine (readability, SRP, naming, DRY, complexity, error handling, dependencies) (§1) | `acf-spec.md` §security_guardrails hard gate; `dcf-spec.md` §design_principles hard gate; `wdd-spec.md` §granularity hard gate |
+| Architecture standards — module boundaries, layer separation (§2) | `sad-spec.md` §component_boundaries hard gate; `sad-spec.md` §intent_integrity hard gate |
+| Test design standards — behavior-focused, coverage, isolation (§3) | `dcf-spec.md` §testing_expectations hard gate; `dor-spec.md` §testability hard gate |
+| Security baseline — input validation, parameterized queries, dependency pinning, no custom crypto (§4.3) | `acf-spec.md` §security_guardrails hard gate |
+| Definition of Done — engineering addendum (§8) | `dor-spec.md` §definition_of_done hard gate |
+| Governance & enforcement model (§9) | `acf-spec.md` and `dcf-spec.md` translate these principles into enforceable guardrails reviewed by all downstream validators |
+
+Red flag patterns (§5) and AI-assisted development rules (§7) are advisory — reinforced by generation prompts but not directly evaluated by a single hard gate.

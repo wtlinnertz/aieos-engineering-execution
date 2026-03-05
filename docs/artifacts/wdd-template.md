@@ -6,7 +6,7 @@ Translate a frozen TDD into **atomic, executable work items** suitable for AI ag
 - WDD ID:
 - Author:
 - Date:
-- Status: Draft | Approved | Frozen
+- Status: Draft | Approved | Freeze Pending | Frozen
 - Parent TDD:
   - TDD ID / Link:
   - TDD Status: Frozen (required)

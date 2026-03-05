@@ -7,7 +7,7 @@ It is reusable across many initiatives.
 - DCF ID:
 - Owner:
 - Date:
-- Status: Draft | Approved | Frozen
+- Status: Draft | Approved | Freeze Pending | Frozen
 - Applies To: (e.g., “All delivery designs”, “This platform only”)
 
 ## 1. Purpose

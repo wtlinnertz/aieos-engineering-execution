@@ -5,7 +5,7 @@
 - SAD ID:
 - Author:
 - Date:
-- Status: Draft | Approved | Frozen
+- Status: Draft | Approved | Freeze Pending | Frozen
 - Upstream Artifacts:
   - PRD ID / Link:
   - ACF ID / Link:

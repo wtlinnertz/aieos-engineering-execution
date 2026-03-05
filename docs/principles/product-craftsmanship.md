@@ -1,5 +1,7 @@
 # Product Craftsmanship Principles
 
+Version: v1.0
+
 This document defines the non-negotiable standards for creating product artifacts
 (PRDs, briefs, proposals, epics, and feature definitions) within the SDLC AI system.
 
@@ -171,3 +173,19 @@ These principles are enforced through:
 Validation strictness scales with work classification.
 
 All work requires explicit intent.
+
+---
+
+## Enforcement Mapping
+
+| Rule Category | Enforced By |
+|---------------|-------------|
+| Work classification (Initiative / Enhancement / Maintenance) | `kit-entry-spec.md` §work_type hard gate |
+| Diagnose before prescribing — problem and evidence stated (§1) | `prd-spec.md` §problem_definition hard gate |
+| Outcomes over output — measurable success criteria (§2) | `prd-spec.md` §goals hard gate |
+| Explicit assumptions (§3) | `prd-spec.md` §constraints hard gate |
+| Strategic alignment (§4) | `prd-spec.md` §problem_definition hard gate (strategic context required) |
+| Clear scope boundaries — in scope, out of scope, constraints (§5) | `prd-spec.md` §scope hard gate |
+| Traceability across SDLC (§7) | `consistency-spec.md` §traceability hard gate |
+
+Simplicity (§6) and evidence over opinion (§8) are advisory — reinforced by generation prompts and validated qualitatively by reviewers.

@@ -5,7 +5,7 @@
 - PRD ID:
 - Author:
 - Date:
-- Status: Draft | Approved | Frozen
+- Status: Draft | Approved | Freeze Pending | Frozen
 - Related Links:
 
 ## 1. Problem Statement

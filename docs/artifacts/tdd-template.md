@@ -5,7 +5,7 @@
 - TDD ID:
 - Author:
 - Date:
-- Status: Draft | Approved | Frozen
+- Status: Draft | Approved | Freeze Pending | Frozen
 - Upstream Artifacts:
   - SAD ID / Link:
   - ACF ID / Link (if applicable):

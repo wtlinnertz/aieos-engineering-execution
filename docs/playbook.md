@@ -1248,6 +1248,64 @@ When followed consistently, this playbook produces:
 
 ---
 
+## Amendment Procedure
+
+A frozen artifact may be corrected in place without re-validation when **all** of the following criteria are met:
+
+1. The correction does not affect any field evaluated by a hard gate.
+2. The correction does not change scope, decisions, owners, or technical specifications.
+3. The correction does not affect any field referenced by a downstream artifact.
+
+**Procedure:** Make the correction and add an Amendment Log entry to the artifact's Document Control section: date, what changed, materiality criterion cited, and who authorized the change. No re-validation is required.
+
+**If there is any ambiguity** about whether a change is non-material, treat it as material and use the Re-Entry Protocol. The amendment path must not become a workaround for the re-entry protocol.
+
+---
+
+## Escalation Paths
+
+This kit produces artifacts that may be the destination of escalations from downstream layers, and may also be the source of escalations (if a rollback reveals a product direction problem, that escalation goes upstream to PIK).
+
+### Receiving Escalations
+
+**Trigger 1 — SEV1/2 Incident with Code Defect (from RRK)**
+
+**Signal:** The Reliability & Resilience Kit (Layer 6) has identified a SEV1 or SEV2 incident whose root cause is a code defect in a system built by this kit.
+
+**What to do:**
+1. Receive the escalation record from the RRK team. It will include: trigger type, triggering IR ID, the code defect description, and recommended action.
+2. Create a Kit Entry Record (Step 0) for the expedited re-entry. The escalation record is the justification for the entry gate. Mark the classification as Maintenance (defect fix) with urgency level based on severity.
+3. The KER fast-tracks to immediate execution: the defect description and affected system are the PRD-equivalent input. No full PRD cycle is required for a well-scoped defect fix — the KER documents this explicitly.
+4. Proceed from KER → SAD (if the defect is architectural) or KER → TDD (if the defect is implementation-level) or KER → WDD (if the defect is a single bounded fix). Start at the appropriate level.
+5. Execute, validate, produce an ORD for the fix, and deliver to REK for a patch release.
+6. Reference the originating IR ID in the KER and all downstream artifacts for traceability.
+
+**Trigger 3 — Release Rollback (from REK)**
+
+**Signal:** The Release & Exposure Kit (Layer 5) has rolled back a release and identified that the rollback cause was a code or build defect.
+
+**What to do:**
+1. Receive the escalation record from the REK team. It will include: trigger type, triggering RR ID, the rollback cause description, and recommended action.
+2. Create a Kit Entry Record for the defect fix. Reference the RR ID.
+3. Follow the same path as Trigger 1 above, scaled to the severity of the rollback cause.
+4. Coordinate with REK on the re-release: the fixed system must produce a new ORD and re-enter the REK release process.
+
+---
+
+## Principle File Revision
+
+When a principle file in `docs/principles/` changes, use the change categories defined in `aieos-spec/docs/principle-file-standard.md`:
+
+| Change Category | Version Bump | Re-Entry Impact |
+|----------------|-------------|-----------------|
+| **Minor** (clarification only) | `v_.x → v_.x+1` | No re-entry required; already-frozen artifacts remain valid |
+| **Significant** (new requirement or tightened constraint) | `v1.x → v1.x+1` | Review artifacts generated after the change against updated principles; already-frozen artifacts are grandfathered |
+| **Breaking** (removal or loosening) | `vN.x → vN+1.0` | Requires service owner authorization and documented business justification; re-entry may be warranted |
+
+Every change to a principle file must bump the version field, even minor clarifications.
+
+---
+
 ## Final Note
 
 This system is intentionally disciplined.

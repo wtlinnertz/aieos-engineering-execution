@@ -8,7 +8,7 @@ The ORD is an **evidence-gathering artifact** — it does not define new require
 - ORD ID:
 - Author:
 - Date:
-- Status: Draft | Approved | Frozen
+- Status: Draft | Approved | Freeze Pending | Frozen
 - Upstream Artifacts:
   - TDD ID / Link:
   - ACF ID / Link:
