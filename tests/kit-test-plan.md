@@ -196,6 +196,55 @@ These checks verify that the kit's files are internally consistent — no broken
 
 ---
 
+### S-12: Kit Entry Validator — Path B Work Type Consistency
+
+**What:** Tests that the Kit Entry validator correctly evaluates the `path_selected` gate for Path B work type consistency — specifically that it FAILs when the selected work type and the justification describe different kinds of work, and PASSes when the justification is specific and consistent with the stated type.
+
+**How:** Run `kit-entry-validator.md` against two Kit Entry Record variants (all other sections complete and valid):
+
+**Variant A — FAIL case (inconsistent work type and justification):**
+
+```
+Entry Path:
+- [x] Path B — Direct Entry (discovery bypassed)
+  Work type:
+  - [x] Bug Fix
+
+  Justification for bypassing discovery:
+  We need to add push notification support to the mobile app. This is a bug because users
+  have been requesting it for months and it's creating significant friction in the user
+  experience. No design discovery needed since we already know what to build.
+```
+
+**Expected Variant A result:** FAIL on `path_selected`. Blocking issue: work type is "Bug Fix" but the justification describes a new capability (push notification support), not a defect. The justification describes user demand for a missing feature, which is scope work, not fix work.
+
+**Variant B — PASS case (specific, consistent justification):**
+
+```
+Entry Path:
+- [x] Path B — Direct Entry (discovery bypassed)
+  Work type:
+  - [x] Bug Fix
+
+  Justification for bypassing discovery:
+  Production defect: payment total calculation returns incorrect values when multiple
+  discount codes are applied in a single order (order total shows pre-discount amount
+  on confirmation screen). Reproduction steps confirmed in staging. No design decision
+  required; correcting to intended behavior — discount application logic existed before
+  this defect. No user-facing behavior change beyond restoring correct function.
+```
+
+**Expected Variant B result:** PASS on `path_selected`. Justification names a specific defect, describes reproduction steps, confirms no design decision is required, and explicitly states the boundary (restoring correct function, not adding new behavior).
+
+**Files:** `docs/specs/kit-entry-spec.md` + `docs/validators/kit-entry-validator.md`
+
+**Pass criteria:**
+- Variant A: `path_selected` FAIL with a `blocking_issues` entry referencing inconsistency between work type and justification
+- Variant B: `path_selected` PASS
+- Both results are JSON in the standard validator output format
+
+---
+
 ## Part 2: Flow Scenarios
 
 Each scenario defines a specific path through the kit. Scenarios are designed so that together they cover all major dimensions.
@@ -619,6 +668,7 @@ Use this checklist to track which tests have been run and their results.
 | S-09: Codebase Analysis Output Alignment | PASS | Output A embeds architecture-context-template structure exactly. Outputs B and C reference their templates by name with "use exact template structure" instruction. |
 | S-10: Consistency Spec Check Count | PASS | All 3 sources agree: spec (8 checks + report_completeness), playbook (8 checks listed), validator (8 + report_completeness = 9 hard gates) |
 | S-11: Cross-Kit Handoff Contract Integrity | PASS | All 8 sub-checks pass: gate alignment, dual entry in prd-spec, dual entry in prd-prompt, playbook Path A, cross-kit re-entry protocol, governance sync rule, kickoff doc removed, cross-kit example exists in PIK |
+| S-12: Kit Entry Validator — Path B Work Type Consistency | | |
 
 ### Flow Scenarios
 
