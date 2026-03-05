@@ -884,6 +884,8 @@ Freezing an artifact locks its intent and scope.
 
 Breaking a freeze requires explicit re-entry to the prior stage (see Re-entry Protocol below).
 
+> **Freeze semantics:** A freeze is a human commitment, not a technical lock. Nothing prevents editing a Markdown file after it is frozen. The enforcement mechanism is the Git commit that immediately follows the freeze declaration — that commit is the audit trail. **Frozen artifacts must be committed immediately on approval.** The commit message should identify the artifact and its status (e.g., `docs: freeze 01-prd.md`). If a frozen artifact is edited without following the re-entry protocol, the Git history exposes the deviation.
+
 ---
 
 ## Re-entry Protocol

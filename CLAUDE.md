@@ -123,6 +123,12 @@ Examples from history:
 
 `docs/governance-model.md` is a synchronized copy of `aieos-spec/governance-model.md`, which is the canonical authority. Do not edit the kit copy directly — update `aieos-spec` first, then sync all kit copies to match exactly. See governance-model.md §15 for versioning and change protocol.
 
+## Building or Auditing AIEOS Kits
+
+- `aieos-spec/docs/kit-structure-standard.md` — compliance checklist for building and auditing kits
+- `aieos-spec/docs/philosophy.md` — design rationale for governance model decisions
+- `aieos-spec/docs/layer-model.md` — seven-layer model and kit registry
+
 ## What Not To Do
 
 - Do not introduce new document types without explicit request
