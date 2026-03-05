@@ -143,6 +143,22 @@ The AI will return structured JSON:
 
 If the same AI that generated the artifact also validates it, it has a bias toward passing its own work. A fresh session with only the validator rules and the artifact produces a more honest evaluation.
 
+### Starting a Validation Session — Step by Step
+
+"New session" means:
+
+1. **End the generation session.** Close the conversation or start a new one — do not continue in the same thread.
+2. **Open a fresh conversation.** No prior context should carry over. Project-level instructions (CLAUDE.md) are fine — they don't contain artifact content.
+3. **Do not include generation inputs.** The generation session contained the spec + prompt + template + principles. Leave all of these out. The validator is the only behavior instruction needed.
+4. **Paste in this order:**
+   - The spec (`{type}-spec.md`)
+   - The validator (`{type}-validator.md`)
+   - Frozen upstream artifacts if the validator requires them for traceability (e.g., TDD + ACF + DCF for ORD validation)
+   - The artifact to validate
+5. **Give a single instruction:** "Validate this artifact against the spec and validator. Output JSON only."
+6. **Review the output** — if status is FAIL, address only the blocking issues listed. Do not redesign.
+7. **Re-run in a new session** after fixes (same rules apply).
+
 ### Handling FAIL Results
 
 1. Review the `blocking_issues` — each one identifies a specific gate, description, and location
