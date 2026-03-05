@@ -40,13 +40,21 @@ Evaluate each hard gate. A gate is PASS only if the requirement is fully and una
 
 #### 3. path_selected
 - Is exactly one entry path selected — Path A or Path B, not both, not neither?
-- If Path A: is a DPRD reference provided (document ID, file path, or link)?
-- If Path B: is a specific justification documented for why discovery was bypassed?
-- Is the Path B justification specific — does it state the conditions that make direct entry appropriate?
+- **If Path A:**
+  - Is a DPRD reference provided (document ID, file path, or link)?
+  - Is the EL experiment references field completed — either confirmed Yes, or No with a specific explanation?
+- **If Path B:**
+  - Is a work type explicitly selected (Bug Fix, Tech Debt, Compliance Mandate, or Other with explanation)?
+  - Is a specific justification documented for why discovery was bypassed?
+  - Is the justification consistent with the stated work type? (e.g., a "Bug Fix" justification should describe a defect, not a new capability)
+  - Does the justification state conditions that make direct entry appropriate — not just rationale or scope claims?
 - FAIL if:
   - No path is selected, or both are selected
   - Path A selected with no DPRD reference
+  - Path A selected with no EL references field completed (blank is a failure)
+  - Path B selected with no work type selection
   - Path B selected with no justification, or with a justification that is vague ("small change", "no time", "unnecessary")
+  - Path B work type and justification are inconsistent (describes different kind of work than the type selected)
 
 #### 4. priority_on_record
 - Is the priority decision confirmed as Yes?

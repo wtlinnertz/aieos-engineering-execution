@@ -61,21 +61,30 @@ The kit entry spec serves two roles:
 ### Entry Path
 **Rules**
 - Exactly one path must be selected: Path A or Path B — not both, not neither
-- **Path A** requires a reference to the frozen DPRD (document ID, file path, or link)
-- **Path B** requires a documented justification for bypassing discovery (why PIK was not used)
-- Path B justification must be specific — not "we decided to skip discovery" or similar
-- Path B justification must not assert that discovery is simply unnecessary — it must explain the specific conditions that make direct entry appropriate
+- **Path A** requires:
+  - A reference to the frozen DPRD (document ID, file path, or link)
+  - Confirmation that the DPRD's Assumptions section includes EL experiment references (EXP-N identifiers). If EL references are absent, a specific explanation must be provided (e.g., "no assumptions were tested; all were validated as facts before discovery began")
+- **Path B** requires:
+  - An explicit work type selection: Bug Fix | Tech Debt | Compliance Mandate | Other
+  - If Other: a one-line explanation of the work type
+  - A documented justification for bypassing discovery that is consistent with the stated work type
+  - Justification must be specific — not "we decided to skip discovery" or similar
+  - Justification must explain the specific conditions that make direct entry appropriate, not merely assert that discovery is unnecessary
 
 **Failure Examples**
 - Neither path selected
 - Path A selected but no DPRD reference provided
+- Path A selected and DPRD Assumptions section has no EL references and no explanation for their absence
+- Path B selected with no work type selection
 - Path B selected with justification "no time for discovery" — rationale, not justification
 - Path B selected with justification "it's a small change" — scope claim, not justification
+- Path B work type is "Bug Fix" but justification describes a new capability — type and justification inconsistent
 
-**Valid Path B Justifications**
-- Bug fix with clear reproduction steps and no design decision required
-- Tech debt item with engineering-defined scope and no user-facing change
-- Compliance mandate with requirements already specified by a regulatory body
+**Valid Path B Justifications by Work Type**
+- **Bug Fix**: Clear reproduction steps documented, no design decision required, no user-facing behavior change beyond restoring correct function
+- **Tech Debt**: Engineering-defined scope, no user-facing change, no new behavior introduced
+- **Compliance Mandate**: Requirements specified by a regulatory body or legal obligation; no product decisions required
+- **Other**: Work type must be explained; justification must still meet the specificity requirement
 
 ### Priority Decision
 **Rules**
@@ -130,6 +139,8 @@ The kit entry spec serves two roles:
 
 1. **document_control** — Record ID, date, and work summary present
 2. **classification_check** — Frozen classification record referenced (routing to EEK), or absence explicitly justified
-3. **path_selected** — Exactly one entry path selected with required evidence (DPRD reference for Path A; specific justification for Path B)
+3. **path_selected** — Exactly one entry path selected with required evidence:
+   - Path A: DPRD reference present; EL experiment references confirmed in DPRD Assumptions (or absence explained)
+   - Path B: Work type explicitly selected; justification specific and consistent with stated work type
 4. **priority_on_record** — Priority decision confirmed with a traceable reference
 5. **scope_bounded** — Work boundary stated with enough specificity to confirm it is bounded
