@@ -104,4 +104,10 @@ Date:
 
 File the completed Document 2 as `{nn}-wg-{n}-bat-results.md` in the execution artifacts directory, using the next available sequence number after the work group gate file.
 
+FAILURE HANDLING:
+If the results template shows one or more FAIL or BLOCKED steps, the BAT escalation paths in the EEK playbook (§Business Acceptance Testing) define the next steps:
+- Path A: Fixable gap within work group scope — fix items, re-run gate, re-run BAT
+- Path B: Scope misunderstanding — create a BAT Escalation Record and bring to product owner for a scope decision
+This prompt does not produce escalation records — those are human-authored when Path B applies.
+
 FROZEN WDD WORK GROUP AND MEMBER ITEMS BEGIN BELOW.

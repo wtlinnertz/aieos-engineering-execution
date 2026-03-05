@@ -811,7 +811,30 @@ BAT verifies:
 1. Group-level acceptance criteria are satisfied (business capability works end-to-end)
 2. Results are recorded as evidence
 
-If BAT fails, the work group is not complete. Investigate the failing criteria, determine whether they represent a work item gap or a scope misunderstanding, and apply the appropriate correction before re-running BAT.
+If BAT fails, the work group is not complete. Use the following escalation paths:
+
+**Path A — Fixable within work group scope:**
+The failing criterion identifies a work item gap (missing implementation, incorrect behavior, integration defect). The capability is in scope and the fix is bounded.
+1. Identify which WDD work item(s) are responsible for the gap
+2. Fix the failing items (apply the execution loop — tests, plan, code, review)
+3. Re-record the work group gate with the updated item list
+4. Re-run BAT against the fixed system
+5. File the new results as a revised `{nn}-wg-{n}-bat-results.md`
+
+**Path B — Scope misunderstanding requiring a product decision:**
+The failing criterion reveals that the work group's scope was insufficient or incorrectly defined — the capability cannot be satisfied by fixing existing items within current scope.
+1. Stop. Do not attempt to fix items beyond their defined scope.
+2. Create a **BAT Escalation Record** (one page) capturing:
+   - Which acceptance criterion failed
+   - What the gap is (what the system does vs. what was expected)
+   - Whether the gap is a scope gap (missing work items) or a design gap (wrong approach)
+   - Resolution options with trade-offs
+3. Bring the record to the product owner for a scope decision
+4. If new work items are required: add them to the WDD (re-entry protocol applies), re-validate WDD, re-run execution loop for new items, then re-run BAT
+5. If the acceptance criterion itself was wrong: update the WDD acceptance criteria (re-entry), re-validate, re-run BAT
+
+**BAT Failure is a Gate**
+A work group with a failing BAT is not complete. Do not proceed to the next work group or to ORD until BAT passes or the scope decision explicitly defers the failing criterion to a follow-on engagement (documented in the escalation record).
 
 ---
 

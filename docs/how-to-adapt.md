@@ -301,6 +301,49 @@ The pattern is `{nn}-{type}-validation.json`. Store only the final passing resul
 
 ---
 
+## Proportional Use — When to Abbreviate the Artifact Chain
+
+The full EEK chain (Kit Entry → PRD → ACF → SAD → DCF → TDD → WDD → execution → ORD) is appropriate for significant features and system changes. For smaller, well-understood work, some artifacts can be abbreviated or shared from prior engagements — without weakening the system's guarantees.
+
+The rule is: **the scope of governance should match the scope of the decision.** A 1-day bug fix does not need a new SAD. A well-understood enhancement does not need a new TDD from scratch if the TDD from the prior engagement covers the same system boundaries.
+
+### Artifact Scope by Work Type
+
+| Work Type | Kit Entry | PRD | ACF | SAD | DCF | TDD | WDD | ORD |
+|-----------|-----------|-----|-----|-----|-----|-----|-----|-----|
+| New feature / initiative | Required | Required | Required | Required | Required | Required | Required | Required |
+| Enhancement to existing feature | Required | Required | Reuse existing | Reuse existing | Reuse existing | Required (new scope) | Required | Required |
+| Tech debt / refactor | Required | Required | Reuse existing | Conditional* | Reuse existing | Conditional* | Required | Conditional** |
+| Bug fix (clear repro, no design) | Required | Abbreviated† | Reuse existing | Not required | Reuse existing | Not required | Required | Conditional** |
+| Compliance mandate (externally specified) | Required | Required | Reuse/update | Conditional* | Reuse existing | Conditional* | Required | Required |
+
+**Legend:**
+- **Reuse existing** — Use the frozen artifact from the most recent relevant engagement. If the system boundary it covers has not changed, regeneration is not required.
+- **Conditional*** — Required if the work changes system architecture or technical interfaces. Not required if it is contained within an existing component boundary.
+- **Conditional**** — Required if the work changes deployment, observability, or operational characteristics. Not required if the fix is self-contained and the existing ORD evidence base still holds.
+- **Abbreviated†** — For bug fixes, the PRD may be abbreviated to: Problem Statement (what breaks, who is affected, why now), Non-Goals (what the fix does not change), and Acceptance Criteria (what passing looks like). Sections not applicable to a bug fix may be marked "N/A — bug fix" with a one-line explanation.
+
+### Rules for Reuse
+
+Reusing a frozen artifact from a prior engagement is valid only if:
+1. The artifact is still frozen (has not been modified since its validation PASS)
+2. The system or domain it covers has not changed in ways that would affect the current work
+3. The human team confirms reuse is appropriate (a human decision, not an AI inference)
+
+If there is any doubt, regenerate. Generating from an outdated context produces worse artifacts than regenerating from scratch.
+
+### What Never Changes
+
+Regardless of work type or scope:
+- **Kit Entry Gate (Step 0) always applies** — classification, path selection, priority, scope boundary
+- **Validators always apply** — whatever artifacts are produced must pass their validators
+- **Freeze always applies** — artifacts that are used must be frozen
+- **Human approval always applies** at each freeze point
+
+Proportional governance means doing less paperwork for smaller work. It does not mean skipping the quality bar for the work you do.
+
+---
+
 ## Recommended Adoption Path
 
 A proven, low-risk path:

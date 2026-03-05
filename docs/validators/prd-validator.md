@@ -14,6 +14,15 @@ Evaluate this artifact against the hard gates, content rules, format requirement
 and completeness criteria defined in `prd-spec.md`.
 Each hard gate in your output must correspond to a hard gate defined in the spec.
 
+PATH A NOTE (if this PRD is a DPRD from the Product Intelligence Kit):
+This validator evaluates the 6 EEK hard gates only — it does not re-evaluate PIK
+traceability gates (upstream_traceability, no_scope_expansion), which are the
+responsibility of the PIK dprd-validator.md. However: discovery rigor cannot be
+verified from document structure alone. If assumptions section references EL
+experiment IDs (EXP-N), that is a positive signal. If assumptions are documented
+without EL references, flag this as a WARNING — not a blocking issue — to prompt
+human review of the frozen Experiment Log before freezing this PRD slot.
+
 HARD GATES:
 - problem_definition
 - goals
