@@ -102,6 +102,16 @@ Templates are designed to:
 
 ---
 
+### 🔗 Utility Prompts
+Non-governed analytical supplements:
+- `codebase-analysis-prompt.md` — Brownfield system analysis; pre-fills ACF, DCF, SAD intake forms
+- `impact-analysis-prompt.md` — Downstream impact analysis for frozen artifact changes
+- `dprd-consistency-check-prompt.md` — Cross-boundary consistency check: Path A (DPRD provenance) or Path B (Product Brief scope) at EEK entry
+
+➡️ See: `prompts/`
+
+---
+
 ### ✅ Validators
 Strict, non-prescriptive readiness gates:
 - PRD Validator

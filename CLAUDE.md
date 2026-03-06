@@ -55,6 +55,8 @@ Prerequisite documents must exist and be frozen before downstream artifacts are 
 
 **Cross-kit re-entry (upstream DPRD change)**: If a Path A DPRD changes after EEK artifacts exist, run `impact-analysis-prompt.md` first, then follow the Cross-Kit Re-Entry Protocol in `docs/playbook.md`.
 
+**Cross-boundary consistency check (Path A or Path B entry)**: Run `dprd-consistency-check-prompt.md` after placing the PRD to verify provenance integrity before running the PRD Validator. For Path A: confirms DPRD was placed unmodified. For Path B: confirms generated PRD does not expand Product Brief scope beyond what the KER authorized.
+
 ## Naming Conventions
 
 - Specs: `{type}-spec.md` (e.g., `prd-spec.md`) — in `docs/specs/`
