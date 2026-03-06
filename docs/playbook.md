@@ -1339,6 +1339,34 @@ An engineering lead, team lead, or equivalent role must authorize the terminal s
 
 ---
 
+## Maintaining the Engagement Record
+
+The Engagement Record (ER) is a project-level artifact that lives in the consuming project at `docs/engagement/er-{initiative}.md`. It spans all AIEOS layers and is maintained by each kit's operators as work passes through. The ER spec and format are defined in `aieos-spec/docs/engagement-record-spec.md`.
+
+**EEK maintains the Layer 4 section of the ER.**
+
+The ER is created by PIK when the Discovery Intake is validated. If the engagement enters EEK via Path B (no PIK engagement), create the ER at the start of EEK with §1 Document Control and §3 as the active section.
+
+### What to Update During Engineering Execution
+
+| Trigger | ER update |
+|---------|-----------|
+| KER frozen | Add KER ID to §3 artifact table; note Path A or Path B |
+| PRD frozen | Add PRD ID to §3 |
+| ACF frozen | Add ACF ID to §3 |
+| SAD frozen | Add SAD ID to §3 |
+| DCF frozen | Add DCF ID to §3 |
+| TDD frozen | Add TDD ID to §3 |
+| WDD frozen | Add WDD ID to §3 |
+| ORD frozen | Add ORD ID to §3 |
+| Hard gate failure encountered | Add entry to §3 Gate Failures with artifact ID, gate name, and resolution |
+
+### On Engagement End
+
+When issuing a Deprecation Notice: update §1 Status to `Deprecated` or `Abandoned` and add the DN ID to §7 Initiative Outcome.
+
+---
+
 ## Final Note
 
 This system is intentionally disciplined.
