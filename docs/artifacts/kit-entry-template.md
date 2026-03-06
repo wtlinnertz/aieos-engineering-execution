@@ -12,6 +12,8 @@ This record is **human-authored**. It is validated against `kit-entry-spec.md` b
 - Date:
 - Initiated By:
 - Work Summary: (1-2 sentences describing what this EEK engagement will deliver)
+- Governance Model Version: 1.0
+- Prompt Version: N/A
 
 ---
 

@@ -6,6 +6,8 @@
 - Author:
 - Date:
 - Status: Draft | Approved | Freeze Pending | Frozen
+- Governance Model Version: 1.0
+- Prompt Version: {prompt version}
 - Upstream Artifacts:
   - SAD ID / Link:
   - ACF ID / Link (if applicable):

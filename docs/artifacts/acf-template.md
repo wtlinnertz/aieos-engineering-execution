@@ -8,6 +8,8 @@ It is reusable across many initiatives.
 - Owner:
 - Date:
 - Status: Draft | Approved | Freeze Pending | Frozen
+- Governance Model Version: 1.0
+- Prompt Version: {prompt version}
 - Applies To: (e.g., “All services”, “All platform workloads”, “This domain only”)
 
 ## 1. Purpose

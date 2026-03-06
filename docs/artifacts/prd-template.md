@@ -6,6 +6,8 @@
 - Author:
 - Date:
 - Status: Draft | Approved | Freeze Pending | Frozen
+- Governance Model Version: 1.0
+- Prompt Version: {prompt version}
 - Related Links:
 
 ## 1. Problem Statement

@@ -7,6 +7,8 @@ Translate a frozen TDD into **atomic, executable work items** suitable for AI ag
 - Author:
 - Date:
 - Status: Draft | Approved | Freeze Pending | Frozen
+- Governance Model Version: 1.0
+- Prompt Version: {prompt version}
 - Parent TDD:
   - TDD ID / Link:
   - TDD Status: Frozen (required)
