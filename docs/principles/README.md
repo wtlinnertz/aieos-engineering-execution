@@ -70,3 +70,22 @@ ACF + DCF → SAD, TDD, WDD (constrained by guardrails)
 
 - `code-craftsmanship.md` — Engineering standards: code quality, architecture, testing, security, AI development
 - `product-craftsmanship.md` — Product standards: problem diagnosis, outcomes, assumptions, scope, traceability
+- `security-principles.md` — Security controls: input handling, auth, secrets, dependencies, cryptography, CI gates, runtime
+
+### Security Principles (`security-principles.md`)
+
+| Principle Section | Feeds Into |
+|---|---|
+| §1 Enforcement Model | Validators (gate set by Work Classification) |
+| §2.1 Input Handling | ACF security constraints; DCF implementation standards |
+| §2.2 Auth & Authz | ACF security constraints; TDD security test coverage |
+| §2.3 Secret Management | ACF security constraints; CI policy |
+| §2.4 Dependency Security | ACF dependency policy; CI policy |
+| §2.5 Error Handling | DCF quality bars; TDD error scenario coverage |
+| §2.6 Logging | DCF quality bars; TDD security test scenarios |
+| §2.7 Cryptography | ACF security constraints; ACF forbidden patterns |
+| §2.8 Secure Configuration | ACF security constraints; CI policy |
+| §3 CI/CD Gates | ACF CI policy section |
+| §4 Runtime Security | ACF runtime constraints |
+| §5 Exceptions | Exception record in consuming project (follows DN pattern) |
+| §6 Non-Negotiable Principles | ACF + DCF + code-prompt.md + review-prompt.md |
