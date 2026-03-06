@@ -123,17 +123,17 @@ Examples from history:
 
 ## Governance Model Sync
 
-`docs/governance-model.md` is a synchronized copy of `aieos-spec/governance-model.md`, which is the canonical authority. Do not edit the kit copy directly — update `aieos-spec` first, then sync all kit copies to match exactly. See governance-model.md §15 for versioning and change protocol.
+`docs/governance-model.md` is a synchronized copy of `aieos-governance-foundation/governance-model.md`, which is the canonical authority. Do not edit the kit copy directly — update `aieos-governance-foundation` first, then sync all kit copies to match exactly. See governance-model.md §15 for versioning and change protocol.
 
 ## Engagement Record
 
-EEK maintains the Layer 4 section of the project's Engagement Record (`docs/engagement/er-{initiative}.md` in the consuming project). Add each Layer 4 artifact ID as it freezes, and record any hard gate failures and their resolutions. If entering via Path B (no PIK engagement), create the ER at the start of the engagement. See `docs/playbook.md §Maintaining the Engagement Record` and `aieos-spec/docs/engagement-record-spec.md`.
+EEK maintains the Layer 4 section of the project's Engagement Record (`docs/engagement/er-{initiative}.md` in the consuming project). Add each Layer 4 artifact ID as it freezes, and record any hard gate failures and their resolutions. If entering via Path B (no PIK engagement), create the ER at the start of the engagement. See `docs/playbook.md §Maintaining the Engagement Record` and `aieos-governance-foundation/docs/engagement-record-spec.md`.
 
 ## Building or Auditing AIEOS Kits
 
-- `aieos-spec/docs/kit-structure-standard.md` — compliance checklist for building and auditing kits
-- `aieos-spec/docs/philosophy.md` — design rationale for governance model decisions
-- `aieos-spec/docs/layer-model.md` — seven-layer model and kit registry
+- `aieos-governance-foundation/docs/kit-structure-standard.md` — compliance checklist for building and auditing kits
+- `aieos-governance-foundation/docs/philosophy.md` — design rationale for governance model decisions
+- `aieos-governance-foundation/docs/layer-model.md` — seven-layer model and kit registry
 
 ## What Not To Do
 

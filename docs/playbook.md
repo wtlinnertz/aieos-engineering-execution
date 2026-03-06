@@ -1294,7 +1294,7 @@ This kit produces artifacts that may be the destination of escalations from down
 
 ## Principle File Revision
 
-When a principle file in `docs/principles/` changes, use the change categories defined in `aieos-spec/docs/principle-file-standard.md`:
+When a principle file in `docs/principles/` changes, use the change categories defined in `aieos-governance-foundation/docs/principle-file-standard.md`:
 
 | Change Category | Version Bump | Re-Entry Impact |
 |----------------|-------------|-----------------|
@@ -1308,7 +1308,7 @@ Every change to a principle file must bump the version field, even minor clarifi
 
 ## Deprecation and Sunset
 
-When an engineering engagement ends — either by completing delivery, being cancelled, or being superseded — the artifacts it produced transition to terminal lifecycle states. See the full protocol in `aieos-spec/docs/deprecation-protocol.md`.
+When an engineering engagement ends — either by completing delivery, being cancelled, or being superseded — the artifacts it produced transition to terminal lifecycle states. See the full protocol in `aieos-governance-foundation/docs/deprecation-protocol.md`.
 
 ### When to Deprecate or Abandon
 
@@ -1328,7 +1328,7 @@ An engineering lead, team lead, or equivalent role must authorize the terminal s
 1. Confirm the cancellation or conclusion decision is authorized.
 2. List all artifacts in the engagement series (KER, PRD, ACF, SAD, DCF, TDD, WDD, ORD) with their current status.
 3. For each artifact: if Frozen → `Deprecated`; if not Frozen → `Abandoned`.
-4. Create a DN record at `docs/sdlc/dn-{project-id}-{NNN}.md` using the format in `aieos-spec/docs/deprecation-protocol.md`.
+4. Create a DN record at `docs/sdlc/dn-{project-id}-{NNN}.md` using the format in `aieos-governance-foundation/docs/deprecation-protocol.md`.
 5. Update each artifact's Status field to its terminal state (non-material amendment; add Amendment Log entry per governance model §6).
 
 ### What Does Not Change
@@ -1341,7 +1341,7 @@ An engineering lead, team lead, or equivalent role must authorize the terminal s
 
 ## Maintaining the Engagement Record
 
-The Engagement Record (ER) is a project-level artifact that lives in the consuming project at `docs/engagement/er-{initiative}.md`. It spans all AIEOS layers and is maintained by each kit's operators as work passes through. The ER spec and format are defined in `aieos-spec/docs/engagement-record-spec.md`.
+The Engagement Record (ER) is a project-level artifact that lives in the consuming project at `docs/engagement/er-{initiative}.md`. It spans all AIEOS layers and is maintained by each kit's operators as work passes through. The ER spec and format are defined in `aieos-governance-foundation/docs/engagement-record-spec.md`.
 
 **EEK maintains the Layer 4 section of the ER.**
 
