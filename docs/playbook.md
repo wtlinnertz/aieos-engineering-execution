@@ -1306,6 +1306,39 @@ Every change to a principle file must bump the version field, even minor clarifi
 
 ---
 
+## Deprecation and Sunset
+
+When an engineering engagement ends — either by completing delivery, being cancelled, or being superseded — the artifacts it produced transition to terminal lifecycle states. See the full protocol in `aieos-spec/docs/deprecation-protocol.md`.
+
+### When to Deprecate or Abandon
+
+| Situation | Action |
+|-----------|--------|
+| Engagement completed; ORD frozen and handed off to REK | No immediate action — artifacts become Deprecated when the system reaches end of life |
+| System decommissioned after production operation | `Deprecated` on all frozen EEK artifacts for that system |
+| Engagement cancelled after one or more artifacts are Frozen | `Deprecated` on frozen artifacts; `Abandoned` on any non-frozen artifacts |
+| Engagement cancelled before any artifact is Frozen | `Abandoned` on all in-progress artifacts |
+
+### Who Authorizes
+
+An engineering lead, team lead, or equivalent role must authorize the terminal state transition. Do not move to `Deprecated` or `Abandoned` without an authorizing name and role recorded in the Deprecation Notice.
+
+### How to Issue a Deprecation Notice (DN)
+
+1. Confirm the cancellation or conclusion decision is authorized.
+2. List all artifacts in the engagement series (KER, PRD, ACF, SAD, DCF, TDD, WDD, ORD) with their current status.
+3. For each artifact: if Frozen → `Deprecated`; if not Frozen → `Abandoned`.
+4. Create a DN record at `docs/sdlc/dn-{project-id}-{NNN}.md` using the format in `aieos-spec/docs/deprecation-protocol.md`.
+5. Update each artifact's Status field to its terminal state (non-material amendment; add Amendment Log entry per governance model §6).
+
+### What Does Not Change
+
+- Artifacts are retained — never deleted.
+- Terminal state does not require re-validation.
+- If the work restarts under a revised PRD, new artifacts with new IDs are produced. Terminal-state artifacts are not reactivated.
+
+---
+
 ## Final Note
 
 This system is intentionally disciplined.
