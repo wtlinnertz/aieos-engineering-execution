@@ -2,6 +2,12 @@
 
 The SAD must describe the system boundary, major components, responsibilities, and interactions at the architectural level — sufficient for a downstream Technical Design Document to be produced without ambiguity.
 
+## What This Artifact Is Not
+
+- **Not a complete implementation specification.** The SAD defines system boundaries, component responsibilities, and key architectural decisions — not implementation details, code structure, or configuration.
+- **Not a Technical Design Document.** The SAD operates at the architectural level; the TDD translates architectural decisions into implementation-ready technical specifications.
+- **Not a requirements document.** The SAD does not add requirements. If reviewing the SAD reveals missing requirements, those go back to the PRD — not into the SAD.
+
 ## Upstream Dependencies
 
 - Frozen PRD

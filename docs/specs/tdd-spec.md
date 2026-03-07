@@ -2,6 +2,12 @@
 
 The TDD must define how the system will be built, tested, deployed, and operated — at a level sufficient for work decomposition into atomic, executable items without remaining design decisions.
 
+## What This Artifact Is Not
+
+- **Not an architecture document.** Architectural decisions belong in the SAD. The TDD translates frozen SAD decisions into implementation-ready specifications — it does not revise or expand architectural scope.
+- **Not a work backlog.** The TDD defines what will be built and how; decomposing that into individual work items (tickets, stories) is a downstream engineering activity.
+- **Not a deployment runbook.** The TDD defines the deployment approach at a design level; operational runbooks belong in the ORD.
+
 ## Upstream Dependencies
 
 - Frozen SAD

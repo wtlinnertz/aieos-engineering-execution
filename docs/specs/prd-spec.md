@@ -2,6 +2,12 @@
 
 The PRD defines the problem, goals, scope, and success criteria for a product initiative. It must be clear enough to drive architecture without containing solutions.
 
+## What This Artifact Is Not
+
+- **Not a technical design document.** The PRD defines what to build and why — not how the system achieves it. Architecture and implementation decisions belong downstream in the SAD and TDD.
+- **Not a backlog or sprint plan.** Requirements in the PRD define what the system must accomplish; decomposing them into work items is an engineering activity.
+- **Not a solution proposal.** The PRD defines intent; the SAD translates that intent into an architectural approach. Including solution proposals in the PRD undermines the engineering team's architecture authority.
+
 ## Upstream Dependencies
 
 This kit accepts PRDs from two entry paths. Both produce a frozen PRD that satisfies this spec.

@@ -2,6 +2,12 @@
 
 The ACF defines architecture guardrails that constrain the SAD and all downstream artifacts. It captures constraints and forbidden patterns, not solutions.
 
+## What This Artifact Is Not
+
+- **Not an architecture document.** The ACF defines what the architecture must not do and what it must comply with — not what it should look like. Architecture decisions belong in the SAD.
+- **Not a technology selection document.** The ACF may list approved patterns and forbidden patterns, but does not select the architecture for any specific initiative.
+- **Not a standards inventory.** The ACF captures the guardrails relevant to the engineering scope of a project — not an exhaustive catalog of all organizational standards.
+
 ## Upstream Dependencies
 
 - Architecture Context (intake form) or equivalent organizational standards, platform assumptions, regulatory/security constraints
