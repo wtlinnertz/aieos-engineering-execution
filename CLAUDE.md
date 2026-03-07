@@ -129,6 +129,16 @@ Examples from history:
 
 EEK maintains the Layer 4 section of the project's Engagement Record (`docs/engagement/er-{initiative}.md` in the consuming project). Add each Layer 4 artifact ID as it freezes, and record any hard gate failures and their resolutions. If entering via Path B (no PIK engagement), create the ER at the start of the engagement. See `docs/playbook.md §Maintaining the Engagement Record` and `aieos-governance-foundation/docs/engagement-record-spec.md`.
 
+## When Working on This Kit
+
+- Read the playbook (`docs/playbook.md`) for the full process definition
+- Read the governance model (`docs/governance-model.md`) for structural rules
+- Check `docs/how-to-use-with-ai.md` for session setup instructions
+- Use `docs/session-setup.md` for per-artifact setup checklists and pre-flight gate checks
+- Use `docs/troubleshooting.md` when a validator returns FAIL — maps each gate failure to a specific remediation
+- Reference `examples/end-to-end/` for a complete worked example
+- Arriving from PIK via DPRD handoff: see `docs/entry-from-pik.md` for the boundary briefing
+
 ## Building or Auditing AIEOS Kits
 
 - `aieos-governance-foundation/docs/kit-structure-standard.md` — compliance checklist for building and auditing kits

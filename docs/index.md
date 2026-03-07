@@ -183,6 +183,14 @@ Small, focused improvements are preferred.
 
 ---
 
+## Guides
+
+- [`session-setup.md`](session-setup.md) — Per-artifact setup checklists, pre-flight gate checks, and common failure reminders
+- [`troubleshooting.md`](troubleshooting.md) — Gate failure remediation guide
+- [`entry-from-pik.md`](entry-from-pik.md) — Boundary briefing when arriving from the Product Intelligence Kit (Path A)
+
+---
+
 ## Where to Go Next
 
 - Read the **Playbook** → `playbook.md`
