@@ -149,7 +149,7 @@ After the Kit Entry Record is frozen and the PRD slot is filled (via either path
   → Review (`review-prompt.md` → human approves PR)
 
 - Execute (work group complete)
-  → Business Acceptance Testing (TBD — process not yet defined)
+  → Business Acceptance Testing (`bat-prompt.md`)
 
 - Execute (all work items complete)
   → ORD (`ord-prompt.md`)
