@@ -14,6 +14,9 @@ Evaluate this artifact against the hard gates, content rules, format requirement
 and completeness criteria defined in `tdd-spec.md`.
 Each hard gate in your output must correspond to a hard gate defined in the spec.
 
+PRINCIPLES COVERAGE GATE:
+The `principles_coverage` gate checks that the TDD includes a principles coverage table (as a Markdown comment) and that every directive from `docs/principles/security-principles.md` (§2.2, §2.5) and `docs/principles/code-craftsmanship.md` (§8) is either addressed in a specific TDD section or explicitly marked N/A with justification. FAIL if the table is missing, incomplete, or contains unaddressed directives without justification.
+
 OUTPUT FORMAT (MANDATORY):
 
 ```json
@@ -27,7 +30,8 @@ OUTPUT FORMAT (MANDATORY):
     "build_deploy": "PASS | FAIL",
     "failure_handling": "PASS | FAIL",
     "testing": "PASS | FAIL",
-    "readiness": "PASS | FAIL"
+    "readiness": "PASS | FAIL",
+    "principles_coverage": "PASS | FAIL"
   },
   "blocking_issues": [
     {

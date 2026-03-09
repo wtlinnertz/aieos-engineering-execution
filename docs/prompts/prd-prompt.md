@@ -44,6 +44,17 @@ Before generating, confirm you have the following:
 
 If the input does not provide enough information to define the problem, users, goals, or scope, stop and state what is missing. Do not invent problem context or requirements.
 
+**Required Principles Inputs:**
+The following organizational principles files MUST be provided as input and their directives incorporated into the generated PRD:
+- **Product Craftsmanship Principles** (`docs/principles/product-craftsmanship.md`) — Apply §1 Diagnose Before Prescribing to §2 Problem Statement; §2 Outcomes Over Output to §3 Goals and §11 Acceptance Criteria; §3 Explicit Assumptions to §8 Assumptions; §4 Strategic Alignment to §2 Problem Statement rationale; §5 Clear Scope Boundaries to §4 Non-Goals and §9 Out of Scope; §8 Evidence Over Opinion to problem framing and justification
+
+After generating the PRD, append a principles coverage table as a Markdown comment at the end of the artifact:
+<!-- PRINCIPLES COVERAGE
+| Principles File | Section | PRD Section Addressed | Status |
+|---|---|---|---|
+(For each directive in each required principles file, confirm it is addressed in a specific PRD section or marked N/A with justification)
+-->
+
 ---
 
 ### Instructions

@@ -21,6 +21,19 @@ INPUTS:
 - Frozen SAD
 - Design Context File (DCF)
 
+REQUIRED PRINCIPLES INPUTS:
+The following principles files MUST be provided as input and their directives incorporated:
+- `docs/principles/security-principles.md` — Translate §2.2 Auth & Authz and §2.5 Error Handling into required TDD security test coverage and error scenario coverage
+- `docs/principles/code-craftsmanship.md` — Translate §8 Definition of Done Addendum into TDD completion criteria
+
+PRINCIPLES COVERAGE CROSS-REFERENCE:
+After generating the TDD, append a principles coverage table as a Markdown comment at the end of the artifact:
+<!-- PRINCIPLES COVERAGE
+| Principles File | Section | TDD Section Addressed | Status |
+|---|---|---|---|
+(For each directive in each required principles file, confirm it is addressed in a specific TDD section or marked N/A with justification)
+-->
+
 SPEC REFERENCE:
 The authoritative content rules, format requirements, completeness criteria,
 and hard gates for this artifact are defined in `tdd-spec.md`.

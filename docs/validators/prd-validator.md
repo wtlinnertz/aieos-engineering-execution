@@ -30,6 +30,10 @@ HARD GATES:
 - requirements
 - constraints
 - readiness
+- principles_coverage
+
+PRINCIPLES COVERAGE GATE:
+The `principles_coverage` gate checks that the PRD includes a principles coverage table (as a Markdown comment) and that every directive from `docs/principles/product-craftsmanship.md` (§1–§8) is either addressed in a specific PRD section or explicitly marked N/A with justification. FAIL if the table is missing, incomplete, or contains unaddressed directives without justification. NOTE: For Path A DPRDs, this gate evaluates the coverage table as-is from the upstream artifact — do not require EEK-specific principles coverage that PIK would not have applied.
 
 OUTPUT FORMAT (MANDATORY):
 
@@ -43,7 +47,8 @@ OUTPUT FORMAT (MANDATORY):
     "scope": "PASS | FAIL",
     "requirements": "PASS | FAIL",
     "constraints": "PASS | FAIL",
-    "readiness": "PASS | FAIL"
+    "readiness": "PASS | FAIL",
+    "principles_coverage": "PASS | FAIL"
   },
   "blocking_issues": [
     {

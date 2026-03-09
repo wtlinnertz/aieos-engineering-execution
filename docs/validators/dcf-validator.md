@@ -25,6 +25,10 @@ HARD GATES:
 - testing_expectations
 - documentation_expectations
 - standard_enforceability
+- principles_coverage
+
+PRINCIPLES COVERAGE GATE:
+The `principles_coverage` gate checks that the DCF includes a principles coverage table (as a Markdown comment) and that every directive from `docs/principles/code-craftsmanship.md` (§1, §3, §4, §5, §6) and `docs/principles/security-principles.md` (§2.1, §2.5, §2.6) is either addressed in a specific DCF section or explicitly marked N/A with justification. FAIL if the table is missing, incomplete, or contains unaddressed directives without justification.
 
 OUTPUT FORMAT (MANDATORY):
 
@@ -41,7 +45,8 @@ OUTPUT FORMAT (MANDATORY):
     "operational_expectations": "PASS | FAIL",
     "testing_expectations": "PASS | FAIL",
     "documentation_expectations": "PASS | FAIL",
-    "standard_enforceability": "PASS | FAIL"
+    "standard_enforceability": "PASS | FAIL",
+    "principles_coverage": "PASS | FAIL"
   },
   "blocking_issues": [
     {
