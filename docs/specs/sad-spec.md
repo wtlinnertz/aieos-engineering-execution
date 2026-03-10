@@ -98,6 +98,22 @@ Sections that are not applicable must be explicitly marked as such with justific
 - System boundary not identifiable from diagrams or accompanying text
 - External systems listed without interaction type
 
+### Layer Assignment (§4)
+
+**Rules**
+- Every major component in §4 must be assigned to an architectural layer: Domain, Application, or Infrastructure
+- The layer assignment must be explicit — stated per component, not implied
+- The dependency direction rule must be declared: dependencies point inward (Infrastructure → Application → Domain); domain depends on nothing external
+- Any component that spans layers must be identified and justified (e.g., a facade that bridges application and infrastructure)
+- The layer assignment table must appear alongside or immediately after the Major Components section
+
+**Failure Examples**
+- Components listed with responsibilities but no layer assignment
+- Layer assignment implied by naming convention but not explicitly stated
+- Missing dependency direction declaration
+- Domain component described with infrastructure dependencies (e.g., "User entity uses PostgreSQL client")
+- No layer assignment table
+
 ### Cross-Cutting Concerns (§6)
 
 **Rules**
@@ -235,6 +251,7 @@ Sections that are not applicable must be explicitly marked as such with justific
 10. **risk_awareness** — Risks identified with impact and architectural mitigation
 11. **guardrail_alignment** — ACF alignment explicit; exceptions justified with ADRs
 12. **implementation_leakage** — No code blocks, configs, or procedural step-by-step flows
+13. **layer_assignment** — Every major component assigned to Domain, Application, or Infrastructure layer; dependency direction rule declared (inward-only); no domain components with infrastructure dependencies
 
 ## Completeness Score
 

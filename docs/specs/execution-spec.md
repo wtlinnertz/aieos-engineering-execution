@@ -193,14 +193,15 @@ Actively search for defects, scope violations, contract mismatches, and coverage
 13. Dependencies match approved plan
 14. No duplicated logic creating maintenance risk
 15. Narrative documentation — non-trivial modules have module-level narrative; non-obvious logic has intent comments explaining why, not what; tradeoffs and alternatives are documented where applicable (per `code-craftsmanship.md` §1.4 Narrative Code Documentation)
+16. Dependency direction — no domain module imports from application or infrastructure layers; application layer defines interfaces, infrastructure implements them; violations of the inward dependency rule from SAD §4 / TDD §3 layer assignment are blockers (per `code-craftsmanship.md` §1.8 Dependency Direction Rule)
 
 **Verification Checks**
-16. All acceptance criterion tests pass
-16. All failure condition tests pass
-17. No regressions in existing tests
-18. WDD Definition of Done items satisfied (PR ready, tests passing, evidence generated)
-19. Rollback behavior tested or verified per WDD
-20. Evidence is concrete (test reports, log output, screenshots) — not assertions
+17. All acceptance criterion tests pass
+18. All failure condition tests pass
+19. No regressions in existing tests
+20. WDD Definition of Done items satisfied (PR ready, tests passing, evidence generated)
+21. Rollback behavior tested or verified per WDD
+22. Evidence is concrete (test reports, log output, screenshots) — not assertions
 
 **Review Verdicts**
 - PASS — implementation is correct, within scope, and verified

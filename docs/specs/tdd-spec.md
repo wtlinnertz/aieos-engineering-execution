@@ -64,12 +64,16 @@ The TDD must define how the system will be built, tested, deployed, and operated
 - When the system has multiple distinct technology layers (e.g., frontend, API, data access, infrastructure), each layer must have its own technical context
 - Key data flows between components must be described
 - Must be concrete enough that an implementer knows what technology stack applies to each component without consulting external sources
+- Must carry forward the SAD §4 layer assignment (Domain, Application, Infrastructure) for each component and declare any dependency constraints that apply at the implementation level
+- Dependency direction violations must be flagged: no domain component may import from application or infrastructure layers; application layer defines interfaces that infrastructure implements
 
 **Failure Examples**
 - Single narrative paragraph for a multi-layer system with no per-component breakdown
 - Component listed without language/framework ("API service" with no technology context)
 - Technology choices that contradict ACF-approved patterns
 - Missing component that exists in the SAD
+- Layer assignment from SAD not carried forward (components listed without their layer)
+- Domain component specified with infrastructure dependencies (e.g., domain entity using an ORM base class or HTTP framework annotation)
 
 ### Interfaces and Contracts (§4)
 

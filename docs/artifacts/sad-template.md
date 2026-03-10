@@ -62,6 +62,17 @@ For each component:
 - Responsibility:
 - Key interactions:
 
+### Layer Assignment
+
+**Dependency Direction Rule:** Source code dependencies point inward only. Infrastructure → Application → Domain. Domain depends on nothing external.
+
+| Component | Layer | Justification |
+|-----------|-------|---------------|
+| {component name} | Domain / Application / Infrastructure | {why this layer} |
+
+Components that span layers (if any):
+- {component}: {which layers and why}
+
 ### Communication Patterns
 - Sync vs async:
 - Protocols (high level):

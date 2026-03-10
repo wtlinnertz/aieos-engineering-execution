@@ -44,7 +44,8 @@ Each hard gate in your output must correspond to a hard gate defined in the spec
     "deferred_decisions": "PASS | FAIL",
     "risk_awareness": "PASS | FAIL",
     "guardrail_alignment": "PASS | FAIL",
-    "implementation_leakage": "PASS | FAIL"
+    "implementation_leakage": "PASS | FAIL",
+    "layer_assignment": "PASS | FAIL"
   },
   "blocking_issues": [
     {

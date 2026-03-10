@@ -236,6 +236,28 @@ Duplication compounds future risk.
 
 Architecture must enable isolation.
 
+### Dependency Direction Rule
+
+Source code dependencies must point inward — from infrastructure toward domain, never the reverse.
+
+A system's components are organized into architectural layers. The dependency direction rule constrains which layers may reference which:
+
+* **Domain layer** (entities, business rules, value objects) — depends on nothing. No imports from application, infrastructure, or framework code.
+* **Application layer** (use cases, orchestration, service interfaces) — depends on domain only. Defines interfaces (abstractions) for capabilities it needs from the outer layers.
+* **Infrastructure layer** (database adapters, API controllers, framework bindings, external service clients) — depends on application and domain. Implements the interfaces defined by the application layer.
+
+This means:
+
+* A domain entity must never import a database client, HTTP framework, or external SDK.
+* An application service defines an interface (e.g., `UserRepository`); the infrastructure layer provides the implementation (e.g., `PostgresUserRepository`).
+* Framework-specific annotations, decorators, or base classes must not appear in domain or application layers.
+* If a dependency direction violation is unavoidable, it must be documented with justification and a mitigation plan (e.g., anti-corruption layer).
+
+The dependency direction rule is enforced through:
+* SAD §4 layer assignment (each component mapped to domain, application, or infrastructure)
+* TDD §3 technical overview (layer assignment carried forward with dependency constraints)
+* Execution Phase 4 Review (dependency direction violations are blockers)
+
 ---
 
 # 2. Architecture Standards
@@ -436,7 +458,7 @@ No stage advances on assumption.
 | Rule Category | Enforced By |
 |---------------|-------------|
 | Core engineering doctrine (readability, SRP, naming, DRY, complexity, error handling, dependencies) (§1) | `acf-spec.md` §security_guardrails hard gate; `dcf-spec.md` §design_principles hard gate; `wdd-spec.md` §granularity hard gate |
-| Architecture standards — module boundaries, layer separation (§2) | `sad-spec.md` §component_boundaries hard gate; `sad-spec.md` §intent_integrity hard gate |
+| Architecture standards — module boundaries, layer separation, dependency direction (§2, §1.8) | `sad-spec.md` §layer_assignment hard gate; `sad-spec.md` §intent_integrity hard gate; `tdd-spec.md` §intent_alignment hard gate |
 | Test design standards — behavior-focused, coverage, isolation (§3) | `dcf-spec.md` §testing_expectations hard gate; `dor-spec.md` §testability hard gate |
 | Security baseline — input validation, parameterized queries, dependency pinning, no custom crypto (§4.3) | `acf-spec.md` §security_guardrails hard gate |
 | Definition of Done — engineering addendum (§8) | `dor-spec.md` §definition_of_done hard gate |

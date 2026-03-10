@@ -62,14 +62,15 @@ CODE QUALITY CHECKS:
 12. Dependencies — match what was approved in the plan phase
 13. No duplicated logic — no copy-paste patterns that create maintenance risk
 14. Narrative documentation — non-trivial modules have a module-level narrative explaining purpose, role in the system, and key constraints; non-obvious logic has intent comments explaining why (not what); design tradeoffs and considered alternatives are documented where applicable
+15. Dependency direction — verify that no domain module imports from application or infrastructure layers; application layer defines interfaces, infrastructure implements them; check import statements against the layer assignment in SAD §4 / TDD §3; dependency direction violations are blockers
 
 VERIFICATION CHECKS:
-15. All acceptance criterion tests pass
-15. All failure condition tests pass
-16. No regressions in existing tests
-17. WDD Definition of Done items are satisfied (PR ready, tests passing, evidence generated)
-18. Rollback behavior is tested or verified as specified in WDD
-19. Evidence is concrete (test reports, log output, screenshots) — not assertions
+16. All acceptance criterion tests pass
+17. All failure condition tests pass
+18. No regressions in existing tests
+19. WDD Definition of Done items are satisfied (PR ready, tests passing, evidence generated)
+20. Rollback behavior is tested or verified as specified in WDD
+21. Evidence is concrete (test reports, log output, screenshots) — not assertions
 
 OUTPUT FORMAT:
 
@@ -86,7 +87,7 @@ OUTPUT FORMAT:
 <are acceptance criteria covered? failure conditions? edge cases?>
 
 ## Code Quality
-<error handling complete? hardcoded values? unbounded operations? dead code? dependency drift? narrative documentation present?>
+<error handling complete? hardcoded values? unbounded operations? dead code? dependency drift? narrative documentation present? dependency direction respected?>
 
 ## Security
 <ACF guardrails respected? secrets exposed? injection risks? auth/authz correct? security review trigger matched?>

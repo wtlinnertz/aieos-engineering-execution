@@ -36,6 +36,14 @@ Describe the design at a level sufficient to build.
 - Key flows:
 - Data movement (high level):
 
+### Layer Assignment (from SAD §4)
+
+| Component | Layer | Language/Framework | Dependency Constraints |
+|-----------|-------|--------------------|----------------------|
+| {component} | Domain / Application / Infrastructure | {tech stack} | {what this component may and may not depend on} |
+
+**Dependency Direction Rule:** Dependencies point inward only. Domain depends on nothing. Application defines interfaces; Infrastructure implements them.
+
 ## 4. Interfaces and Contracts (Hard)
 For each interface:
 - Name:

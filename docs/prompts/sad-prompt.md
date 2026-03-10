@@ -67,6 +67,14 @@ Generate the SAD following the template structure exactly. For each section:
 - Produce a Data Flow diagram in valid Mermaid syntax showing how data moves between components with state transitions
 - Diagrams must describe structure; no code blocks, configs, or execution flows embedded in diagrams
 
+#### Layer Assignment
+- Assign every major component to an architectural layer: **Domain**, **Application**, or **Infrastructure**
+- Produce a layer assignment table immediately after the Major Components section
+- Declare the dependency direction rule: source code dependencies point inward only (Infrastructure → Application → Domain); domain depends on nothing external
+- Domain layer components must have no dependencies on application or infrastructure layers
+- Application layer components define interfaces (abstractions) for capabilities they need from infrastructure; infrastructure implements those interfaces
+- If any component spans layers, identify it and justify why
+
 ### §5 Key Architectural Decisions
 - For each significant architectural decision, state: the decision made, the alternatives considered, and the rationale
 - Each decision must be traceable to PRD goals, ACF guardrails, or a referenced ADR
@@ -123,6 +131,8 @@ Generate the SAD following the template structure exactly. For each section:
 | Diagram depicts execution flow | Gate 4: structural_diagrams — execution, not structure | Diagrams show components and their relationships, not step sequences |
 | Non-goal violated by a requirement | Gate 1/2: intent_integrity or scope_discipline | Scope must not expand beyond PRD; non-goals are hard constraints |
 | Data store with no declared owner | Gate 6: data_integration — ownership ambiguous | Assign authoritative ownership; if shared, declare the write authority explicitly |
+| Component with no layer assignment | Gate 13: layer_assignment — missing | Assign every component to Domain, Application, or Infrastructure; declare dependency direction |
+| Domain component importing infrastructure | Gate 13: layer_assignment — violated | Domain depends on nothing; move infrastructure dependency to an interface defined in Application layer |
 | "Retry on failure" as only mitigation | Gate 7: failure_modes — not architectural | Describe the circuit breaker, queue, or fallback pattern that enables retry |
 | QAS: "system should be fast" | Gate 8: quality_attributes — not testable | Define scenario, stimulus, response, and measure concretely |
 | Deferred decision with no timeline | Gate 9: deferred_decisions — incomplete | State target resolution phase; explain why it is deferred |
@@ -153,6 +163,7 @@ Before outputting the final document, verify each hard gate:
 - **risk_awareness** — Risks identified with impact and architectural mitigation?
 - **guardrail_alignment** — ACF guardrails addressed; exceptions justified with ADRs?
 - **implementation_leakage** — No code blocks, configuration snippets, or procedural step-by-step execution flows?
+- **layer_assignment** — Every major component assigned to Domain, Application, or Infrastructure; dependency direction rule declared; no domain components with infrastructure dependencies?
 
 If any gate would fail, revise before outputting the final document.
 
