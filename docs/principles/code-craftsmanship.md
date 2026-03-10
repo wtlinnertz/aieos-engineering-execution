@@ -104,6 +104,69 @@ Comments are warranted only when code cannot speak for itself:
 
 Comments that restate what code already says (e.g., `// increment counter` above `counter++`) are prohibited — they add noise and drift from the implementation.
 
+### Narrative Code Documentation
+
+Beyond self-documenting names and extraction, code must carry narrative documentation that preserves design knowledge for future readers. The codebase itself is the living documentation of system behavior and design decisions.
+
+**Module-level narrative (required for every non-trivial module):**
+
+Every service, orchestrator, state machine, or complex utility must open with a narrative block explaining:
+
+* What problem this module solves and its role in the larger system
+* Key invariants or constraints that govern its behavior
+* Dependencies and integration points
+
+Example:
+
+```
+/**
+ * Deployment Orchestrator
+ *
+ * Coordinates progressive delivery using GitOps principles. Determines
+ * when a deployment can safely advance from canary to full rollout.
+ *
+ * Key constraints:
+ * - All security gates must pass before promotion
+ * - Observability signals must remain within SLA thresholds
+ * - Rollbacks occur automatically if health signals degrade
+ */
+```
+
+**Intent comments on non-obvious logic (required):**
+
+When code makes a choice that is not self-evident from naming alone — retry counts, cache durations, algorithm selection, state machine transitions, parsing strategies — a comment must explain why that choice was made.
+
+Example:
+
+```
+// We retry transient network failures because the upstream API
+// occasionally drops connections under load. Three retries balances
+// resiliency without causing excessive delays.
+retries += 1
+```
+
+Example:
+
+```
+// We use a queue here instead of direct API calls. Earlier versions
+// used synchronous requests, but that created cascading failures
+// when the identity service slowed down. The queue isolates that
+// dependency and improves resilience.
+enqueue_identity_sync(user)
+```
+
+**Tradeoff and alternative comments (required when applicable):**
+
+When a design choice involved evaluating alternatives, document what was considered and why the current approach won. This prevents future engineers from re-evaluating the same options.
+
+**What does NOT qualify as narrative documentation:**
+
+* Restating what the code does (`// increment counter` above `counter++`)
+* Describing syntax (`// loop over items`)
+* Repeating a function name in sentence form (`// validates the token` above `validateToken()`)
+
+The test is: would a competent engineer joining this codebase understand *why* the code is written this way, not just *what* it does? If not, narrative documentation is missing.
+
 ### File and Symbol Ordering
 
 * Organize files so a reader encounters concepts in dependency order: high-level first, details later.
@@ -378,5 +441,7 @@ No stage advances on assumption.
 | Security baseline — input validation, parameterized queries, dependency pinning, no custom crypto (§4.3) | `acf-spec.md` §security_guardrails hard gate |
 | Definition of Done — engineering addendum (§8) | `dor-spec.md` §definition_of_done hard gate |
 | Governance & enforcement model (§9) | `acf-spec.md` and `dcf-spec.md` translate these principles into enforceable guardrails reviewed by all downstream validators |
+
+| Narrative code documentation — module narratives, intent comments, tradeoff preservation (§1.4) | `execution-spec.md` Phase 4 Review Check 15 (narrative_documentation); `dcf-spec.md` §design_principles hard gate |
 
 Red flag patterns (§5) and AI-assisted development rules (§7) are advisory — reinforced by generation prompts but not directly evaluated by a single hard gate.

@@ -61,9 +61,10 @@ CODE QUALITY CHECKS:
 11. No dead code — no unreachable paths or unused code introduced by the change
 12. Dependencies — match what was approved in the plan phase
 13. No duplicated logic — no copy-paste patterns that create maintenance risk
+14. Narrative documentation — non-trivial modules have a module-level narrative explaining purpose, role in the system, and key constraints; non-obvious logic has intent comments explaining why (not what); design tradeoffs and considered alternatives are documented where applicable
 
 VERIFICATION CHECKS:
-14. All acceptance criterion tests pass
+15. All acceptance criterion tests pass
 15. All failure condition tests pass
 16. No regressions in existing tests
 17. WDD Definition of Done items are satisfied (PR ready, tests passing, evidence generated)
@@ -85,7 +86,7 @@ OUTPUT FORMAT:
 <are acceptance criteria covered? failure conditions? edge cases?>
 
 ## Code Quality
-<error handling complete? hardcoded values? unbounded operations? dead code? dependency drift?>
+<error handling complete? hardcoded values? unbounded operations? dead code? dependency drift? narrative documentation present?>
 
 ## Security
 <ACF guardrails respected? secrets exposed? injection risks? auth/authz correct? security review trigger matched?>

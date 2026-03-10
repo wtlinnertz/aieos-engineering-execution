@@ -53,10 +53,11 @@ EVALUATION CRITERIA (HARD GATES):
    - Scope adherence verified
    - Interface compliance verified
    - Test coverage verified
-   - Code quality checks performed
+   - Code quality checks performed (including narrative documentation check)
    - Security checks performed
+   - Narrative documentation verified: non-trivial modules have module-level narratives; non-obvious logic has intent comments; design tradeoffs documented where applicable
    - Evidence is concrete (not assertions)
-   - Failure: Missing verdict, unverified checks, assertion-only evidence
+   - Failure: Missing verdict, unverified checks, assertion-only evidence, narrative documentation absent from non-trivial modules
 
 6. Evidence Completeness
    - Test specifications document exists

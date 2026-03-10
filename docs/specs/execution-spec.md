@@ -192,9 +192,10 @@ Actively search for defects, scope violations, contract mismatches, and coverage
 12. No dead code introduced by the change
 13. Dependencies match approved plan
 14. No duplicated logic creating maintenance risk
+15. Narrative documentation — non-trivial modules have module-level narrative; non-obvious logic has intent comments explaining why, not what; tradeoffs and alternatives are documented where applicable (per `code-craftsmanship.md` §1.4 Narrative Code Documentation)
 
 **Verification Checks**
-15. All acceptance criterion tests pass
+16. All acceptance criterion tests pass
 16. All failure condition tests pass
 17. No regressions in existing tests
 18. WDD Definition of Done items satisfied (PR ready, tests passing, evidence generated)
