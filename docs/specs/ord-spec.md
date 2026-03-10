@@ -1,5 +1,7 @@
 # ORD Specification (Operational Readiness Document)
 
+Version: v1.0
+
 The ORD must verify that operational requirements defined in upstream artifacts (TDD, ACF, DCF) are implemented and working — gathering concrete evidence from a deployed system to confirm production readiness.
 
 ## Upstream Dependencies
@@ -111,10 +113,12 @@ The ORD must verify that operational requirements defined in upstream artifacts 
 - Deploy, verify, and rollback procedures must be documented
 - Ownership/on-call expectations must be documented
 - Procedures must have been tested (not just written)
+- The deploy procedure must include a version tagging step that produces a traceable release identifier (git tag, commit SHA, or equivalent) before or during deployment — this identifier is referenced by the downstream Release Record §7 handoff
 
 **Failure Examples**
 - Procedures written but never executed
 - Missing rollback procedure
+- Deploy procedure produces no version identifier for downstream traceability
 
 ### Open Items (§9)
 

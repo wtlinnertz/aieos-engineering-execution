@@ -67,15 +67,16 @@ This playbook has three parts:
 
 ### Steps
 
-1. Complete `kit-entry-template.md`:
+1. **Confirm the Engagement Record exists.** For Path A: the ER should already exist (created by PIK). Verify `docs/engagement/er-{INITIATIVE}-{NNN}.md` is present in the consuming project. For Path B: create the ER now with §1 Document Control and §3 as the active section. Do not proceed until the ER exists — retroactive ER creation leads to lost decisions and incomplete records.
+2. Complete `kit-entry-template.md`:
    - Check whether a frozen Work Classification Record exists (from PIK) — if so, reference its ID and confirm it routes to EEK; if not, document why classification was not performed
    - Select exactly one entry path: Path A (DPRD from PIK) or Path B (direct entry)
    - Record the priority decision reference
    - State the scope boundary (in scope and out of scope)
-2. Run `kit-entry-validator.md` against the completed record
-3. Fix any blocking issues; re-run until PASS
-4. Complete the Freeze Declaration
-5. Proceed to the PRD Entry Path selected in the record
+3. Run `kit-entry-validator.md` against the completed record
+4. Fix any blocking issues; re-run until PASS
+5. Complete the Freeze Declaration
+6. Proceed to the PRD Entry Path selected in the record
 
 The Kit Entry Gate is not re-run when re-entering EEK under the Re-entry Protocol — it applies only to initial kit entry.
 
@@ -488,6 +489,24 @@ The consistency check is distinct from per-artifact validators. Per-artifact val
 
 ---
 
+## Step 7.5: Project Scaffolding
+
+**What:** Confirm that the project has the minimum infrastructure needed for execution before any work items begin.
+
+This step is not a governed artifact — it is a prerequisite checklist. The execution plan assumes these conditions are met.
+
+### Required Before Execution
+
+1. **Version control initialized** — The project must have an initialized version control repository. Work items produce branches, commits, and pull requests; these require a repository to exist.
+2. **Version tagging convention defined** — The project must state how releases will be tagged (e.g., semantic versioning, date-based, commit SHA). The ORD §8 runbook and downstream Release Record §7 handoff both reference a version or commit identifier — the convention must be decided before execution, not improvised at release time.
+3. **Project governance files** — README, LICENSE, and any organization-required governance files (CONTRIBUTING, SECURITY, CODE_OF_CONDUCT) should be created before execution begins. These are outside WDD scope but are expected to exist by the time the ORD is authored.
+
+### Why This Step Exists
+
+During the aieos-console initiative, the entire SDLC executed without a git repository. The Release Record referenced a Docker image SHA instead of a git tag because no version control convention existed. Project governance files were never created because they fell outside WDD scope. This step prevents that gap.
+
+---
+
 ## Step 8: Execute (Per Work Item)
 
 Once the execution plan is approved, execute each work item in plan order. See **Part 2: The Execution Loop** below.
@@ -546,6 +565,25 @@ Each phase has a prompt that drives AI behavior and a gate that controls progres
 3. **Small, reversible steps** — Keep diffs focused; iterate with tests
 4. **Verification is built into review** — Not a separate step; the review prompt checks completeness
 5. **Auditability** — Track what was done, what was tested, and what was reviewed
+
+### SDLC Directory Numbering Convention
+
+All SDLC artifacts are stored in `docs/sdlc/` using a unified sequence number `{nn}` that increments across the entire artifact flow. The sequence number establishes chronological order — it shows when each artifact was produced relative to the others.
+
+**Number ranges by layer and phase:**
+
+| Range | Content | Example |
+|-------|---------|---------|
+| 00–01 | Upstream entry artifacts (placed DPRD or generated PRD, intake forms) | `01-prd.md` |
+| 02–06 | Design artifacts (ACF, SAD, DCF, TDD, WDD) | `02-acf.md`, `06-wdd.md` |
+| 07 | Execution plan | `07-execution-plan.md` |
+| 08+ | Execution phase outputs (per work item: context, tests, plan, review) and work group gates | `08-WDD-PROJ-001-context.md`, `16-wg-03-gate.md` |
+| Last | ORD (after all execution completes) | `33-ord.md` |
+| After ORD | REK artifacts if stored in same directory (RER, RCF, RP, RR) | `34-rer.md` |
+
+**Important:** The `{nn}` prefix is a sequence number, not a layer indicator. `01-prd.md` is sequence position 1, not "Layer 1." When a DPRD arrives from PIK via Path A, it is placed at position 01 — the same position a directly generated PRD would occupy. This avoids ambiguity about which layer produced the artifact; the artifact ID (e.g., `DPRD-CONSOLE-001`) carries the provenance, not the file number.
+
+Projects should assign numbers contiguously and not leave gaps. The exact numbers will vary by project size — a project with 5 WDD items will use fewer numbers than one with 19.
 
 ### Execution Artifact Naming
 
@@ -780,13 +818,16 @@ When all items in a work group are complete (all PRs merged, all tests passing),
 ## WG-{n} Gate: {group name}
 - Tests: {count} passing, 0 failing
 - Test count delta: +{n} from previous gate (or from baseline for WG-1)
-- Build: clean (zero errors)
+- Build: clean (zero errors, zero warnings)
+- Regression check: all tests from prior work groups still passing; no new lint warnings in previously completed files
 - Items completed: {list of WDD Item IDs}
 - Reviews: all PASS
 - Evidence: {link or path to test results}
 ```
 
 A work group gate is a checkpoint, not a validator. It records cumulative state. If any line cannot be satisfied, the group is not complete.
+
+The **regression check** line is critical: work items in the current group may modify shared components or dependencies used by prior groups. Running the full test suite (not just the current group's tests) and checking for new warnings in previously completed files catches cross-work-item regressions before they accumulate. Pre-existing warnings discovered during this check should be noted in the gate file — they are not blockers but should be tracked for cleanup.
 
 Run `work-group-gate-prompt.md` with all member item review files and test results to verify conditions and produce the gate artifact. The prompt outputs the ready-to-save gate file, or a BLOCKED report listing which conditions are not met.
 
@@ -1359,6 +1400,7 @@ The ER is created by PIK when the Discovery Intake is validated. If the engageme
 | TDD frozen | Add TDD ID to §3 |
 | WDD frozen | Add WDD ID to §3 |
 | ORD frozen | Add ORD ID to §3 |
+| Significant decision made | Add entry to §3 Key Decisions — architectural amendments, re-entry decisions, scope deviations from upstream PRD |
 | Hard gate failure encountered | Add entry to §3 Gate Failures with artifact ID, gate name, and resolution |
 
 ### On Engagement End

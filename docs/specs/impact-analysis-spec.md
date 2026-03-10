@@ -1,5 +1,7 @@
 # Impact Analysis Specification
 
+Version: v1.0
+
 The impact analysis assesses the downstream ripple effects of a proposed change to a frozen SDLC artifact. It maps what is affected and how severely, enabling informed re-entry decisions.
 
 ## Upstream Dependencies

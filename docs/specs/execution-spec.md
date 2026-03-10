@@ -1,5 +1,7 @@
 # Execution Specification
 
+Version: v1.0
+
 The execution phase turns a ready WDD work item into working, reviewed code through four sequential phases: Tests → Plan → Code → Review. Each phase has specific responsibilities and boundaries.
 
 ## Upstream Dependencies

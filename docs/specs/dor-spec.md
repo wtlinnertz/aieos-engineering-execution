@@ -1,5 +1,7 @@
 # DoR Specification (Definition of Ready)
 
+Version: v1.0
+
 The DoR evaluates whether a WDD work item is complete and unambiguous enough to begin execution. It is a per-item readiness gate, not a document-level validator.
 
 ## Upstream Dependencies

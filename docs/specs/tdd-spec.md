@@ -1,5 +1,7 @@
 # TDD Specification (Technical Design Document)
 
+Version: v1.0
+
 The TDD must define how the system will be built, tested, deployed, and operated — at a level sufficient for work decomposition into atomic, executable items without remaining design decisions.
 
 ## What This Artifact Is Not
@@ -80,6 +82,8 @@ The TDD must define how the system will be built, tested, deployed, and operated
 - Interfaces must be concrete enough to implement without interpretation
 - Interfaces that cross component boundaries must be stub-ready: a developer implementing either side of the contract must be able to write a working stub or mock of the other side from the contract definition alone, without consulting external sources or making assumptions
 
+**State-based designs:** When an interface manages entities with lifecycle states (e.g., draft → validated → frozen), the TDD must include a complete state transition table listing every valid transition with its trigger and resulting state. The table must cover not only the happy path but also retry, edit-and-reset, error recovery, and re-entry transitions. Incomplete state machines are a common source of defects discovered during implementation rather than design — the transition table prevents this by forcing exhaustive enumeration at design time.
+
 **Failure Examples**
 - Interface with undefined inputs or outputs
 - Missing error modes
@@ -87,6 +91,7 @@ The TDD must define how the system will be built, tested, deployed, and operated
 - Interface with no reference to a SAD component or boundary
 - Public API with no backward compatibility statement
 - Interface between two components where the output schema is described in prose rather than structured fields (not stub-ready)
+- State-based entity with only happy-path transitions defined (missing edit-and-reset, error recovery, or re-entry transitions)
 
 ### Build and Deployment (§5)
 

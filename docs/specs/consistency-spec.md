@@ -1,5 +1,7 @@
 # Consistency Specification
 
+Version: v1.0
+
 The consistency check verifies that intent, requirements, constraints, and scope flow consistently from upstream artifacts to downstream artifacts without gaps, contradictions, or unauthorized expansion.
 
 ## Upstream Dependencies

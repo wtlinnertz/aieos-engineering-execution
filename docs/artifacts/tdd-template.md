@@ -8,6 +8,8 @@
 - Status: Draft | Approved | Freeze Pending | Frozen
 - Governance Model Version: 1.0
 - Prompt Version: {prompt version}
+- Spec Version: {spec version}
+- Principles Version: {principles file versions}
 - Upstream Artifacts:
   - SAD ID / Link:
   - ACF ID / Link (if applicable):

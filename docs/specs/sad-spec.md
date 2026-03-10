@@ -1,5 +1,7 @@
 # SAD Specification (System Architecture Design)
 
+Version: v1.0
+
 The SAD must describe the system boundary, major components, responsibilities, and interactions at the architectural level — sufficient for a downstream Technical Design Document to be produced without ambiguity.
 
 ## What This Artifact Is Not

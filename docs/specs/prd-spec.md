@@ -1,5 +1,7 @@
 # PRD Specification
 
+Version: v1.0
+
 The PRD defines the problem, goals, scope, and success criteria for a product initiative. It must be clear enough to drive architecture without containing solutions.
 
 ## What This Artifact Is Not

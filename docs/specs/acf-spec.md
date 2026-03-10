@@ -1,5 +1,7 @@
 # ACF Specification
 
+Version: v1.0
+
 The ACF defines architecture guardrails that constrain the SAD and all downstream artifacts. It captures constraints and forbidden patterns, not solutions.
 
 ## What This Artifact Is Not

@@ -1,5 +1,7 @@
 # WDD Specification (Work Design Document)
 
+Version: v1.0
+
 The WDD must decompose a frozen TDD into atomic, executable work items grouped into business-testable work groups — sufficient for AI agents or humans to execute without design decisions.
 
 ## Upstream Dependencies
@@ -70,15 +72,18 @@ The WDD must decompose a frozen TDD into atomic, executable work items grouped i
 
 **Rules**
 - Every work item must have Assignee Type: AI Agent | Human | Either
-- Items covering packaging, distribution, deployment verification, infrastructure provisioning, or release tasks should be assigned Assignee Type "Human"
+- Items covering production releases to shared or external infrastructure, production environment provisioning, or release gate decisions must be assigned Assignee Type "Human"
+- Items covering local deployment verification, container builds, automated testing of deploy procedures, or documentation generation may be assigned Assignee Type "Either" or "AI Agent"
+- "Either" defaults to AI Agent execution with human as fallback — the item uses Given/When/Then acceptance criteria and the four-phase AI execution loop unless the executor explicitly switches to human execution
 - Human-assigned items use verification checklists instead of Given/When/Then
 - Human-assigned items follow verification checklist execution model (not the four-phase AI loop)
 - Human-assigned items must still have explicit inputs, outputs, Definition of Done, and rollback behavior
 
 **Failure Examples**
 - Missing Assignee Type
-- Deployment item assigned to AI Agent
+- Production release item assigned to AI Agent
 - Human item with Given/When/Then acceptance criteria
+- Local deployment verification assigned to Human without justification
 
 ### Required Capabilities
 

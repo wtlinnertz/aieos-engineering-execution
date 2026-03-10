@@ -1,5 +1,7 @@
 # DCF Specification
 
+Version: v1.0
+
 The DCF defines design standards and expectations that constrain TDD creation. It is reusable across many initiatives and enforces quality bars, not specific designs.
 
 ## Upstream Dependencies

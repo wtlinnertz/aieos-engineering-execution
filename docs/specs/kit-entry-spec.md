@@ -1,5 +1,7 @@
 # EEK Kit Entry — Specification
 
+Version: v1.0
+
 The Kit Entry Record is a lightweight gate that must be completed before beginning any artifact generation in the Engineering Execution Kit. It confirms the work is appropriately routed, the correct entry path is selected, and a priority decision exists on record.
 
 This is a **boundary contract**, not a governed artifact. The record is human-authored. It is validated against this spec before the PRD entry path begins.

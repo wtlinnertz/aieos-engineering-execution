@@ -10,6 +10,8 @@ It is reusable across many initiatives.
 - Status: Draft | Approved | Freeze Pending | Frozen
 - Governance Model Version: 1.0
 - Prompt Version: {prompt version}
+- Spec Version: {spec version}
+- Principles Version: {principles file versions}
 - Applies To: (e.g., “All delivery designs”, “This platform only”)
 
 ## 1. Purpose
