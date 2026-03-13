@@ -1,6 +1,6 @@
 # Engineering Standards
 
-Version: v1.0
+Version: v1.1
 
 ## Purpose
 
@@ -260,6 +260,64 @@ The dependency direction rule is enforced through:
 
 ---
 
+## 1.9 Backward Compatibility
+
+Changes to existing code must not break callers that depend on current behavior. This applies to all interfaces — public APIs, inter-service contracts, shared library functions, event schemas, and any surface consumed by code outside the immediate change scope.
+
+### What Constitutes a Breaking Change
+
+A change is breaking if any existing caller would fail, produce incorrect results, or require modification after the change is deployed:
+
+* Removing or renaming a public function, method, endpoint, or field
+* Changing a function signature (parameters, return type, exception types)
+* Changing observable behavior that callers depend on (response codes, error formats, event payloads, ordering guarantees)
+* Tightening input validation (rejecting inputs previously accepted)
+* Loosening output guarantees (returning nulls where non-null was guaranteed)
+* Changing default values that callers rely on implicitly
+* Removing or reordering fields in serialized formats (JSON, protobuf, database schemas)
+
+### What Is Not a Breaking Change
+
+* Adding new optional parameters with backward-compatible defaults
+* Adding new fields to response payloads (when consumers ignore unknown fields)
+* Adding new endpoints or methods
+* Relaxing input validation (accepting inputs previously rejected) — provided the output remains consistent
+* Performance improvements that do not alter observable behavior
+* Internal refactoring that preserves all public contracts
+
+### When Breaking Changes Are Acceptable
+
+Breaking changes are not prohibited — they are governed. A breaking change is acceptable when:
+
+1. The TDD §4 interface contract explicitly classifies the interface as `evolving` or `experimental`
+2. The change is documented in the work item with justification and impact scope
+3. All known consumers are identified and a migration path is provided
+4. The execution plan accounts for consumer updates as part of the work
+
+Breaking changes to interfaces classified as `locked` in TDD §4 require TDD re-entry and re-freeze before implementation.
+
+### Verification Standard
+
+Backward compatibility is not assumed — it is proven by test. For any work item that modifies an existing interface:
+
+* **Contract preservation tests** must be written in Phase 1 (Tests) before any code changes
+* These tests exercise the existing interface's current behavior from the caller's perspective
+* They must pass before implementation begins (establishing a baseline) and continue to pass after implementation is complete
+* If a contract preservation test must change to accommodate the new behavior, that change is evidence of a breaking change and must be explicitly justified
+
+The contract preservation test requirement is enforced through `execution-spec.md` Phase 1 and verified in Phase 4 Review.
+
+### Enforcement
+
+| Where | What |
+|-------|------|
+| TDD §4 | Interface stability classification (locked / evolving / experimental) |
+| Execution-spec Phase 1 | Contract preservation tests required for work items modifying existing interfaces |
+| Execution-spec Phase 4 | Review check verifies contract preservation tests exist and pass |
+| WDD Interface Contract Reference | Identifies which interfaces each work item touches |
+
+---
+
 # 2. Architecture Standards
 
 All Software Architecture Documents (SAD) must:
@@ -465,5 +523,6 @@ No stage advances on assumption.
 | Governance & enforcement model (§9) | `acf-spec.md` and `dcf-spec.md` translate these principles into enforceable guardrails reviewed by all downstream validators |
 
 | Narrative code documentation — module narratives, intent comments, tradeoff preservation (§1.4) | `execution-spec.md` Phase 4 Review Check 15 (narrative_documentation); `dcf-spec.md` §design_principles hard gate |
+| Backward compatibility — contract preservation, breaking change governance (§1.9) | `execution-spec.md` Phase 1 contract preservation tests; `execution-spec.md` Phase 4 Review Check 17 (backward_compatibility); TDD §4 stability classification |
 
 Red flag patterns (§5) and AI-assisted development rules (§7) are advisory — reinforced by generation prompts but not directly evaluated by a single hard gate.

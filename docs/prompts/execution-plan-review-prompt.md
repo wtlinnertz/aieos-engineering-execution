@@ -89,6 +89,9 @@ OUTPUT FORMAT:
 ## Code Quality
 <error handling complete? hardcoded values? unbounded operations? dead code? dependency drift? narrative documentation present? dependency direction respected?>
 
+## Backward Compatibility
+<if work item modifies existing interfaces: do contract preservation tests exist? do they all pass? were any modified or removed — if so, is the breaking change justified per code-craftsmanship.md §1.9? does TDD §4 stability classification permit the change?>
+
 ## Security
 <ACF guardrails respected? secrets exposed? injection risks? auth/authz correct? security review trigger matched?>
 

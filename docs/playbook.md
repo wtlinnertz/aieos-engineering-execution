@@ -198,6 +198,8 @@ Validators are prompts. To run one:
 
 Validators do not redesign or suggest solutions. They evaluate only what is explicitly present.
 
+For autonomous correction without human intervention at each iteration, see [`review-convergence-loop.md`](../../aieos-governance-foundation/docs/review-convergence-loop.md) Pattern A. The convergence loop automates the fix-and-revalidate cycle with bounded iteration, structured feedback, and escalation.
+
 **Human approval is the final gate.** A validator PASS is necessary but not sufficient. If a human rejects an artifact despite a passing validator, the artifact goes back for revision. The human may see issues — ambiguity, poor judgment, misaligned intent — that a validator cannot catch.
 
 ---
@@ -411,7 +413,7 @@ TDD §4 (Interfaces and Contracts) defines the contracts that enable parallel de
 **Gate:** Both validators PASS + human approval
 **Output:** Frozen WDD with all work items passing DoR
 
-The WDD prompt includes **intent verification**: the AI restates upstream intent in Section 1 before generating. Each work item also includes an **Interface Contract Reference** identifying which TDD §4 contract it implements (provider) or consumes (consumer), enabling parallel development coordination.
+The WDD prompt includes **intent verification**: the AI restates upstream intent in Section 1 before generating. Each work item also includes an **Interface Contract Reference** identifying which TDD §4 contract it implements (provider) or consumes (consumer), enabling parallel development coordination. For operational guidance on how an orchestrating agent manages provider/consumer pairs as parallel sub-agents — including context packaging, stub generation, and integration reconvergence — see [`sub-agent-orchestration.md` Pattern 3: Provider/Consumer Contract Development](../../aieos-governance-foundation/docs/sub-agent-orchestration.md#pattern-3-providerconsumer-contract-development-eek).
 
 ### Steps
 1. Generate WDD using `wdd-prompt.md` with frozen TDD as input
@@ -550,7 +552,7 @@ Once the WDD passes the DoR Validator, the consistency check, and human approval
 
 Each phase has a prompt that drives AI behavior and a gate that controls progression. Skipping phases weakens safety.
 
-**Execution order:** If a work item's inputs depend on another item's outputs, the dependency must be completed first. Execute items in dependency order. Independent items within the same work group may be executed in parallel if they share no file-level conflicts and the executor can maintain separate context for each. In practice, parallel execution is most valuable when different people (or separate AI sessions) work on different items that touch different subsystems. When items modify overlapping files, sequential execution avoids merge conflicts and context confusion. The execution plan marks items as "parallel-safe" or "sequential" based on file overlap analysis.
+**Execution order:** If a work item's inputs depend on another item's outputs, the dependency must be completed first. Execute items in dependency order. Independent items within the same work group may be executed in parallel if they share no file-level conflicts and the executor can maintain separate context for each. In practice, parallel execution is most valuable when different people (or separate AI sessions) work on different items that touch different subsystems. When items modify overlapping files, sequential execution avoids merge conflicts and context confusion. The execution plan marks items as "parallel-safe" or "sequential" based on file overlap analysis. For operational guidance on how an orchestrating agent manages parallel work item sub-agents — including context packaging, phase-synchronized vs. fully independent modes, and work group gate reconvergence — see [`sub-agent-orchestration.md` Pattern 2: Parallel-Safe Work Item Execution](../../aieos-governance-foundation/docs/sub-agent-orchestration.md#pattern-2-parallel-safe-work-item-execution-eek).
 
 **Parallel development with interface contracts:** When two work items reference the same TDD §4 contract — one as **provider** and one as **consumer** — they can be developed in parallel. Each developer builds a stub of the other side from the TDD contract, implements their side independently, then integrates when both are ready. The WDD's Interface Contract References identify these provider/consumer relationships explicitly. See `how-to-adapt.md` → "Parallel Development with Interface Contracts" for the full pattern.
 
@@ -689,6 +691,7 @@ Test specifications from Phase 1 are implemented as executable test code in this
 - Do not loop indefinitely — if progress stalls (same failure repeating, or new failures replacing old ones without net progress), escalate rather than retry
 - If answers degrade or context is lost, restart with fresh context
 - Multiple iterations are normal
+- Phase 3's iteration rules are a specific instance of the general convergence loop pattern in [`review-convergence-loop.md`](../../aieos-governance-foundation/docs/review-convergence-loop.md). The max 3 fix attempts, staleness detection, and structured failure feedback originated here and are generalized across all artifact types.
 
 **Completion Verification:**
 Before signaling Phase 3 complete, verify:

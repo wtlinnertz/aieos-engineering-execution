@@ -1,6 +1,6 @@
 # Execution Specification
 
-Version: v1.0
+Version: v1.1
 
 The execution phase turns a ready WDD work item into working, reviewed code through four sequential phases: Tests → Plan → Code → Review. Each phase has specific responsibilities and boundaries.
 
@@ -40,6 +40,7 @@ Turn acceptance criteria into verifiable, executable test specifications.
 2. Failure tests — at least one failure condition per acceptance criterion
 3. Edge case tests — boundary conditions, empty inputs, invalid states
 4. Regression tests — if fixing a bug, a test that fails before the fix
+5. Contract preservation tests — if the work item modifies an existing interface (per WDD Interface Contract Reference or file overlap with existing code), tests that exercise the current behavior of that interface from the caller's perspective. These tests must pass before implementation begins (baseline) and must continue to pass after implementation is complete. If a contract preservation test must change to accommodate the new behavior, that change is evidence of a breaking change and must be explicitly justified per `code-craftsmanship.md` §1.9. Contract preservation tests are not required for work items that only create new interfaces.
 
 **Each test must include:**
 - Test name (descriptive, Given/When/Then style)
@@ -57,6 +58,7 @@ Turn acceptance criteria into verifiable, executable test specifications.
 - Writing implementation code instead of test specs
 - Adding tests for features not in the acceptance criteria
 - Missing failure tests for an acceptance criterion
+- Work item modifies an existing interface but no contract preservation tests are defined
 
 ---
 
@@ -194,14 +196,16 @@ Actively search for defects, scope violations, contract mismatches, and coverage
 14. No duplicated logic creating maintenance risk
 15. Narrative documentation — non-trivial modules have module-level narrative; non-obvious logic has intent comments explaining why, not what; tradeoffs and alternatives are documented where applicable (per `code-craftsmanship.md` §1.4 Narrative Code Documentation)
 16. Dependency direction — no domain module imports from application or infrastructure layers; application layer defines interfaces, infrastructure implements them; violations of the inward dependency rule from SAD §4 / TDD §3 layer assignment are blockers (per `code-craftsmanship.md` §1.8 Dependency Direction Rule)
+17. Backward compatibility — if the work item modifies an existing interface, verify: (a) contract preservation tests exist from Phase 1, (b) all contract preservation tests pass after implementation, (c) if any contract preservation test was modified or removed, the change is explicitly justified as an intentional breaking change per `code-craftsmanship.md` §1.9, (d) the TDD §4 stability classification permits the change (locked interfaces require TDD re-entry before breaking changes)
 
 **Verification Checks**
-17. All acceptance criterion tests pass
-18. All failure condition tests pass
-19. No regressions in existing tests
-20. WDD Definition of Done items satisfied (PR ready, tests passing, evidence generated)
-21. Rollback behavior tested or verified per WDD
-22. Evidence is concrete (test reports, log output, screenshots) — not assertions
+18. All acceptance criterion tests pass
+19. All failure condition tests pass
+20. All contract preservation tests pass (if applicable)
+21. No regressions in existing tests
+22. WDD Definition of Done items satisfied (PR ready, tests passing, evidence generated)
+23. Rollback behavior tested or verified per WDD
+24. Evidence is concrete (test reports, log output, screenshots) — not assertions
 
 **Review Verdicts**
 - PASS — implementation is correct, within scope, and verified

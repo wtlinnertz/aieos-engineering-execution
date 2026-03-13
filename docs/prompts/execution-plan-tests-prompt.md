@@ -47,6 +47,7 @@ TEST CATEGORIES (generate in this order):
 2. Failure tests — at least one failure condition per acceptance criterion
 3. Edge case tests — boundary conditions, empty inputs, invalid states
 4. Regression tests — if fixing a bug, a test that fails before the fix
+5. Contract preservation tests — if the work item modifies an existing interface, tests that exercise the current behavior from the caller's perspective (must pass before and after implementation; see `code-craftsmanship.md` §1.9)
 
 OUTPUT:
 Produce test specifications grouped by category.
