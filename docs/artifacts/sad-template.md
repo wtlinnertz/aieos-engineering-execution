@@ -129,6 +129,16 @@ For each data store:
 - Pattern 1:
 - Pattern 2:
 
+### Integration Contracts
+
+For each cross-service integration point (boundaries where independently deployed services communicate):
+
+| Integration Point | Service A | Service B | Expected Inputs | Expected Outputs | Error Modes | Versioning Strategy |
+|-------------------|-----------|-----------|----------------|-----------------|-------------|-------------------|
+| {name} | {service} | {service} | {format, schema, required fields} | {format, schema, response codes} | {timeout, unavailable, malformed input} | {URL versioning, header versioning, backward-compatible} |
+
+*Internal component interactions within a single service are exempt from this table.*
+
 ### State Transitions
 Describe data or artifact state transitions at the architectural level.
 

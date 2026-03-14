@@ -1,6 +1,6 @@
 # SAD Specification (System Architecture Design)
 
-Version: v1.0
+Version: v1.1
 
 The SAD must describe the system boundary, major components, responsibilities, and interactions at the architectural level — sufficient for a downstream Technical Design Document to be produced without ambiguity.
 
@@ -252,6 +252,7 @@ Sections that are not applicable must be explicitly marked as such with justific
 11. **guardrail_alignment** — ACF alignment explicit; exceptions justified with ADRs
 12. **implementation_leakage** — No code blocks, configs, or procedural step-by-step flows
 13. **layer_assignment** — Every major component assigned to Domain, Application, or Infrastructure layer; dependency direction rule declared (inward-only); no domain components with infrastructure dependencies
+14. **integration_contracts** — Every cross-service integration point has an explicit interface contract: expected inputs, expected outputs, error modes, and versioning strategy. No integration point is referenced without a defined contract. Internal component interactions are exempt; this gate applies to boundaries where independently deployed services communicate.
 
 ## Completeness Score
 
