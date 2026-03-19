@@ -84,4 +84,3 @@ These rules are enforced by validators defined in `docs/validators/`, which eval
 - Organization- or tool-specific fields do not belong here
 
 If a template feels “light,” it is likely by design.
-

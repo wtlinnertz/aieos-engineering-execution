@@ -523,4 +523,3 @@ If you preserve:
 - Atomic execution
 
 Then AI-assisted delivery becomes predictable, safe, and scalable.
-

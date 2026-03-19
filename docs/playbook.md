@@ -560,7 +560,7 @@ Each phase has a prompt that drives AI behavior and a gate that controls progres
 
 **Scope discovery during execution:** If implementation reveals that a work item's approach is more complex than anticipated but its scope is correct, handle it in the Plan phase — no WDD change needed. If implementation reveals that new work items are needed, existing items need different interfaces, or scope was misunderstood, trigger the Re-entry Protocol to update the WDD.
 
-### Execution Principles
+## Execution Principles
 
 1. **Tests define targets** — If tests aren't defined, we're not ready to implement
 2. **Plan before code** — Approve an approach before changing files

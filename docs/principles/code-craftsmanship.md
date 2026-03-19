@@ -508,7 +508,6 @@ Quality must be verified:
 
 No stage advances on assumption.
 
-
 ---
 
 ## Enforcement Mapping

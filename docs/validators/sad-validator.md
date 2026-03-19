@@ -69,18 +69,18 @@ Each hard gate in your output must correspond to a hard gate defined in the spec
 
 ## Validation Outcome Rules
 
-* **Any blocking issue → FAIL**
-* **No blocking issues → PASS**
-* Warnings do not block approval but should be addressed
+- **Any blocking issue → FAIL**
+- **No blocking issues → PASS**
+- Warnings do not block approval but should be addressed
 
 ---
 
 ## Non-Goals of the Validator
 
-* Judging architectural quality or elegance
-* Comparing architectures
-* Enforcing technology choices
-* Validating performance numbers
+- Judging architectural quality or elegance
+- Comparing architectures
+- Enforcing technology choices
+- Validating performance numbers
 
 ---
 

@@ -12,6 +12,16 @@ AUTHORITATIVE RULES:
 TDD RESPONSIBILITY:
 Define how the system will be built, tested, deployed, and operated.
 
+ELICITATION PROTOCOL (PRE-GENERATION):
+Before generating, apply at least one elicitation technique from
+aieos-governance-foundation/docs/elicitation-protocol.md.
+Recommended technique for this artifact: Inversion.
+After applying the technique, record the result as a Markdown comment at the end
+of the generated artifact:
+<!-- Elicitation: Inversion applied. Key insight: {one sentence}. -->
+If the technique surfaces a gap or conflict, address it in the generation or flag
+it in the artifact's open items. Do not suppress findings.
+
 INTENT VERIFICATION (SELF-CHECK):
 Before generating, verify your understanding of the SAD's intent and scope.
 If you cannot reconcile scope with the SAD or DCF, stop and flag the conflict.
