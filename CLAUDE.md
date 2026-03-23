@@ -51,6 +51,8 @@ Prerequisite documents must exist and be frozen before downstream artifacts are 
 
 **Brownfield projects**: Run `codebase-analysis-prompt.md` first to pre-fill intake forms for ACF, DCF, and SAD.
 
+**Multiple services / org-wide onboarding**: Run `service-landscape-prompt.md` to scan multiple repos and discover tech stack, common patterns, and inter-service dependencies. Feeds CLA and org-wide ACF. Then run `capability-discovery-prompt.md` per service for DCF/SAD inputs. Both are architecture-agnostic — work with any tech stack (application code, IaC, pipelines, deployment configs, platform services).
+
 **Re-entry / changes to frozen artifacts**: Use `impact-analysis-prompt.md` to assess downstream effects before modifying any frozen artifact.
 
 **Cross-kit re-entry (upstream DPRD change)**: If a Path A DPRD changes after EEK artifacts exist, run `impact-analysis-prompt.md` first, then follow the Cross-Kit Re-Entry Protocol in `docs/playbook.md`.

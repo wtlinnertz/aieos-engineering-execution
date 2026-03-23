@@ -915,6 +915,8 @@ Utility prompts produce input material (not governed artifacts):
 
 - **Greenfield Intake** (`greenfield-intake-prompt.md`) — What decisions must a greenfield team make before generating ACF and DCF? (extracts PRD constraints, lists required decisions)
 - **Codebase Analysis** (`codebase-analysis-prompt.md`) — What exists in this codebase? (feeds ACF, DCF, SAD generation for brownfield projects)
+- **Service Landscape Discovery** (`service-landscape-prompt.md`) — What exists across multiple repos/services? Scans N directories, classifies files by purpose (IaC, pipelines, deployment, application code, config, tests), maps cross-service patterns and dependencies. Architecture-agnostic. Feeds CLA and org-wide ACF.
+- **Capability Discovery** (`capability-discovery-prompt.md`) — What does this one service provide, who consumes it, and what does it depend on? Maps capabilities, consumer interfaces, dependencies, and operational profile. Architecture-agnostic. Feeds per-service DCF and SAD.
 - **Mock Impact** (`mock-impact-prompt.md`) — Which existing test files will break when this work item changes a shared interface? (feeds Phase 2 plan)
 - **Work Group Gate** (`work-group-gate-prompt.md`) — Are all gate conditions met for this work group? (produces the gate artifact file)
 - **Business Acceptance Testing** (`bat-prompt.md`) — Does this work group's business capability work end-to-end? (produces verification protocol and results template)
