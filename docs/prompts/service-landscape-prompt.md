@@ -56,6 +56,49 @@ After classifying all repositories, analyze the following:
 
 ---
 
+## Phase 2.5: Standards Extraction (DCF Input)
+
+Transform the common patterns from Phase 2 into a proposed standards table for DCF generation. This bridges the gap between "we discovered this is common" and "this should be an enforced standard."
+
+For each common pattern found in Phase 2:
+
+1. **State the pattern** as a proposed enforceable standard (actionable language, not aspirational)
+2. **Note adoption** — how many services follow it (N of M)
+3. **Extract the convention** — from the repos that follow it, what's the specific approach? (naming, structure, versioning, configuration)
+4. **Mark for human decision** — the human confirms or rejects each proposed standard
+
+Additionally, scan for **anti-patterns** — things that are commonly MISSING across repos. These are candidates for new standards:
+- Missing tests in a specific category (e.g., no IaC tests in 9/12 repos)
+- Missing documentation (e.g., no runbooks in 8/12 repos)
+- Missing configuration patterns (e.g., no secret rotation evidence in 10/12 repos)
+- Inconsistent approaches where a standard would help (e.g., 4 different logging approaches)
+
+Add this section to the output report between "Common Patterns" and "Outliers":
+
+```markdown
+## Proposed Standards (for DCF)
+
+### Patterns to Enforce
+
+| # | Pattern | Found In | Proposed Standard | Convention Details | Enforce? |
+|---|---------|----------|-------------------|--------------------|----------|
+| 1 | {what's common} | {N/M services} | {stated as enforceable rule} | {specific convention from best examples} | [confirm/reject] |
+
+### Anti-Patterns to Address
+
+| # | Gap | Found In | Impact | Proposed New Standard | Priority |
+|---|-----|----------|--------|----------------------|----------|
+| 1 | {what's missing} | {N/M services lack this} | {why it matters} | {proposed standard to fill the gap} | [high/medium/low] |
+```
+
+**Rules for this phase:**
+- Propose standards, do NOT mandate them — the human decides
+- Base proposed standards on what the BEST repos do, not on external "best practices"
+- Anti-patterns are observations, not judgments — "9/12 repos have no IaC tests" is a fact, not a criticism
+- Convention details should be specific enough to enforce in a TDD (e.g., "Terraform modules use `modules/{name}/` directory structure with `main.tf`, `variables.tf`, `outputs.tf`" — not just "use Terraform modules")
+
+---
+
 ## Phase 3: Inventory Output
 
 Produce the report in this format:
@@ -75,6 +118,20 @@ Produce the report in this format:
 
 ## Common Patterns
 (bullet list of conventions, approaches, and standards appearing in 50% or more of services)
+
+## Proposed Standards (for DCF)
+
+### Patterns to Enforce
+
+| # | Pattern | Found In | Proposed Standard | Convention Details | Enforce? |
+|---|---------|----------|-------------------|--------------------|----------|
+(one row per common pattern — proposed as an enforceable standard with specific convention details)
+
+### Anti-Patterns to Address
+
+| # | Gap | Found In | Impact | Proposed New Standard | Priority |
+|---|-----|----------|--------|----------------------|----------|
+(commonly missing things — missing tests, missing docs, missing patterns — as candidates for new standards)
 
 ## Outliers
 (bullet list of services that deviate from common patterns — state what is different, not whether it is good or bad)
@@ -99,7 +156,7 @@ Produce the report in this format:
 
 End with the following note:
 
-> This report is input material for CLA (Capability Lifecycle Assessment) §2 Capability Inventory and ACF (Architecture Context File) generation. It does not replace human judgment — review and correct before using as a generation input.
+> This report is input material for CLA (Capability Lifecycle Assessment) §2 Capability Inventory, ACF (Architecture Context File) generation, and DCF (Domain Context File) §Design Principles and §Quality Bars. The "Proposed Standards" section is specifically formatted for DCF input — confirm or reject each standard before generating the DCF. This report does not replace human judgment — review and correct before using as a generation input.
 
 The human reviews and edits all outputs before using them as input to downstream prompts. Do not treat these outputs as authoritative — they are a starting point for human judgment.
 
