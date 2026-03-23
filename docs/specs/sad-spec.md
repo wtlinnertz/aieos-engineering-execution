@@ -14,6 +14,7 @@ The SAD must describe the system boundary, major components, responsibilities, a
 
 - Frozen PRD
 - Frozen ACF
+- Frozen DKR (optional — if a Domain Knowledge Record exists for this domain, every DKR §3 entity should map to at least one SAD component; document entity-to-component mapping in §Major Components)
 - ADRs (if referenced)
 
 ## Required Sections

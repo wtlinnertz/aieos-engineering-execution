@@ -14,6 +14,7 @@ The TDD must define how the system will be built, tested, deployed, and operated
 
 - Frozen SAD
 - Frozen DCF
+- Frozen DKR (optional — if a Domain Knowledge Record exists, every DKR §5 domain rule should have at least one corresponding test scenario; document rule-to-test mapping in §Test Scenarios)
 
 ## Required Sections
 
