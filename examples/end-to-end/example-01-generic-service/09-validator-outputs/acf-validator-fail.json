@@ -1,0 +1,44 @@
+{
+  "status": "FAIL",
+  "summary": "ACF is missing critical guardrail sections and contains vague constraints that cannot be enforced.",
+  "hard_gates": {
+    "document_control": "FAIL",
+    "purpose": "PASS",
+    "platform_assumptions": "PASS",
+    "security_guardrails": "PASS",
+    "compliance": "FAIL",
+    "reliability": "PASS",
+    "observability": "FAIL",
+    "forbidden_patterns": "PASS",
+    "constraint_enforceability": "FAIL"
+  },
+  "blocking_issues": [
+    {
+      "gate": "document_control",
+      "description": "ACF ID and status are missing.",
+      "location": "Document Control"
+    },
+    {
+      "gate": "compliance",
+      "description": "Compliance section is absent with no justification.",
+      "location": "Section 4 — Compliance / Regulatory Constraints"
+    },
+    {
+      "gate": "observability",
+      "description": "No minimum operational signals defined.",
+      "location": "Section 6 — Observability Guardrails"
+    },
+    {
+      "gate": "constraint_enforceability",
+      "description": "Security guardrail uses aspirational language ('should try to use TLS') instead of a hard constraint.",
+      "location": "Section 3 — Security Guardrails"
+    }
+  ],
+  "warnings": [
+    {
+      "description": "Standard Interfaces section is empty; consider stating 'Not applicable' with justification.",
+      "location": "Section 9 — Standard Interfaces"
+    }
+  ],
+  "completeness_score": 55
+}
