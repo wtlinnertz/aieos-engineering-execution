@@ -1,6 +1,6 @@
-# Session Setup — Engineering Execution Kit
+# Session Setup: Engineering Execution Kit
 
-Use this file to set up an AI session for each EEK artifact. Find the section for the artifact you are generating or validating. Follow the checklist before starting.
+Use this file to set up an AI session for each EEK artifact. Find the section for the artifact you're generating or validating. Follow the checklist before starting.
 
 **Rule:** Generate and validate in separate sessions. Do not self-validate.
 
@@ -10,12 +10,12 @@ Use this file to set up an AI session for each EEK artifact. Find the section fo
 
 **What you're creating:** The formal gate that authorizes EEK work to begin, recording the entry path and upstream artifact references.
 
-**Note:** The KER is human-authored. Complete it directly using the template — no generation prompt.
+**Note:** The KER is human-authored. Complete it directly using the template: no generation prompt.
 
 **Required Inputs (confirm before starting):**
-- [ ] Frozen WCR — Frozen and routing to EEK?
-- [ ] Path A: Frozen DPRD (DPRD-{PROJECT}-{NNN}) — Frozen and delivered?
-- [ ] Path B: Product Brief (human input) — Complete and bounded?
+- [ ] Frozen WCR: Frozen and routing to EEK?
+- [ ] Path A: Frozen DPRD (DPRD-{PROJECT}-{NNN}): Frozen and delivered?
+- [ ] Path B: Product Brief (human input): Complete and bounded?
 
 **Pre-Flight Gate Check (verify before generating):**
 - [ ] `document_control`: ID, date, owner, and version fields ready
@@ -25,12 +25,12 @@ Use this file to set up an AI session for each EEK artifact. Find the section fo
 - [ ] `scope_bounded`: KER scope matches upstream artifact scope exactly
 
 **Session Setup:**
-1. Use: `docs/artifacts/kit-entry-template.md` — fill manually, no prompt
-2. Validate: Not governed by a validator — human review and freeze
+1. Use: `docs/artifacts/kit-entry-template.md`: fill manually, no prompt
+2. Validate: Not governed by a validator: human review and freeze
 3. After KER is frozen, proceed to PRD step
 
 **Common Failure to Avoid:**
-Selecting Path A without recording the DPRD ID — the KER must explicitly cite the frozen DPRD artifact ID, confirming the handoff is complete.
+Selecting Path A without recording the DPRD ID: the KER must explicitly cite the frozen DPRD artifact ID, confirming the handoff is complete.
 
 ---
 
@@ -40,11 +40,11 @@ Selecting Path A without recording the DPRD ID — the KER must explicitly cite 
 - **Path A:** Placing (not regenerating) the DPRD from PIK as `docs/sdlc/01-prd.md` and running an acceptance check
 - **Path B:** Generating a PRD from a Product Brief using the PRD prompt
 
-**Path A — DPRD Acceptance (no generation):**
+**Path A: DPRD Acceptance (no generation):**
 
 **Required Inputs (confirm before starting):**
-- [ ] Frozen DPRD — Delivered from PIK?
-- [ ] Frozen KER — Frozen with Path A selected?
+- [ ] Frozen DPRD: Delivered from PIK?
+- [ ] Frozen KER: Frozen with Path A selected?
 
 **Pre-Flight Gate Check:**
 - [ ] DPRD has not been modified since receipt from PIK
@@ -54,13 +54,13 @@ Selecting Path A without recording the DPRD ID — the KER must explicitly cite 
 1. Place the frozen DPRD at `docs/sdlc/01-prd.md` without modification
 2. Run consistency check in a session using `docs/prompts/dprd-consistency-check-prompt.md`
 3. Validate in a separate session: `docs/validators/prd-validator.md` (acceptance check)
-4. If validation FAILS: return to PIK — do not modify the placed DPRD
+4. If validation FAILS: return to PIK: do not modify the placed DPRD
 
-**Path B — PRD Generation:**
+**Path B: PRD Generation:**
 
 **Required Inputs:**
-- [ ] Completed Product Brief — Present and bounded?
-- [ ] Frozen KER — Frozen with Path B selected and justification present?
+- [ ] Completed Product Brief: Present and bounded?
+- [ ] Frozen KER: Frozen with Path B selected and justification present?
 
 **Pre-Flight Gate Check:**
 - [ ] `problem_definition`: Product Brief has a clear problem statement
@@ -77,18 +77,18 @@ Selecting Path A without recording the DPRD ID — the KER must explicitly cite 
 5. Validate in a separate session: `docs/validators/prd-validator.md`
 
 **Common Failure to Avoid:**
-Regenerating the DPRD on Path A — the DPRD is placed as-is. Any errors found during acceptance check return to PIK for correction.
+Regenerating the DPRD on Path A: the DPRD is placed as-is. Any errors found during acceptance check return to PIK for correction.
 
 ---
 
 ## Architecture Context File (ACF-{PROJECT}-{NNN})
 
-**What you're creating:** Organizational architecture guardrails that all SAD decisions must satisfy — not the architecture itself.
+**What you're creating:** Organizational architecture guardrails that all SAD decisions must satisfy: not the architecture itself.
 
 **Required Inputs (confirm before starting):**
-- [ ] Frozen PRD — Frozen?
-- [ ] Architecture Context Form (intake form) — Completed?
-- [ ] Engineering principles docs — Available in `docs/principles/`?
+- [ ] Frozen PRD: Frozen?
+- [ ] Architecture Context Form (intake form): Completed?
+- [ ] Engineering principles docs: Available in `docs/principles/`?
 
 **Pre-Flight Gate Check (verify before generating):**
 - [ ] `document_control`: ID, owner, status, and scope planned
@@ -109,18 +109,18 @@ Regenerating the DPRD on Path A — the DPRD is placed as-is. Any errors found d
 5. Validate in a separate session: `docs/validators/acf-validator.md`
 
 **Common Failure to Avoid:**
-Writing guardrails aspirationally ("should be secure", "try to use caching") — use absolute, testable language: "MUST", "MUST NOT", specific metrics and thresholds.
+Writing guardrails aspirationally ("should be secure", "try to use caching"): use absolute, testable language: "MUST", "MUST NOT", specific metrics and thresholds.
 
 ---
 
 ## System Architecture Design (SAD-{PROJECT}-{NNN})
 
-**What you're creating:** The structural architecture of the system — components, interactions, data flows, and failure modes — bounded by PRD scope and ACF guardrails.
+**What you're creating:** The structural architecture of the system: components, interactions, data flows, and failure modes: bounded by PRD scope and ACF guardrails.
 
 **Required Inputs (confirm before starting):**
-- [ ] Frozen PRD — Frozen?
-- [ ] Frozen ACF — Frozen?
-- [ ] Any existing Architecture Decision Records (ADRs) — Available?
+- [ ] Frozen PRD: Frozen?
+- [ ] Frozen ACF: Frozen?
+- [ ] Any existing Architecture Decision Records (ADRs): Available?
 
 **Pre-Flight Gate Check (verify before generating):**
 - [ ] `intent_integrity`: SAD intent will align with PRD §1 exactly (no expansion)
@@ -130,7 +130,7 @@ Writing guardrails aspirationally ("should be secure", "try to use caching") —
 - [ ] `cross_cutting_concerns`: Security, auth, and observability approach will be addressed
 - [ ] `failure_modes`: At least 3 known failure modes will be documented
 - [ ] `guardrail_alignment`: Every choice will be cross-checked against ACF §3–§7
-- [ ] `implementation_leakage`: No framework/library specifics — those belong in TDD
+- [ ] `implementation_leakage`: No framework/library specifics: those belong in TDD
 
 **Session Setup:**
 1. Load: `docs/prompts/sad-prompt.md`
@@ -140,18 +140,18 @@ Writing guardrails aspirationally ("should be secure", "try to use caching") —
 5. Validate in a separate session: `docs/validators/sad-validator.md`
 
 **Common Failure to Avoid:**
-SAD intent summary that contradicts or expands PRD scope — the intent summary must align with PRD §1; quote or close-paraphrase it.
+SAD intent summary that contradicts or expands PRD scope: the intent summary must align with PRD §1; quote or close-paraphrase it.
 
 ---
 
 ## Design Context File (DCF-{PROJECT}-{NNN})
 
-**What you're creating:** Organizational design standards that all TDD decisions must satisfy — code quality, testing, documentation, and operational expectations.
+**What you're creating:** Organizational design standards that all TDD decisions must satisfy: code quality, testing, documentation, and operational expectations.
 
 **Required Inputs (confirm before starting):**
-- [ ] Frozen PRD — Frozen?
-- [ ] Frozen ACF — Frozen?
-- [ ] Design Context Form (intake form) — Completed?
+- [ ] Frozen PRD: Frozen?
+- [ ] Frozen ACF: Frozen?
+- [ ] Design Context Form (intake form): Completed?
 
 **Pre-Flight Gate Check (verify before generating):**
 - [ ] `document_control`: ID, owner, status, scope planned
@@ -171,21 +171,21 @@ SAD intent summary that contradicts or expands PRD scope — the intent summary 
 5. Validate in a separate session: `docs/validators/dcf-validator.md`
 
 **Common Failure to Avoid:**
-Quality bars stated vaguely ("high code quality") — replace with specific, measurable criteria: test coverage threshold, maximum acceptable response time, error rate limit.
+Quality bars stated vaguely ("high code quality"): replace with specific, measurable criteria: test coverage threshold, maximum acceptable response time, error rate limit.
 
 ---
 
 ## Technical Design Document (TDD-{PROJECT}-{NNN})
 
-**What you're creating:** Component-level technical design — interfaces, technology choices, build/deploy, testing plan — implementing the SAD architecture within DCF constraints.
+**What you're creating:** Component-level technical design: interfaces, technology choices, build/deploy, testing plan: implementing the SAD architecture within DCF constraints.
 
 **Required Inputs (confirm before starting):**
-- [ ] Frozen SAD — Frozen?
-- [ ] Frozen DCF — Frozen?
-- [ ] Frozen ACF — Frozen? (for guardrail cross-check)
+- [ ] Frozen SAD: Frozen?
+- [ ] Frozen DCF: Frozen?
+- [ ] Frozen ACF: Frozen? (for guardrail cross-check)
 
 **Pre-Flight Gate Check (verify before generating):**
-- [ ] `intent_alignment`: Will align §1 with SAD §1 — no expansion
+- [ ] `intent_alignment`: Will align §1 with SAD §1: no expansion
 - [ ] `scope`: Every component will have a language/framework specification
 - [ ] `interfaces`: API contracts, input/output schema, error contracts will be defined
 - [ ] `build_deploy`: Build steps and deployment mechanism will be documented
@@ -201,17 +201,17 @@ Quality bars stated vaguely ("high code quality") — replace with specific, mea
 5. Validate in a separate session: `docs/validators/tdd-validator.md`
 
 **Common Failure to Avoid:**
-Components listed without technology specification — every component must name language, framework, and version. "TBD" fails the scope gate.
+Components listed without technology specification: every component must name language, framework, and version. "TBD" fails the scope gate.
 
 ---
 
 ## Work Design Document (WDD-{PROJECT}-{NNN})
 
-**What you're creating:** Decomposed, atomic work items with traceability, acceptance criteria, and dependency sequencing — ready for execution.
+**What you're creating:** Decomposed, atomic work items with traceability, acceptance criteria, and dependency sequencing: ready for execution.
 
 **Required Inputs (confirm before starting):**
-- [ ] Frozen TDD — Frozen?
-- [ ] Frozen DCF — Frozen? (for granularity guidance)
+- [ ] Frozen TDD: Frozen?
+- [ ] Frozen DCF: Frozen? (for granularity guidance)
 
 **Pre-Flight Gate Check (verify before generating):**
 - [ ] `traceability`: Each work item will cite a TDD component or requirement
@@ -228,24 +228,24 @@ Components listed without technology specification — every component must name
 2. Provide: Full frozen TDD
 3. Provide: Frozen DCF (for granularity and testing expectations)
 4. Provide: `docs/specs/wdd-spec.md` (or confirm it is in context)
-5. After generation: run DoR validator, Consistency Validator, then WDD Validator — in separate sessions
+5. After generation: run DoR validator, Consistency Validator, then WDD Validator: in separate sessions
 6. Validate in a separate session: `docs/validators/wdd-validator.md`
 
 **Common Failure to Avoid:**
-Bundled work items (multiple concerns in one item) — decompose until each item can be independently tested, reviewed, and merged.
+Bundled work items (multiple concerns in one item): decompose until each item can be independently tested, reviewed, and merged.
 
 ---
 
 ## Operational Readiness Document (ORD-{PROJECT}-{NNN})
 
-**What you're creating:** A verification record confirming the implementation is observable, deployable, and safe to hand off to REK — with concrete evidence, not assertions.
+**What you're creating:** A verification record confirming the implementation is observable, deployable, and safe to hand off to REK: with concrete evidence, not assertions.
 
 **Required Inputs (confirm before starting):**
-- [ ] Frozen WDD — Frozen?
-- [ ] Frozen TDD — Frozen?
-- [ ] Frozen ACF — Frozen?
-- [ ] Frozen DCF — Frozen?
-- [ ] Actual implementation evidence — Available? (deployment logs, test results, monitoring screenshots)
+- [ ] Frozen WDD: Frozen?
+- [ ] Frozen TDD: Frozen?
+- [ ] Frozen ACF: Frozen?
+- [ ] Frozen DCF: Frozen?
+- [ ] Actual implementation evidence: Available? (deployment logs, test results, monitoring screenshots)
 
 **Pre-Flight Gate Check (verify before generating):**
 - [ ] `deployment_verification`: Actual deployment evidence in hand (not assumed)
@@ -266,4 +266,4 @@ Bundled work items (multiple concerns in one item) — decompose until each item
 6. After PASS: hand off frozen ORD to Release & Exposure Kit
 
 **Common Failure to Avoid:**
-Evidence-by-assertion ("deployment succeeded") without retrievable proof — replace with a log reference, CI run ID, or screenshot. Assertions fail the evidence_quality gate.
+Evidence-by-assertion ("deployment succeeded") without retrievable proof: replace with a log reference, CI run ID, or screenshot. Assertions fail the evidence_quality gate.

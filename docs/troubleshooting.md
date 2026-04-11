@@ -1,10 +1,10 @@
-# Troubleshooting Guide — Engineering Execution Kit
+# Troubleshooting Guide: Engineering Execution Kit
 
 ## How to Use This Guide
 
 When a validator returns FAIL, find the failing gate in the table below. The Remediation column describes the specific fix required. Reopen the artifact, apply the remediation, and rerun the validator in a new session.
 
-**Do not embed fix attempts in your validation session.** Validators and generation are separate sessions.
+Validators and generation are separate sessions. Don't embed fix attempts in your validation session.
 
 ---
 
@@ -24,7 +24,7 @@ This is a human-completed entry gate artifact. Fill all fields directly in the t
 
 ## Product Requirements Document (PRD)
 
-**Path A (placed from DPRD):** If the acceptance check fails on a Path A PRD, the DPRD itself is the source of the problem — return to PIK. Do not modify the placed DPRD.
+**Path A (placed from DPRD):** If the acceptance check fails on a Path A PRD, the DPRD itself is the source of the problem: return to PIK. Do not modify the placed DPRD.
 
 | Gate | What Failure Looks Like | Typical Cause | Remediation |
 |------|------------------------|---------------|-------------|
@@ -35,7 +35,7 @@ This is a human-completed entry gate artifact. Fill all fields directly in the t
 | constraints | Constraints contradict or omit DPRD constraints | Constraints edited after placement | Return to PIK; restore from frozen DPRD |
 | readiness | Readiness items unchecked | DPRD handed off before meeting readiness criteria | Return to PIK; complete outstanding readiness items before re-initiating handoff |
 
-**Path B (generated from Product Brief):** Standard validator failure — generate a corrected PRD in a new session using the prompt and brief.
+**Path B (generated from Product Brief):** Standard validator failure: generate a corrected PRD in a new session using the prompt and brief.
 
 ---
 
@@ -47,7 +47,7 @@ This is a human-completed entry gate artifact. Fill all fields directly in the t
 | purpose | Purpose describes a specific design choice | ACF written as an architecture document rather than a guardrail document | Reframe: the ACF defines constraints and guardrails, not solutions or designs |
 | platform_assumptions | Runtime, deployment, networking, or identity not stated | Incomplete scope coverage | Document each platform category explicitly; "Not applicable" with justification is acceptable |
 | security_guardrails | Security guardrails stated aspirationally ("should be secure") | Security requirements written as goals rather than constraints | Write testable constraints: what is forbidden, what is required, with specific standards referenced |
-| compliance | Compliance section blank with no "None applicable" justification | Section skipped | List applicable standards or state "None applicable — [specific reason]" |
+| compliance | Compliance section blank with no "None applicable" justification | Section skipped | List applicable standards or state "None applicable: [specific reason]" |
 | reliability | Availability or rollback expectations absent | Non-functional requirements omitted | State a minimum availability target and rollback expectation as verifiable, testable criteria |
 | observability | Required telemetry types not defined | Observability left to implementation judgment | Define what must be logged, what metrics must be emitted, and the minimum required signal set |
 | forbidden_patterns | No enforceable forbidden patterns listed | Patterns omitted as obvious or already known | List at least one concrete, enforceable forbidden pattern per concern area |

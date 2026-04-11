@@ -2,7 +2,7 @@
 
 ## Scope
 
-This repository contains documentation, prompts, templates, and validators — no executable code, no running services, and no stored credentials. Security concerns are most likely to involve sensitive information inadvertently included in example content.
+This repository contains documentation, prompts, templates, and validators: no executable code, no running services, and no stored credentials. Security concerns are most likely to involve sensitive information inadvertently included in example content.
 
 ## Reporting a Vulnerability
 

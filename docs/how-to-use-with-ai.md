@@ -19,10 +19,10 @@ Most AI coding tools support project-level instruction files that are loaded aut
 
 At minimum, your instruction file should tell the AI:
 
-1. **Where the kit lives** — Path or reference to the kit's prompts, specs, templates, and validators
-2. **Where artifacts live** — Your project's `docs/sdlc/` directory structure
-3. **The artifact flow** — The non-negotiable promotion order (PRD → ACF → SAD → DCF → TDD → WDD → Execute → ORD)
-4. **Key constraints** — Freeze-before-promote, one artifact per session, validators as hard gates
+1. **Where the kit lives**. Path or reference to the kit's prompts, specs, templates, and validators
+2. **Where artifacts live**. Your project's `docs/sdlc/` directory structure
+3. **The artifact flow**. The non-negotiable promotion order (PRD → ACF → SAD → DCF → TDD → WDD → Execute → ORD)
+4. **Key constraints**. Freeze-before-promote, one artifact per session, validators as hard gates
 
 If the kit is a separate repository, reference it by path. If copied into your project, reference the local directory.
 
@@ -39,35 +39,33 @@ Project artifacts: docs/sdlc/
 Artifact flow: PRD → ACF → SAD → DCF → TDD → WDD → Execute → ORD
 - Each artifact must be frozen before downstream artifacts are generated
 - Use a separate AI session for generation and validation
-- Validators are hard gates — any failure means FAIL
+- Validators are hard gates, any failure means FAIL
 
 See the kit's playbook.md for the full process definition.
 ```
 
-This ensures every AI session — regardless of tool — starts with the right context without requiring you to re-explain the kit each time.
+This ensures every AI session. regardless of tool. starts with the right context without requiring you to re-explain the kit each time.
 
----
 
 ## The Core Pattern
 
 Every artifact follows the same three-step pattern:
 
-1. **Generate** — Give the AI a prompt and inputs; it produces the artifact
-2. **Validate** — Give the AI the validator and the artifact; it returns PASS or FAIL
-3. **Freeze** — Once PASS and human-approved, the artifact is locked
+1. **Generate**. Give the AI a prompt and inputs; it produces the artifact
+2. **Validate**. Give the AI the validator and the artifact; it returns PASS or FAIL
+3. **Freeze**. Once PASS and human-approved, the artifact is locked
 
 Each step is a separate AI session. This keeps context clean and prevents the AI from conflating artifacts.
 
----
 
 ## Generating an Artifact
 
 Start a new AI session and provide:
 
-1. **The spec** — The `{type}-spec.md` file that defines content rules, format requirements, and hard gates
-2. **The generation prompt** — The `{type}-prompt.md` file for the artifact you're generating
-3. **The template** — The `{type}-template.md` file so the AI follows the exact structure
-4. **The frozen upstream artifacts** — The inputs listed in the prompt
+1. **The spec**. The `{type}-spec.md` file that defines content rules, format requirements, and hard gates
+2. **The generation prompt**. The `{type}-prompt.md` file for the artifact you're generating
+3. **The template**. The `{type}-template.md` file so the AI follows the exact structure
+4. **The frozen upstream artifacts**. The inputs listed in the prompt
 
 ### Example: Generating a SAD
 
@@ -98,20 +96,19 @@ The AI will produce a SAD that follows the template structure, satisfies the spe
 ### Tips for Generation
 
 - **One artifact per session.** Don't generate a PRD and SAD in the same session. Context bleeds and quality drops.
-- **Paste the full upstream artifacts.** Don't summarize — the AI needs the details to trace requirements correctly.
+- **Paste the full upstream artifacts.** Don't summarize: the AI needs the details to trace requirements correctly.
 - **Include the spec.** The spec defines what quality criteria the content must satisfy. Without it, the AI relies only on embedded prompt rules.
 - **Include the template.** Without it, the AI may invent its own structure, making validation harder.
 - **Don't prompt the AI to be creative.** The prompts are designed to constrain output. Let them work.
 
----
 
 ## Validating an Artifact
 
 Start a **new** AI session (not the one that generated the artifact) and provide:
 
-1. **The spec** — The `{type}-spec.md` file that defines the evaluation criteria
-2. **The validator** — The `{type}-validator.md` file
-3. **The artifact to validate** — The generated artifact
+1. **The spec**. The `{type}-spec.md` file that defines the evaluation criteria
+2. **The validator**. The `{type}-validator.md` file
+3. **The artifact to validate**. The generated artifact
 
 ### Example: Validating a SAD
 
@@ -143,12 +140,12 @@ The AI will return structured JSON:
 
 If the same AI that generated the artifact also validates it, it has a bias toward passing its own work. A fresh session with only the validator rules and the artifact produces a more honest evaluation.
 
-### Starting a Validation Session — Step by Step
+### Starting a Validation Session. Step by Step
 
 "New session" means:
 
-1. **End the generation session.** Close the conversation or start a new one — do not continue in the same thread.
-2. **Open a fresh conversation.** No prior context should carry over. Project-level instructions (CLAUDE.md) are fine — they don't contain artifact content.
+1. **End the generation session.** Close the conversation or start a new one. Do not continue in the same thread.
+2. **Open a fresh conversation.** No prior context should carry over. Project-level instructions (CLAUDE.md) are fine. They don't contain artifact content.
 3. **Do not include generation inputs.** The generation session contained the spec + prompt + template + principles. Leave all of these out. The validator is the only behavior instruction needed.
 4. **Paste in this order:**
    - The spec (`{type}-spec.md`)
@@ -156,17 +153,16 @@ If the same AI that generated the artifact also validates it, it has a bias towa
    - Frozen upstream artifacts if the validator requires them for traceability (e.g., TDD + ACF + DCF for ORD validation)
    - The artifact to validate
 5. **Give a single instruction:** "Validate this artifact against the spec and validator. Output JSON only."
-6. **Review the output** — if status is FAIL, address only the blocking issues listed. Do not redesign.
+6. **Review the output**. If status is fail, address only the blocking issues listed. do not redesign.
 7. **Re-run in a new session** after fixes (same rules apply).
 
 ### Handling FAIL Results
 
-1. Review the `blocking_issues` — each one identifies a specific gate, description, and location
+1. Review the `blocking_issues`. each one identifies a specific gate, description, and location
 2. Fix only the blocking issues in the artifact (do not redesign)
 3. Re-run the validator in a new session
-4. If the same gate keeps failing after two cycles, the root cause may be in an upstream artifact — see the Re-entry Protocol in the playbook
+4. If the same gate keeps failing after two cycles, the root cause may be in an upstream artifact. See the re-entry protocol in the playbook
 
----
 
 ## Inputs by Artifact Type
 
@@ -186,7 +182,7 @@ The DoR Validator (`dor-validator.md`) is run per WDD work item, not against the
 
 ### Utility Prompts
 
-These prompts produce input material or advisory outputs — they are not governed artifacts with specs or validators.
+These prompts produce input material or advisory outputs. They are not governed artifacts with specs or validators.
 
 | Prompt | Purpose | Inputs |
 |--------|---------|--------|
@@ -199,7 +195,6 @@ These prompts produce input material or advisory outputs — they are not govern
 | `team-composition-prompt.md` | Derive team roles, skills, and deliverables from work items | Frozen WDD + Frozen TDD (recommended) |
 | `wdd-csv-export-prompt.md` | Export WDD work items as CSV for import into work management tools | Frozen WDD + optional field mapping override |
 
----
 
 ## The Execution Loop
 
@@ -218,7 +213,7 @@ Each phase is a separate AI session. The human approves the output of each phase
 
 ### Generating the Execution Plan
 
-Before starting the execution loop, generate the execution plan, then use the phase-specific prompts to assemble ready-to-use prompts for each phase — one phase at a time.
+Before starting the execution loop, generate the execution plan, then use the phase-specific prompts to assemble ready-to-use prompts for each phase. One phase at a time.
 
 **Step 1: Generate the execution plan**
 
@@ -254,11 +249,10 @@ This produces assembled plan prompts with test specs included. Run, approve.
 
 **Step 4–5: Repeat for Code and Review**
 
-Use `execution-plan-code-prompt.md` (after Phase 2) and `execution-plan-review-prompt.md` (after Phase 3) the same way — each takes the execution plan plus the approved outputs from previous phases and produces ready-to-use prompts.
+Use `execution-plan-code-prompt.md` (after Phase 2) and `execution-plan-review-prompt.md` (after Phase 3) the same way, each takes the execution plan plus the approved outputs from previous phases and produces ready-to-use prompts.
 
-Each phase prompt assembles everything — no manual input gathering needed.
+Each phase prompt assembles everything. No manual input gathering needed.
 
----
 
 ## Practical Workflow Summary
 
@@ -272,7 +266,6 @@ Session 3:  human reviews, approves, freezes
 
 Repeat for each artifact in the flow: PRD → ACF → SAD → DCF → TDD → WDD → Execute → ORD.
 
----
 
 ## Common Mistakes
 
