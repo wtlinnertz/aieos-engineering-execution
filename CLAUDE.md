@@ -156,3 +156,40 @@ EEK maintains the Layer 4 section of the project's Engagement Record (`docs/enga
 - Do not skip the artifact dependency order
 - Do not silently modify existing constraints
 - Do not modify a DPRD received via Path A — if the DPRD fails acceptance check, return it to the Product Intelligence Kit for correction
+
+---
+
+## Spec-Driven CI/CD — Engineering Execution Kit Context
+
+This repo is Layer 4: PRD through architecture, design, test strategy, work decomposition,
+and Operational Readiness Document. For spec-driven CI/CD, it gains a new terminal artifact:
+the CI spec.
+
+### What lives here for CI/CD (M5 deliverables)
+
+- CI spec authoring flow (downstream of ORD)
+- Template: templates/ci-spec/python-k8s-flux.yaml (archetype-specific defaults)
+- Prompt: prompts/ci-spec-author.md (LLM-assisted interview for overrides)
+- Spec validator integration (calls the M3 spec validator)
+- Freeze semantics: spec committed to target repo at .aieos/ci.spec.yaml, cached in artifact store
+
+### Implementation plan
+
+The full plan is at: `~/second-brain/AIEOS Spec-Driven CI-CD Implementation Plan.md`
+
+Read the M5 section before starting. Kit work depends on:
+- M1 frozen CI spec schema in `aieos-governance-foundation`
+- M3 runner interface (runner-interface.md) frozen in `aieos-governance-foundation`
+
+### Key design decisions
+
+- v1 ships one archetype: Python web service on Kubernetes via Flux.
+- Template provides sensible defaults. Prompt walks author through overrides.
+- Spec validator from M3 validates the authored spec before freeze.
+- Freeze-before-promote: runner refuses unfrozen specs.
+
+### Conventions
+
+- This kit already has an established structure. Do not reorganize existing files.
+- New CI/CD files go under templates/ and prompts/ alongside existing kit content.
+- Update the kit README to document how the CI spec artifact slots into the existing Layer 4 flow.
