@@ -80,6 +80,26 @@ See `docs/index.md` to get started.
 - **Validators** `docs/validators/`
 - **Examples** `examples/`
 
+## Spec-driven CI/CD (M5.1)
+
+The kit's Layer-4 outputs now include a frozen **CI spec** that downstream
+execution consumes. The CI spec is authored AFTER the ORD freezes and
+captures tool-agnostic success criteria for every pipeline action.
+
+- **Template** `templates/ci-spec/python-k8s-flux.yaml` — starting point
+  for a Python web service deployed to Kubernetes via Flux. Pre-populated
+  with the ten v1 adapters and realistic default thresholds.
+- **Authoring prompt** `prompts/ci-spec-author.md` — step-by-step
+  interview that walks the developer through overrides instead of handing
+  them a raw YAML to guess at.
+- **Schema** — CI specs validate against
+  `aieos-governance-foundation/schema/ci-spec.schema.json` frozen at
+  `v1.0-ci-spec-schema`.
+- **Freeze** — the authored spec is committed to the target repo at
+  `.aieos/ci.spec.yaml` and cached in the artifact store. The pipeline
+  runner (`aieos-pipeline-runner`) refuses unfrozen specs at execution
+  time, so freeze-before-promote is enforced by the tool.
+
 ## Anonymization & Safety
 
 This is a public repository. All content is employer-neutral, uses placeholders instead of real identifiers, and avoids internal systems, URLs, and names. See `ANONYMIZATION.md` before contributing.

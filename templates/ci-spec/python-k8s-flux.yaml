@@ -1,0 +1,95 @@
+# AIEOS CI spec template — Python web service on Kubernetes via Flux (v1).
+#
+# This template is the starting point for the CI spec authoring flow. Copy
+# it to your target repo at .aieos/ci.spec.yaml, fill in the marked TODOs,
+# and run the ci-spec-author prompt to step through overrides. Validate
+# against aieos-governance-foundation/schema/ci-spec.schema.json before
+# freeze.
+
+spec_version: "1.0.0"
+code_repo: "TODO-owner/TODO-repo"  # e.g., wtlinnertz/aieos-artifact-store
+
+actions:
+  # ---- Tests --------------------------------------------------------------
+  - action: test.unit
+    criteria:
+      expect_all_pass: true
+      min_coverage: 80
+
+  - action: test.integration
+    criteria:
+      expect_all_pass: true
+
+  # ---- Static scans (parallelize with tests) -------------------------------
+  - action: security.sast
+    criteria:
+      max_severity: high
+
+  - action: security.sca
+    criteria:
+      max_severity: high
+      max_cvss: 7.0
+
+  - action: security.secret-scan
+    criteria:
+      expect_zero_findings: true
+
+  # ---- Build ---------------------------------------------------------------
+  - action: build.artifact
+    criteria: {}
+    depends_on:
+      - test.unit
+      - test.integration
+
+  # ---- SBOM + container scan (both depend on the built image) --------------
+  - action: sbom.generate
+    criteria: {}
+    depends_on:
+      - build.artifact
+
+  - action: security.container-scan
+    criteria:
+      max_severity: high
+    depends_on:
+      - build.artifact
+
+  # ---- Sign (gate on build + all scans + SBOM) -----------------------------
+  - action: sign.artifact
+    criteria: {}
+    depends_on:
+      - build.artifact
+      - security.sast
+      - security.sca
+      - security.secret-scan
+      - security.container-scan
+      - sbom.generate
+
+  - action: sign.attestation
+    criteria: {}
+    depends_on:
+      - sbom.generate
+      - sign.artifact
+
+  # ---- Publish -------------------------------------------------------------
+  - action: publish.artifact
+    criteria: {}
+    depends_on:
+      - sign.artifact
+      - sign.attestation
+
+policies:
+  timeout_seconds: 1800
+  retry:
+    max_retries: 1
+    backoff: exponential
+  adapter_preferences:
+    test.unit: adapter-pytest-unit
+    test.integration: adapter-pytest-integration
+    security.sast: adapter-semgrep-sast
+    security.sca: adapter-osv-sca
+    security.secret-scan: adapter-semgrep-sast
+    security.container-scan: adapter-trivy-container
+    sbom.generate: adapter-syft-sbom
+    build.artifact: adapter-buildah-image
+    sign.artifact: adapter-cosign-sign
+    sign.attestation: adapter-cosign-sign
