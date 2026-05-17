@@ -26,6 +26,7 @@ HARD GATES:
 - forbidden_patterns
 - constraint_enforceability
 - principles_coverage
+- pinfk_reference_or_explicit_assumptions
 
 PRINCIPLES COVERAGE GATE:
 The `principles_coverage` gate checks that the ACF includes a principles coverage table (as a Markdown comment) and that every directive from `docs/principles/security-principles.md` (§2.1–2.8, §3–4) and `docs/principles/code-craftsmanship.md` (§2, §5) is either addressed in a specific ACF section or explicitly marked N/A with justification. FAIL if the table is missing, incomplete, or contains unaddressed directives without justification.
@@ -46,7 +47,8 @@ OUTPUT FORMAT (MANDATORY):
     "observability": "PASS | FAIL",
     "forbidden_patterns": "PASS | FAIL",
     "constraint_enforceability": "PASS | FAIL",
-    "principles_coverage": "PASS | FAIL"
+    "principles_coverage": "PASS | FAIL",
+    "pinfk_reference_or_explicit_assumptions": "PASS | FAIL"
   },
   "blocking_issues": [
     {

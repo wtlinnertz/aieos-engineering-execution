@@ -1,6 +1,6 @@
 # ACF Specification
 
-Version: v1.0
+Version: v1.1
 
 The ACF defines architecture guardrails that constrain the SAD and all downstream artifacts. It captures constraints and forbidden patterns, not solutions.
 
@@ -13,6 +13,7 @@ The ACF defines architecture guardrails that constrain the SAD and all downstrea
 ## Upstream Dependencies
 
 - Architecture Context (intake form) or equivalent organizational standards, platform assumptions, regulatory/security constraints
+- Frozen PDR(s) and ISPEC from PINFK (Platform & Infrastructure Kit) — required if PINFK was adopted for this initiative. If PINFK was not adopted, state explicitly in §Platform Context: 'PINFK not adopted — platform assumptions are:' followed by the specific assumptions the ACF is making. Absent PINFK artifacts means platform decisions are assumptions within ACF; those assumptions must be stated explicitly.
 
 ## Required Sections
 
@@ -156,3 +157,4 @@ The ACF defines architecture guardrails that constrain the SAD and all downstrea
 7. **observability** — Required telemetry types and minimum signals defined
 8. **forbidden_patterns** — At least one clear, enforceable forbidden pattern
 9. **constraint_enforceability** — All hard constraints testable, no aspirational language
+10. **pinfk_reference_or_explicit_assumptions** — The ACF must do one of: (a) Reference frozen PDR and ISPEC IDs from PINFK in §Platform Context, OR (b) State explicitly 'PINFK not adopted — platform assumptions are:' followed by the specific platform assumptions. Failure: §Platform Context is blank, says 'TBD', or makes implicit assumptions without declaration.

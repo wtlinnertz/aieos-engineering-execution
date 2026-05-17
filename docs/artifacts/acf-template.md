@@ -23,6 +23,9 @@ What guardrails does this ACF exist to enforce?
 - Networking posture (high level):
 - Identity model (high level):
 
+## 2a. Platform Context
+[ ] PINFK adopted — PDR IDs: ___, ISPEC ID: ___ | [ ] PINFK not adopted — platform assumptions: ___
+
 ## 3. Security Guardrails (Hard)
 Examples (customize to your organization’s baseline):
 - Authentication requirements:
