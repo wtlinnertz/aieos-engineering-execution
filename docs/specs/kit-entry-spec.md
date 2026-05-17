@@ -1,6 +1,6 @@
 # EEK Kit Entry — Specification
 
-Version: v1.0
+Version: v1.1
 
 The Kit Entry Record is a lightweight gate that must be completed before beginning any artifact generation in the Engineering Execution Kit. It confirms the work is appropriately routed, the correct entry path is selected, and a priority decision exists on record.
 
@@ -73,10 +73,24 @@ The kit entry spec serves two roles:
   - Justification must be specific — not "we decided to skip discovery" or similar
   - Justification must explain the specific conditions that make direct entry appropriate, not merely assert that discovery is unnecessary
 
+**SSK Disposition (conditional)**
+
+`ssk_disposition` — Applies only when Entry Path A is selected.
+
+The KER must declare one of:
+
+(a) 'SSK was engaged — SDR ID: {SDR-ID}, frozen.'
+(b) 'SSK was skipped — Justification: {specific reason}.' Justification must address why Build is the only viable option without evaluating alternatives. Acceptable: unique domain capability with no market alternatives; enhancement to existing system with no sourcing decision needed; compliance mandate specifying specific approach. Unacceptable: 'we decided not to evaluate vendors' or 'time pressure.'
+
+For Path B KERs: this gate does not apply; state 'Path B — SSK not applicable.'
+
 **Failure Examples**
 - Neither path selected
 - Path A selected but no DPRD reference provided
 - Path A selected and DPRD Assumptions section has no EL references and no explanation for their absence
+- Path A selected with no SSK disposition declared
+- Path A selected with SSK skipped justification 'we decided not to evaluate vendors' — not an acceptable justification
+- Path A selected with SSK skipped justification 'time pressure' — not an acceptable justification
 - Path B selected with no work type selection
 - Path B selected with justification "no time for discovery" — rationale, not justification
 - Path B selected with justification "it's a small change" — scope claim, not justification
@@ -144,5 +158,6 @@ The kit entry spec serves two roles:
 3. **path_selected** — Exactly one entry path selected with required evidence:
    - Path A: DPRD reference present; EL experiment references confirmed in DPRD Assumptions (or absence explained)
    - Path B: Work type explicitly selected; justification specific and consistent with stated work type
-4. **priority_on_record** — Priority decision confirmed with a traceable reference
-5. **scope_bounded** — Work boundary stated with enough specificity to confirm it is bounded
+4. **ssk_disposition** — (Path A only) SSK engagement or skip declared; skip justification must meet acceptable criteria. Path B KERs must state 'Path B — SSK not applicable.'
+5. **priority_on_record** — Priority decision confirmed with a traceable reference
+6. **scope_bounded** — Work boundary stated with enough specificity to confirm it is bounded

@@ -56,7 +56,20 @@ Evaluate each hard gate. A gate is PASS only if the requirement is fully and una
   - Path B selected with no justification, or with a justification that is vague ("small change", "no time", "unnecessary")
   - Path B work type and justification are inconsistent (describes different kind of work than the type selected)
 
-#### 4. priority_on_record
+#### 4. ssk_disposition (Path A KERs only)
+- If Path A is selected: is an SSK disposition explicitly declared?
+- If SSK was engaged: is an SDR ID provided?
+- If SSK was skipped: is a justification provided that explains why Build is the only viable option?
+  - Acceptable justifications: unique domain capability with no market alternatives; enhancement to existing system with no sourcing decision needed; compliance mandate specifying specific approach
+  - Unacceptable justifications: 'we decided not to evaluate vendors'; 'time pressure'; generic statements without substantive explanation
+- If Path B is selected: does the record state 'Path B — SSK not applicable'?
+- FAIL if:
+  - Path A selected with no SSK disposition declared (field absent or blank)
+  - Path A selected, SSK skipped, and justification falls into an unacceptable category
+  - Path A selected, SSK skipped, and justification is missing or generic
+  - Path B selected and SSK disposition section is absent (must declare not applicable)
+
+#### 5. priority_on_record
 - Is the priority decision confirmed as Yes?
 - Is a traceable reference provided (date + approver, planning session reference, or tracking system ID)?
 - FAIL if:
@@ -64,7 +77,7 @@ Evaluate each hard gate. A gate is PASS only if the requirement is fully and una
   - Priority is Yes but no traceable reference is provided
   - Reference is generic ("we prioritized this" without a traceable element)
 
-#### 5. scope_bounded
+#### 6. scope_bounded
 - Is both an "in scope" and "out of scope" statement present?
 - Are the statements specific enough to confirm the work is bounded (not "everything in the PRD" or "the full feature")?
 - FAIL if:
@@ -89,6 +102,7 @@ Produce JSON in the standard validator output format:
     "document_control": "PASS | FAIL",
     "classification_check": "PASS | FAIL",
     "path_selected": "PASS | FAIL",
+    "ssk_disposition": "PASS | FAIL",
     "priority_on_record": "PASS | FAIL",
     "scope_bounded": "PASS | FAIL"
   },

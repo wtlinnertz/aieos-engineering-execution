@@ -54,6 +54,17 @@ Select exactly one:
 
 ---
 
+## SSK Disposition
+
+SSK disposition:
+- [ ] Path B entry — SSK not applicable
+- [ ] SSK was engaged — SDR ID: {SDR-ID}, status: Frozen
+- [ ] SSK was skipped — Justification: {specific reason why Build is the only option}
+
+_(Path A KERs must select one of the SSK engaged or SSK skipped options and provide the required detail. Path B KERs must select "Path B entry — SSK not applicable." Skipped justifications must explain why Build is the only viable option — not vendor preference or time pressure.)_
+
+---
+
 ## Priority Decision
 
 - Priority decision on record: Yes / No
@@ -83,6 +94,7 @@ Before validating and freezing this record, confirm:
 - [ ] Path A: EL experiment references field is completed (Yes or No with explanation)
 - [ ] Path B: work type is explicitly selected
 - [ ] Path B: specific justification is documented and consistent with work type
+- [ ] SSK disposition is declared (Path A: engaged or skipped with justification; Path B: not applicable)
 - [ ] Priority decision has a traceable reference
 - [ ] Scope boundary states both in scope and out of scope
 
