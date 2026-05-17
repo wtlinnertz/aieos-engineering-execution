@@ -1,11 +1,13 @@
 # DCF Specification
 
-Version: v1.0
+Version: v1.1
 
 The DCF defines design standards and expectations that constrain TDD creation. It is reusable across many initiatives and enforces quality bars, not specific designs.
 
 ## Upstream Dependencies
 
+- Frozen PRD — required. The DCF must apply to the same initiative scope as the PRD it governs.
+- Frozen SAD — required when SAD has been generated for this initiative. DCF must not be frozen before SAD, as DCF constrains TDD which depends on both SAD and DCF. Exception: when DCF is a reused organizational standard (not initiative-specific), it may precede SAD. The KER must document this reuse.
 - Engineering standards, testing expectations, or operational requirements (if provided)
 
 ## Required Sections
@@ -145,3 +147,4 @@ The DCF defines design standards and expectations that constrain TDD creation. I
 7. **testing_expectations** — Test layers, evidence requirements, and promotion gates defined
 8. **documentation_expectations** — Required TDD sections, diagrams, and traceability markers listed
 9. **standard_enforceability** — All hard standards testable, no aspirational language
+10. **upstream_dependency_ordering** — When a SAD exists for this initiative, it must be in Frozen status before this DCF may be frozen. Exception: reusable organizational DCFs that apply across all delivery (not a single initiative) may precede SAD; the KER for the initiative must note DCF reuse. Failure: DCF frozen before SAD for the same initiative without a documented reuse exception.
