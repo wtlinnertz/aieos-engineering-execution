@@ -44,7 +44,7 @@ You don’t need a specific toolchain to use this kit.
 
 ## What’s included
 
-**Artifact templates** - PRD, ACF, SAD, DCF, TDD, WDD, ORD. Each template is designed to be passed directly to an AI, easy to validate, and hard to misuse.
+**Artifact templates** - PRD, ACF, SAD, DCF, TDD, WDD, ORD. Also DKR (Domain Knowledge Record — optional, documents domain model before SAD/TDD when domain complexity warrants it). Each template is designed to be passed directly to an AI, easy to validate, and hard to misuse.
 
 **Validators** - PRD, ACF, SAD, DCF, TDD, WDD, Definition of Ready, and ORD validators. They’re strict and non-prescriptive: they determine readiness without redesigning or suggesting solutions.
 
