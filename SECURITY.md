@@ -12,7 +12,7 @@ If you discover a security or privacy concern in this repository (for example, a
 
 To report:
 
-1. Open a [GitHub Security Advisory](https://github.com/wtlinnertz/aieos-engineering-execution-kit/security/advisories/new) in this repository, or
+1. Open a [GitHub Security Advisory](https://github.com/wtlinnertz/aieos-engineering-execution/security/advisories/new) in this repository, or
 2. Contact the maintainers directly via the repository's contact information.
 
 Include:
