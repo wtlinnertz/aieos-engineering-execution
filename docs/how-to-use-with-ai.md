@@ -182,6 +182,7 @@ These prompts produce input material or advisory outputs. They are not governed 
 
 | Prompt | Purpose | Inputs |
 |--------|---------|--------|
+| `product-brief-intake-prompt.md` | Facilitate Product Brief completion on Path B; pre-fill from sources, list questions by PRD hard gate | Frozen KER (Path B) + source material |
 | `greenfield-intake-prompt.md` | Facilitate ACF and DCF intake form completion for greenfield projects | Frozen PRD + optional team notes |
 | `codebase-analysis-prompt.md` | Pre-fill intake forms for brownfield projects | Existing codebase |
 | `impact-analysis-prompt.md` | Assess downstream effects before modifying a frozen artifact | Frozen artifacts + proposed change |

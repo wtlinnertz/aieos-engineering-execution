@@ -58,6 +58,12 @@ Selecting Path A without recording the DPRD ID: the KER must explicitly cite the
 
 **Path B: PRD Generation:**
 
+**Product Brief intake (optional, before PRD generation):**
+1. Load: `docs/prompts/product-brief-intake-prompt.md`
+2. Provide: Frozen KER (Path B) and all source material on hand (notes, tickets, emails, incident reports), labeled in order
+3. Human answers every question in Output B and edits Output A into the completed Product Brief
+4. Resolve Output C before continuing: out-of-scope items require a KER amendment; solution statements stay out of the brief unless mandated
+
 **Required Inputs:**
 - [ ] Completed Product Brief: Present and bounded?
 - [ ] Frozen KER: Frozen with Path B selected and justification present?
