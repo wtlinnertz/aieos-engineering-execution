@@ -15,7 +15,7 @@ Use this file to set up an AI session for each EEK artifact. Find the section fo
 **Required Inputs (confirm before starting):**
 - [ ] Frozen WCR: Frozen and routing to EEK?
 - [ ] Path A: Frozen DPRD (DPRD-{PROJECT}-{NNN}): Frozen and delivered?
-- [ ] Path B: Product Brief (human input): Complete and bounded?
+- [ ] Path B: Source material identified? (The Product Brief is written after the KER is frozen.)
 
 **Pre-Flight Gate Check (verify before generating):**
 - [ ] `document_control`: ID, date, owner, and version fields ready
