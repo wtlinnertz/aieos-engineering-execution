@@ -85,6 +85,7 @@ Skipping steps weakens enforcement.
 ---
 
 ### Utility (Input Material, Not Governed Artifacts)
+- `product-brief-intake-prompt.md` — Facilitate Product Brief completion on Path B by pre-filling the brief from the frozen KER and source material, listing questions by PRD hard gate, and flagging out-of-scope and solution statements
 - `codebase-analysis-prompt.md` — Analyze an existing codebase to produce structured input for ACF, DCF, and SAD generation (brownfield projects)
 - `greenfield-intake-prompt.md` — Facilitate ACF and DCF intake form completion for greenfield projects by extracting PRD constraints and listing decisions the team must make
 - `bat-prompt.md` — Generate a business acceptance testing protocol and results template for a WDD work group after its gate is recorded
