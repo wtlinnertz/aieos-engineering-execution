@@ -1,0 +1,105 @@
+{
+  "report_version": "1.0",
+  "validator": "sad-validator",
+  "artifact_type": "SAD",
+  "role": "freeze-gate",
+  "judge": {
+    "provider": "anthropic",
+    "model": "claude-haiku-4-5-20251001",
+    "prompt_sha256": "01177fb36b44e73b2970e32f0908dea267475cdab44604e5cbcd9aa4bddc9f11"
+  },
+  "run_date": "2026-11-09T03:58:51Z",
+  "case_count": 12,
+  "runs_per_case": 3,
+  "gate_agreement": 0.8809523809523809,
+  "false_pass_count": 3,
+  "stability_flips": [],
+  "kappa": 0.3577981651376151,
+  "verdict": "FAIL",
+  "gates": {
+    "intent_integrity": {
+      "agreements": 36,
+      "total": 36,
+      "false_pass": 0,
+      "flips": 0
+    },
+    "scope_discipline": {
+      "agreements": 30,
+      "total": 36,
+      "false_pass": 1,
+      "flips": 0
+    },
+    "upstream_traceability": {
+      "agreements": 33,
+      "total": 36,
+      "false_pass": 1,
+      "flips": 0
+    },
+    "structural_diagrams": {
+      "agreements": 36,
+      "total": 36,
+      "false_pass": 0,
+      "flips": 0
+    },
+    "cross_cutting_concerns": {
+      "agreements": 36,
+      "total": 36,
+      "false_pass": 0,
+      "flips": 0
+    },
+    "data_integration": {
+      "agreements": 30,
+      "total": 36,
+      "false_pass": 0,
+      "flips": 0
+    },
+    "failure_modes": {
+      "agreements": 33,
+      "total": 36,
+      "false_pass": 0,
+      "flips": 0
+    },
+    "quality_attributes": {
+      "agreements": 33,
+      "total": 36,
+      "false_pass": 0,
+      "flips": 0
+    },
+    "deferred_decisions": {
+      "agreements": 33,
+      "total": 36,
+      "false_pass": 1,
+      "flips": 0
+    },
+    "risk_awareness": {
+      "agreements": 33,
+      "total": 36,
+      "false_pass": 0,
+      "flips": 0
+    },
+    "guardrail_alignment": {
+      "agreements": 36,
+      "total": 36,
+      "false_pass": 0,
+      "flips": 0
+    },
+    "implementation_leakage": {
+      "agreements": 36,
+      "total": 36,
+      "false_pass": 0,
+      "flips": 0
+    },
+    "layer_assignment": {
+      "agreements": 30,
+      "total": 36,
+      "false_pass": 0,
+      "flips": 0
+    },
+    "integration_contracts": {
+      "agreements": 9,
+      "total": 36,
+      "false_pass": 0,
+      "flips": 0
+    }
+  }
+}
