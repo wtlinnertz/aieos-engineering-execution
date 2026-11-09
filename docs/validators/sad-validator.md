@@ -65,6 +65,8 @@ Each hard gate in your output must correspond to a hard gate defined in the spec
 }
 ```
 
+Return valid JSON only. When you quote text from the SAD inside a JSON string, use single quotes.
+
 ---
 
 ## Validation Outcome Rules
@@ -83,13 +85,13 @@ Three gates need a lookup before you decide. Do each one as written.
 
 - For `upstream_traceability`, find the PRD's artifact ID in the SAD text. Then find the ACF's artifact ID. Both must appear. If the PRD's ID is missing, the gate fails, even when the ACF is cited and the intent matches the PRD you were given.
 - Under `scope_discipline`, take each item in the PRD's non-goals section and find the line in the SAD's Explicit Non-Goals that restates it. The wording can differ. If any PRD item has no matching line, the gate fails. Judge this gate on the Non-Goals list only. An In Scope item that conflicts with PRD intent is an `intent_integrity` failure.
-- Read the reason and the target phase of every deferred decision for `deferred_decisions`. "TBD", "TODO" or any other placeholder in either one fails the gate.
+- Read the reason and the target phase of every deferred decision for `deferred_decisions`. TBD, TODO or any other placeholder in either one fails the gate.
 
 The remaining notes stop over-strict readings.
 
 - Justification under `layer_assignment` is required only for a component that spans layers. A component assigned to exactly one layer needs none, whatever the layer.
 - In `data_integration`, naming one component as the authoritative source, with a single writer outside the service and read-only access inside, is explicit ownership. Fail the gate when no owner is named or when more than one component claims write access.
-- `integration_contracts` covers only boundaries where independently deployed services meet. Each one needs expected inputs, expected outputs, error modes and a versioning strategy, at architecture level. A versioning strategy of "N/A" with a stated reason is acceptable. Error modes don't need every status code. Auth scheme details, timeout values and retry settings belong in the TDD.
+- `integration_contracts` covers only boundaries where independently deployed services meet. Each one needs expected inputs, expected outputs, error modes and a versioning strategy, at architecture level. A versioning strategy of N/A with a stated reason is acceptable. Error modes don't need every status code. Auth scheme details, timeout values and retry settings belong in the TDD.
 
 ---
 
