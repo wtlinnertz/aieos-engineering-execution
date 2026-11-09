@@ -73,6 +73,17 @@ Each hard gate in your output must correspond to a hard gate defined in the spec
 - **No blocking issues → PASS**
 - Warnings do not block approval but should be addressed
 
+## Gate evaluation notes
+
+The spec's rules define every gate. These notes correct readings that produced wrong verdicts in calibration. They add no requirements and remove none.
+
+- Template tables show one acceptable shape. If the SAD meets a spec rule with a different table or a list, the gate passes. Don't fail a gate because a template column or row label is missing.
+- For `upstream_traceability`, the SAD has to name its PRD and ACF, plus any ADR behind a trade-off. You may receive those documents as inputs to compare against. Content that matches them doesn't count as a reference. If the SAD never names them, the gate fails.
+- `scope_discipline` compares the SAD's Explicit Non-Goals with the PRD's non-goals. Every PRD non-goal must appear there. If one is missing, the gate fails.
+- Justification under `layer_assignment` is required only for a component that spans layers. One layer per component plus a declared dependency rule passes without a justification column.
+- In `data_integration`, naming one component as the authoritative source, with a single writer outside the service and read-only access inside, is explicit ownership. Fail the gate when no owner is named or when more than one component claims write access.
+- `integration_contracts` covers only boundaries where independently deployed services meet. Each one needs expected inputs, expected outputs, error modes and a versioning strategy, at architecture level. Auth scheme details, full status-code lists, timeout values and retry settings belong in the TDD. Don't require them here.
+
 ---
 
 ## Non-Goals of the Validator
