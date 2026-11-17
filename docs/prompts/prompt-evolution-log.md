@@ -41,3 +41,4 @@ Generation prompts produce governed artifacts. Utility prompts produce analysis 
 | test-prompt.md | — | 1.0 | 2026-05-01 | Initial release | Initial version | — | — |
 | wdd-csv-export-prompt.md | — | 1.0 | 2026-05-01 | Initial release | Initial version | — | — |
 | work-group-gate-prompt.md | — | 1.0 | 2026-05-01 | Initial release | Initial version | — | — |
+| product-brief-intake-prompt.md | — | 1.0 | 2026-10-27 | Path B gap: no facilitation prompt for Product Brief | Initial version | — | — |

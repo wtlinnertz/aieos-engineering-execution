@@ -102,6 +102,8 @@ Frozen DPRD (from Product Intelligence Kit)
 When no upstream discovery process was used, a human fills the Product Brief intake form and a PRD is generated from it.
 
 ```
+Frozen KER + source material
+  → Product Brief intake (product-brief-intake-prompt.md — optional facilitation)
 Product Brief (human intake)
   → PRD (prd-prompt.md)
   → PRD Validator
@@ -304,11 +306,12 @@ The artifact flow itself does not change. The codebase analysis simply provides 
 ### Path B — Direct Entry (Product Brief)
 
 **Inputs:** Product Brief (human-written intake)
+**Intake facilitation (optional):** `product-brief-intake-prompt.md`
 **Prompt:** `prd-prompt.md`
 **Validator:** `prd-validator.md`
 **Gate:** Validator PASS + human approval
 
-1. Human completes a Product Brief (goals, constraints, context)
+1. Human completes a Product Brief (goals, constraints, context). To facilitate, run `product-brief-intake-prompt.md` with the frozen KER and the source material on hand (notes, tickets, emails, incident reports). It pre-fills the brief with cited statements, lists a question for every empty or unmeasurable field ordered by PRD hard gate, and flags source statements that fall outside the KER scope or describe a solution. The human answers the questions and edits the output; the edited brief is the input to the next step. Out-of-scope items require a KER amendment, not a brief edit.
 2. Generate PRD using `prd-prompt.md` with the Product Brief as input
 3. Run `prd-validator.md` against the generated PRD
 4. Fix blocking issues only; re-run validator until PASS
@@ -913,6 +916,7 @@ Quality and governance prompts each answer one question:
 
 Utility prompts produce input material (not governed artifacts):
 
+- **Product Brief Intake** (`product-brief-intake-prompt.md`) — What must the team supply before a Path B PRD can be generated? (pre-fills the Product Brief from the KER and source material, lists questions by PRD hard gate, flags out-of-scope and solution statements)
 - **Greenfield Intake** (`greenfield-intake-prompt.md`) — What decisions must a greenfield team make before generating ACF and DCF? (extracts PRD constraints, lists required decisions)
 - **Codebase Analysis** (`codebase-analysis-prompt.md`) — What exists in this codebase? (feeds ACF, DCF, SAD generation for brownfield projects)
 - **Service Landscape Discovery** (`service-landscape-prompt.md`) — What exists across multiple repos/services? Scans N directories, classifies files by purpose (IaC, pipelines, deployment, application code, config, tests), maps cross-service patterns and dependencies. Architecture-agnostic. Feeds CLA and org-wide ACF.

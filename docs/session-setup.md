@@ -15,7 +15,7 @@ Use this file to set up an AI session for each EEK artifact. Find the section fo
 **Required Inputs (confirm before starting):**
 - [ ] Frozen WCR: Frozen and routing to EEK?
 - [ ] Path A: Frozen DPRD (DPRD-{PROJECT}-{NNN}): Frozen and delivered?
-- [ ] Path B: Product Brief (human input): Complete and bounded?
+- [ ] Path B: Source material identified? (The Product Brief is written after the KER is frozen.)
 
 **Pre-Flight Gate Check (verify before generating):**
 - [ ] `document_control`: ID, date, owner, and version fields ready
@@ -57,6 +57,12 @@ Selecting Path A without recording the DPRD ID: the KER must explicitly cite the
 4. If validation FAILS: return to PIK: do not modify the placed DPRD
 
 **Path B: PRD Generation:**
+
+**Product Brief intake (optional, before PRD generation):**
+1. Load: `docs/prompts/product-brief-intake-prompt.md`
+2. Provide: Frozen KER (Path B) and all source material on hand (notes, tickets, emails, incident reports), labeled in order
+3. Human answers every question in Output B and edits Output A into the completed Product Brief
+4. Resolve Output C before continuing: out-of-scope items require a KER amendment; solution statements stay out of the brief unless mandated
 
 **Required Inputs:**
 - [ ] Completed Product Brief: Present and bounded?
