@@ -23,3 +23,6 @@ spec_exemption_case: true
 labeled_by: Todd Linnertz
 labeled_date: "2026-08-15"
 source: "G-9 receipt, 2026-07-15 real-AI dogfood (v13-validation/01-sad.md)"
+# Written against the THROWAWAY initiative, not PRD-EX-001: the judge and
+# the referential checks need its own PRD and ACF (2026-11-16).
+upstream_dir: upstream-throwaway
