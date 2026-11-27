@@ -1,0 +1,25 @@
+# Gold case (FR-014 build spec 4h, build step 3). Labels ratified by a human before commit.
+case_id: mutant-data-integration
+artifact_type: SAD
+validator: sad-validator
+input_path: inputs/mutant-data-integration.md
+input_sha256: 92e8f99155c801d8029ad6d9cd5d98d4e00cc3f5f987fdc342e82eea130b96bd
+expected_gates:
+  intent_integrity: PASS
+  scope_discipline: PASS
+  upstream_traceability: PASS
+  structural_diagrams: PASS
+  cross_cutting_concerns: PASS
+  data_integration: FAIL
+  failure_modes: PASS
+  quality_attributes: PASS
+  deferred_decisions: PASS
+  risk_awareness: PASS
+  guardrail_alignment: PASS
+  implementation_leakage: PASS
+  layer_assignment: PASS
+  integration_contracts: PASS
+spec_exemption_case: false
+labeled_by: Todd Linnertz
+labeled_date: "2026-11-26"
+source: "Single-gate mutant: two writers to the data store, no authoritative owner named"
